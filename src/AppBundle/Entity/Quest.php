@@ -38,6 +38,13 @@ class Quest
     /**
      * @var bool
      *
+     * @ORM\Column(name="is_active", type="boolean")
+     */
+    private $isActive;
+
+    /**
+     * @var bool
+     *
      * @ORM\Column(name="is_in_slider", type="boolean")
      */
     private $isInSlider;
@@ -194,6 +201,29 @@ class Quest
     public function getSlug()
     {
         return $this->slug;
+    }
+
+    /**
+     * Set isActive
+     *
+     * @param boolean $isActive
+     * @return Quest
+     */
+    public function setIsActive($isActive)
+    {
+        $this->isActive = $isActive;
+
+        return $this;
+    }
+
+    /**
+     * Get isActive
+     *
+     * @return boolean
+     */
+    public function getIsActive()
+    {
+        return $this->isActive;
     }
 
     /**
