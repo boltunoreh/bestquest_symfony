@@ -41,10 +41,6 @@ class ProductAdmin extends AbstractAdmin
                 'label' => 'Активен',
             ))
             ->addIdentifier('id')
-            ->addIdentifier('image', null, array(
-                'label'    => 'Изображение',
-                'template' => 'ApplicationSonataMediaBundle:Form:admin_form_image_preview.html.twig',
-            ))
             ->addIdentifier('title', null, array(
                 'label'        => 'Название',
                 'header_style' => 'width: 35%',
@@ -54,9 +50,6 @@ class ProductAdmin extends AbstractAdmin
             ))
             ->add('category', null, array(
                 'label' => 'Категория',
-            ))
-            ->add('sort', null, array(
-                'label' => 'Порядок',
             ))
             ->add('_action', 'actions', array(
                 'actions' => array(
@@ -84,43 +77,35 @@ class ProductAdmin extends AbstractAdmin
             ->add('isActive', null, array(
                 'label' => 'Активен',
             ))
+            ->add('isInSlider', null, array(
+                'label' => 'В главном слайдере',
+            ))
             ->add('category', 'sonata_type_model', array(
                 'label'       => 'Категория',
                 'empty_value' => '',
                 'btn_add'     => false,
             ))
-            ->add('subcategory', null, array(
-                'label'    => 'Подкатегория',
-                'required' => false,
+            ->add('sliderAnnotation', null, array(
+                'label' => '',
             ))
-            ->add('description', null, array(
-                'label' => 'Описание',
+            ->add('sliderDescription', null, array(
+                'label' => '',
             ))
-            ->add('weight', null, array(
-                'label' => 'Вес',
+            ->add('', null, array(
+                'label' => '',
             ))
-            ->add('consist', null, array(
-                'label' => 'Состав',
+            ->add('', null, array(
+                'label' => '',
             ))
-            ->add('sort', null, array(
-                'label' => 'Порядок сортировки',
+            ->add('', null, array(
+                'label' => '',
             ))
-            ->add('image',
-                'sonata_media_type',
-                array(
-                    'label'    => 'Основное изображение',
-                    'provider' => 'sonata.media.provider.image',
-                    'context'  => 'product_image',
-                )
-            )
-            ->add('additionalImage',
-                'sonata_media_type',
-                array(
-                    'label'    => 'Дополнительное изображение',
-                    'provider' => 'sonata.media.provider.image',
-                    'context'  => 'product_additional_image',
-                )
-            )
+            ->add('', null, array(
+                'label' => '',
+            ))
+            ->add('', null, array(
+                'label' => '',
+            ))
         ;
     }
 
