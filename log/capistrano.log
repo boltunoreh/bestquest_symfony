@@ -855,3 +855,388 @@
  DEBUG [2801ee72] 	
  DEBUG [2801ee72] 	
   INFO [2801ee72] Finished in 6.179 seconds with exit status 0 (successful).
+  INFO ---------------------------------------------------------------------------
+  INFO START 2017-03-14 12:16:13 +0300 cap staging deploy
+  INFO ---------------------------------------------------------------------------
+  INFO [1ae6d0b1] Running /usr/bin/env mkdir -p /tmp as deployer@85.143.221.253
+ DEBUG [1ae6d0b1] Command: ( export SYMFONY_ENV="prod" ; /usr/bin/env mkdir -p /tmp )
+  INFO [1ae6d0b1] Finished in 0.906 seconds with exit status 0 (successful).
+ DEBUG Uploading /tmp/git-ssh-bestquest-staging-user.sh 0.0%
+  INFO Uploading /tmp/git-ssh-bestquest-staging-user.sh 100.0%
+  INFO [05327f0b] Running /usr/bin/env chmod 700 /tmp/git-ssh-bestquest-staging-user.sh as deployer@85.143.221.253
+ DEBUG [05327f0b] Command: ( export SYMFONY_ENV="prod" ; /usr/bin/env chmod 700 /tmp/git-ssh-bestquest-staging-user.sh )
+  INFO [05327f0b] Finished in 0.080 seconds with exit status 0 (successful).
+  INFO [d4a5460a] Running /usr/bin/env git ls-remote git@github.com:boltunoreh/bestquest_symfony.git HEAD as deployer@85.143.221.253
+ DEBUG [d4a5460a] Command: ( export SYMFONY_ENV="prod" GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/git-ssh-bestquest-staging-user.sh" ; /usr/bin/env git ls-remote git@github.com:boltunoreh/bestquest_symfony.git HEAD )
+ DEBUG [d4a5460a] 	b0682fe2cb5c420673360f7fe7d3d6ce64c61367	HEAD
+  INFO [d4a5460a] Finished in 5.241 seconds with exit status 0 (successful).
+  INFO [7e4f9c56] Running /usr/bin/env mkdir -p /var/www/php/bqbs_symfony/shared /var/www/php/bqbs_symfony/releases as deployer@85.143.221.253
+ DEBUG [7e4f9c56] Command: ( export SYMFONY_ENV="prod" ; /usr/bin/env mkdir -p /var/www/php/bqbs_symfony/shared /var/www/php/bqbs_symfony/releases )
+  INFO [7e4f9c56] Finished in 0.079 seconds with exit status 0 (successful).
+  INFO [1ab5cf84] Running /usr/bin/env mkdir -p /var/www/php/bqbs_symfony/shared/app/logs /var/www/php/bqbs_symfony/shared/web/uploads /var/www/php/bqbs_symfony/shared/web/uploads/media as deployer@85.143.221.253
+ DEBUG [1ab5cf84] Command: ( export SYMFONY_ENV="prod" ; /usr/bin/env mkdir -p /var/www/php/bqbs_symfony/shared/app/logs /var/www/php/bqbs_symfony/shared/web/uploads /var/www/php/bqbs_symfony/shared/web/uploads/media )
+ DEBUG [1ab5cf84] 	mkdir: 
+ DEBUG [1ab5cf84] 	cannot create directory `/var/www/php/bqbs_symfony/shared/web/uploads/media'
+ DEBUG [1ab5cf84] 	: File exists
+ DEBUG [1ab5cf84] 	
+  INFO ---------------------------------------------------------------------------
+  INFO START 2017-03-14 12:22:38 +0300 cap staging deploy
+  INFO ---------------------------------------------------------------------------
+  INFO [a02765d7] Running /usr/bin/env mkdir -p /tmp as deployer@85.143.221.253
+ DEBUG [a02765d7] Command: ( export SYMFONY_ENV="prod" ; /usr/bin/env mkdir -p /tmp )
+  INFO [a02765d7] Finished in 0.842 seconds with exit status 0 (successful).
+ DEBUG Uploading /tmp/git-ssh-bestquest-staging-user.sh 0.0%
+  INFO Uploading /tmp/git-ssh-bestquest-staging-user.sh 100.0%
+  INFO [f82da744] Running /usr/bin/env chmod 700 /tmp/git-ssh-bestquest-staging-user.sh as deployer@85.143.221.253
+ DEBUG [f82da744] Command: ( export SYMFONY_ENV="prod" ; /usr/bin/env chmod 700 /tmp/git-ssh-bestquest-staging-user.sh )
+  INFO [f82da744] Finished in 0.072 seconds with exit status 0 (successful).
+  INFO [e6f29c1b] Running /usr/bin/env git ls-remote git@github.com:boltunoreh/bestquest_symfony.git HEAD as deployer@85.143.221.253
+ DEBUG [e6f29c1b] Command: ( export SYMFONY_ENV="prod" GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/git-ssh-bestquest-staging-user.sh" ; /usr/bin/env git ls-remote git@github.com:boltunoreh/bestquest_symfony.git HEAD )
+ DEBUG [e6f29c1b] 	b0682fe2cb5c420673360f7fe7d3d6ce64c61367	HEAD
+  INFO [e6f29c1b] Finished in 2.431 seconds with exit status 0 (successful).
+  INFO [fd67d35b] Running /usr/bin/env mkdir -p /var/www/php/bqbs_symfony/shared /var/www/php/bqbs_symfony/releases as deployer@85.143.221.253
+ DEBUG [fd67d35b] Command: ( export SYMFONY_ENV="prod" ; /usr/bin/env mkdir -p /var/www/php/bqbs_symfony/shared /var/www/php/bqbs_symfony/releases )
+  INFO [fd67d35b] Finished in 0.090 seconds with exit status 0 (successful).
+  INFO [dc82f199] Running /usr/bin/env mkdir -p /var/www/php/bqbs_symfony/shared/app/logs /var/www/php/bqbs_symfony/shared/web/uploads /var/www/php/bqbs_symfony/shared/web/uploads/media as deployer@85.143.221.253
+ DEBUG [dc82f199] Command: ( export SYMFONY_ENV="prod" ; /usr/bin/env mkdir -p /var/www/php/bqbs_symfony/shared/app/logs /var/www/php/bqbs_symfony/shared/web/uploads /var/www/php/bqbs_symfony/shared/web/uploads/media )
+  INFO [dc82f199] Finished in 0.086 seconds with exit status 0 (successful).
+  INFO [762e1f9e] Running /usr/bin/env mkdir -p /var/www/php/bqbs_symfony/shared/app/config /var/www/php/bqbs_symfony/shared/web as deployer@85.143.221.253
+ DEBUG [762e1f9e] Command: ( export SYMFONY_ENV="prod" ; /usr/bin/env mkdir -p /var/www/php/bqbs_symfony/shared/app/config /var/www/php/bqbs_symfony/shared/web )
+  INFO [762e1f9e] Finished in 0.100 seconds with exit status 0 (successful).
+ DEBUG [107788aa] Running [ -f /var/www/php/bqbs_symfony/shared/app/config/parameters.yml ] as deployer@85.143.221.253
+ DEBUG [107788aa] Command: [ -f /var/www/php/bqbs_symfony/shared/app/config/parameters.yml ]
+ DEBUG [107788aa] Finished in 0.075 seconds with exit status 0 (successful).
+ DEBUG [022e1c63] Running [ -f /var/www/php/bqbs_symfony/shared/web/robots.txt ] as deployer@85.143.221.253
+ DEBUG [022e1c63] Command: [ -f /var/www/php/bqbs_symfony/shared/web/robots.txt ]
+ DEBUG [022e1c63] Finished in 0.082 seconds with exit status 0 (successful).
+ DEBUG [94517e49] Running [ -f /var/www/php/bqbs_symfony/current/REVISION ] as deployer@85.143.221.253
+ DEBUG [94517e49] Command: [ -f /var/www/php/bqbs_symfony/current/REVISION ]
+ DEBUG [94517e49] Finished in 0.073 seconds with exit status 1 (failed).
+ DEBUG [4b44633b] Running [ -f /var/www/php/bqbs_symfony/repo/HEAD ] as deployer@85.143.221.253
+ DEBUG [4b44633b] Command: [ -f /var/www/php/bqbs_symfony/repo/HEAD ]
+ DEBUG [4b44633b] Finished in 0.073 seconds with exit status 0 (successful).
+  INFO The repository mirror is at /var/www/php/bqbs_symfony/repo
+ DEBUG [85516a64] Running if test ! -d /var/www/php/bqbs_symfony/repo; then echo "Directory does not exist '/var/www/php/bqbs_symfony/repo'" 1>&2; false; fi as deployer@85.143.221.253
+ DEBUG [85516a64] Command: if test ! -d /var/www/php/bqbs_symfony/repo; then echo "Directory does not exist '/var/www/php/bqbs_symfony/repo'" 1>&2; false; fi
+ DEBUG [85516a64] Finished in 0.077 seconds with exit status 0 (successful).
+  INFO [2daad4aa] Running /usr/bin/env git remote set-url origin git@github.com:boltunoreh/bestquest_symfony.git as deployer@85.143.221.253
+ DEBUG [2daad4aa] Command: cd /var/www/php/bqbs_symfony/repo && ( export SYMFONY_ENV="prod" GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/git-ssh-bestquest-staging-user.sh" ; /usr/bin/env git remote set-url origin git@github.com:boltunoreh/bestquest_symfony.git )
+  INFO [2daad4aa] Finished in 0.085 seconds with exit status 0 (successful).
+  INFO [40710b86] Running /usr/bin/env git remote update --prune as deployer@85.143.221.253
+ DEBUG [40710b86] Command: cd /var/www/php/bqbs_symfony/repo && ( export SYMFONY_ENV="prod" GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/git-ssh-bestquest-staging-user.sh" ; /usr/bin/env git remote update --prune )
+ DEBUG [40710b86] 	Fetching origin
+ DEBUG [40710b86] 	From github.com:boltunoreh/bestquest_symfony
+ DEBUG [40710b86] 	 + 4484660...b0682fe master     -> master  (forced update)
+  INFO [40710b86] Finished in 2.027 seconds with exit status 0 (successful).
+ DEBUG [84c08f17] Running if test ! -d /var/www/php/bqbs_symfony/repo; then echo "Directory does not exist '/var/www/php/bqbs_symfony/repo'" 1>&2; false; fi as deployer@85.143.221.253
+ DEBUG [84c08f17] Command: if test ! -d /var/www/php/bqbs_symfony/repo; then echo "Directory does not exist '/var/www/php/bqbs_symfony/repo'" 1>&2; false; fi
+ DEBUG [84c08f17] Finished in 0.074 seconds with exit status 0 (successful).
+  INFO [08593931] Running /usr/bin/env mkdir -p /var/www/php/bqbs_symfony/releases/20170314092243 as deployer@85.143.221.253
+ DEBUG [08593931] Command: cd /var/www/php/bqbs_symfony/repo && ( export SYMFONY_ENV="prod" GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/git-ssh-bestquest-staging-user.sh" ; /usr/bin/env mkdir -p /var/www/php/bqbs_symfony/releases/20170314092243 )
+  INFO [08593931] Finished in 0.076 seconds with exit status 0 (successful).
+  INFO [582a3474] Running /usr/bin/env git archive master | /usr/bin/env tar -x -f - -C /var/www/php/bqbs_symfony/releases/20170314092243 as deployer@85.143.221.253
+ DEBUG [582a3474] Command: cd /var/www/php/bqbs_symfony/repo && ( export SYMFONY_ENV="prod" GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/git-ssh-bestquest-staging-user.sh" ; /usr/bin/env git archive master | /usr/bin/env tar -x -f - -C /var/www/php/bqbs_symfony/releases/20170314092243 )
+  INFO [582a3474] Finished in 0.145 seconds with exit status 0 (successful).
+ DEBUG [91e7654d] Running if test ! -d /var/www/php/bqbs_symfony/repo; then echo "Directory does not exist '/var/www/php/bqbs_symfony/repo'" 1>&2; false; fi as deployer@85.143.221.253
+ DEBUG [91e7654d] Command: if test ! -d /var/www/php/bqbs_symfony/repo; then echo "Directory does not exist '/var/www/php/bqbs_symfony/repo'" 1>&2; false; fi
+ DEBUG [91e7654d] Finished in 0.082 seconds with exit status 0 (successful).
+ DEBUG [11497aa5] Running /usr/bin/env git rev-list --max-count=1 master as deployer@85.143.221.253
+ DEBUG [11497aa5] Command: cd /var/www/php/bqbs_symfony/repo && ( export SYMFONY_ENV="prod" GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/git-ssh-bestquest-staging-user.sh" ; /usr/bin/env git rev-list --max-count=1 master )
+ DEBUG [11497aa5] 	b0682fe2cb5c420673360f7fe7d3d6ce64c61367
+ DEBUG [11497aa5] Finished in 0.076 seconds with exit status 0 (successful).
+ DEBUG [58c3b5ab] Running if test ! -d /var/www/php/bqbs_symfony/releases/20170314092243; then echo "Directory does not exist '/var/www/php/bqbs_symfony/releases/20170314092243'" 1>&2; false; fi as deployer@85.143.221.253
+ DEBUG [58c3b5ab] Command: if test ! -d /var/www/php/bqbs_symfony/releases/20170314092243; then echo "Directory does not exist '/var/www/php/bqbs_symfony/releases/20170314092243'" 1>&2; false; fi
+ DEBUG [58c3b5ab] Finished in 0.080 seconds with exit status 0 (successful).
+  INFO [0c9aec66] Running /usr/bin/env echo "b0682fe2cb5c420673360f7fe7d3d6ce64c61367" >> REVISION as deployer@85.143.221.253
+ DEBUG [0c9aec66] Command: cd /var/www/php/bqbs_symfony/releases/20170314092243 && ( export SYMFONY_ENV="prod" ; /usr/bin/env echo "b0682fe2cb5c420673360f7fe7d3d6ce64c61367" >> REVISION )
+  INFO [0c9aec66] Finished in 0.092 seconds with exit status 0 (successful).
+  INFO [4d3e4d19] Running /usr/bin/env mkdir -p /var/www/php/bqbs_symfony/releases/20170314092243/app/config /var/www/php/bqbs_symfony/releases/20170314092243/web as deployer@85.143.221.253
+ DEBUG [4d3e4d19] Command: ( export SYMFONY_ENV="prod" ; /usr/bin/env mkdir -p /var/www/php/bqbs_symfony/releases/20170314092243/app/config /var/www/php/bqbs_symfony/releases/20170314092243/web )
+  INFO [4d3e4d19] Finished in 0.250 seconds with exit status 0 (successful).
+ DEBUG [0394d21c] Running [ -L /var/www/php/bqbs_symfony/releases/20170314092243/app/config/parameters.yml ] as deployer@85.143.221.253
+ DEBUG [0394d21c] Command: [ -L /var/www/php/bqbs_symfony/releases/20170314092243/app/config/parameters.yml ]
+ DEBUG [0394d21c] Finished in 0.253 seconds with exit status 1 (failed).
+ DEBUG [1d705b82] Running [ -f /var/www/php/bqbs_symfony/releases/20170314092243/app/config/parameters.yml ] as deployer@85.143.221.253
+ DEBUG [1d705b82] Command: [ -f /var/www/php/bqbs_symfony/releases/20170314092243/app/config/parameters.yml ]
+ DEBUG [1d705b82] Finished in 0.072 seconds with exit status 1 (failed).
+  INFO [7349771c] Running /usr/bin/env ln -s /var/www/php/bqbs_symfony/shared/app/config/parameters.yml /var/www/php/bqbs_symfony/releases/20170314092243/app/config/parameters.yml as deployer@85.143.221.253
+ DEBUG [7349771c] Command: ( export SYMFONY_ENV="prod" ; /usr/bin/env ln -s /var/www/php/bqbs_symfony/shared/app/config/parameters.yml /var/www/php/bqbs_symfony/releases/20170314092243/app/config/parameters.yml )
+  INFO [7349771c] Finished in 0.369 seconds with exit status 0 (successful).
+ DEBUG [64523e76] Running [ -L /var/www/php/bqbs_symfony/releases/20170314092243/web/robots.txt ] as deployer@85.143.221.253
+ DEBUG [64523e76] Command: [ -L /var/www/php/bqbs_symfony/releases/20170314092243/web/robots.txt ]
+ DEBUG [64523e76] Finished in 0.078 seconds with exit status 1 (failed).
+ DEBUG [03663038] Running [ -f /var/www/php/bqbs_symfony/releases/20170314092243/web/robots.txt ] as deployer@85.143.221.253
+ DEBUG [03663038] Command: [ -f /var/www/php/bqbs_symfony/releases/20170314092243/web/robots.txt ]
+ DEBUG [03663038] Finished in 0.081 seconds with exit status 0 (successful).
+  INFO [8b294f22] Running /usr/bin/env rm /var/www/php/bqbs_symfony/releases/20170314092243/web/robots.txt as deployer@85.143.221.253
+ DEBUG [8b294f22] Command: ( export SYMFONY_ENV="prod" ; /usr/bin/env rm /var/www/php/bqbs_symfony/releases/20170314092243/web/robots.txt )
+  INFO [8b294f22] Finished in 0.076 seconds with exit status 0 (successful).
+  INFO [d7f9ed3b] Running /usr/bin/env ln -s /var/www/php/bqbs_symfony/shared/web/robots.txt /var/www/php/bqbs_symfony/releases/20170314092243/web/robots.txt as deployer@85.143.221.253
+ DEBUG [d7f9ed3b] Command: ( export SYMFONY_ENV="prod" ; /usr/bin/env ln -s /var/www/php/bqbs_symfony/shared/web/robots.txt /var/www/php/bqbs_symfony/releases/20170314092243/web/robots.txt )
+  INFO [d7f9ed3b] Finished in 0.078 seconds with exit status 0 (successful).
+  INFO [62414fac] Running /usr/bin/env mkdir -p /var/www/php/bqbs_symfony/releases/20170314092243/app /var/www/php/bqbs_symfony/releases/20170314092243/web /var/www/php/bqbs_symfony/releases/20170314092243/web/uploads as deployer@85.143.221.253
+ DEBUG [62414fac] Command: ( export SYMFONY_ENV="prod" ; /usr/bin/env mkdir -p /var/www/php/bqbs_symfony/releases/20170314092243/app /var/www/php/bqbs_symfony/releases/20170314092243/web /var/www/php/bqbs_symfony/releases/20170314092243/web/uploads )
+  INFO [62414fac] Finished in 0.074 seconds with exit status 0 (successful).
+ DEBUG [cce80319] Running [ -L /var/www/php/bqbs_symfony/releases/20170314092243/app/logs ] as deployer@85.143.221.253
+ DEBUG [cce80319] Command: [ -L /var/www/php/bqbs_symfony/releases/20170314092243/app/logs ]
+ DEBUG [cce80319] Finished in 0.070 seconds with exit status 1 (failed).
+ DEBUG [57955c7b] Running [ -d /var/www/php/bqbs_symfony/releases/20170314092243/app/logs ] as deployer@85.143.221.253
+ DEBUG [57955c7b] Command: [ -d /var/www/php/bqbs_symfony/releases/20170314092243/app/logs ]
+ DEBUG [57955c7b] Finished in 0.071 seconds with exit status 0 (successful).
+  INFO [80514806] Running /usr/bin/env rm -rf /var/www/php/bqbs_symfony/releases/20170314092243/app/logs as deployer@85.143.221.253
+ DEBUG [80514806] Command: ( export SYMFONY_ENV="prod" ; /usr/bin/env rm -rf /var/www/php/bqbs_symfony/releases/20170314092243/app/logs )
+  INFO [80514806] Finished in 0.086 seconds with exit status 0 (successful).
+  INFO [983a81af] Running /usr/bin/env ln -s /var/www/php/bqbs_symfony/shared/app/logs /var/www/php/bqbs_symfony/releases/20170314092243/app/logs as deployer@85.143.221.253
+ DEBUG [983a81af] Command: ( export SYMFONY_ENV="prod" ; /usr/bin/env ln -s /var/www/php/bqbs_symfony/shared/app/logs /var/www/php/bqbs_symfony/releases/20170314092243/app/logs )
+  INFO [983a81af] Finished in 0.073 seconds with exit status 0 (successful).
+ DEBUG [a1c47546] Running [ -L /var/www/php/bqbs_symfony/releases/20170314092243/web/uploads ] as deployer@85.143.221.253
+ DEBUG [a1c47546] Command: [ -L /var/www/php/bqbs_symfony/releases/20170314092243/web/uploads ]
+ DEBUG [a1c47546] Finished in 0.072 seconds with exit status 1 (failed).
+ DEBUG [dbd7fd6c] Running [ -d /var/www/php/bqbs_symfony/releases/20170314092243/web/uploads ] as deployer@85.143.221.253
+ DEBUG [dbd7fd6c] Command: [ -d /var/www/php/bqbs_symfony/releases/20170314092243/web/uploads ]
+ DEBUG [dbd7fd6c] Finished in 0.072 seconds with exit status 0 (successful).
+  INFO [85538497] Running /usr/bin/env rm -rf /var/www/php/bqbs_symfony/releases/20170314092243/web/uploads as deployer@85.143.221.253
+ DEBUG [85538497] Command: ( export SYMFONY_ENV="prod" ; /usr/bin/env rm -rf /var/www/php/bqbs_symfony/releases/20170314092243/web/uploads )
+  INFO [85538497] Finished in 0.372 seconds with exit status 0 (successful).
+  INFO [b18b2d6c] Running /usr/bin/env ln -s /var/www/php/bqbs_symfony/shared/web/uploads /var/www/php/bqbs_symfony/releases/20170314092243/web/uploads as deployer@85.143.221.253
+ DEBUG [b18b2d6c] Command: ( export SYMFONY_ENV="prod" ; /usr/bin/env ln -s /var/www/php/bqbs_symfony/shared/web/uploads /var/www/php/bqbs_symfony/releases/20170314092243/web/uploads )
+  INFO [b18b2d6c] Finished in 0.080 seconds with exit status 0 (successful).
+ DEBUG [e9fa1fa2] Running [ -L /var/www/php/bqbs_symfony/releases/20170314092243/web/uploads/media ] as deployer@85.143.221.253
+ DEBUG [e9fa1fa2] Command: [ -L /var/www/php/bqbs_symfony/releases/20170314092243/web/uploads/media ]
+ DEBUG [e9fa1fa2] Finished in 0.074 seconds with exit status 1 (failed).
+ DEBUG [a1caf319] Running [ -d /var/www/php/bqbs_symfony/releases/20170314092243/web/uploads/media ] as deployer@85.143.221.253
+ DEBUG [a1caf319] Command: [ -d /var/www/php/bqbs_symfony/releases/20170314092243/web/uploads/media ]
+ DEBUG [a1caf319] Finished in 0.084 seconds with exit status 0 (successful).
+  INFO [4226eaec] Running /usr/bin/env rm -rf /var/www/php/bqbs_symfony/releases/20170314092243/web/uploads/media as deployer@85.143.221.253
+ DEBUG [4226eaec] Command: ( export SYMFONY_ENV="prod" ; /usr/bin/env rm -rf /var/www/php/bqbs_symfony/releases/20170314092243/web/uploads/media )
+  INFO [4226eaec] Finished in 0.075 seconds with exit status 0 (successful).
+  INFO [e795529e] Running /usr/bin/env ln -s /var/www/php/bqbs_symfony/shared/web/uploads/media /var/www/php/bqbs_symfony/releases/20170314092243/web/uploads/media as deployer@85.143.221.253
+ DEBUG [e795529e] Command: ( export SYMFONY_ENV="prod" ; /usr/bin/env ln -s /var/www/php/bqbs_symfony/shared/web/uploads/media /var/www/php/bqbs_symfony/releases/20170314092243/web/uploads/media )
+  INFO [e795529e] Finished in 0.077 seconds with exit status 0 (successful).
+ DEBUG [c34493b0] Running if test ! -d /var/www/php/bqbs_symfony/releases/20170314092243; then echo "Directory does not exist '/var/www/php/bqbs_symfony/releases/20170314092243'" 1>&2; false; fi as deployer@85.143.221.253
+ DEBUG [c34493b0] Command: if test ! -d /var/www/php/bqbs_symfony/releases/20170314092243; then echo "Directory does not exist '/var/www/php/bqbs_symfony/releases/20170314092243'" 1>&2; false; fi
+ DEBUG [c34493b0] Finished in 0.080 seconds with exit status 0 (successful).
+ DEBUG [c86b61c4] Running [ -d /var/www/php/bqbs_symfony/releases/20170314092243/app/cache ] as deployer@85.143.221.253
+ DEBUG [c86b61c4] Command: [ -d /var/www/php/bqbs_symfony/releases/20170314092243/app/cache ]
+ DEBUG [c86b61c4] Finished in 0.081 seconds with exit status 0 (successful).
+  INFO [6bede58c] Running /usr/bin/env rm -rf /var/www/php/bqbs_symfony/releases/20170314092243/app/cache as deployer@85.143.221.253
+ DEBUG [6bede58c] Command: cd /var/www/php/bqbs_symfony/releases/20170314092243 && ( export SYMFONY_ENV="prod" ; /usr/bin/env rm -rf /var/www/php/bqbs_symfony/releases/20170314092243/app/cache )
+  INFO [6bede58c] Finished in 0.081 seconds with exit status 0 (successful).
+  INFO [84cf57b7] Running /usr/bin/env mkdir -pv app/cache as deployer@85.143.221.253
+ DEBUG [84cf57b7] Command: cd /var/www/php/bqbs_symfony/releases/20170314092243 && ( export SYMFONY_ENV="prod" ; /usr/bin/env mkdir -pv app/cache )
+ DEBUG [84cf57b7] 	mkdir: created directory `app/cache'
+  INFO [84cf57b7] Finished in 0.089 seconds with exit status 0 (successful).
+ DEBUG [a6e51b3b] Running if test ! -d /var/www/php/bqbs_symfony/releases/20170314092243; then echo "Directory does not exist '/var/www/php/bqbs_symfony/releases/20170314092243'" 1>&2; false; fi as deployer@85.143.221.253
+ DEBUG [a6e51b3b] Command: if test ! -d /var/www/php/bqbs_symfony/releases/20170314092243; then echo "Directory does not exist '/var/www/php/bqbs_symfony/releases/20170314092243'" 1>&2; false; fi
+ DEBUG [a6e51b3b] Finished in 0.075 seconds with exit status 0 (successful).
+  INFO [7e8b5964] Running /usr/bin/env composer install --no-interaction --quiet --optimize-autoloader as deployer@85.143.221.253
+ DEBUG [7e8b5964] Command: cd /var/www/php/bqbs_symfony/releases/20170314092243 && ( export SYMFONY_ENV="prod" ; /usr/bin/env composer install --no-interaction --quiet --optimize-autoloader )
+  INFO [7e8b5964] Finished in 355.638 seconds with exit status 0 (successful).
+ DEBUG [c98a8475] Running if test ! -d /var/www/php/bqbs_symfony/releases/20170314092243; then echo "Directory does not exist '/var/www/php/bqbs_symfony/releases/20170314092243'" 1>&2; false; fi as deployer@85.143.221.253
+ DEBUG [c98a8475] Command: if test ! -d /var/www/php/bqbs_symfony/releases/20170314092243; then echo "Directory does not exist '/var/www/php/bqbs_symfony/releases/20170314092243'" 1>&2; false; fi
+ DEBUG [c98a8475] Finished in 0.078 seconds with exit status 0 (successful).
+  INFO [97353770] Running /usr/bin/env php app/console cache:warmup  --no-debug as deployer@85.143.221.253
+ DEBUG [97353770] Command: cd /var/www/php/bqbs_symfony/releases/20170314092243 && ( export SYMFONY_ENV="prod" ; /usr/bin/env php app/console cache:warmup  --no-debug )
+ DEBUG [97353770] 	
+ DEBUG [97353770] 	 // Warming up the cache for the prod environment with debug false                                                      
+ DEBUG [97353770] 	
+ DEBUG [97353770] 	
+ DEBUG [97353770] 	 [OK] Cache for the "prod" environment (debug=false) was successfully warmed.                                           
+ DEBUG [97353770] 	
+ DEBUG [97353770] 	
+  INFO [97353770] Finished in 8.778 seconds with exit status 0 (successful).
+  INFO ---------------------------------------------------------------------------
+  INFO START 2017-03-14 13:06:42 +0300 cap staging deploy
+  INFO ---------------------------------------------------------------------------
+  INFO [c1bec6f8] Running /usr/bin/env mkdir -p /tmp as deployer@85.143.221.253
+ DEBUG [c1bec6f8] Command: ( export SYMFONY_ENV="prod" ; /usr/bin/env mkdir -p /tmp )
+  INFO [c1bec6f8] Finished in 1.067 seconds with exit status 0 (successful).
+ DEBUG Uploading /tmp/git-ssh-bestquest-staging-user.sh 0.0%
+  INFO Uploading /tmp/git-ssh-bestquest-staging-user.sh 100.0%
+  INFO [28833127] Running /usr/bin/env chmod 700 /tmp/git-ssh-bestquest-staging-user.sh as deployer@85.143.221.253
+ DEBUG [28833127] Command: ( export SYMFONY_ENV="prod" ; /usr/bin/env chmod 700 /tmp/git-ssh-bestquest-staging-user.sh )
+  INFO [28833127] Finished in 0.073 seconds with exit status 0 (successful).
+  INFO [761fc8c6] Running /usr/bin/env git ls-remote git@github.com:boltunoreh/bestquest_symfony.git HEAD as deployer@85.143.221.253
+ DEBUG [761fc8c6] Command: ( export SYMFONY_ENV="prod" GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/git-ssh-bestquest-staging-user.sh" ; /usr/bin/env git ls-remote git@github.com:boltunoreh/bestquest_symfony.git HEAD )
+ DEBUG [761fc8c6] 	b0682fe2cb5c420673360f7fe7d3d6ce64c61367	HEAD
+  INFO [761fc8c6] Finished in 2.199 seconds with exit status 0 (successful).
+  INFO [cb1b0fa6] Running /usr/bin/env mkdir -p /var/www/php/bqbs_symfony/shared /var/www/php/bqbs_symfony/releases as deployer@85.143.221.253
+ DEBUG [cb1b0fa6] Command: ( export SYMFONY_ENV="prod" ; /usr/bin/env mkdir -p /var/www/php/bqbs_symfony/shared /var/www/php/bqbs_symfony/releases )
+  INFO [cb1b0fa6] Finished in 0.073 seconds with exit status 0 (successful).
+  INFO [08a0066a] Running /usr/bin/env mkdir -p /var/www/php/bqbs_symfony/shared/app/logs /var/www/php/bqbs_symfony/shared/web/uploads/media as deployer@85.143.221.253
+ DEBUG [08a0066a] Command: ( export SYMFONY_ENV="prod" ; /usr/bin/env mkdir -p /var/www/php/bqbs_symfony/shared/app/logs /var/www/php/bqbs_symfony/shared/web/uploads/media )
+  INFO [08a0066a] Finished in 0.296 seconds with exit status 0 (successful).
+  INFO [4284000f] Running /usr/bin/env mkdir -p /var/www/php/bqbs_symfony/shared/app/config /var/www/php/bqbs_symfony/shared/web as deployer@85.143.221.253
+ DEBUG [4284000f] Command: ( export SYMFONY_ENV="prod" ; /usr/bin/env mkdir -p /var/www/php/bqbs_symfony/shared/app/config /var/www/php/bqbs_symfony/shared/web )
+  INFO [4284000f] Finished in 0.072 seconds with exit status 0 (successful).
+ DEBUG [851cd07a] Running [ -f /var/www/php/bqbs_symfony/shared/app/config/parameters.yml ] as deployer@85.143.221.253
+ DEBUG [851cd07a] Command: [ -f /var/www/php/bqbs_symfony/shared/app/config/parameters.yml ]
+ DEBUG [851cd07a] Finished in 0.071 seconds with exit status 0 (successful).
+ DEBUG [62d5da08] Running [ -f /var/www/php/bqbs_symfony/shared/web/robots.txt ] as deployer@85.143.221.253
+ DEBUG [62d5da08] Command: [ -f /var/www/php/bqbs_symfony/shared/web/robots.txt ]
+ DEBUG [62d5da08] Finished in 0.074 seconds with exit status 0 (successful).
+ DEBUG [699277fd] Running [ -f /var/www/php/bqbs_symfony/current/REVISION ] as deployer@85.143.221.253
+ DEBUG [699277fd] Command: [ -f /var/www/php/bqbs_symfony/current/REVISION ]
+ DEBUG [699277fd] Finished in 0.068 seconds with exit status 1 (failed).
+ DEBUG [1f7f826c] Running [ -f /var/www/php/bqbs_symfony/repo/HEAD ] as deployer@85.143.221.253
+ DEBUG [1f7f826c] Command: [ -f /var/www/php/bqbs_symfony/repo/HEAD ]
+ DEBUG [1f7f826c] Finished in 0.069 seconds with exit status 0 (successful).
+  INFO The repository mirror is at /var/www/php/bqbs_symfony/repo
+ DEBUG [43c9d437] Running if test ! -d /var/www/php/bqbs_symfony/repo; then echo "Directory does not exist '/var/www/php/bqbs_symfony/repo'" 1>&2; false; fi as deployer@85.143.221.253
+ DEBUG [43c9d437] Command: if test ! -d /var/www/php/bqbs_symfony/repo; then echo "Directory does not exist '/var/www/php/bqbs_symfony/repo'" 1>&2; false; fi
+ DEBUG [43c9d437] Finished in 0.071 seconds with exit status 0 (successful).
+  INFO [3f8881ea] Running /usr/bin/env git remote set-url origin git@github.com:boltunoreh/bestquest_symfony.git as deployer@85.143.221.253
+ DEBUG [3f8881ea] Command: cd /var/www/php/bqbs_symfony/repo && ( export SYMFONY_ENV="prod" GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/git-ssh-bestquest-staging-user.sh" ; /usr/bin/env git remote set-url origin git@github.com:boltunoreh/bestquest_symfony.git )
+  INFO [3f8881ea] Finished in 0.077 seconds with exit status 0 (successful).
+  INFO [5037e2df] Running /usr/bin/env git remote update --prune as deployer@85.143.221.253
+ DEBUG [5037e2df] Command: cd /var/www/php/bqbs_symfony/repo && ( export SYMFONY_ENV="prod" GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/git-ssh-bestquest-staging-user.sh" ; /usr/bin/env git remote update --prune )
+ DEBUG [5037e2df] 	Fetching origin
+  INFO [5037e2df] Finished in 1.771 seconds with exit status 0 (successful).
+ DEBUG [9d794ff1] Running if test ! -d /var/www/php/bqbs_symfony/repo; then echo "Directory does not exist '/var/www/php/bqbs_symfony/repo'" 1>&2; false; fi as deployer@85.143.221.253
+ DEBUG [9d794ff1] Command: if test ! -d /var/www/php/bqbs_symfony/repo; then echo "Directory does not exist '/var/www/php/bqbs_symfony/repo'" 1>&2; false; fi
+ DEBUG [9d794ff1] Finished in 0.079 seconds with exit status 0 (successful).
+  INFO [c0e036d5] Running /usr/bin/env mkdir -p /var/www/php/bqbs_symfony/releases/20170314100647 as deployer@85.143.221.253
+ DEBUG [c0e036d5] Command: cd /var/www/php/bqbs_symfony/repo && ( export SYMFONY_ENV="prod" GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/git-ssh-bestquest-staging-user.sh" ; /usr/bin/env mkdir -p /var/www/php/bqbs_symfony/releases/20170314100647 )
+  INFO [c0e036d5] Finished in 0.083 seconds with exit status 0 (successful).
+  INFO [827da2dc] Running /usr/bin/env git archive master | /usr/bin/env tar -x -f - -C /var/www/php/bqbs_symfony/releases/20170314100647 as deployer@85.143.221.253
+ DEBUG [827da2dc] Command: cd /var/www/php/bqbs_symfony/repo && ( export SYMFONY_ENV="prod" GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/git-ssh-bestquest-staging-user.sh" ; /usr/bin/env git archive master | /usr/bin/env tar -x -f - -C /var/www/php/bqbs_symfony/releases/20170314100647 )
+  INFO [827da2dc] Finished in 0.095 seconds with exit status 0 (successful).
+ DEBUG [7a0e4bf3] Running if test ! -d /var/www/php/bqbs_symfony/repo; then echo "Directory does not exist '/var/www/php/bqbs_symfony/repo'" 1>&2; false; fi as deployer@85.143.221.253
+ DEBUG [7a0e4bf3] Command: if test ! -d /var/www/php/bqbs_symfony/repo; then echo "Directory does not exist '/var/www/php/bqbs_symfony/repo'" 1>&2; false; fi
+ DEBUG [7a0e4bf3] Finished in 0.070 seconds with exit status 0 (successful).
+ DEBUG [b1e9f164] Running /usr/bin/env git rev-list --max-count=1 master as deployer@85.143.221.253
+ DEBUG [b1e9f164] Command: cd /var/www/php/bqbs_symfony/repo && ( export SYMFONY_ENV="prod" GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/git-ssh-bestquest-staging-user.sh" ; /usr/bin/env git rev-list --max-count=1 master )
+ DEBUG [b1e9f164] 	b0682fe2cb5c420673360f7fe7d3d6ce64c61367
+ DEBUG [b1e9f164] Finished in 0.080 seconds with exit status 0 (successful).
+ DEBUG [82ebcce9] Running if test ! -d /var/www/php/bqbs_symfony/releases/20170314100647; then echo "Directory does not exist '/var/www/php/bqbs_symfony/releases/20170314100647'" 1>&2; false; fi as deployer@85.143.221.253
+ DEBUG [82ebcce9] Command: if test ! -d /var/www/php/bqbs_symfony/releases/20170314100647; then echo "Directory does not exist '/var/www/php/bqbs_symfony/releases/20170314100647'" 1>&2; false; fi
+ DEBUG [82ebcce9] Finished in 0.072 seconds with exit status 0 (successful).
+  INFO [bfa0858a] Running /usr/bin/env echo "b0682fe2cb5c420673360f7fe7d3d6ce64c61367" >> REVISION as deployer@85.143.221.253
+ DEBUG [bfa0858a] Command: cd /var/www/php/bqbs_symfony/releases/20170314100647 && ( export SYMFONY_ENV="prod" ; /usr/bin/env echo "b0682fe2cb5c420673360f7fe7d3d6ce64c61367" >> REVISION )
+  INFO [bfa0858a] Finished in 0.075 seconds with exit status 0 (successful).
+  INFO [2dc0499a] Running /usr/bin/env mkdir -p /var/www/php/bqbs_symfony/releases/20170314100647/app/config /var/www/php/bqbs_symfony/releases/20170314100647/web as deployer@85.143.221.253
+ DEBUG [2dc0499a] Command: ( export SYMFONY_ENV="prod" ; /usr/bin/env mkdir -p /var/www/php/bqbs_symfony/releases/20170314100647/app/config /var/www/php/bqbs_symfony/releases/20170314100647/web )
+  INFO [2dc0499a] Finished in 0.075 seconds with exit status 0 (successful).
+ DEBUG [c143c1d7] Running [ -L /var/www/php/bqbs_symfony/releases/20170314100647/app/config/parameters.yml ] as deployer@85.143.221.253
+ DEBUG [c143c1d7] Command: [ -L /var/www/php/bqbs_symfony/releases/20170314100647/app/config/parameters.yml ]
+ DEBUG [c143c1d7] Finished in 0.078 seconds with exit status 1 (failed).
+ DEBUG [aa58589b] Running [ -f /var/www/php/bqbs_symfony/releases/20170314100647/app/config/parameters.yml ] as deployer@85.143.221.253
+ DEBUG [aa58589b] Command: [ -f /var/www/php/bqbs_symfony/releases/20170314100647/app/config/parameters.yml ]
+ DEBUG [aa58589b] Finished in 0.073 seconds with exit status 1 (failed).
+  INFO [cd3edd5d] Running /usr/bin/env ln -s /var/www/php/bqbs_symfony/shared/app/config/parameters.yml /var/www/php/bqbs_symfony/releases/20170314100647/app/config/parameters.yml as deployer@85.143.221.253
+ DEBUG [cd3edd5d] Command: ( export SYMFONY_ENV="prod" ; /usr/bin/env ln -s /var/www/php/bqbs_symfony/shared/app/config/parameters.yml /var/www/php/bqbs_symfony/releases/20170314100647/app/config/parameters.yml )
+  INFO [cd3edd5d] Finished in 0.075 seconds with exit status 0 (successful).
+ DEBUG [d98fe649] Running [ -L /var/www/php/bqbs_symfony/releases/20170314100647/web/robots.txt ] as deployer@85.143.221.253
+ DEBUG [d98fe649] Command: [ -L /var/www/php/bqbs_symfony/releases/20170314100647/web/robots.txt ]
+ DEBUG [d98fe649] Finished in 0.079 seconds with exit status 1 (failed).
+ DEBUG [c5896a67] Running [ -f /var/www/php/bqbs_symfony/releases/20170314100647/web/robots.txt ] as deployer@85.143.221.253
+ DEBUG [c5896a67] Command: [ -f /var/www/php/bqbs_symfony/releases/20170314100647/web/robots.txt ]
+ DEBUG [c5896a67] Finished in 0.071 seconds with exit status 0 (successful).
+  INFO [444c2025] Running /usr/bin/env rm /var/www/php/bqbs_symfony/releases/20170314100647/web/robots.txt as deployer@85.143.221.253
+ DEBUG [444c2025] Command: ( export SYMFONY_ENV="prod" ; /usr/bin/env rm /var/www/php/bqbs_symfony/releases/20170314100647/web/robots.txt )
+  INFO [444c2025] Finished in 0.071 seconds with exit status 0 (successful).
+  INFO [0ce13fa2] Running /usr/bin/env ln -s /var/www/php/bqbs_symfony/shared/web/robots.txt /var/www/php/bqbs_symfony/releases/20170314100647/web/robots.txt as deployer@85.143.221.253
+ DEBUG [0ce13fa2] Command: ( export SYMFONY_ENV="prod" ; /usr/bin/env ln -s /var/www/php/bqbs_symfony/shared/web/robots.txt /var/www/php/bqbs_symfony/releases/20170314100647/web/robots.txt )
+  INFO [0ce13fa2] Finished in 0.072 seconds with exit status 0 (successful).
+  INFO [68d2ff2e] Running /usr/bin/env mkdir -p /var/www/php/bqbs_symfony/releases/20170314100647/app /var/www/php/bqbs_symfony/releases/20170314100647/web/uploads as deployer@85.143.221.253
+ DEBUG [68d2ff2e] Command: ( export SYMFONY_ENV="prod" ; /usr/bin/env mkdir -p /var/www/php/bqbs_symfony/releases/20170314100647/app /var/www/php/bqbs_symfony/releases/20170314100647/web/uploads )
+  INFO [68d2ff2e] Finished in 0.075 seconds with exit status 0 (successful).
+ DEBUG [47491074] Running [ -L /var/www/php/bqbs_symfony/releases/20170314100647/app/logs ] as deployer@85.143.221.253
+ DEBUG [47491074] Command: [ -L /var/www/php/bqbs_symfony/releases/20170314100647/app/logs ]
+ DEBUG [47491074] Finished in 0.068 seconds with exit status 1 (failed).
+ DEBUG [4810acf9] Running [ -d /var/www/php/bqbs_symfony/releases/20170314100647/app/logs ] as deployer@85.143.221.253
+ DEBUG [4810acf9] Command: [ -d /var/www/php/bqbs_symfony/releases/20170314100647/app/logs ]
+ DEBUG [4810acf9] Finished in 0.069 seconds with exit status 0 (successful).
+  INFO [0d5a9a80] Running /usr/bin/env rm -rf /var/www/php/bqbs_symfony/releases/20170314100647/app/logs as deployer@85.143.221.253
+ DEBUG [0d5a9a80] Command: ( export SYMFONY_ENV="prod" ; /usr/bin/env rm -rf /var/www/php/bqbs_symfony/releases/20170314100647/app/logs )
+  INFO [0d5a9a80] Finished in 0.071 seconds with exit status 0 (successful).
+  INFO [8a0a32c2] Running /usr/bin/env ln -s /var/www/php/bqbs_symfony/shared/app/logs /var/www/php/bqbs_symfony/releases/20170314100647/app/logs as deployer@85.143.221.253
+ DEBUG [8a0a32c2] Command: ( export SYMFONY_ENV="prod" ; /usr/bin/env ln -s /var/www/php/bqbs_symfony/shared/app/logs /var/www/php/bqbs_symfony/releases/20170314100647/app/logs )
+  INFO [8a0a32c2] Finished in 0.077 seconds with exit status 0 (successful).
+ DEBUG [aa0d61f0] Running [ -L /var/www/php/bqbs_symfony/releases/20170314100647/web/uploads/media ] as deployer@85.143.221.253
+ DEBUG [aa0d61f0] Command: [ -L /var/www/php/bqbs_symfony/releases/20170314100647/web/uploads/media ]
+ DEBUG [aa0d61f0] Finished in 0.077 seconds with exit status 1 (failed).
+ DEBUG [a2a82976] Running [ -d /var/www/php/bqbs_symfony/releases/20170314100647/web/uploads/media ] as deployer@85.143.221.253
+ DEBUG [a2a82976] Command: [ -d /var/www/php/bqbs_symfony/releases/20170314100647/web/uploads/media ]
+ DEBUG [a2a82976] Finished in 0.076 seconds with exit status 1 (failed).
+  INFO [b3d8e1b6] Running /usr/bin/env ln -s /var/www/php/bqbs_symfony/shared/web/uploads/media /var/www/php/bqbs_symfony/releases/20170314100647/web/uploads/media as deployer@85.143.221.253
+ DEBUG [b3d8e1b6] Command: ( export SYMFONY_ENV="prod" ; /usr/bin/env ln -s /var/www/php/bqbs_symfony/shared/web/uploads/media /var/www/php/bqbs_symfony/releases/20170314100647/web/uploads/media )
+  INFO [b3d8e1b6] Finished in 0.077 seconds with exit status 0 (successful).
+ DEBUG [0665288f] Running if test ! -d /var/www/php/bqbs_symfony/releases/20170314100647; then echo "Directory does not exist '/var/www/php/bqbs_symfony/releases/20170314100647'" 1>&2; false; fi as deployer@85.143.221.253
+ DEBUG [0665288f] Command: if test ! -d /var/www/php/bqbs_symfony/releases/20170314100647; then echo "Directory does not exist '/var/www/php/bqbs_symfony/releases/20170314100647'" 1>&2; false; fi
+ DEBUG [0665288f] Finished in 0.070 seconds with exit status 0 (successful).
+ DEBUG [e87df22d] Running [ -d /var/www/php/bqbs_symfony/releases/20170314100647/app/cache ] as deployer@85.143.221.253
+ DEBUG [e87df22d] Command: [ -d /var/www/php/bqbs_symfony/releases/20170314100647/app/cache ]
+ DEBUG [e87df22d] Finished in 0.073 seconds with exit status 0 (successful).
+  INFO [b9f78f7a] Running /usr/bin/env rm -rf /var/www/php/bqbs_symfony/releases/20170314100647/app/cache as deployer@85.143.221.253
+ DEBUG [b9f78f7a] Command: cd /var/www/php/bqbs_symfony/releases/20170314100647 && ( export SYMFONY_ENV="prod" ; /usr/bin/env rm -rf /var/www/php/bqbs_symfony/releases/20170314100647/app/cache )
+  INFO [b9f78f7a] Finished in 0.072 seconds with exit status 0 (successful).
+  INFO [0effb3bd] Running /usr/bin/env mkdir -pv app/cache as deployer@85.143.221.253
+ DEBUG [0effb3bd] Command: cd /var/www/php/bqbs_symfony/releases/20170314100647 && ( export SYMFONY_ENV="prod" ; /usr/bin/env mkdir -pv app/cache )
+ DEBUG [0effb3bd] 	mkdir: created directory `app/cache'
+  INFO [0effb3bd] Finished in 0.073 seconds with exit status 0 (successful).
+ DEBUG [00d3bcea] Running if test ! -d /var/www/php/bqbs_symfony/releases/20170314100647; then echo "Directory does not exist '/var/www/php/bqbs_symfony/releases/20170314100647'" 1>&2; false; fi as deployer@85.143.221.253
+ DEBUG [00d3bcea] Command: if test ! -d /var/www/php/bqbs_symfony/releases/20170314100647; then echo "Directory does not exist '/var/www/php/bqbs_symfony/releases/20170314100647'" 1>&2; false; fi
+ DEBUG [00d3bcea] Finished in 0.074 seconds with exit status 0 (successful).
+  INFO [c6ec7995] Running /usr/bin/env composer install --no-interaction --quiet --optimize-autoloader as deployer@85.143.221.253
+ DEBUG [c6ec7995] Command: cd /var/www/php/bqbs_symfony/releases/20170314100647 && ( export SYMFONY_ENV="prod" ; /usr/bin/env composer install --no-interaction --quiet --optimize-autoloader )
+  INFO [c6ec7995] Finished in 356.055 seconds with exit status 0 (successful).
+  INFO [5f20d926] Running /usr/bin/env php /var/www/php/bqbs_symfony/releases/20170314100647/app/console cache:warmup  --no-debug as deployer@85.143.221.253
+ DEBUG [5f20d926] Command: ( export SYMFONY_ENV="prod" ; /usr/bin/env php /var/www/php/bqbs_symfony/releases/20170314100647/app/console cache:warmup  --no-debug )
+ DEBUG [5f20d926] 	
+ DEBUG [5f20d926] 	 // Warming up the cache for the prod environment with debug false                                                      
+ DEBUG [5f20d926] 	
+ DEBUG [5f20d926] 	
+ DEBUG [5f20d926] 	 [OK] Cache for the "prod" environment (debug=false) was successfully warmed.                                           
+ DEBUG [5f20d926] 	
+ DEBUG [5f20d926] 	
+  INFO [5f20d926] Finished in 6.111 seconds with exit status 0 (successful).
+  INFO [7990e1d4] Running /usr/bin/env php /var/www/php/bqbs_symfony/releases/20170314100647/app/console doctrine:migrations:migrate --no-interaction --no-debug as deployer@85.143.221.253
+ DEBUG [7990e1d4] Command: ( export SYMFONY_ENV="prod" ; /usr/bin/env php /var/www/php/bqbs_symfony/releases/20170314100647/app/console doctrine:migrations:migrate --no-interaction --no-debug )
+ DEBUG [7990e1d4] 	                                                              
+ DEBUG [7990e1d4] 	                    Application Migrations                    
+ DEBUG [7990e1d4] 	                                                              
+
+ DEBUG [7990e1d4] 	Migrating up to 20161214150332 from 0
+ DEBUG [7990e1d4] 	
+  ++ migrating 20161214150332
+ DEBUG [7990e1d4] 	
+ DEBUG [7990e1d4] 	     -> ALTER TABLE classification__category DROP FOREIGN KEY FK_43629B36727ACA70
+ DEBUG [7990e1d4] 	
+ DEBUG [7990e1d4] 	Migration 20161214150332 failed during Execution. Error An exception occurred while executing 'ALTER TABLE classification__category DROP FOREIGN KEY FK_43629B36727ACA70':
+
+SQLSTATE[42S02]: Base table or view not found: 1146 Table 'best_quest_symfony.classification__category' doesn't exist
+ DEBUG [7990e1d4] 	
+ DEBUG [7990e1d4] 	
+ DEBUG [7990e1d4] 	                                                                                                                         
+ DEBUG [7990e1d4] 	
+ DEBUG [7990e1d4] 	  [Doctrine\DBAL\Exception\TableNotFoundException]                                                                       
+ DEBUG [7990e1d4] 	
+ DEBUG [7990e1d4] 	  An exception occurred while executing 'ALTER TABLE classification__category DROP FOREIGN KEY FK_43629B36727ACA70':     
+ DEBUG [7990e1d4] 	
+ DEBUG [7990e1d4] 	  SQLSTATE[42S02]: Base table or view not found: 1146 Table 'best_quest_symfony.classification__category' doesn't exist  
+ DEBUG [7990e1d4] 	
+ DEBUG [7990e1d4] 	                                                                                                                         
+ DEBUG [7990e1d4] 	
+ DEBUG [7990e1d4] 	
+ DEBUG [7990e1d4] 	                                                                                                                         
+ DEBUG [7990e1d4] 	
+ DEBUG [7990e1d4] 	  [Doctrine\DBAL\Driver\PDOException]                                                                                    
+ DEBUG [7990e1d4] 	
+ DEBUG [7990e1d4] 	  SQLSTATE[42S02]: Base table or view not found: 1146 Table 'best_quest_symfony.classification__category' doesn't exist  
+ DEBUG [7990e1d4] 	
+ DEBUG [7990e1d4] 	                                                                                                                         
+ DEBUG [7990e1d4] 	
+ DEBUG [7990e1d4] 	
+ DEBUG [7990e1d4] 	                                                                                                                         
+ DEBUG [7990e1d4] 	
+ DEBUG [7990e1d4] 	  [PDOException]                                                                                                         
+ DEBUG [7990e1d4] 	
+ DEBUG [7990e1d4] 	  SQLSTATE[42S02]: Base table or view not found: 1146 Table 'best_quest_symfony.classification__category' doesn't exist  
+ DEBUG [7990e1d4] 	
+ DEBUG [7990e1d4] 	                                                                                                                         
+ DEBUG [7990e1d4] 	
+ DEBUG [7990e1d4] 	
+ DEBUG [7990e1d4] 	doctrine:migrations:migrate [--write-sql] [--dry-run] [--query-time] [--allow-no-migration] [--configuration [CONFIGURATION]] [--db-configuration [DB-CONFIGURATION]] [--db DB] [--em EM] [--shard SHARD] [-h|--help] [-q|--quiet] [-v|vv|vvv|--verbose] [-V|--version] [--ansi] [--no-ansi] [-n|--no-interaction] [-s|--shell] [--process-isolation] [-e|--env ENV] [--no-debug] [--] <command> [<version>]
+ DEBUG [7990e1d4] 	
+ DEBUG [7990e1d4] 	
