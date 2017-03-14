@@ -6,15 +6,13 @@ use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
-use Sonata\AdminBundle\Show\ShowMapper;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 
-class ProductAdmin extends AbstractAdmin
+class QuestAdmin extends AbstractAdmin
 {
-    protected $datagridValues = array(
-        '_sort_by'    => 'sort',
-        '_sort_order' => 'ASC',
-    );
-
     /**
      * @param DatagridMapper $datagridMapper
      */
@@ -22,10 +20,10 @@ class ProductAdmin extends AbstractAdmin
     {
         $datagridMapper
             ->add('id')
-            ->add('title', null, array(
+            ->add('title', TextType::class, array(
                 'label' => 'Название',
             ))
-            ->add('category', null, array(
+            ->add('category', EntityType::class, array(
                 'label' => 'Категория',
             ))
         ;
@@ -67,17 +65,17 @@ class ProductAdmin extends AbstractAdmin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('title', null, array(
+            ->add('title', TextType::class, array(
                 'label' => 'Название',
             ))
-            ->add('slug', null, array(
+            ->add('slug', TextType::class, array(
                 'label'    => 'Slug (генерируется автоматически)',
                 'required' => false,
             ))
-            ->add('isActive', null, array(
+            ->add('isActive', CheckboxType::class, array(
                 'label' => 'Активен',
             ))
-            ->add('isInSlider', null, array(
+            ->add('isInSlider', CheckboxType::class, array(
                 'label' => 'В главном слайдере',
             ))
             ->add('category', 'sonata_type_model', array(
@@ -85,37 +83,12 @@ class ProductAdmin extends AbstractAdmin
                 'empty_value' => '',
                 'btn_add'     => false,
             ))
-            ->add('sliderAnnotation', null, array(
-                'label' => '',
+            ->add('sliderAnnotation', TextareaType::class, array(
+                'label' => 'Аннотация',
             ))
-            ->add('sliderDescription', null, array(
-                'label' => '',
+            ->add('sliderDescription', TextareaType::class, array(
+                'label' => 'Описание',
             ))
-            ->add('', null, array(
-                'label' => '',
-            ))
-            ->add('', null, array(
-                'label' => '',
-            ))
-            ->add('', null, array(
-                'label' => '',
-            ))
-            ->add('', null, array(
-                'label' => '',
-            ))
-            ->add('', null, array(
-                'label' => '',
-            ))
-        ;
-    }
-
-    /**
-     * @param ShowMapper $showMapper
-     */
-    protected function configureShowFields(ShowMapper $showMapper)
-    {
-        $showMapper
-            ->add('id')
         ;
     }
 }

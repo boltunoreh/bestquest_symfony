@@ -4,11 +4,11 @@ parameters:
 #    parameter_name: value
 
 services:
-    app.admin.promo_slide:
+    app.admin.quest:
         class: AppBundle\Admin\QuestAdmin
-        arguments: [~, AppBundle\Entity\Quest, SonataAdminBundle:CRUD]
+        arguments: [~, AppBundle\Entity\Quest, ~]
         tags:
             - name: sonata.admin
               manager_type: orm
               group: "app.admin.group.quests"
-              label: 'Квесты'
+              label: 'Quests'

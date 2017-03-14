@@ -4,7 +4,8 @@ require "capistrano/setup"
 # Include default deployment tasks
 require "capistrano/deploy"
 
-require "capistrano/composer"
+require 'capistrano/composer'
+require 'capistrano/symfony'
 
 # Load the SCM plugin appropriate to your project:
 #

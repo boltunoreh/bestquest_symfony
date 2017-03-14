@@ -6,7 +6,7 @@ imports:
 # Put parameters here that don't need to change on each machine where the app is deployed
 # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
-    locale: en
+    locale: ru
 
 framework:
     #esi:             ~
@@ -78,15 +78,35 @@ sonata_block:
     blocks:
         sonata.admin.block.admin_list:
             contexts: [admin]
+        sonata.user.block.menu:
+        sonata.user.block.account:
+        sonata.block.service.text:
 
 sonata_admin:
     title: BestQuest admin
     security:
         handler: sonata.admin.security.handler.role
-    templates:
-        layout: ::Admin/layout.html.twig
     dashboard:
         groups:
             app.admin.group.quests:
-                label: 'Квесты'
+                label: 'Quests'
                 label_catalogue: SonataAdminBundle
+                items:
+                    - app.admin.quest
+
+# Fos User Configuration
+fos_user:
+    db_driver:      orm # can be orm or odm
+    firewall_name:  main
+    user_class:     Application\Sonata\UserBundle\Entity\User
+
+    group:
+        group_class:   Application\Sonata\UserBundle\Entity\Group
+        group_manager: sonata.user.orm.group_manager
+
+    service:
+        user_manager: sonata.user.orm.user_manager
+
+sonata_user:
+    security_acl: true
+    manager_type: orm
