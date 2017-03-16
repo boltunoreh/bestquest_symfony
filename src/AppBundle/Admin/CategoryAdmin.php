@@ -2,16 +2,14 @@
 
 namespace AppBundle\Admin;
 
-use AppBundle\Entity\Category;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 
-class QuestAdmin extends AbstractAdmin
+class CategoryAdmin extends AbstractAdmin
 {
     /**
      * @param DatagridMapper $datagridMapper
@@ -23,8 +21,8 @@ class QuestAdmin extends AbstractAdmin
             ->add('title', null, array(
                 'label' => 'Название',
             ))
-            ->add('category', null, array(
-                'label' => 'Категория',
+            ->add('slug', null, array(
+                'label' => 'Slug',
             ))
         ;
     }
@@ -35,9 +33,10 @@ class QuestAdmin extends AbstractAdmin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->add('isActive', null, array(
-                'label' => 'Активен',
+            ->add('icon', null, array(
+                'label' => 'Иконка',
             ))
+            ->addIdentifier('isActive')
             ->addIdentifier('id')
             ->addIdentifier('title', null, array(
                 'label'        => 'Название',
@@ -45,9 +44,6 @@ class QuestAdmin extends AbstractAdmin
             ))
             ->add('slug', null, array(
                 'label' => 'Slug',
-            ))
-            ->add('category', null, array(
-                'label' => 'Категория',
             ))
             ->add('_action', 'actions', array(
                 'actions' => array(
@@ -68,6 +64,9 @@ class QuestAdmin extends AbstractAdmin
             ->add('title', TextType::class, array(
                 'label' => 'Название',
             ))
+            ->add('isActive', CheckboxType::class, array(
+                'label' => 'Активна',
+            ))
             ->add('slug', TextType::class, array(
                 'label'    => 'Slug',
                 'required' => false,
@@ -75,22 +74,8 @@ class QuestAdmin extends AbstractAdmin
                     'placeholder' => 'генерируется автоматически',
                 ),
             ))
-            ->add('isActive', CheckboxType::class, array(
-                'label' => 'Активен',
-            ))
-            ->add('isInSlider', CheckboxType::class, array(
-                'label' => 'В главном слайдере',
-            ))
-            ->add('category', 'sonata_type_model', array(
-                'label'   => 'Категория',
-                'class'   => Category::class,
-                'btn_add' => false,
-            ))
-            ->add('sliderAnnotation', TextareaType::class, array(
-                'label' => 'Аннотация',
-            ))
-            ->add('sliderDescription', TextareaType::class, array(
-                'label' => 'Описание',
+            ->add('icon', null, array(
+                'label' => 'Иконка',
             ))
         ;
     }

@@ -89,10 +89,8 @@ sonata_admin:
     dashboard:
         groups:
             app.admin.group.quests:
-                label: 'Quests'
+                label: 'Квесты'
                 label_catalogue: SonataAdminBundle
-                items:
-                    - app.admin.quest
 
 # Fos User Configuration
 fos_user:
@@ -110,3 +108,9 @@ fos_user:
 sonata_user:
     security_acl: true
     manager_type: orm
+
+# Stof Doctrine Extensions Configuration
+stof_doctrine_extensions:
+    orm:
+        default:
+            sluggable: true

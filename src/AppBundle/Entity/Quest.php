@@ -3,12 +3,13 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * Quest
  *
  * @ORM\Table(name="quest")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\QuestRepository")
+ * @ORM\Entity()
  */
 class Quest
 {
@@ -31,7 +32,8 @@ class Quest
     /**
      * @var string
      *
-     * @ORM\Column(name="slug", type="string", length=255, unique=true)
+     * @Gedmo\Slug(fields={"title"})
+     * @ORM\Column(name="slug", type="string", length=128, unique=true, nullable=false)
      */
     private $slug;
 

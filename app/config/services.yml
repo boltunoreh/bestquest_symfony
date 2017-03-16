@@ -11,4 +11,12 @@ services:
             - name: sonata.admin
               manager_type: orm
               group: "app.admin.group.quests"
-              label: 'Quests'
+              label: 'Квесты'
+    app.admin.category:
+        class: AppBundle\Admin\CategoryAdmin
+        arguments: [~, AppBundle\Entity\Category, ~]
+        tags:
+            - name: sonata.admin
+              manager_type: orm
+              group: "app.admin.group.quests"
+              label: 'Категории'
