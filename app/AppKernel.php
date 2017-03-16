@@ -19,13 +19,18 @@ class AppKernel extends Kernel
 
             new Sonata\CoreBundle\SonataCoreBundle(),
             new Sonata\BlockBundle\SonataBlockBundle(),
-            new Knp\Bundle\MenuBundle\KnpMenuBundle(),
             new Sonata\DoctrineORMAdminBundle\SonataDoctrineORMAdminBundle(),
             new Sonata\AdminBundle\SonataAdminBundle(),
-            new FOS\UserBundle\FOSUserBundle(),
             new Sonata\EasyExtendsBundle\SonataEasyExtendsBundle(),
             new Sonata\UserBundle\SonataUserBundle('FOSUserBundle'),
+            new Sonata\MediaBundle\SonataMediaBundle(),
+
+            new Application\Sonata\MediaBundle\ApplicationSonataMediaBundle(),
+
+            new Knp\Bundle\MenuBundle\KnpMenuBundle(),
+            new FOS\UserBundle\FOSUserBundle(),
             new Application\Sonata\UserBundle\ApplicationSonataUserBundle(),
+            new JMS\SerializerBundle\JMSSerializerBundle(),
 
             new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle()
