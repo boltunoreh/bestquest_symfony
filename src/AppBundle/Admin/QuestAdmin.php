@@ -3,6 +3,8 @@
 namespace AppBundle\Admin;
 
 use AppBundle\Entity\Category;
+use AppBundle\Entity\Quest;
+use AppBundle\Entity\QuestPhoto;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
@@ -23,8 +25,8 @@ class QuestAdmin extends AbstractAdmin
             ->add('title', null, array(
                 'label' => 'Название',
             ))
-            ->add('category', null, array(
-                'label' => 'Категория',
+            ->add('categories', null, array(
+                'label' => 'Категории',
             ))
         ;
     }
@@ -46,8 +48,8 @@ class QuestAdmin extends AbstractAdmin
             ->add('slug', null, array(
                 'label' => 'Slug',
             ))
-            ->add('category', null, array(
-                'label' => 'Категория',
+            ->add('categories', null, array(
+                'label' => 'Категории',
             ))
             ->add('_action', 'actions', array(
                 'actions' => array(
@@ -76,22 +78,136 @@ class QuestAdmin extends AbstractAdmin
                 ),
             ))
             ->add('isActive', CheckboxType::class, array(
-                'label' => 'Активен',
+                'label'    => 'Активен',
+                'required' => false,
             ))
             ->add('isInSlider', CheckboxType::class, array(
-                'label' => 'В главном слайдере',
+                'label'    => 'В главном слайдере',
+                'required' => false,
             ))
-            ->add('category', 'sonata_type_model', array(
-                'label'   => 'Категория',
-                'class'   => Category::class,
-                'btn_add' => false,
+            ->add('categories', 'sonata_type_model', array(
+                'label'    => 'Категории',
+                'class'    => Category::class,
+                'btn_add'  => false,
+                'multiple' => true,
             ))
             ->add('sliderAnnotation', TextareaType::class, array(
-                'label' => 'Аннотация',
+                'label' => 'Аннотация для слайдера',
             ))
             ->add('sliderDescription', TextareaType::class, array(
+                'label' => 'Описание для слайдера',
+            ))
+            ->add('sliderSmallImage', 'sonata_media_type', array(
+                    'label'    => 'Изображение слайдера (маленькое)',
+                    'provider' => 'sonata.media.provider.image',
+                    'context'  => 'default',
+                    'required' => false,
+                    'attr'     => array(
+                        'class' => 'admin-quest-image',
+                    ),
+                )
+            )
+            ->add('sliderLargeImage', 'sonata_media_type', array(
+                    'label'    => 'Изображение слайдера (большое)',
+                    'provider' => 'sonata.media.provider.image',
+                    'context'  => 'default',
+                    'required' => false,
+                    'attr'     => array(
+                        'class' => 'admin-quest-image',
+                    ),
+                )
+            )
+            ->add('description', TextareaType::class, array(
                 'label' => 'Описание',
             ))
+            ->add('reglament', TextType::class, array(
+                'label' => 'Регламент',
+            ))
+            ->add('photos', 'sonata_type_collection', array(
+                'label'        => 'Фото',
+                'required'     => false,
+                'by_reference' => false,
+                'attr'         => array(
+                    'class' => 'admin-quest-photos',
+                ),
+                'btn_add'      => 'Добавить изображение',
+            ),
+                array(
+                    'edit'         => 'inline',
+                    'inline'       => 'table',
+                    'allow_delete' => true,
+                )
+            )
+            //TODO color picker?
+            ->add('color', TextType::class, array(
+                'label' => 'Цвет',
+            ))
+            ->add('headerBackgroundImage', 'sonata_media_type', array(
+                    'label'    => 'Фон заголовка',
+                    'provider' => 'sonata.media.provider.image',
+                    'context'  => 'default',
+                    'required' => false,
+                    'attr'     => array(
+                        'class' => 'admin-quest-image',
+                    ),
+                )
+            )
+            ->add('descriptionBackgroundImage', 'sonata_media_type', array(
+                    'label'    => 'Фон описания',
+                    'provider' => 'sonata.media.provider.image',
+                    'context'  => 'default',
+                    'required' => false,
+                    'attr'     => array(
+                        'class' => 'admin-quest-image',
+                    ),
+                )
+            )
+            ->add('stripeBackgroundImage', 'sonata_media_type', array(
+                    'label'    => 'Фон полоски',
+                    'provider' => 'sonata.media.provider.image',
+                    'context'  => 'default',
+                    'required' => false,
+                    'attr'     => array(
+                        'class' => 'admin-quest-image',
+                    ),
+                )
+            )
+            ->add('formBackgroundImage', 'sonata_media_type', array(
+                    'label'    => 'Фон формы',
+                    'provider' => 'sonata.media.provider.image',
+                    'context'  => 'default',
+                    'required' => false,
+                    'attr'     => array(
+                        'class' => 'admin-quest-image',
+                    ),
+                )
+            )
+            ->add('icon', TextType::class, array(
+                'label' => 'иконка',
+            ))
         ;
+    }
+
+    /**
+     * @param Quest $quest
+     */
+    public function prePersist($quest)
+    {
+        foreach ($quest->getPhotos() as $photo) {
+            /* @var $photo QuestPhoto */
+            $photo->setQuest($quest);
+        }
+    }
+
+    /**
+     * @param Quest $quest
+     */
+    public function preUpdate($quest)
+    {
+        foreach ($quest->getPhotos() as $photo) {
+            /* @var $photo QuestPhoto */
+            $photo->setQuest($quest);
+        }
+        $quest->setPhotos($quest->getPhotos());
     }
 }

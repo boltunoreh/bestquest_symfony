@@ -65,7 +65,8 @@ class CategoryAdmin extends AbstractAdmin
                 'label' => 'Название',
             ))
             ->add('isActive', CheckboxType::class, array(
-                'label' => 'Активна',
+                'label'    => 'Активна',
+                'required' => false,
             ))
             ->add('slug', TextType::class, array(
                 'label'    => 'Slug',

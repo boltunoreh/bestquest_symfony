@@ -20,3 +20,11 @@ services:
               manager_type: orm
               group: "app.admin.group.quests"
               label: 'Категории'
+    app.admin.photo:
+        class: AppBundle\Admin\QuestPhotoAdmin
+        arguments: [~, AppBundle\Entity\QuestPhoto, ~]
+        tags:
+            - name: sonata.admin
+              manager_type: orm
+              group: "app.admin.group.quests"
+              label: 'Фото'
