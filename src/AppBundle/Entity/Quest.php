@@ -2,13 +2,17 @@
 
 namespace AppBundle\Entity;
 
+use Application\Sonata\MediaBundle\Entity\Media;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * Quest
  *
  * @ORM\Table(name="quest")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\QuestRepository")
+ * @ORM\Entity()
  */
 class Quest
 {
@@ -31,7 +35,8 @@ class Quest
     /**
      * @var string
      *
-     * @ORM\Column(name="slug", type="string", length=255, unique=true)
+     * @Gedmo\Slug(fields={"title"})
+     * @ORM\Column(name="slug", type="string", length=128, unique=true, nullable=false)
      */
     private $slug;
 
@@ -54,7 +59,14 @@ class Quest
      *
      * @ORM\Column(name="category", type="string", length=255)
      */
-    private $category;
+    /**
+     * @ORM\ManyToMany(targetEntity="Category")
+     * @ORM\JoinTable(name="quest_categories",
+     *      joinColumns={@ORM\JoinColumn(name="quest_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="category_id", referencedColumnName="id")}
+     *      )
+     */
+    private $categories;
 
     /**
      * @var string
@@ -71,18 +83,22 @@ class Quest
     private $sliderDescription;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="slider_image_small", type="string", length=255)
+     * @var Media
+     * @ORM\ManyToOne(
+     *  targetEntity="Application\Sonata\MediaBundle\Entity\Media",
+     *  cascade={"persist", "remove"}
+     * )
      */
-    private $sliderImageSmall;
+    private $sliderSmallImage;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="slider_image_large", type="string", length=255)
+     * @var Media
+     * @ORM\ManyToOne(
+     *  targetEntity="Application\Sonata\MediaBundle\Entity\Media",
+     *  cascade={"persist", "remove"}
+     * )
      */
-    private $sliderImageLarge;
+    private $sliderLargeImage;
 
     /**
      * @var string
@@ -99,11 +115,10 @@ class Quest
     private $reglament;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="photo", type="string", length=255)
+     * @ORM\OneToMany(targetEntity="QuestPhoto", mappedBy="quest", cascade={"persist", "remove"},
+     *     orphanRemoval=true)
      */
-    private $photo;
+    private $photos;
 
     /**
      * @var string
@@ -113,32 +128,40 @@ class Quest
     private $color;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="bg_image_top", type="string", length=255)
+     * @var Media
+     * @ORM\ManyToOne(
+     *  targetEntity="Application\Sonata\MediaBundle\Entity\Media",
+     *  cascade={"persist", "remove"}
+     * )
      */
-    private $bgImageTop;
+    private $headerBackgroundImage;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="bg_image_description", type="string", length=255)
+     * @var Media
+     * @ORM\ManyToOne(
+     *  targetEntity="Application\Sonata\MediaBundle\Entity\Media",
+     *  cascade={"persist", "remove"}
+     * )
      */
-    private $bgImageDescription;
+    private $descriptionBackgroundImage;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="bg_image_stripe", type="string", length=255)
+     * @var Media
+     * @ORM\ManyToOne(
+     *  targetEntity="Application\Sonata\MediaBundle\Entity\Media",
+     *  cascade={"persist", "remove"}
+     * )
      */
-    private $bgImageStripe;
+    private $stripeBackgroundImage;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="bg_image_form", type="string", length=255)
+     * @var Media
+     * @ORM\ManyToOne(
+     *  targetEntity="Application\Sonata\MediaBundle\Entity\Media",
+     *  cascade={"persist", "remove"}
+     * )
      */
-    private $bgImageForm;
+    private $formBackgroundImage;
 
     /**
      * @var string
@@ -148,9 +171,18 @@ class Quest
     private $icon;
 
     /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->photos = new ArrayCollection();
+        $this->categories = new ArrayCollection();
+    }
+
+    /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -161,6 +193,7 @@ class Quest
      * Set title
      *
      * @param string $title
+     *
      * @return Quest
      */
     public function setTitle($title)
@@ -173,7 +206,7 @@ class Quest
     /**
      * Get title
      *
-     * @return string 
+     * @return string
      */
     public function getTitle()
     {
@@ -184,6 +217,7 @@ class Quest
      * Set slug
      *
      * @param string $slug
+     *
      * @return Quest
      */
     public function setSlug($slug)
@@ -196,7 +230,7 @@ class Quest
     /**
      * Get slug
      *
-     * @return string 
+     * @return string
      */
     public function getSlug()
     {
@@ -207,6 +241,7 @@ class Quest
      * Set isActive
      *
      * @param boolean $isActive
+     *
      * @return Quest
      */
     public function setIsActive($isActive)
@@ -230,6 +265,7 @@ class Quest
      * Set isInSlider
      *
      * @param boolean $isInSlider
+     *
      * @return Quest
      */
     public function setIsInSlider($isInSlider)
@@ -242,7 +278,7 @@ class Quest
     /**
      * Get isInSlider
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getIsInSlider()
     {
@@ -250,32 +286,10 @@ class Quest
     }
 
     /**
-     * Set category
-     *
-     * @param string $category
-     * @return Quest
-     */
-    public function setCategory($category)
-    {
-        $this->category = $category;
-
-        return $this;
-    }
-
-    /**
-     * Get category
-     *
-     * @return string 
-     */
-    public function getCategory()
-    {
-        return $this->category;
-    }
-
-    /**
      * Set sliderAnnotation
      *
      * @param string $sliderAnnotation
+     *
      * @return Quest
      */
     public function setSliderAnnotation($sliderAnnotation)
@@ -288,7 +302,7 @@ class Quest
     /**
      * Get sliderAnnotation
      *
-     * @return string 
+     * @return string
      */
     public function getSliderAnnotation()
     {
@@ -299,6 +313,7 @@ class Quest
      * Set sliderDescription
      *
      * @param string $sliderDescription
+     *
      * @return Quest
      */
     public function setSliderDescription($sliderDescription)
@@ -311,7 +326,7 @@ class Quest
     /**
      * Get sliderDescription
      *
-     * @return string 
+     * @return string
      */
     public function getSliderDescription()
     {
@@ -319,55 +334,10 @@ class Quest
     }
 
     /**
-     * Set sliderImageSmall
-     *
-     * @param string $sliderImageSmall
-     * @return Quest
-     */
-    public function setSliderImageSmall($sliderImageSmall)
-    {
-        $this->sliderImageSmall = $sliderImageSmall;
-
-        return $this;
-    }
-
-    /**
-     * Get sliderImageSmall
-     *
-     * @return string 
-     */
-    public function getSliderImageSmall()
-    {
-        return $this->sliderImageSmall;
-    }
-
-    /**
-     * Set sliderImageLarge
-     *
-     * @param string $sliderImageLarge
-     * @return Quest
-     */
-    public function setSliderImageLarge($sliderImageLarge)
-    {
-        $this->sliderImageLarge = $sliderImageLarge;
-
-        return $this;
-    }
-
-    /**
-     * Get sliderImageLarge
-     *
-     * @return string 
-     */
-    public function getSliderImageLarge()
-    {
-        return $this->sliderImageLarge;
-    }
-
-    /**
      * Set description
      *
      * @param string $description
+     *
      * @return Quest
      */
     public function setDescription($description)
@@ -380,7 +350,7 @@ class Quest
     /**
      * Get description
      *
-     * @return string 
+     * @return string
      */
     public function getDescription()
     {
@@ -391,6 +361,7 @@ class Quest
      * Set reglament
      *
      * @param string $reglament
+     *
      * @return Quest
      */
     public function setReglament($reglament)
@@ -403,7 +374,7 @@ class Quest
     /**
      * Get reglament
      *
-     * @return string 
+     * @return string
      */
     public function getReglament()
     {
@@ -411,32 +382,10 @@ class Quest
     }
 
     /**
-     * Set photo
-     *
-     * @param string $photo
-     * @return Quest
-     */
-    public function setPhoto($photo)
-    {
-        $this->photo = $photo;
-
-        return $this;
-    }
-
-    /**
-     * Get photo
-     *
-     * @return string 
-     */
-    public function getPhoto()
-    {
-        return $this->photo;
-    }
-
-    /**
      * Set color
      *
      * @param string $color
+     *
      * @return Quest
      */
     public function setColor($color)
@@ -449,7 +398,7 @@ class Quest
     /**
      * Get color
      *
-     * @return string 
+     * @return string
      */
     public function getColor()
     {
@@ -457,101 +406,10 @@ class Quest
     }
 
     /**
-     * Set bgImageTop
-     *
-     * @param string $bgImageTop
-     * @return Quest
-     */
-    public function setBgImageTop($bgImageTop)
-    {
-        $this->bgImageTop = $bgImageTop;
-
-        return $this;
-    }
-
-    /**
-     * Get bgImageTop
-     *
-     * @return string 
-     */
-    public function getBgImageTop()
-    {
-        return $this->bgImageTop;
-    }
-
-    /**
-     * Set bgImageDescription
-     *
-     * @param string $bgImageDescription
-     * @return Quest
-     */
-    public function setBgImageDescription($bgImageDescription)
-    {
-        $this->bgImageDescription = $bgImageDescription;
-
-        return $this;
-    }
-
-    /**
-     * Get bgImageDescription
-     *
-     * @return string 
-     */
-    public function getBgImageDescription()
-    {
-        return $this->bgImageDescription;
-    }
-
-    /**
-     * Set bgImageStripe
-     *
-     * @param string $bgImageStripe
-     * @return Quest
-     */
-    public function setBgImageStripe($bgImageStripe)
-    {
-        $this->bgImageStripe = $bgImageStripe;
-
-        return $this;
-    }
-
-    /**
-     * Get bgImageStripe
-     *
-     * @return string 
-     */
-    public function getBgImageStripe()
-    {
-        return $this->bgImageStripe;
-    }
-
-    /**
-     * Set bgImageForm
-     *
-     * @param string $bgImageForm
-     * @return Quest
-     */
-    public function setBgImageForm($bgImageForm)
-    {
-        $this->bgImageForm = $bgImageForm;
-
-        return $this;
-    }
-
-    /**
-     * Get bgImageForm
-     *
-     * @return string 
-     */
-    public function getBgImageForm()
-    {
-        return $this->bgImageForm;
-    }
-
-    /**
      * Set icon
      *
      * @param string $icon
+     *
      * @return Quest
      */
     public function setIcon($icon)
@@ -564,15 +422,247 @@ class Quest
     /**
      * Get icon
      *
-     * @return string 
+     * @return string
      */
     public function getIcon()
     {
         return $this->icon;
     }
 
+    /**
+     * Add category
+     *
+     * @param Category $category
+     *
+     * @return Quest
+     */
+    public function addCategory(Category $category)
+    {
+        $this->categories->add($category);
+
+        return $this;
+    }
+
+    /**
+     * Remove category
+     *
+     * @param Category $category
+     */
+    public function removeCategory(Category $category)
+    {
+        $this->categories->removeElement($category);
+    }
+
+    /**
+     * Get categories
+     *
+     * @return Collection
+     */
+    public function getCategories()
+    {
+        return $this->categories;
+    }
+
+    /**
+     * Set sliderSmallImage
+     *
+     * @param Media $sliderSmallImage
+     *
+     * @return Quest
+     */
+    public function setSliderSmallImage(Media $sliderSmallImage = null)
+    {
+        $this->sliderSmallImage = $sliderSmallImage;
+
+        return $this;
+    }
+
+    /**
+     * Get sliderSmallImage
+     *
+     * @return Media
+     */
+    public function getSliderSmallImage()
+    {
+        return $this->sliderSmallImage;
+    }
+
+    /**
+     * Set sliderLargeImage
+     *
+     * @param Media $sliderLargeImage
+     *
+     * @return Quest
+     */
+    public function setSliderLargeImage(Media $sliderLargeImage = null)
+    {
+        $this->sliderLargeImage = $sliderLargeImage;
+
+        return $this;
+    }
+
+    /**
+     * Get sliderLargeImage
+     *
+     * @return Media
+     */
+    public function getSliderLargeImage()
+    {
+        return $this->sliderLargeImage;
+    }
+
+    /**
+     * Add photo
+     *
+     * @param QuestPhoto $photo
+     *
+     * @return Quest
+     */
+    public function addPhoto(QuestPhoto $photo)
+    {
+        $photo->setQuest($this);
+        $this->photos->add($photo);
+
+        return $this;
+    }
+
+    /**
+     * Remove photo
+     *
+     * @param QuestPhoto $photo
+     */
+    public function removePhoto(QuestPhoto $photo)
+    {
+        $this->photos->removeElement($photo);
+    }
+
+    /**
+     * Get photos
+     *
+     * @return Collection
+     */
+    public function getPhotos()
+    {
+        return $this->photos;
+    }
+
+    /**
+     * @param mixed $photos
+     * @return $this
+     */
+    public function setPhotos($photos)
+    {
+        $this->photos = new ArrayCollection();
+        /** @var QuestPhoto $photo */
+        foreach ($photos as $photo) {
+            $photo->setQuest($this);
+            $this->addPhoto($photo);
+        }
+
+        return $this;
+    }
+
+    /**
+     * Set headerBackgroundImage
+     *
+     * @param Media $headerBackgroundImage
+     *
+     * @return Quest
+     */
+    public function setHeaderBackgroundImage(Media $headerBackgroundImage = null)
+    {
+        $this->headerBackgroundImage = $headerBackgroundImage;
+
+        return $this;
+    }
+
+    /**
+     * Get headerBackgroundImage
+     *
+     * @return Media
+     */
+    public function getHeaderBackgroundImage()
+    {
+        return $this->headerBackgroundImage;
+    }/** @noinspection PhpUnnecessaryFullyQualifiedNameInspection */
+
+    /**
+     * Set descriptionBackgroundImage
+     *
+     * @param Media $descriptionBackgroundImage
+     *
+     * @return Quest
+     */
+    public function setDescriptionBackgroundImage(Media $descriptionBackgroundImage = null)
+    {
+        $this->descriptionBackgroundImage = $descriptionBackgroundImage;
+
+        return $this;
+    }
+
+    /**
+     * Get descriptionBackgroundImage
+     *
+     * @return Media
+     */
+    public function getDescriptionBackgroundImage()
+    {
+        return $this->descriptionBackgroundImage;
+    }
+
+    /**
+     * Set stripeBackgroundImage
+     *
+     * @param Media $stripeBackgroundImage
+     *
+     * @return Quest
+     */
+    public function setStripeBackgroundImage(Media $stripeBackgroundImage = null)
+    {
+        $this->stripeBackgroundImage = $stripeBackgroundImage;
+
+        return $this;
+    }
+
+    /**
+     * Get stripeBackgroundImage
+     *
+     * @return Media
+     */
+    public function getStripeBackgroundImage()
+    {
+        return $this->stripeBackgroundImage;
+    }
+
+    /**
+     * Set formBackgroundImage
+     *
+     * @param Media $formBackgroundImage
+     *
+     * @return Quest
+     */
+    public function setFormBackgroundImage(Media $formBackgroundImage = null)
+    {
+        $this->formBackgroundImage = $formBackgroundImage;
+
+        return $this;
+    }
+
+    /**
+     * Get formBackgroundImage
+     *
+     * @return Media
+     */
+    public function getFormBackgroundImage()
+    {
+        return $this->formBackgroundImage;
+    }
+
+    /**
+     * @return string
+     */
     public function __toString()
     {
-        return $this->getTitle();
+        return $this->title;
     }
 }

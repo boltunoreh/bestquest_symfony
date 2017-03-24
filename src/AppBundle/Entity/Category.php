@@ -3,12 +3,13 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * Category
  *
  * @ORM\Table(name="category")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\CategoryRepository")
+ * @ORM\Entity()
  */
 class Category
 {
@@ -31,7 +32,8 @@ class Category
     /**
      * @var string
      *
-     * @ORM\Column(name="slug", type="string", length=255)
+     * @Gedmo\Slug(fields={"title"})
+     * @ORM\Column(name="slug", type="string", length=128, unique=true, nullable=false)
      */
     private $slug;
 
@@ -42,6 +44,12 @@ class Category
      */
     private $icon;
 
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="is_active", type="boolean")
+     */
+    private $isActive;
 
     /**
      * Get id
@@ -113,6 +121,25 @@ class Category
     }
 
     /**
+     * @return boolean
+     */
+    public function getIsActive()
+    {
+        return $this->isActive;
+    }
+
+    /**
+     * @param boolean $isActive
+     * @return $this
+     */
+    public function setIsActive($isActive)
+    {
+        $this->isActive = $isActive;
+
+        return $this;
+    }
+
+    /**
      * Get icon
      *
      * @return string 
@@ -120,5 +147,13 @@ class Category
     public function getIcon()
     {
         return $this->icon;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->getTitle();
     }
 }

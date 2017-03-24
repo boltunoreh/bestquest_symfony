@@ -1,0 +1,177 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Application\Sonata\MediaBundle\Entity\Media;
+use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
+
+/**
+ * Quest
+ *
+ * @ORM\Table(name="quest")
+ * @ORM\Entity()
+ */
+class Quest
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="title", type="string", length=255)
+     */
+    private $title;
+
+    /**
+     * @var string
+     *
+     * @Gedmo\Slug(fields={"title"})
+     * @ORM\Column(name="slug", type="string", length=128, unique=true, nullable=false)
+     */
+    private $slug;
+
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="is_active", type="boolean")
+     */
+    private $isActive;
+
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="is_in_slider", type="boolean")
+     */
+    private $isInSlider;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="category", type="string", length=255)
+     */
+    /**
+     * @ORM\ManyToMany(targetEntity="Category")
+     * @ORM\JoinTable(name="quest_categories",
+     *      joinColumns={@ORM\JoinColumn(name="quest_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="category_id", referencedColumnName="id")}
+     *      )
+     */
+    private $categories;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="slider_annotation", type="string", length=255)
+     */
+    private $sliderAnnotation;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="slider_description", type="text")
+     */
+    private $sliderDescription;
+
+    /**
+     * @var Media
+     * @ORM\ManyToOne(
+     *  targetEntity="Application\Sonata\MediaBundle\Entity\Media",
+     *  cascade={"persist", "remove"}
+     * )
+     */
+    private $sliderSmallImage;
+
+    /**
+     * @var Media
+     * @ORM\ManyToOne(
+     *  targetEntity="Application\Sonata\MediaBundle\Entity\Media",
+     *  cascade={"persist", "remove"}
+     * )
+     */
+    private $sliderLargeImage;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="description", type="text")
+     */
+    private $description;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="reglament", type="string", length=255)
+     */
+    private $reglament;
+
+    /**
+     * @ORM\OneToMany(targetEntity="QuestPhoto", mappedBy="quest", cascade={"persist", "remove"},
+     *     orphanRemoval=true)
+     */
+    private $photos;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="color", type="string", length=255)
+     */
+    private $color;
+
+    /**
+     * @var Media
+     * @ORM\ManyToOne(
+     *  targetEntity="Application\Sonata\MediaBundle\Entity\Media",
+     *  cascade={"persist", "remove"}
+     * )
+     */
+    private $headerBackgroundImage;
+
+    /**
+     * @var Media
+     * @ORM\ManyToOne(
+     *  targetEntity="Application\Sonata\MediaBundle\Entity\Media",
+     *  cascade={"persist", "remove"}
+     * )
+     */
+    private $descriptionBackgroundImage;
+
+    /**
+     * @var Media
+     * @ORM\ManyToOne(
+     *  targetEntity="Application\Sonata\MediaBundle\Entity\Media",
+     *  cascade={"persist", "remove"}
+     * )
+     */
+    private $stripeBackgroundImage;
+
+    /**
+     * @var Media
+     * @ORM\ManyToOne(
+     *  targetEntity="Application\Sonata\MediaBundle\Entity\Media",
+     *  cascade={"persist", "remove"}
+     * )
+     */
+    private $formBackgroundImage;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="icon", type="string", length=255)
+     */
+    private $icon;
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->photos = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+}

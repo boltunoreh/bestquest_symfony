@@ -34,6 +34,11 @@ framework:
 twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
+    form:
+        resources:
+            - 'SonataMediaBundle:Form:media_widgets.html.twig'
+            - 'SonataCoreBundle:Form:datepicker.html.twig'
+            - 'Admin/media_widgets.html.twig'
 
 # Doctrine Configuration
 doctrine:
@@ -47,16 +52,15 @@ doctrine:
         charset:  UTF8
         types:
             json:     Sonata\Doctrine\Types\JsonType
-        # if using pdo_sqlite as your database driver:
-        #   1. add the path in parameters.yml
-        #     e.g. database_path: "%kernel.root_dir%/data/data.db3"
-        #   2. Uncomment database_path in parameters.yml.dist
-        #   3. Uncomment next line:
-        #     path:     "%database_path%"
     orm:
         auto_generate_proxy_classes: "%kernel.debug%"
-        naming_strategy: doctrine.orm.naming_strategy.underscore
-        auto_mapping: true
+        entity_managers:
+            default:
+                naming_strategy: doctrine.orm.naming_strategy.underscore
+                auto_mapping: true
+                mappings:
+                    ApplicationSonataMediaBundle: ~
+                    SonataMediaBundle: ~
 
 doctrine_migrations:
     dir_name: "%kernel.root_dir%/DoctrineMigrations"
@@ -89,10 +93,36 @@ sonata_admin:
     dashboard:
         groups:
             app.admin.group.quests:
-                label: 'Quests'
+                label: 'Квесты'
                 label_catalogue: SonataAdminBundle
-                items:
-                    - app.admin.quest
+
+#Sonata Media Configuration
+sonata_media:
+    db_driver: doctrine_orm
+    default_context: default
+    providers:
+        image:
+            resizer: sonata.media.resizer.square
+    contexts:
+        default:
+            providers:
+                - sonata.media.provider.dailymotion
+                - sonata.media.provider.youtube
+                - sonata.media.provider.image
+                - sonata.media.provider.file
+                - sonata.media.provider.vimeo
+            formats:
+                small: { width: 100 , quality: 70}
+                big:   { width: 500 , quality: 70}
+
+    cdn:
+        server:
+            path: /uploads/media # http://media.sonata-project.org/
+
+    filesystem:
+        local:
+            directory:  "%kernel.root_dir%/../web/uploads/media"
+            create:     false
 
 # Fos User Configuration
 fos_user:
@@ -110,3 +140,9 @@ fos_user:
 sonata_user:
     security_acl: true
     manager_type: orm
+
+# Stof Doctrine Extensions Configuration
+stof_doctrine_extensions:
+    orm:
+        default:
+            sluggable: true
