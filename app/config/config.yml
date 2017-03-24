@@ -38,6 +38,7 @@ twig:
         resources:
             - 'SonataMediaBundle:Form:media_widgets.html.twig'
             - 'SonataCoreBundle:Form:datepicker.html.twig'
+            - 'Admin/media_widgets.html.twig'
 
 # Doctrine Configuration
 doctrine:

@@ -553,7 +553,9 @@ class Quest
     public function setPhotos($photos)
     {
         $this->photos = new ArrayCollection();
+        /** @var QuestPhoto $photo */
         foreach ($photos as $photo) {
+            $photo->setQuest($this);
             $this->addPhoto($photo);
         }
 

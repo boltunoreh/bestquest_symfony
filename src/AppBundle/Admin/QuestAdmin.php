@@ -123,15 +123,16 @@ class QuestAdmin extends AbstractAdmin
             ->add('reglament', TextType::class, array(
                 'label' => 'Регламент',
             ))
-            ->add('photos', 'sonata_type_collection', array(
-                'label'        => 'Фото',
-                'required'     => false,
-                'by_reference' => false,
-                'attr'         => array(
-                    'class' => 'admin-quest-photos',
+            ->add('photos', 'sonata_type_collection',
+                array(
+                    'label'        => 'Фото',
+                    'required'     => false,
+                    'by_reference' => false,
+                    'attr'         => array(
+                        'class' => 'admin-quest-photos',
+                    ),
+                    'btn_add'      => 'Добавить изображение',
                 ),
-                'btn_add'      => 'Добавить изображение',
-            ),
                 array(
                     'edit'         => 'inline',
                     'inline'       => 'table',
