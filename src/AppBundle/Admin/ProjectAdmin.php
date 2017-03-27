@@ -3,8 +3,8 @@
 namespace AppBundle\Admin;
 
 use AppBundle\Entity\Category;
-use AppBundle\Entity\Quest;
-use AppBundle\Entity\QuestPhoto;
+use AppBundle\Entity\Project;
+use AppBundle\Entity\ProjectPhoto;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
@@ -13,7 +13,7 @@ use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 
-class QuestAdmin extends AbstractAdmin
+class ProjectAdmin extends AbstractAdmin
 {
     /**
      * @param DatagridMapper $datagridMapper
@@ -103,7 +103,7 @@ class QuestAdmin extends AbstractAdmin
                     'context'  => 'default',
                     'required' => false,
                     'attr'     => array(
-                        'class' => 'admin-quest-image',
+                        'class' => 'admin-project-image',
                     ),
                 )
             )
@@ -113,7 +113,7 @@ class QuestAdmin extends AbstractAdmin
                     'context'  => 'default',
                     'required' => false,
                     'attr'     => array(
-                        'class' => 'admin-quest-image',
+                        'class' => 'admin-project-image',
                     ),
                 )
             )
@@ -129,7 +129,7 @@ class QuestAdmin extends AbstractAdmin
                     'required'     => false,
                     'by_reference' => false,
                     'attr'         => array(
-                        'class' => 'admin-quest-photos',
+                        'class' => 'admin-project-photos',
                     ),
                     'btn_add'      => 'Добавить изображение',
                 ),
@@ -149,7 +149,7 @@ class QuestAdmin extends AbstractAdmin
                     'context'  => 'default',
                     'required' => false,
                     'attr'     => array(
-                        'class' => 'admin-quest-image',
+                        'class' => 'admin-project-image',
                     ),
                 )
             )
@@ -159,7 +159,7 @@ class QuestAdmin extends AbstractAdmin
                     'context'  => 'default',
                     'required' => false,
                     'attr'     => array(
-                        'class' => 'admin-quest-image',
+                        'class' => 'admin-project-image',
                     ),
                 )
             )
@@ -169,7 +169,7 @@ class QuestAdmin extends AbstractAdmin
                     'context'  => 'default',
                     'required' => false,
                     'attr'     => array(
-                        'class' => 'admin-quest-image',
+                        'class' => 'admin-project-image',
                     ),
                 )
             )
@@ -179,7 +179,7 @@ class QuestAdmin extends AbstractAdmin
                     'context'  => 'default',
                     'required' => false,
                     'attr'     => array(
-                        'class' => 'admin-quest-image',
+                        'class' => 'admin-project-image',
                     ),
                 )
             )
@@ -190,25 +190,25 @@ class QuestAdmin extends AbstractAdmin
     }
 
     /**
-     * @param Quest $quest
+     * @param Project $project
      */
-    public function prePersist($quest)
+    public function prePersist($project)
     {
-        foreach ($quest->getPhotos() as $photo) {
-            /* @var $photo QuestPhoto */
-            $photo->setQuest($quest);
+        foreach ($project->getPhotos() as $photo) {
+            /* @var $photo ProjectPhoto */
+            $photo->setProject($project);
         }
     }
 
     /**
-     * @param Quest $quest
+     * @param Project $project
      */
-    public function preUpdate($quest)
+    public function preUpdate($project)
     {
-        foreach ($quest->getPhotos() as $photo) {
-            /* @var $photo QuestPhoto */
-            $photo->setQuest($quest);
+        foreach ($project->getPhotos() as $photo) {
+            /* @var $photo ProjectPhoto */
+            $photo->setProject($project);
         }
-        $quest->setPhotos($quest->getPhotos());
+        $project->setPhotos($project->getPhotos());
     }
 }

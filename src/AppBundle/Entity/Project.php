@@ -9,12 +9,12 @@ use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
- * Quest
+ * Project
  *
- * @ORM\Table(name="quest")
+ * @ORM\Table(name="project")
  * @ORM\Entity()
  */
-class Quest
+class Project
 {
     /**
      * @var int
@@ -61,8 +61,8 @@ class Quest
      */
     /**
      * @ORM\ManyToMany(targetEntity="Category")
-     * @ORM\JoinTable(name="quest_categories",
-     *      joinColumns={@ORM\JoinColumn(name="quest_id", referencedColumnName="id")},
+     * @ORM\JoinTable(name="project_categories",
+     *      joinColumns={@ORM\JoinColumn(name="project_id", referencedColumnName="id")},
      *      inverseJoinColumns={@ORM\JoinColumn(name="category_id", referencedColumnName="id")}
      *      )
      */
@@ -115,7 +115,7 @@ class Quest
     private $reglament;
 
     /**
-     * @ORM\OneToMany(targetEntity="QuestPhoto", mappedBy="quest", cascade={"persist", "remove"},
+     * @ORM\OneToMany(targetEntity="ProjectPhoto", mappedBy="project", cascade={"persist", "remove"},
      *     orphanRemoval=true)
      */
     private $photos;
@@ -194,7 +194,7 @@ class Quest
      *
      * @param string $title
      *
-     * @return Quest
+     * @return $this
      */
     public function setTitle($title)
     {
@@ -218,7 +218,7 @@ class Quest
      *
      * @param string $slug
      *
-     * @return Quest
+     * @return $this
      */
     public function setSlug($slug)
     {
@@ -242,7 +242,7 @@ class Quest
      *
      * @param boolean $isActive
      *
-     * @return Quest
+     * @return $this
      */
     public function setIsActive($isActive)
     {
@@ -266,7 +266,7 @@ class Quest
      *
      * @param boolean $isInSlider
      *
-     * @return Quest
+     * @return $this
      */
     public function setIsInSlider($isInSlider)
     {
@@ -290,7 +290,7 @@ class Quest
      *
      * @param string $sliderAnnotation
      *
-     * @return Quest
+     * @return $this
      */
     public function setSliderAnnotation($sliderAnnotation)
     {
@@ -314,7 +314,7 @@ class Quest
      *
      * @param string $sliderDescription
      *
-     * @return Quest
+     * @return $this
      */
     public function setSliderDescription($sliderDescription)
     {
@@ -338,7 +338,7 @@ class Quest
      *
      * @param string $description
      *
-     * @return Quest
+     * @return $this
      */
     public function setDescription($description)
     {
@@ -362,7 +362,7 @@ class Quest
      *
      * @param string $reglament
      *
-     * @return Quest
+     * @return $this
      */
     public function setReglament($reglament)
     {
@@ -386,7 +386,7 @@ class Quest
      *
      * @param string $color
      *
-     * @return Quest
+     * @return $this
      */
     public function setColor($color)
     {
@@ -410,7 +410,7 @@ class Quest
      *
      * @param string $icon
      *
-     * @return Quest
+     * @return $this
      */
     public function setIcon($icon)
     {
@@ -434,7 +434,7 @@ class Quest
      *
      * @param Category $category
      *
-     * @return Quest
+     * @return $this
      */
     public function addCategory(Category $category)
     {
@@ -468,7 +468,7 @@ class Quest
      *
      * @param Media $sliderSmallImage
      *
-     * @return Quest
+     * @return $this
      */
     public function setSliderSmallImage(Media $sliderSmallImage = null)
     {
@@ -492,7 +492,7 @@ class Quest
      *
      * @param Media $sliderLargeImage
      *
-     * @return Quest
+     * @return $this
      */
     public function setSliderLargeImage(Media $sliderLargeImage = null)
     {
@@ -514,13 +514,13 @@ class Quest
     /**
      * Add photo
      *
-     * @param QuestPhoto $photo
+     * @param ProjectPhoto $photo
      *
-     * @return Quest
+     * @return $this
      */
-    public function addPhoto(QuestPhoto $photo)
+    public function addPhoto(ProjectPhoto $photo)
     {
-        $photo->setQuest($this);
+        $photo->setProject($this);
         $this->photos->add($photo);
 
         return $this;
@@ -529,9 +529,9 @@ class Quest
     /**
      * Remove photo
      *
-     * @param QuestPhoto $photo
+     * @param ProjectPhoto $photo
      */
-    public function removePhoto(QuestPhoto $photo)
+    public function removePhoto(ProjectPhoto $photo)
     {
         $this->photos->removeElement($photo);
     }
@@ -553,9 +553,9 @@ class Quest
     public function setPhotos($photos)
     {
         $this->photos = new ArrayCollection();
-        /** @var QuestPhoto $photo */
+        /** @var ProjectPhoto $photo */
         foreach ($photos as $photo) {
-            $photo->setQuest($this);
+            $photo->setProject($this);
             $this->addPhoto($photo);
         }
 
@@ -567,7 +567,7 @@ class Quest
      *
      * @param Media $headerBackgroundImage
      *
-     * @return Quest
+     * @return $this
      */
     public function setHeaderBackgroundImage(Media $headerBackgroundImage = null)
     {
@@ -591,7 +591,7 @@ class Quest
      *
      * @param Media $descriptionBackgroundImage
      *
-     * @return Quest
+     * @return $this
      */
     public function setDescriptionBackgroundImage(Media $descriptionBackgroundImage = null)
     {
@@ -615,7 +615,7 @@ class Quest
      *
      * @param Media $stripeBackgroundImage
      *
-     * @return Quest
+     * @return $this
      */
     public function setStripeBackgroundImage(Media $stripeBackgroundImage = null)
     {
@@ -639,7 +639,7 @@ class Quest
      *
      * @param Media $formBackgroundImage
      *
-     * @return Quest
+     * @return $this
      */
     public function setFormBackgroundImage(Media $formBackgroundImage = null)
     {
@@ -664,5 +664,19 @@ class Quest
     public function __toString()
     {
         return $this->title;
+    }
+
+    public function getDataType()
+    {
+        $dataType = null;
+
+        /** @var Category $category */
+        foreach ($this->categories as $category) {
+            if (null != $dataType) {
+                $dataType .= ', ';
+            }
+
+            $dataType .= $category->getTitle();
+        }
     }
 }

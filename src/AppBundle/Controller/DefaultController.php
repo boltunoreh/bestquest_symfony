@@ -9,13 +9,51 @@ use Symfony\Component\HttpFoundation\Request;
 class DefaultController extends Controller
 {
     /**
-     * @Route("/", name="homepage")
+     * @Route("/", name="app__homepage")
      */
     public function indexAction(Request $request)
     {
+        $projects = $this->getDoctrine()->getRepository('AppBundle:Project')->findBy(array(
+            'isActive' => true,
+        ));
+
+        $categories = $this->getDoctrine()->getRepository('AppBundle:Category')->findBy(array(
+            'isActive' => true,
+        ));
+
         return $this->render('default/index.html.twig', array(
-            'project_types' => array(),
-            'projects' => array(),
+            'projects'   => $projects,
+            'categories' => $categories,
+        ));
+    }
+
+    /**
+     * @Route("/project/{slug}", name="app__project")
+     */
+    public function projectAction($project)
+    {
+        return;
+    }
+
+    /**
+     * @Route("/project/exclusive", name="app__exclusive")
+     */
+    public function exclusiveAction()
+    {
+        return;
+    }
+
+    /**
+     * @Route("/about", name="app__about")
+     */
+    public function aboutAction()
+    {
+        $categories = $this->getDoctrine()->getRepository('AppBundle:Category')->findBy(array(
+            'isActive' => true,
+        ));
+
+        return $this->render('default/about.html.twig', array(
+            'categories' => $categories,
         ));
     }
 }

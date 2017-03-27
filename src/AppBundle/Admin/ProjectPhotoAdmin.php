@@ -6,7 +6,7 @@ use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 
-class QuestPhotoAdmin extends AbstractAdmin
+class ProjectPhotoAdmin extends AbstractAdmin
 {
     /**
      * @param ListMapper $listMapper
@@ -15,7 +15,7 @@ class QuestPhotoAdmin extends AbstractAdmin
     {
         $listMapper
             ->addIdentifier('id')
-            ->add('quest', null, array(
+            ->add('project', null, array(
                 'label' => 'Квест',
             ))
             ->add('_action', 'actions', array(
@@ -40,7 +40,7 @@ class QuestPhotoAdmin extends AbstractAdmin
                     'context'  => 'default',
                     'required' => false,
                     'attr'     => array(
-                        'class' => 'admin-quest-image',
+                        'class' => 'admin-project-image',
                     ),
                 )
             )

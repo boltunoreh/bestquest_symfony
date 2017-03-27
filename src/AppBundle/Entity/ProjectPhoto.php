@@ -6,12 +6,12 @@ use Application\Sonata\MediaBundle\Entity\Media;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * QuestPhoto
+ * ProjectPhoto
  *
- * @ORM\Table(name="quest_photo")
+ * @ORM\Table(name="project_photo")
  * @ORM\Entity()
  */
-class QuestPhoto
+class ProjectPhoto
 {
     /**
      * @var int
@@ -32,10 +32,10 @@ class QuestPhoto
     private $image;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Quest", inversedBy="photos", cascade={"persist"})
-     * @ORM\JoinColumn(name="quest_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="Project", inversedBy="photos", cascade={"persist"})
+     * @ORM\JoinColumn(name="project_id", referencedColumnName="id")
      */
-    private $quest;
+    private $project;
 
     /**
      * Get id
@@ -52,7 +52,7 @@ class QuestPhoto
      *
      * @param Media $image
      *
-     * @return QuestPhoto
+     * @return ProjectPhoto
      */
     public function setImage(Media $image = null)
     {
@@ -72,27 +72,27 @@ class QuestPhoto
     }
 
     /**
-     * Set quest
+     * Set project
      *
-     * @param Quest $quest
+     * @param Project $project
      *
-     * @return QuestPhoto
+     * @return ProjectPhoto
      */
-    public function setQuest(Quest $quest = null)
+    public function setProject(Project $project = null)
     {
-        $this->quest = $quest;
+        $this->project = $project;
 
         return $this;
     }
 
     /**
-     * Get quest
+     * Get project
      *
-     * @return \AppBundle\Entity\Quest
+     * @return \AppBundle\Entity\Project
      */
-    public function getQuest()
+    public function getProject()
     {
-        return $this->quest;
+        return $this->project;
     }
 
     /**

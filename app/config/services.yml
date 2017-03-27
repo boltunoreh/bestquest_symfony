@@ -5,12 +5,12 @@ parameters:
 
 services:
     app.admin.quest:
-        class: AppBundle\Admin\QuestAdmin
-        arguments: [~, AppBundle\Entity\Quest, ~]
+        class: AppBundle\Admin\ProjectAdmin
+        arguments: [~, AppBundle\Entity\Project, ~]
         tags:
             - name: sonata.admin
               manager_type: orm
-              group: "app.admin.group.quests"
+              group: "app.admin.group.projects"
               label: 'Квесты'
     app.admin.category:
         class: AppBundle\Admin\CategoryAdmin
@@ -18,13 +18,13 @@ services:
         tags:
             - name: sonata.admin
               manager_type: orm
-              group: "app.admin.group.quests"
+              group: "app.admin.group.projects"
               label: 'Категории'
     app.admin.photo:
-        class: AppBundle\Admin\QuestPhotoAdmin
-        arguments: [~, AppBundle\Entity\QuestPhoto, ~]
+        class: AppBundle\Admin\ProjectPhotoAdmin
+        arguments: [~, AppBundle\Entity\ProjectPhoto, ~]
         tags:
             - name: sonata.admin
               manager_type: orm
-              group: "app.admin.group.quests"
+              group: "app.admin.group.projects"
               label: 'Фото'
