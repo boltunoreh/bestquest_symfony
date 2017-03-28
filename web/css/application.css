@@ -1261,18 +1261,18 @@ nav dd {
   content: "";
 }
 
-.l-header__menu > .item {
+.l-header__menu > li {
   position: relative;
   display: inline-block;
   float: left;
   cursor: pointer;
 }
 
-.l-header__menu > .item:hover .l-header__submenu {
+.l-header__menu > li:hover .l-header__submenu {
   display: block;
 }
 
-.l-header__menu > .item.active {
+.l-header__menu > li.active {
   background: #554e50;
 }
 
@@ -1287,13 +1287,13 @@ nav dd {
   background: #232323;
 }
 
-.l-header__submenu .item {
+.l-header__submenu li {
   display: block;
   cursor: pointer;
 }
 
-.l-header__submenu .item > a,
-.l-header__submenu .item > i {
+.l-header__submenu li > a,
+.l-header__submenu li > span {
   padding: 10px 20px;
   font-size: 14px;
   font-size: 0.875rem;
@@ -1302,7 +1302,9 @@ nav dd {
   font-style: normal;
 }
 
-.l-header__submenu .item:hover > a {
+.l-header__submenu li:hover > a,
+.l-header__submenu li:hover > span {
+  color: #E20000;
   background: #000000;
 }
 

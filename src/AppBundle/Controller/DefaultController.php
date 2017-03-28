@@ -53,12 +53,7 @@ class DefaultController extends Controller
      */
     public function aboutAction()
     {
-        $categories = $this->getDoctrine()->getRepository('AppBundle:Category')->findBy(array(
-            'isActive' => true,
-        ));
-
         return $this->render('default/about.html.twig', array(
-            'categories' => $categories,
         ));
     }
 }

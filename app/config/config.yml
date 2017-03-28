@@ -146,3 +146,14 @@ stof_doctrine_extensions:
     orm:
         default:
             sluggable: true
+
+#Knp Menu Configuration
+knp_menu:
+    twig:
+        template: KnpMenuBundle::menu.html.twig
+    templating: false
+    default_renderer: twig
+#    providers:
+#        builder_alias: false
+#        builder_service: false
+#        container_aware: true
