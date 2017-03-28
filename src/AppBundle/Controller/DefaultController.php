@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Project;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -14,7 +15,8 @@ class DefaultController extends Controller
     public function indexAction(Request $request)
     {
         $projects = $this->getDoctrine()->getRepository('AppBundle:Project')->findBy(array(
-            'isActive' => true,
+            'isActive'   => true,
+            'isInSlider' => true,
         ));
 
         $categories = $this->getDoctrine()->getRepository('AppBundle:Category')->findBy(array(
@@ -28,19 +30,22 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/project/{slug}", name="app__project")
-     */
-    public function projectAction($project)
-    {
-        return;
-    }
-
-    /**
      * @Route("/project/exclusive", name="app__exclusive")
      */
     public function exclusiveAction()
     {
-        return;
+        return $this->render('default/exclusive.html.twig', array(
+        ));
+    }
+
+    /**
+     * @Route("/project/{slug}", name="app__project")
+     */
+    public function projectAction(Project $project)
+    {
+        return $this->render('default/project.html.twig', array(
+            'project' => $project,
+        ));
     }
 
     /**

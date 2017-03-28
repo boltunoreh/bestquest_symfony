@@ -663,7 +663,7 @@ class Project
      */
     public function __toString()
     {
-        return $this->title;
+        return (string) $this->title;
     }
 
     public function getDataType()
@@ -678,5 +678,7 @@ class Project
 
             $dataType .= $category->getTitle();
         }
+
+        return $dataType;
     }
 }
