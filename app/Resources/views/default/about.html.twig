@@ -26,78 +26,19 @@
             <a name="team"></a><h2 class="s-title white">Команда</h2>
             <div class="b-slider b-slider-team" id="projects" style="overflow: hidden; width: 100%;">
                 <ul class="list" style="position: relative; width: 1918px; left: 0px; margin-left: -11px;">
-                    <li class="item b-project">
-                        <div class="b-project__image--small" style="background-image: url(/img/about/team/fr_0.jpg)"></div>
-                        <div class="b-project__image" style="background-image: url(/img/about/team/fr_0.jpg)"></div>
-                        <div class="b-project__body">
-                            <h3>Фарид Рафиков</h3>
-                            <strong class="position">Дизайнер</strong>
-                            <p>- Где моя поясная сумка?</p>
-                        </div>
-                    </li>
-                    <li class="item b-project">
-                        <div class="b-project__image--small" style="background-image: url(/img/about/team/z_bf293e94_0.jpg)"></div>
-                        <div class="b-project__image" style="background-image: url(/img/about/team/z_bf293e94_0.jpg)"></div>
-                        <div class="b-project__body">
-                            <h3>Алена Войлокова</h3>
-                            <strong class="position">Сценарист</strong>
-                            <p>- Человеческий разум - один из самых вечных двигателей.</p>
-                        </div>
-                    </li>
-                    <li class="item b-project active">
-                        <div class="b-project__image--small" style="background-image: url(/img/about/team/io_0.jpg)"></div>
-                        <div class="b-project__image" style="background-image: url(/img/about/team/io_0.jpg)"></div>
-                        <div class="b-project__body">
-                            <h3>Игорь Озимов</h3>
-                            <strong class="position">Генеральный Директор</strong>
-                            <p>- Пока меня нет, ведите себя хорошо, но помните, что это зря потраченное время.</p>
-                        </div>
-                    </li>
-                    <li class="item b-project">
-                        <div class="b-project__image--small" style="background-image: url(/img/about/team/rl_0.jpg)"></div>
-                        <div class="b-project__image" style="background-image: url(/img/about/team/rl_0.jpg)"></div>
-                        <div class="b-project__body">
-                            <h3>Роман Лапин</h3>
-                            <strong class="position">IT-Разработчик</strong>
-                            <p>Разрабатывает IT в компании лучше всех.</p>
-                        </div>
-                    </li>
-                    <li class="item b-project">
-                        <div class="b-project__image--small" style="background-image: url(/img/about/team/rb_0.jpg)"></div>
-                        <div class="b-project__image" style="background-image: url(/img/about/team/rb_0.jpg)"></div>
-                        <div class="b-project__body">
-                            <h3>Роман Барабонов</h3>
-                            <strong class="position">Фотограф</strong>
-                            <p>Улыбайтесь, вас снимает скрытая камера!</p>
-                        </div>
-                    </li>
-                    <li class="item b-project">
-                        <div class="b-project__image--small" style="background-image: url(/img/about/team/as_0.jpg)"></div>
-                        <div class="b-project__image" style="background-image: url(/img/about/team/as_0.jpg)"></div>
-                        <div class="b-project__body">
-                            <h3>Антон Сидорчук</h3>
-                            <strong class="position">Электронщик</strong>
-                            <p>Крутой парень, знает толк в своем деле на 220%.</p>
-                        </div>
-                    </li>
-                    <li class="item b-project">
-                        <div class="b-project__image--small" style="background-image: url(/img/about/team/et_0.jpg)"></div>
-                        <div class="b-project__image" style="background-image: url(/img/about/team/et_0.jpg)"></div>
-                        <div class="b-project__body">
-                            <h3>Елизавета Тарасова</h3>
-                            <strong class="position">Менеджер проектов</strong>
-                            <p>- Командный дух - все, что нам нужно.</p>
-                        </div>
-                    </li>
-                    <li class="item b-project">
-                        <div class="b-project__image--small" style="background-image: url(/img/about/team/rk_0.jpg)"></div>
-                        <div class="b-project__image" style="background-image: url(/img/about/team/rk_0.jpg)"></div>
-                        <div class="b-project__body">
-                            <h3>Роман Канин</h3>
-                            <strong class="position">Конструктор-технолог</strong>
-                            <p>Конструирует технологии технологичных конструкций.</p>
-                        </div>
-                    </li>
+                    {% for teammate in teammates %}
+                        <li class="item b-project">
+                            <div class="b-project__image--small"
+                                 style="background-image: url({% path teammate.photo, 'medium' %})"></div>
+                            <div class="b-project__image"
+                                 style="background-image: url({% path teammate.photo, 'medium' %})"></div>
+                            <div class="b-project__body">
+                                <h3>{{ teammate.name }}</h3>
+                                <strong class="position">{{ teammate.position }}</strong>
+                                <p>{{ teammate.sign }}</p>
+                            </div>
+                        </li>
+                    {% endfor %}
                 </ul>
                 <div class="b-slider__next">
                     <svg enable-background="new 0 0 45.8 45.8" height="45px" space="preserve" version="1.1" viewBox="0 0 45.8 45.8" width="45px" x="0px" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" y="0px">
@@ -127,45 +68,11 @@
             <a name="clients"></a><h2 class="s-title">Клиенты</h2>
             <div class="b-clients">
                 <ul class="b-clients__list">
+                    {% for client in clients %}
                     <li class="item">
-                        <a href="#"><img width="224" height="107" src="/img/about/partners/web_projects.png"></a>
+                        <a href="#">{% thumbnail client.image, 'medium' %}</a>
                     </li>
-                    <li class="item">
-                        <a href="#"><img width="210" height="107" src="/img/about/partners/tehnoavia.png"></a>
-                    </li>
-                    <li class="item">
-                        <a href="#"><img width="54" height="107" src="/img/about/partners/odnoklassniki.png"></a>
-                    </li>
-                    <li class="item">
-                        <a href="#"><img width="286" height="107" src="/img/about/partners/peter_service.png"></a>
-                    </li>
-                </ul>
-                <br><br>
-                <ul class="b-clients__list">
-                    <li class="item">
-                        <a href="#"><img width="91" height="79" src="/img/about/partners/bmw.png"></a>
-                    </li>
-                    <li class="item">
-                        <a href="#"><img width="193" height="79" src="/img/about/partners/jaguar.png"></a>
-                    </li>
-                    <li class="item">
-                        <a href="#"><img width="224" height="79" src="/img/about/partners/mera.png"></a>
-                    </li>
-                    <li class="item">
-                        <a href="#"><img width="217" height="79" src="/img/about/partners/mehanobr_service.jpg"></a>
-                    </li>
-                </ul>
-                <br><br>
-                <ul class="b-clients__list">
-                    <li class="item">
-                        <a href="#"><img width="508" height="79" src="/img/about/partners/siemens.png"></a>
-                    </li>
-                    <li class="item">
-                        <a href="#"><img width="244" height="79" src="/img/about/partners/tele2.png"></a>
-                    </li>
-                    <li class="item">
-                        <a href="#"><img width="291" height="95" src="/img/about/partners/arcadia.png"></a>
-                    </li>
+                    {% endfor %}
                 </ul>
                 <br><br>
                 <br><br>

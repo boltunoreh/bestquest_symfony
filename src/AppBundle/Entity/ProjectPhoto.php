@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * ProjectPhoto
  *
- * @ORM\Table(name="project_photo")
+ * @ORM\Table(name="project_photos")
  * @ORM\Entity()
  */
 class ProjectPhoto

@@ -53,7 +53,16 @@ class DefaultController extends Controller
      */
     public function aboutAction()
     {
+        $teammates = $this->getDoctrine()->getRepository('AppBundle:Teammate')->findBy(array(
+            'isActive' => true,
+        ));
+        $clients = $this->getDoctrine()->getRepository('AppBundle:Client')->findBy(array(
+            'isActive' => true,
+        ));
+
         return $this->render('default/about.html.twig', array(
+            'teammates' => $teammates,
+            'clients'   => $clients,
         ));
     }
 }

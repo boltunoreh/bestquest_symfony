@@ -26,5 +26,20 @@ services:
         tags:
             - name: sonata.admin
               manager_type: orm
-#              group: "app.admin.group.projects"
               label: 'Фото'
+    app.admin.client:
+        class: AppBundle\Admin\ClientAdmin
+        arguments: [~, AppBundle\Entity\Client, ~]
+        tags:
+            - name: sonata.admin
+              manager_type: orm
+              group: "app.admin.group.about"
+              label: 'Клиенты'
+    app.admin.teammate:
+        class: AppBundle\Admin\TeammateAdmin
+        arguments: [~, AppBundle\Entity\Teammate, ~]
+        tags:
+            - name: sonata.admin
+              manager_type: orm
+              group: "app.admin.group.about"
+              label: 'Команда'

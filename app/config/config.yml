@@ -95,6 +95,9 @@ sonata_admin:
             app.admin.group.projects:
                 label: 'Квесты'
                 label_catalogue: SonataAdminBundle
+            app.admin.group.about:
+                label: 'О нас'
+                label_catalogue: SonataAdminBundle
 
 #Sonata Media Configuration
 sonata_media:

@@ -11,7 +11,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
 /**
  * Project
  *
- * @ORM\Table(name="project")
+ * @ORM\Table(name="projects")
  * @ORM\Entity()
  */
 class Project
