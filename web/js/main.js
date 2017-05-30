@@ -1924,7 +1924,7 @@ function() {
 
 $(function(){
 
-  // обработка приема параметров
+  // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
   var a = decodeURIComponent(location.search.substr(1)).split('&');
 
   if( a[0] != ""){
@@ -1933,7 +1933,7 @@ $(function(){
     $("[data-action='" + a[0] + "']").click();
   }
 
-  // обработка для слайдера
+  // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
   $( "[data-slider]" ).on("click", function(){
     $(".b-title-slide").fadeOut(200);
     $(".unvisible").css("opacity", "1");
