@@ -26,20 +26,17 @@
               rel="stylesheet" type="text/css"/>
         <link href="{{ asset('css/normalize.css') }}" rel="stylesheet" type="text/css"/>
         <link href="{{ asset('css/application.css') }}" rel="stylesheet" type="text/css"/>
+        <link href="{{ asset('css/custom.css') }}" rel="stylesheet" type="text/css"/>
         <link href="{{ asset('css/pages.css') }}" rel="stylesheet" type="text/css"/>
         <script src="{{ asset('js/modernizr-2.6.1.min.js') }}" type="text/javascript"></script>
 
         <style>
-            .l-content {
-                padding-bottom: 0px
-            }
-
             .b-skew-bottom:after {
                 display: none
             }
         </style>
     </head>
-    <body class='index'>
+    <body class='{% block bodyclass %}index{% endblock %}'>
         <!--[if lt IE 7]>
         <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser
             today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to
@@ -106,7 +103,6 @@
                             <dt class="title">Best Quest</dt>
                             <dd class="item"><a href="/about#team">Команда</a></dd>
                             <dd class="item"><a href="/about#clients">Клиенты</a></dd>
-                            <dd class="item"><a href="/about#partners">Партнеры</a></dd>
                         </dl>
                         <dl class="l-footer__menu">
                             <dt class="title">Проекты</dt>
@@ -131,7 +127,6 @@
                         </dl>
                     </nav>
                     <div class="createdby">
-                        дизайн сайта<br><strong><a href="http://formazon.com">formazon.com</a></strong>
                     </div>
                 </div>
             </footer>

@@ -1,0 +1,10 @@
+<ul class='b-slider__pages' id='pages'>
+    {% for category in categories %}
+        <li class='item' data-action="{{ category.slug }}">
+            {{ category.icon|raw }}
+            <p class='icontext'>
+                {{ category.title }}
+            </p>
+        </li>
+    {% endfor %}
+</ul>
