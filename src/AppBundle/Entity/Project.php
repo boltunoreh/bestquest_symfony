@@ -28,7 +28,7 @@ class Project
     /**
      * @var string
      *
-     * @ORM\Column(name="title", type="string", length=255)
+     * @ORM\Column(name="title", type="string")
      */
     private $title;
 
@@ -36,7 +36,7 @@ class Project
      * @var string
      *
      * @Gedmo\Slug(fields={"title"})
-     * @ORM\Column(name="slug", type="string", length=128, unique=true, nullable=false)
+     * @ORM\Column(name="slug", type="string", unique=true, nullable=false)
      */
     private $slug;
 
@@ -57,7 +57,7 @@ class Project
     /**
      * @var string
      *
-     * @ORM\Column(name="category", type="string", length=255)
+     * @ORM\Column(name="category", type="string")
      */
     /**
      * @ORM\ManyToMany(targetEntity="Category")
@@ -71,7 +71,7 @@ class Project
     /**
      * @var string
      *
-     * @ORM\Column(name="slider_annotation", type="string", length=255)
+     * @ORM\Column(name="slider_annotation", type="string")
      */
     private $sliderAnnotation;
 
@@ -103,16 +103,67 @@ class Project
     /**
      * @var string
      *
+     * @ORM\Column(name="type", type="string")
+     */
+    private $type;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="members", type="string")
+     */
+    private $members;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="place", type="string")
+     */
+    private $place;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="movement_type", type="string")
+     */
+    private $movementType;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="duration", type="string")
+     */
+    private $duration;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="gadget", type="string")
+     */
+    private $gadget;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="age", type="string")
+     */
+    private $age;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="description", type="text")
      */
     private $description;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="reglament", type="string", length=255)
+     * @ORM\ManyToMany(targetEntity="Stage", cascade={"persist"})
+     * @ORM\JoinTable(name="projects_stages",
+     *      joinColumns={@ORM\JoinColumn(name="project_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="stage_id", referencedColumnName="id", unique=true)}
+     *      )
      */
-    private $reglament;
+    private $stages;
 
     /**
      * @ORM\OneToMany(targetEntity="ProjectPhoto", mappedBy="project", cascade={"persist", "remove"},
@@ -123,7 +174,7 @@ class Project
     /**
      * @var string
      *
-     * @ORM\Column(name="color", type="string", length=255)
+     * @ORM\Column(name="color", type="string")
      */
     private $color;
 
@@ -155,6 +206,12 @@ class Project
     private $stripeBackgroundImage;
 
     /**
+     * @var Review
+     * @ORM\OneToMany(targetEntity="Review", mappedBy="project", cascade={"persist"})
+     */
+    private $reviews;
+
+    /**
      * @var Media
      * @ORM\ManyToOne(
      *  targetEntity="Application\Sonata\MediaBundle\Entity\Media",
@@ -166,17 +223,26 @@ class Project
     /**
      * @var string
      *
-     * @ORM\Column(name="icon", type="string", length=255)
+     * @ORM\Column(name="icon", type="text")
      */
     private $icon;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="sort_order", type="integer", nullable=true)
+     */
+    private $sortOrder;
 
     /**
      * Constructor
      */
     public function __construct()
     {
-        $this->photos = new ArrayCollection();
+        $this->photos     = new ArrayCollection();
         $this->categories = new ArrayCollection();
+        $this->stages     = new ArrayCollection();
+        $this->reviews    = new ArrayCollection();
     }
 
     /**
@@ -334,15 +400,134 @@ class Project
     }
 
     /**
-     * Set description
-     *
-     * @param string $description
-     *
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * @param string $type
      * @return $this
      */
-    public function setDescription($description)
+    public function setType($type)
     {
-        $this->description = $description;
+        $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getMembers()
+    {
+        return $this->members;
+    }
+
+    /**
+     * @param string $members
+     * @return $this
+     */
+    public function setMembers($members)
+    {
+        $this->members = $members;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPlace()
+    {
+        return $this->place;
+    }
+
+    /**
+     * @param string $place
+     * @return $this
+     */
+    public function setPlace($place)
+    {
+        $this->place = $place;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getMovementType()
+    {
+        return $this->movementType;
+    }
+
+    /**
+     * @param mixed $movementType
+     * @return $this
+     */
+    public function setMovementType($movementType)
+    {
+        $this->movementType = $movementType;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDuration()
+    {
+        return $this->duration;
+    }
+
+    /**
+     * @param mixed $duration
+     * @return $this
+     */
+    public function setDuration($duration)
+    {
+        $this->duration = $duration;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getGadget()
+    {
+        return $this->gadget;
+    }
+
+    /**
+     * @param string $gadget
+     * @return $this
+     */
+    public function setGadget($gadget)
+    {
+        $this->gadget = $gadget;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAge()
+    {
+        return $this->age;
+    }
+
+    /**
+     * @param mixed $age
+     * @return $this
+     */
+    public function setAge($age)
+    {
+        $this->age = $age;
 
         return $this;
     }
@@ -358,27 +543,17 @@ class Project
     }
 
     /**
-     * Set reglament
+     * Set description
      *
-     * @param string $reglament
+     * @param string $description
      *
      * @return $this
      */
-    public function setReglament($reglament)
+    public function setDescription($description)
     {
-        $this->reglament = $reglament;
+        $this->description = $description;
 
         return $this;
-    }
-
-    /**
-     * Get reglament
-     *
-     * @return string
-     */
-    public function getReglament()
-    {
-        return $this->reglament;
     }
 
     /**
@@ -635,6 +810,49 @@ class Project
     }
 
     /**
+     * @return mixed
+     */
+    public function getReviews()
+    {
+        return $this->reviews;
+    }
+
+    /**
+     * @param mixed $reviews
+     * @return $this
+     */
+    public function setReviews($reviews)
+    {
+        $this->reviews = $reviews;
+
+        return $this;
+    }
+
+    /**
+     * Add review
+     *
+     * @param Review $review
+     *
+     * @return $this
+     */
+    public function addReview(Review $review)
+    {
+        $this->reviews->add($review);
+
+        return $this;
+    }
+
+    /**
+     * Remove review
+     *
+     * @param Review $review
+     */
+    public function removeReview(Review $review)
+    {
+        $this->reviews->removeElement($review);
+    }
+
+    /**
      * Set formBackgroundImage
      *
      * @param Media $formBackgroundImage
@@ -659,6 +877,68 @@ class Project
     }
 
     /**
+     * @return int
+     */
+    public function getSortOrder()
+    {
+        return $this->sortOrder;
+    }
+
+    /**
+     * @param int $sortOrder
+     * @return $this
+     */
+    public function setSortOrder($sortOrder)
+    {
+        $this->sortOrder = $sortOrder;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getStages()
+    {
+        return $this->stages;
+    }
+
+    /**
+     * @param mixed $stages
+     * @return $this
+     */
+    public function setStages($stages)
+    {
+        $this->stages = $stages;
+
+        return $this;
+    }
+
+    /**
+     * Add stage
+     *
+     * @param Stage $stage
+     *
+     * @return $this
+     */
+    public function addStage(Stage $stage)
+    {
+        $this->stages->add($stage);
+
+        return $this;
+    }
+
+    /**
+     * Remove stage
+     *
+     * @param Stage $stage
+     */
+    public function removeStage(Stage $stage)
+    {
+        $this->stages->removeElement($stage);
+    }
+
+    /**
      * @return string
      */
     public function __toString()
@@ -676,7 +956,7 @@ class Project
                 $dataType .= ', ';
             }
 
-            $dataType .= $category->getTitle();
+            $dataType .= $category->getSlug();
         }
 
         return $dataType;

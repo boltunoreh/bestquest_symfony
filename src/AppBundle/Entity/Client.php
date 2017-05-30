@@ -3,8 +3,6 @@
 namespace AppBundle\Entity;
 
 use Application\Sonata\MediaBundle\Entity\Media;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -27,7 +25,7 @@ class Client
     /**
      * @var string
      *
-     * @ORM\Column(name="title", type="string", length=255)
+     * @ORM\Column(name="title", type="string")
      */
     private $title;
 
@@ -48,12 +46,11 @@ class Client
     private $isActive;
 
     /**
-     * @return string
+     * @var int
+     *
+     * @ORM\Column(name="sort_order", type="integer", nullable=true)
      */
-    public function __toString()
-    {
-        return (string) $this->title;
-    }
+    private $sortOrder;
 
     /**
      * Get id
@@ -135,5 +132,32 @@ class Client
     public function getImage()
     {
         return $this->image;
+    }
+
+    /**
+     * @return int
+     */
+    public function getSortOrder()
+    {
+        return $this->sortOrder;
+    }
+
+    /**
+     * @param int $sortOrder
+     * @return $this
+     */
+    public function setSortOrder($sortOrder)
+    {
+        $this->sortOrder = $sortOrder;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return (string) $this->title;
     }
 }

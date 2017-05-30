@@ -25,7 +25,7 @@ class Category
     /**
      * @var string
      *
-     * @ORM\Column(name="title", type="string", length=255)
+     * @ORM\Column(name="title", type="string")
      */
     private $title;
 
@@ -33,14 +33,14 @@ class Category
      * @var string
      *
      * @Gedmo\Slug(fields={"title"})
-     * @ORM\Column(name="slug", type="string", length=128, unique=true, nullable=false)
+     * @ORM\Column(name="slug", type="string", unique=true, nullable=false)
      */
     private $slug;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="icon", type="string", length=255)
+     * @ORM\Column(name="icon", type="text")
      */
     private $icon;
 
@@ -50,6 +50,13 @@ class Category
      * @ORM\Column(name="is_active", type="boolean")
      */
     private $isActive;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="sort_order", type="integer", nullable=true)
+     */
+    private $sortOrder;
 
     /**
      * Get id
@@ -147,6 +154,25 @@ class Category
     public function getIcon()
     {
         return $this->icon;
+    }
+
+    /**
+     * @return int
+     */
+    public function getSortOrder()
+    {
+        return $this->sortOrder;
+    }
+
+    /**
+     * @param int $sortOrder
+     * @return $this
+     */
+    public function setSortOrder($sortOrder)
+    {
+        $this->sortOrder = $sortOrder;
+
+        return $this;
     }
 
     /**

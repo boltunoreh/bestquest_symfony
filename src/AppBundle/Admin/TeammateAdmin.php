@@ -45,6 +45,7 @@ class TeammateAdmin extends AbstractAdmin
             ->addIdentifier('position', null, array(
                 'label' => 'Должность',
             ))
+            ->add('sortOrder')
             ->add('_action', 'actions', array(
                 'actions' => array(
                     'edit' => array(),
@@ -77,12 +78,13 @@ class TeammateAdmin extends AbstractAdmin
             ->add('photo', 'sonata_media_type', array(
                 'label'    => 'Фотография',
                 'provider' => 'sonata.media.provider.image',
-                'context'  => 'default',
+                'context'  => 'teammate',
                 'required' => false,
                 'attr'     => array(
                     'class' => 'admin-teammate-photo',
                 ),
             ))
+            ->add('sortOrder')
         ;
     }
 }
