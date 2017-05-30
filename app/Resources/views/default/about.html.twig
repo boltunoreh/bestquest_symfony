@@ -1,5 +1,6 @@
 {% extends 'base.html.twig' %}
 
+{% block bodyclass %}about{% endblock %}
 {% block content %}
     <main class="l-content">
         <section class="l-section l-section-home">
@@ -70,7 +71,9 @@
                 <ul class="b-clients__list">
                     {% for client in clients %}
                     <li class="item">
-                        <a href="#">{% thumbnail client.image, 'medium' %}</a>
+                        <a href="#">
+                            <img src="{% path client.image, 'medium' %}">
+                        </a>
                     </li>
                     {% endfor %}
                 </ul>
