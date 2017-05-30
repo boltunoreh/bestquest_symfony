@@ -61,6 +61,8 @@ doctrine:
                 mappings:
                     ApplicationSonataMediaBundle: ~
                     SonataMediaBundle: ~
+                    SonataClassificationBundle: ~
+                    ApplicationSonataClassificationBundle: ~
 
 doctrine_migrations:
     dir_name: "%kernel.root_dir%/DoctrineMigrations"
@@ -117,6 +119,42 @@ sonata_media:
             formats:
                 small: { width: 100 , quality: 70}
                 big:   { width: 500 , quality: 70}
+        project_slider_small_image:
+            providers:
+                - sonata.media.provider.image
+            formats:
+                medium: { width: 420 , quality: 100}
+        project_slider_large_image:
+            providers:
+                - sonata.media.provider.image
+            formats:
+                medium: { width: 720 , quality: 100}
+        project_background_image:
+            providers:
+                - sonata.media.provider.image
+            formats:
+                medium: { width: 985 , quality: 100}
+        project_photo_image:
+            providers:
+                - sonata.media.provider.image
+            formats:
+                medium: { height: 480 , width: 600 , quality: 100}
+        project_review_photo:
+            providers:
+                - sonata.media.provider.image
+            formats:
+                medium: { height: 128 , width: 128 , quality: 100}
+        teammate:
+            providers:
+                - sonata.media.provider.image
+            formats:
+                small:  { width: 100 , quality: 100}
+                medium: { width: 300 , quality: 100}
+        client:
+            providers:
+                - sonata.media.provider.image
+            formats:
+                medium: { width: 600 , quality: 100}
 
     cdn:
         server:
