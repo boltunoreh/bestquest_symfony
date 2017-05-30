@@ -33,9 +33,9 @@ class CategoryAdmin extends AbstractAdmin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->add('icon', null, array(
-                'label' => 'Иконка',
-            ))
+//            ->add('icon', null, array(
+//                'label' => 'Иконка',
+//            ))
             ->addIdentifier('isActive')
             ->addIdentifier('id')
             ->addIdentifier('title', null, array(
@@ -45,6 +45,7 @@ class CategoryAdmin extends AbstractAdmin
             ->add('slug', null, array(
                 'label' => 'Slug',
             ))
+            ->add('sortOrder')
             ->add('_action', 'actions', array(
                 'actions' => array(
                     'edit' => array(),
@@ -78,6 +79,7 @@ class CategoryAdmin extends AbstractAdmin
             ->add('icon', null, array(
                 'label' => 'Иконка',
             ))
+            ->add('sortOrder')
         ;
     }
 }

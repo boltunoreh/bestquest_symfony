@@ -3,8 +3,6 @@
 namespace AppBundle\Entity;
 
 use Application\Sonata\MediaBundle\Entity\Media;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -27,14 +25,14 @@ class Teammate
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=255)
+     * @ORM\Column(name="name", type="string")
      */
     private $name;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="position", type="string", length=255)
+     * @ORM\Column(name="position", type="string")
      */
     private $position;
 
@@ -62,12 +60,11 @@ class Teammate
     private $isActive;
 
     /**
-     * @return string
+     * @var int
+     *
+     * @ORM\Column(name="sort_order", type="integer", nullable=true)
      */
-    public function __toString()
-    {
-        return (string) $this->name;
-    }
+    private $sortOrder;
 
     /**
      * Get id
@@ -197,5 +194,32 @@ class Teammate
     public function getPhoto()
     {
         return $this->photo;
+    }
+
+    /**
+     * @return int
+     */
+    public function getSortOrder()
+    {
+        return $this->sortOrder;
+    }
+
+    /**
+     * @param int $sortOrder
+     * @return $this
+     */
+    public function setSortOrder($sortOrder)
+    {
+        $this->sortOrder = $sortOrder;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return (string) $this->name;
     }
 }

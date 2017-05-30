@@ -18,6 +18,7 @@ class ProjectPhotoAdmin extends AbstractAdmin
             ->add('project', null, array(
                 'label' => 'Квест',
             ))
+            ->add('sortOrder')
             ->add('_action', 'actions', array(
                 'actions' => array(
                     'edit' => array(),
@@ -37,13 +38,14 @@ class ProjectPhotoAdmin extends AbstractAdmin
             ->add('image', 'sonata_media_type', array(
                     'label'    => 'Изображение',
                     'provider' => 'sonata.media.provider.image',
-                    'context'  => 'default',
+                    'context'  => 'project_photo_image',
                     'required' => false,
                     'attr'     => array(
                         'class' => 'admin-project-image',
                     ),
                 )
             )
+            ->add('sortOrder')
         ;
     }
 }

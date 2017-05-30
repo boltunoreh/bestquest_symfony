@@ -38,6 +38,13 @@ class ProjectPhoto
     private $project;
 
     /**
+     * @var int
+     *
+     * @ORM\Column(name="sort_order", type="integer", nullable=true)
+     */
+    private $sortOrder;
+
+    /**
      * Get id
      *
      * @return integer
@@ -93,6 +100,25 @@ class ProjectPhoto
     public function getProject()
     {
         return $this->project;
+    }
+
+    /**
+     * @return int
+     */
+    public function getSortOrder()
+    {
+        return $this->sortOrder;
+    }
+
+    /**
+     * @param int $sortOrder
+     * @return $this
+     */
+    public function setSortOrder($sortOrder)
+    {
+        $this->sortOrder = $sortOrder;
+
+        return $this;
     }
 
     /**

@@ -5,6 +5,7 @@ namespace AppBundle\Admin;
 use AppBundle\Entity\Category;
 use AppBundle\Entity\Project;
 use AppBundle\Entity\ProjectPhoto;
+use AppBundle\Entity\Review;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
@@ -51,6 +52,7 @@ class ProjectAdmin extends AbstractAdmin
             ->add('categories', null, array(
                 'label' => 'Категории',
             ))
+            ->add('sortOrder')
             ->add('_action', 'actions', array(
                 'actions' => array(
                     'edit' => array(),
@@ -85,6 +87,7 @@ class ProjectAdmin extends AbstractAdmin
                 'label'    => 'В главном слайдере',
                 'required' => false,
             ))
+            ->add('sortOrder')
             ->add('categories', 'sonata_type_model', array(
                 'label'    => 'Категории',
                 'class'    => Category::class,
@@ -100,7 +103,7 @@ class ProjectAdmin extends AbstractAdmin
             ->add('sliderSmallImage', 'sonata_media_type', array(
                     'label'    => 'Изображение слайдера (маленькое)',
                     'provider' => 'sonata.media.provider.image',
-                    'context'  => 'default',
+                    'context'  => 'project_slider_small_image',
                     'required' => false,
                     'attr'     => array(
                         'class' => 'admin-project-image',
@@ -110,19 +113,33 @@ class ProjectAdmin extends AbstractAdmin
             ->add('sliderLargeImage', 'sonata_media_type', array(
                     'label'    => 'Изображение слайдера (большое)',
                     'provider' => 'sonata.media.provider.image',
-                    'context'  => 'default',
+                    'context'  => 'project_slider_large_image',
                     'required' => false,
                     'attr'     => array(
                         'class' => 'admin-project-image',
                     ),
                 )
             )
+            ->add('type')
+            ->add('members')
+            ->add('place')
+            ->add('movementType')
+            ->add('duration')
+            ->add('gadget')
+            ->add('age')
             ->add('description', TextareaType::class, array(
                 'label' => 'Описание',
             ))
-            ->add('reglament', TextType::class, array(
-                'label' => 'Регламент',
-            ))
+            ->add('stages', 'sonata_type_collection',
+                array(
+                    'label' => 'Регламент',
+                ),
+                array(
+                    'edit'     => 'inline',
+                    'inline'   => 'table',
+                    'sortable' => 'position',
+                )
+            )
             ->add('photos', 'sonata_type_collection',
                 array(
                     'label'        => 'Фото',
@@ -146,7 +163,7 @@ class ProjectAdmin extends AbstractAdmin
             ->add('headerBackgroundImage', 'sonata_media_type', array(
                     'label'    => 'Фон заголовка',
                     'provider' => 'sonata.media.provider.image',
-                    'context'  => 'default',
+                    'context'  => 'project_background_image',
                     'required' => false,
                     'attr'     => array(
                         'class' => 'admin-project-image',
@@ -156,7 +173,7 @@ class ProjectAdmin extends AbstractAdmin
             ->add('descriptionBackgroundImage', 'sonata_media_type', array(
                     'label'    => 'Фон описания',
                     'provider' => 'sonata.media.provider.image',
-                    'context'  => 'default',
+                    'context'  => 'project_background_image',
                     'required' => false,
                     'attr'     => array(
                         'class' => 'admin-project-image',
@@ -166,17 +183,25 @@ class ProjectAdmin extends AbstractAdmin
             ->add('stripeBackgroundImage', 'sonata_media_type', array(
                     'label'    => 'Фон полоски',
                     'provider' => 'sonata.media.provider.image',
-                    'context'  => 'default',
+                    'context'  => 'project_background_image',
                     'required' => false,
                     'attr'     => array(
                         'class' => 'admin-project-image',
                     ),
                 )
             )
+            ->add('reviews', 'sonata_type_collection',
+                array(
+                    'label' => 'Отзывы',
+                ),
+                array(
+                    'sortable' => 'position',
+                )
+            )
             ->add('formBackgroundImage', 'sonata_media_type', array(
                     'label'    => 'Фон формы',
                     'provider' => 'sonata.media.provider.image',
-                    'context'  => 'default',
+                    'context'  => 'project_background_image',
                     'required' => false,
                     'attr'     => array(
                         'class' => 'admin-project-image',
@@ -198,6 +223,10 @@ class ProjectAdmin extends AbstractAdmin
             /* @var $photo ProjectPhoto */
             $photo->setProject($project);
         }
+        foreach ($project->getReviews() as $review) {
+            /* @var $review Review */
+            $review->setProject($project);
+        }
     }
 
     /**
@@ -209,6 +238,11 @@ class ProjectAdmin extends AbstractAdmin
             /* @var $photo ProjectPhoto */
             $photo->setProject($project);
         }
+        foreach ($project->getReviews() as $review) {
+            /* @var $review Review */
+            $review->setProject($project);
+        }
         $project->setPhotos($project->getPhotos());
+        $project->setReviews($project->getReviews());
     }
 }

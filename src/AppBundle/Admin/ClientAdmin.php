@@ -38,6 +38,7 @@ class ClientAdmin extends AbstractAdmin
                 'label'        => 'Название',
                 'header_style' => 'width: 35%',
             ))
+            ->add('sortOrder')
             ->add('_action', 'actions', array(
                 'actions' => array(
                     'edit' => array(),
@@ -64,12 +65,13 @@ class ClientAdmin extends AbstractAdmin
             ->add('image', 'sonata_media_type', array(
                 'label'    => 'Изображение клиента',
                 'provider' => 'sonata.media.provider.image',
-                'context'  => 'default',
+                'context'  => 'client',
                 'required' => false,
                 'attr'     => array(
                     'class' => 'admin-client-image',
                 ),
             ))
+            ->add('sortOrder')
         ;
     }
 }
