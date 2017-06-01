@@ -2,9 +2,8 @@
 
 namespace AppBundle\Controller;
 
-use AppBundle\Entity\Category;
-use AppBundle\Entity\Order;
 use AppBundle\Form\OrderType;
+use AppBundle\Entity\Order;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -82,7 +81,7 @@ class DefaultController extends Controller
     /**
      * @Route("/project/{slug}", name="app__project")
      */
-    public function projectAction(Project $project)
+    public function projectAction(Request $request, Project $project)
     {
         $projects = $this->getDoctrine()->getRepository('AppBundle:Project')->findBy(array(
             'isActive' => true,
@@ -94,11 +93,59 @@ class DefaultController extends Controller
 
         $form = $this->createForm(OrderType::class);
 
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $orderData = $form->getData();
+
+            $order = new Order();
+            $order->setName($orderData['name']);
+            $order->setEmail($orderData['email']);
+            $order->setPhone($orderData['phone']);
+            $order->setMembers($orderData['members']);
+            $order->setDate(new \DateTime($orderData['date']));
+            $order->setDescription($orderData['description']);
+
+            $em = $this->getDoctrine()->getManager();
+
+            $em->persist($order);
+            $em->flush();
+
+            $message = new \Swift_Message();
+            $message
+                ->setFrom($this->getParameter('no_reply_email'))
+                ->setTo($this->getParameter('admin_email'))
+                ->setSubject('Заявка с сайта')
+                ->setBody(
+                    $this->renderView(
+                        'Emails/order.html.twig',
+                        array(
+                            'order' => $order,
+                        )
+                    ),
+                    'text/html'
+                )
+            ;
+
+            $this->get('mailer')->send($message);
+
+            return $this->redirectToRoute('order_success');
+        }
+
         return $this->render('default/project.html.twig', array(
             'project'    => $project,
             'projects'   => $projects,
             'categories' => $categories,
-            'order_form' => $form,
+            'order_form' => $form->createView(),
+        ));
+    }
+
+    /**
+     * @Route("/order/success", name="order_success")
+     */
+    public function orderSuccessAction()
+    {
+        return $this->render('default/order_success.html.twig', array(
         ));
     }
 }

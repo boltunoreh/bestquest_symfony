@@ -1816,6 +1816,16 @@ textarea,
   margin-bottom: 12px;
 }
 
+.s-form-subgroup-left {
+  width:50%;
+  float: left;
+}
+
+.s-form-subgroup-right {
+  width:50%;
+  float: right;
+}
+
 .s-form label {
   display: block;
   margin: 0;

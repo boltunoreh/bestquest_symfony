@@ -116,36 +116,32 @@
 
         <section class="l-section l-section-apply" id="apply">
             <h2 class="s-title white">Заявка</h2>
-            {{ form_start(order_form) }}
-                {{ form_row(order_form.name) }}
-                {{ form_row(order_form.email) }}
-                {{ form_row(order_form.phone) }}
-                {{ form_row(order_form.date) }}
-                {{ form_row(order_form.members) }}
-                {{ form_row(order_form.description) }}
-            {{ form_end(order_form) }}
-            <form action="/project/apply" class="s-form b-apply" method="post">
+            {{ form_start(order_form, { 'attr': {'class': 's-form b-apply'}}) }}
                 <div class="s-form-group">
                     <label for="name">Контактное лицо</label>
-                    <input class="s-control" id="name" name="name" placeholder="Как к вам обращаться?" size="40" type="text">
+                    {{ form_row(order_form.name, { 'attr': {'class': 's-control', 'size': 40}}) }}
                 </div>
                 <div class="s-form-group">
-                    <input class="s-control" id="email" name="email" placeholder="Ваш e-mail" size="20" type="email">
+                    {{ form_row(order_form.email, { 'attr': {'class': 's-control', 'size': 20}}) }}
                 </div>
                 <div class="s-form-group">
-                    <input class="s-control" id="phone" name="phone" placeholder="Ваш телефон" size="20" type="text">
+                    {{ form_row(order_form.phone, { 'attr': {'class': 's-control', 'size': 20}}) }}
                 </div>
                 <div class="s-form-group">
-                    <label class="inline" for="date">Когда</label>
-                    <input class="s-control date" id="date" name="date" size="12" type="text">
-                    <label class="inline" for="qty">Человек</label>
-                    <input type="number" name="qty" value="0" max="1000" style="width: 60px">
+                    <div class="s-form-subgroup-left">
+                        <label class="inline" for="date">Когда</label>
+                        {{ form_row(order_form.date, { 'attr': {'class': 's-control date', 'size': 12}}) }}
+                    </div>
+                    <div class="s-form-subgroup-right">
+                        <label class="inline" for="qty">Человек</label>
+                        {{ form_row(order_form.members, { 'attr': {'value': 0, 'max': 1000, 'style': 'width: 60px'}}) }}
+                    </div>
                 </div>
                 <div class="s-form-group">
-                    <textarea class="s-control textarea" id="descr" name="descr" placeholder="Подробности" rows="6"></textarea>
+                    {{ form_row(order_form.description, { 'attr': {'class': 's-control textarea', 'rows': 6}}) }}
                 </div>
                 <button class="s-button block" type="submit">Отправить</button>
-            </form>
+            {{ form_end(order_form) }}
         </section>
         <section class="l-section l-section-projects b-skew b-skew-top dark">
             <h2 class="s-title main-color">Другие проекты</h2>
