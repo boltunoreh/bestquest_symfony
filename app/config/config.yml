@@ -198,3 +198,8 @@ knp_menu:
 #        builder_alias: false
 #        builder_service: false
 #        container_aware: true
+
+#AcceleratorCacheBundle Configuration
+accelerator_cache:
+    host: '%host%'
+    web_dir: '%web_dir%'
