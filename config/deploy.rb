@@ -55,4 +55,4 @@ after 'deploy:updated', 'symfony:assets:install'
 
 # Clear Opcache
 after "deploy", "symfony:clear_accelerator_cache"
-after "deploy:rollback:cleanup", "symfony:clear_accelerator_cache"
+after "deploy:cleanup_rollback", "symfony:clear_accelerator_cache"
