@@ -23,8 +23,26 @@ namespace :deploy do
 
 end
 
+namespace :deploy do
+  task :schema_update do
+      on roles(:app) do
+        symfony_console('doctrine:schema:update', '--force')
+    end
+  end
+end
+
+namespace :symfony do
+  desc "Clear accelerator cache"
+  task :clear_accelerator_cache do
+    capifony_pretty_print "--> Clear accelerator cache"
+    run "#{try_sudo} sh -c 'cd #{latest_release} && #{php_bin} #{symfony_console} cache:accelerator:clear #{console_options}'"
+    capifony_puts_ok
+  end
+end
+
 # Apply migrations
-after 'deploy:updated', 'skeleton:migrate'
+#after 'deploy:updated', 'skeleton:migrate'
+after 'deploy:updated', 'deploy:schema_update'
 
 # Fix Sonata Media contexts
 #after 'deploy:updated', 'skeleton:fix_media'
@@ -34,3 +52,7 @@ after 'deploy:updated', 'symfony:assets:install'
 
 # Dump exposed js routes
 #after 'deploy:updated', 'skeleton:dump_js_routes'
+
+# Clear Opcache
+after "deploy", "symfony:clear_accelerator_cache"
+after "deploy:cleanup_rollback", "symfony:clear_accelerator_cache"
