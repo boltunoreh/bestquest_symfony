@@ -1886,7 +1886,7 @@ function() {
       return $("<style type='text/css' id='dynamic' />").appendTo("head"), e(), $("#title-slide") && setTimeout(function() {
         return $("#title-slide").fadeOut()
       }, 5000), t($("#logotype")), $("#app_bundle_feedback_type_date").datepicker({
-        format: "mm.dd.yyyy",
+        format: "dd.mm.yyyy",
         autoclose: !0
       }), $("img.svg").each(function() {
         var t, e, i, n;

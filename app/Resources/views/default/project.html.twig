@@ -1,6 +1,63 @@
 {% extends 'base.html.twig' %}
 
+{% block stylesheets %}
+    <link href="{{ asset('css/normalize.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ asset('css/application.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ asset('css/custom.css') }}" rel="stylesheet" type="text/css"/>
+{% endblock %}
+{% block custom_styles %}
+    <style>
+        .l-section-home{
+            background-image:-webkit-linear-gradient(transparent 0%, #232323 70%, #232323 100%),url({% path project.headerBackgroundImage, 'medium' %});
+            background-image:linear-gradient(transparent 0%, #232323 70%, #232323 100%),url({% path project.headerBackgroundImage, 'medium' %});
+        }
+        .l-section-descr{
+            background-image:url({% path project.descriptionBackgroundImage, 'medium' %});
+            background-position:center center;
+        }
+        .l-section-narrow{
+            background-image:url({% path project.stripeBackgroundImage, 'medium' %});
+            background-position:0 -200px;
+        }
+        .l-section-apply{
+            background-image:url({% path project.formBackgroundImage, 'medium' %});
+            background-position:bottom left;
+        }
+        .logo-wrapper{
+            background-color: rgba({{ project.color }}, 1);
+        }
+        .order>a{
+            background: rgba({{ project.color }}, 1);
+        }
+        .l-section-home .b-text-wrapper{
+            background: rgba({{ project.color }}, 0.8);
+        }
+        .l-section-home .b-text-wrapper.b-skew-top:before{
+            border-bottom-color: rgba({{ project.color }}, 0.8);
+        }
+        .l-section-home .b-text-wrapper.b-skew-bottom:after{
+            border-top-color: rgba({{ project.color }}, 0.8);
+        }
+        .b-order>.item:before{
+            background: rgba({{ project.color }}, 1);
+        }
+        .b-bordered-block{
+            border: 3px solid rgba({{ project.color }}, 1);
+        }
+        input[type="button"], input[type="reset"], input[type="submit"], button, .s-button{
+            background: rgba({{ project.color }}, 1);
+        }
+    </style>
+{% endblock %}
+
 {% block bodyclass %}sb_quest{% endblock %}
+
+{% block apply %}
+    <div class='order'>
+        <a href='#apply'>Заявка</a>
+    </div>
+{% endblock %}
+
 {% block content %}
     <main class="l-content">
         <section class="l-section l-section-home b-skew b-skew-bottom dark">
@@ -9,31 +66,31 @@
             </div>
             <div class="b-bottom-icons">
                 <div class="icon type">
-                    <img src="/img/icons/type.png">
+                    <img src="{{ asset("img/icons/type.png") }}">
                     <p class="icontext">{{ project.type|raw }}</p>
                 </div>
                 <div class="icon people">
-                    <img src="/img/icons/people.png">
+                    <img src="{{ asset("img/icons/people.png") }}">
                     <p class="icontext">{{ project.members|raw }}</p>
                 </div>
                 <div class="icon house">
-                    <img src="/img/icons/location.png">
+                    <img src="{{ asset("img/icons/location.png") }}">
                     <p class="icontext">{{ project.place|raw }}</p>
                 </div>
                 <div class="icon car">
-                    <img src="/img/icons/walk.png">
+                    <img src="{{ asset("img/icons/walk.png") }}">
                     <p class="icontext">{{ project.movementType|raw }}</p>
                 </div>
                 <div class="icon clock">
-                    <img src="/img/icons/clock.png">
+                    <img src="{{ asset("img/icons/clock.png") }}">
                     <p class="icontext">{{ project.duration|raw }}</p>
                 </div>
                 <div class="icon phone">
-                    <img src="/img/icons/phone.png">
+                    <img src="{{ asset("img/icons/phone.png") }}">
                     <p class="icontext">{{ project.gadget|raw }}</p>
                 </div>
                 <div class="icon age">
-                    <img src="/img/icons/age.png">
+                    <img src="{{ asset("img/icons/age.png") }}">
                     <p class="icontext">{{ project.age|raw }}</p>
                 </div>
             </div>
@@ -119,13 +176,13 @@
             {{ form_start(order_form, { 'attr': {'class': 's-form b-apply'}}) }}
                 <div class="s-form-group">
                     <label for="name">Контактное лицо</label>
-                    {{ form_row(order_form.name, { 'attr': {'class': 's-control', 'size': 40}}) }}
+                    {{ form_row(order_form.name, { 'attr': {'class': 's-control', 'size': 40, 'placeholder': 'Как к вам обращаться?'}}) }}
                 </div>
                 <div class="s-form-group">
-                    {{ form_row(order_form.email, { 'attr': {'class': 's-control', 'size': 20}}) }}
+                    {{ form_row(order_form.email, { 'attr': {'class': 's-control', 'size': 20, 'placeholder': 'Ваш e-mail'}}) }}
                 </div>
                 <div class="s-form-group">
-                    {{ form_row(order_form.phone, { 'attr': {'class': 's-control', 'size': 20}}) }}
+                    {{ form_row(order_form.phone, { 'attr': {'class': 's-control', 'size': 20, 'placeholder': 'Ваш телефон'}}) }}
                 </div>
                 <div class="s-form-group">
                     <div class="s-form-subgroup-left">
@@ -138,10 +195,11 @@
                     </div>
                 </div>
                 <div class="s-form-group">
-                    {{ form_row(order_form.description, { 'attr': {'class': 's-control textarea', 'rows': 6}}) }}
+                    {{ form_row(order_form.description, { 'attr': {'class': 's-control textarea', 'rows': 6, 'placeholder': 'Подробности'}}) }}
                 </div>
+                {{ form_row(order_form._token) }}
                 <button class="s-button block" type="submit">Отправить</button>
-            {{ form_end(order_form) }}
+            {{ form_end(order_form, {'render_rest': false}) }}
         </section>
         <section class="l-section l-section-projects b-skew b-skew-top dark">
             <h2 class="s-title main-color">Другие проекты</h2>

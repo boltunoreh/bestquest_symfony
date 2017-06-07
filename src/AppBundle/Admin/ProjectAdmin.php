@@ -129,6 +129,9 @@ class ProjectAdmin extends AbstractAdmin
             ->add('age')
             ->add('description', TextareaType::class, array(
                 'label' => 'Описание',
+                'attr'  => array(
+                    'rows'  => 10,
+                ),
             ))
             ->add('stages', 'sonata_type_collection',
                 array(
@@ -208,9 +211,6 @@ class ProjectAdmin extends AbstractAdmin
                     ),
                 )
             )
-            ->add('icon', TextType::class, array(
-                'label' => 'иконка',
-            ))
         ;
     }
 

@@ -7,6 +7,7 @@ use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Route\RouteCollection;
+use Sonata\AdminBundle\Show\ShowMapper;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 
@@ -54,17 +55,23 @@ class OrderAdmin extends AbstractAdmin
     }
 
     /**
-     * @param FormMapper $formMapper
+     * @param ShowMapper $showMapper
      */
-    protected function configureFormFields(FormMapper $formMapper)
+    protected function configureShowFields(ShowMapper $showMapper)
     {
-        $formMapper
+        $showMapper
             ->add('name')
             ->add('email')
             ->add('phone')
             ->add('members')
             ->add('date')
             ->add('description')
+            ->add('goal')
+            ->add('fieldOfActivity')
+            ->add('averageAge')
+            ->add('likedProjects')
+            ->add('dislikedProjects')
+            ->add('ideas')
         ;
     }
 

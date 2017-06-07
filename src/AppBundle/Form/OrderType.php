@@ -17,21 +17,12 @@ class OrderType extends AbstractType
         $builder
             ->add('name', TextType::class, array(
                 'label' => false,
-                'attr'  => array(
-                    'placeholder' => 'Как к вам обращаться?',
-                ),
             ))
             ->add('email', EmailType::class, array(
                 'label' => false,
-                'attr'  => array(
-                    'placeholder' => 'Ваш e-mail',
-                ),
             ))
             ->add('phone', TextType::class, array(
                 'label' => false,
-                'attr'  => array(
-                    'placeholder' => 'Ваш телефон',
-                ),
             ))
             ->add('members', IntegerType::class, array(
                 'label' => false,
@@ -41,9 +32,24 @@ class OrderType extends AbstractType
             ))
             ->add('description', TextareaType::class, array(
                 'label' => false,
-                'attr'  => array(
-                    'placeholder' => 'Подробности',
-                ),
+            ))
+            ->add('goal', TextType::class, array(
+                'label' => false,
+            ))
+            ->add('fieldOfActivity', TextType::class, array(
+                'label' => false,
+            ))
+            ->add('averageAge', TextType::class, array(
+                'label' => false,
+            ))
+            ->add('likedProjects', TextareaType::class, array(
+                'label' => false,
+            ))
+            ->add('dislikedProjects', TextareaType::class, array(
+                'label' => false,
+            ))
+            ->add('ideas', TextareaType::class, array(
+                'label' => false,
             ))
         ;
 

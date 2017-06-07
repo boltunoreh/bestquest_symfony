@@ -221,13 +221,6 @@ class Project
     private $formBackgroundImage;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="icon", type="text")
-     */
-    private $icon;
-
-    /**
      * @var int
      *
      * @ORM\Column(name="sort_order", type="integer", nullable=true)
@@ -578,30 +571,6 @@ class Project
     public function getColor()
     {
         return $this->color;
-    }
-
-    /**
-     * Set icon
-     *
-     * @param string $icon
-     *
-     * @return $this
-     */
-    public function setIcon($icon)
-    {
-        $this->icon = $icon;
-
-        return $this;
-    }
-
-    /**
-     * Get icon
-     *
-     * @return string
-     */
-    public function getIcon()
-    {
-        return $this->icon;
     }
 
     /**
