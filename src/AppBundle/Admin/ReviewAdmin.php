@@ -79,6 +79,9 @@ class ReviewAdmin extends AbstractAdmin
             ))
             ->add('content', TextareaType::class, array(
                 'label' => 'Текст отзыва',
+                'attr'  => array(
+                    'rows'  => 10,
+                ),
             ))
             ->add('isActive', CheckboxType::class, array(
                 'label'    => 'Активен',

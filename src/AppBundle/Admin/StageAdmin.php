@@ -61,6 +61,9 @@ class StageAdmin extends AbstractAdmin
             ))
             ->add('description', TextareaType::class, array(
                 'label' => 'Описание',
+                'attr'  => array(
+                    'rows'  => 4,
+                ),
             ))
             ->add('isActive', CheckboxType::class, array(
                 'label'    => 'Активен',
