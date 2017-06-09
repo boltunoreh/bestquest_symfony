@@ -193,16 +193,6 @@ class ProjectAdmin extends AbstractAdmin
                     ),
                 )
             )
-            ->add('reviews', 'sonata_type_collection',
-                array(
-                    'label' => 'Отзывы',
-                ),
-                array(
-                    'edit'     => 'inline',
-                    'inline'   => 'table',
-                    'sortable' => 'position',
-                )
-            )
             ->add('formBackgroundImage', 'sonata_media_type', array(
                     'label'    => 'Фон формы',
                     'provider' => 'sonata.media.provider.image',
@@ -211,6 +201,16 @@ class ProjectAdmin extends AbstractAdmin
                     'attr'     => array(
                         'class' => 'admin-project-image',
                     ),
+                )
+            )
+            ->add('reviews', 'sonata_type_collection',
+                array(
+                    'label' => 'Отзывы',
+                ),
+                array(
+                    'edit'     => 'inline',
+                    'inline'   => 'table',
+                    'sortable' => 'position',
                 )
             )
         ;

@@ -59,9 +59,6 @@ class ReviewAdmin extends AbstractAdmin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('author', TextType::class, array(
-                'label' => 'Автор',
-            ))
             ->add('photo', 'sonata_media_type', array(
                     'label'    => 'Фото',
                     'provider' => 'sonata.media.provider.image',
@@ -69,6 +66,9 @@ class ReviewAdmin extends AbstractAdmin
                     'required' => false,
                 )
             )
+            ->add('author', TextType::class, array(
+                'label' => 'Автор',
+            ))
             ->add('company', TextType::class, array(
                 'label'    => 'Компания',
                 'required' => false,
