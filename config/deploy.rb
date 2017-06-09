@@ -1,17 +1,21 @@
 # config valid only for current version of Capistrano
-lock "3.7.2"
+lock "3.8.1"
 
 set :application, 'bestquest'
+set :scm, :git
 set :repo_url, 'git@github.com:boltunoreh/bestquest_symfony.git'
 set :symfony_directory_structure, 2
 set :composer_install_flags, '--no-interaction --quiet --optimize-autoloader'
 
 set :linked_files, fetch(:linked_files, []).push('app/config/parameters.yml', 'web/robots.txt')
-
 set :linked_dirs, fetch(:linked_dirs, []).push('web/uploads/media')
 
-namespace :deploy do
+set :keep_releases, 5
 
+set :assets_install_path, "web"
+set :assets_install_flags,  '--symlink'
+
+namespace :deploy do
   after :restart, :clear_cache do
     on roles(:web), in: :groups, limit: 3, wait: 10 do
       # Here we can do anything such as:
@@ -20,7 +24,6 @@ namespace :deploy do
       # end
     end
   end
-
 end
 
 namespace :deploy do
@@ -34,9 +37,9 @@ end
 namespace :symfony do
   desc "Clear accelerator cache"
   task :clear_accelerator_cache do
-    capifony_pretty_print "--> Clear accelerator cache"
-    run "#{try_sudo} sh -c 'cd #{latest_release} && #{php_bin} #{symfony_console} cache:accelerator:clear #{console_options}'"
-    capifony_puts_ok
+    on roles(:app) do
+        symfony_console('cache:accelerator:clear', '--opcode')
+    end
   end
 end
 
