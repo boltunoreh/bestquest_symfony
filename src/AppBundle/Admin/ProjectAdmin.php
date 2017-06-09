@@ -198,6 +198,8 @@ class ProjectAdmin extends AbstractAdmin
                     'label' => 'Отзывы',
                 ),
                 array(
+                    'edit'     => 'inline',
+                    'inline'   => 'table',
                     'sortable' => 'position',
                 )
             )
