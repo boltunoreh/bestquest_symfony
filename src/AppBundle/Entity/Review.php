@@ -26,7 +26,7 @@ class Review
     /**
      * @var Project
      * @ORM\ManyToOne(targetEntity="Project", inversedBy="reviews")
-     * @ORM\JoinColumn(name="review_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="project_id", referencedColumnName="id")
      */
     private $project;
 

@@ -81,7 +81,7 @@ class Order
     /**
      * @var string
      *
-     * @ORM\Column(name="average_age", type="string")
+     * @ORM\Column(name="average_age", type="string", nullable=true)
      */
     private $averageAge;
 
