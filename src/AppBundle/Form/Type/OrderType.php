@@ -1,8 +1,9 @@
 <?php
 
-namespace AppBundle\Form;
+namespace AppBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
@@ -50,6 +51,10 @@ class OrderType extends AbstractType
             ))
             ->add('ideas', TextareaType::class, array(
                 'label' => false,
+            ))
+            ->add('copyMe', CheckboxType::class, array(
+                'label' => false,
+                'required' => false,
             ))
         ;
 
