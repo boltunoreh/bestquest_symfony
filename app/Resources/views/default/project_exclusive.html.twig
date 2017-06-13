@@ -40,6 +40,10 @@
                 <div class="s-form-group">
                     {{ form_row(order_form.email, { 'attr': {'class': 's-control', 'size': 45, 'placeholder': 'Ваш e-mail для ответа'}}) }}
                 </div>
+                <div class="s-form-group">
+                    <label class="inline" for="copy_me">Отправить копию мне на email</label>
+                    {{ form_row(order_form.copyMe, { 'attr': {'class': 's-control'}}) }}
+                </div>
                 {{ form_row(order_form._token) }}
                 <button class="s-button block" type="submit">Отправить</button>
             {{ form_end(order_form, {'render_rest': false}) }}

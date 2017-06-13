@@ -3,7 +3,7 @@
         {% for project in projects %}
             <li class='item b-project' data-type='{{ project.getDataType }}'
                 style="display: {{ project.isInSlider == 0 ? 'none' : 'block' }};">
-                <a href="/project/{{ project.slug }}">
+                <a href="{{ path('app__project', {'slug': project.slug}) }}">
                     <div class='b-project__image'
                          style='background-image: url({% path project.sliderLargeImage, 'medium' %})'></div>
                     <div class='b-project__image--small'
@@ -17,7 +17,7 @@
             </li>
         {% endfor %}
         <li class='item b-project' data-type='excl'>
-            <a href="/project/exclusive">
+            <a href="{{ path('app__exclusive') }}">
                 <div class='b-project__image' style='background-image: url(/img/projects/excl.jpg)'></div>
                 <div class='b-project__image--small'
                      style='background-image: url(/img/projects/excl_small.jpg)'></div>

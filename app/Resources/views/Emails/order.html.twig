@@ -1,3 +1,8 @@
+{% if copy is defined and true == copy %}
+    Уважаемый {{ order.name }}!
+    Вы оставили заявку на сайте best-quest.ru:
+{% endif %}
+
 <p>Имя: {{ order.name }}</p>
 <p>E-mail: {{ order.email }}</p>
 <p>Телефон: {{ order.phone }}</p>

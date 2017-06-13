@@ -2,7 +2,7 @@
 
 namespace AppBundle\Controller;
 
-use AppBundle\Form\OrderType;
+use AppBundle\Form\Type\OrderType;
 use AppBundle\Entity\Order;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -115,6 +115,27 @@ class DefaultController extends Controller
 
             $this->get('mailer')->send($message);
 
+            if (true == $orderData['copyMe']) {
+                $messageCopy = new \Swift_Message();
+                $messageCopy
+                    ->setFrom($this->getParameter('no_reply_email'))
+                    ->setTo($orderData['email'])
+                    ->setSubject('Заявка на сайте best-quest.ru')
+                    ->setBody(
+                        $this->renderView(
+                            'Emails/exclusive_order.html.twig',
+                            array(
+                                'order' => $order,
+                                'copy'  => true,
+                            )
+                        ),
+                        'text/html'
+                    )
+                ;
+
+                $this->get('mailer')->send($messageCopy);
+            }
+
             return $this->redirectToRoute('order_success');
         }
 
@@ -175,6 +196,27 @@ class DefaultController extends Controller
             ;
 
             $this->get('mailer')->send($message);
+
+            if (true == $orderData['copyMe']) {
+                $messageCopy = new \Swift_Message();
+                $messageCopy
+                    ->setFrom($this->getParameter('no_reply_email'))
+                    ->setTo($orderData['email'])
+                    ->setSubject('Заявка на сайте best-quest.ru')
+                    ->setBody(
+                        $this->renderView(
+                            'Emails/order.html.twig',
+                            array(
+                                'order' => $order,
+                                'copy'  => true,
+                            )
+                        ),
+                        'text/html'
+                    )
+                ;
+
+                $this->get('mailer')->send($messageCopy);
+            }
 
             return $this->redirectToRoute('order_success');
         }
