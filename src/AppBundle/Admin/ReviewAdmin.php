@@ -42,6 +42,7 @@ class ReviewAdmin extends AbstractAdmin
             ->addIdentifier('company', null, array(
                 'label' => 'Компания',
             ))
+            ->add('project')
             ->add('sortOrder')
             ->add('_action', 'actions', array(
                 'actions' => array(
@@ -59,6 +60,7 @@ class ReviewAdmin extends AbstractAdmin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
+            ->add('project')
             ->add('photo', 'sonata_media_type', array(
                     'label'    => 'Фото',
                     'provider' => 'sonata.media.provider.image',

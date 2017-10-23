@@ -159,7 +159,7 @@
                     <div class="b-bordered-block b-review">
                         <div class="b-review__top">
                             <div class="avatar"><img width="128" height="128" src="{% path review.photo, 'medium' %}"></div>
-                            <div class="name">{{ review.author }}</div>
+                            <div class="name">{{ review.author|raw }}</div>
                             <div class="company">{{ review.company }}</div>
                             <div class="position">{{ review.positionInCompany }}</div>
                         </div>
