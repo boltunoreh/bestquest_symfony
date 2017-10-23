@@ -48,6 +48,13 @@ class Client
     /**
      * @var int
      *
+     * @ORM\Column(name="row", type="integer", nullable=true)
+     */
+    private $row;
+
+    /**
+     * @var int
+     *
      * @ORM\Column(name="sort_order", type="integer", nullable=true)
      */
     private $sortOrder;
@@ -132,6 +139,24 @@ class Client
     public function getImage()
     {
         return $this->image;
+    }
+
+    /**
+     * @return int
+     */
+    public function getRow()
+    {
+        return $this->row;
+    }
+
+    /**
+     * @param int $row
+     * @return $this
+     */
+    public function setRow($row)
+    {
+        $this->row = $row;
+        return $this;
     }
 
     /**

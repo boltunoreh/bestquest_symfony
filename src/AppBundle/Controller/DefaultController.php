@@ -31,6 +31,7 @@ class DefaultController extends Controller
                 'isActive' => true,
             ),
             array(
+                'row'       => 'ASC',
                 'sortOrder' => 'ASC',
             )
         );

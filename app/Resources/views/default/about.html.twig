@@ -62,13 +62,19 @@
         <section class="l-section l-section-clients b-skew b-skew-top light" id="clients">
             <a name="clients"></a><h2 class="s-title">Клиенты</h2>
             <div class="b-clients">
+                {% set row = 1 %}
                 <ul class="b-clients__list">
                     {% for client in clients %}
-                    <li class="item">
-                        <a href="#">
-                            <img src="{% path client.image, 'medium' %}">
-                        </a>
-                    </li>
+                        {% if client.row > row and false == loop.last %}
+                            </ul>
+                            <ul class="b-clients__list">
+                            {% set row = client.row %}
+                        {% endif %}
+                            <li class="item">
+                                <a href="#">
+                                    <img src="{% path client.image, 'medium' %}">
+                                </a>
+                            </li>
                     {% endfor %}
                 </ul>
                 <br><br>
