@@ -43,6 +43,14 @@ services:
               manager_type: orm
               group: "app.admin.group.projects"
               label: 'Отзывы'
+    app.admin.about:
+        class: AppBundle\Admin\AboutAdmin
+        arguments: [~, AppBundle\Entity\About, ~]
+        tags:
+            - name: sonata.admin
+              manager_type: orm
+              group: "app.admin.group.about"
+              label: 'О компании'
     app.admin.client:
         class: AppBundle\Admin\ClientAdmin
         arguments: [~, AppBundle\Entity\Client, ~]

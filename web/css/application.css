@@ -1504,7 +1504,7 @@ nav dd {
 }
 
 .l-section-clients .s-title {
-  /*margin-bottom: 80px;*/
+  margin-bottom: 60px;
 }
 
 .l-section-projects {
@@ -2066,8 +2066,7 @@ textarea,
   padding: 0 40px;
   vertical-align: middle;
   text-align: center;
-  float: left;
-  height: 150px;
+  height: 140px;
 }
 
 .b-clients__list .item img {

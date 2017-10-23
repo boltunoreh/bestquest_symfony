@@ -16,6 +16,8 @@ class DefaultController extends Controller
      */
     public function aboutAction()
     {
+        $about = $this->getDoctrine()->getRepository('AppBundle:About')->findOneBy(array());
+
         $teammates = $this->getDoctrine()->getRepository('AppBundle:Teammate')->findBy(
             array(
                 'isActive' => true,
@@ -29,11 +31,13 @@ class DefaultController extends Controller
                 'isActive' => true,
             ),
             array(
+                'row'       => 'ASC',
                 'sortOrder' => 'ASC',
             )
         );
 
         return $this->render('default/about.html.twig', array(
+            'about'     => $about,
             'teammates' => $teammates,
             'clients'   => $clients,
         ));

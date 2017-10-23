@@ -11,6 +11,11 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class ClientAdmin extends AbstractAdmin
 {
+    protected $datagridValues = array(
+        '_sort_order' => 'ASC',
+        '_sort_by'    => 'sortOrder',
+    );
+
     /**
      * @param DatagridMapper $datagridMapper
      */
@@ -38,6 +43,7 @@ class ClientAdmin extends AbstractAdmin
                 'label'        => 'Название',
                 'header_style' => 'width: 35%',
             ))
+            ->add('row')
             ->add('sortOrder')
             ->add('_action', 'actions', array(
                 'actions' => array(
@@ -71,6 +77,7 @@ class ClientAdmin extends AbstractAdmin
                     'class' => 'admin-client-image',
                 ),
             ))
+            ->add('row')
             ->add('sortOrder')
         ;
     }

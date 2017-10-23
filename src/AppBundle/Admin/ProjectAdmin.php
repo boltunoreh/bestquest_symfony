@@ -206,10 +206,10 @@ class ProjectAdmin extends AbstractAdmin
             ->add('reviews', 'sonata_type_collection',
                 array(
                     'label' => 'Отзывы',
+                    'btn_add' => 'Добавить отзыв',
                 ),
                 array(
                     'edit'     => 'inline',
-                    'inline'   => 'table',
                     'sortable' => 'position',
                 )
             )
