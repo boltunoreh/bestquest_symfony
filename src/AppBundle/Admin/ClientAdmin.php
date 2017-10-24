@@ -11,10 +11,15 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class ClientAdmin extends AbstractAdmin
 {
-    protected $datagridValues = array(
-        '_sort_order' => 'ASC',
-        '_sort_by'    => 'sortOrder',
-    );
+    public function createQuery($context = 'list')
+    {
+        $proxyQuery = parent::createQuery($context);
+
+        $proxyQuery->orderBy('o.row', 'ASC');
+        $proxyQuery->addOrderBy('o.sortOrder', 'ASC');
+
+        return $proxyQuery;
+    }
 
     /**
      * @param DatagridMapper $datagridMapper
@@ -35,22 +40,20 @@ class ClientAdmin extends AbstractAdmin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->add('isActive', null, array(
-                'label' => 'Активен',
-            ))
+            ->add('isActive')
             ->addIdentifier('id')
             ->addIdentifier('title', null, array(
-                'label'        => 'Название',
                 'header_style' => 'width: 35%',
             ))
             ->add('row')
-            ->add('sortOrder')
+            ->add('sortOrder', null, array(
+                'label' => 'Порядок в ряду',
+            ))
             ->add('_action', 'actions', array(
                 'actions' => array(
                     'edit' => array(),
                     'delete' => array(),
-                ),
-                'label'   => 'Действия',
+                )
             ))
         ;
     }
