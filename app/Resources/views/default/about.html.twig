@@ -65,7 +65,7 @@
                 {% set row = 1 %}
                 <ul class="b-clients__list">
                     {% for client in clients %}
-                        {% if client.row > row and false == loop.last %}
+                        {% if client.row > row %}
                             </ul>
                             <ul class="b-clients__list">
                             {% set row = client.row %}
