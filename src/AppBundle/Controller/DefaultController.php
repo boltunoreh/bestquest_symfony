@@ -225,6 +225,11 @@ class DefaultController extends Controller
             return $this->redirectToRoute('order_success');
         }
 
+        // convert HEX to rgb
+        $color = implode(', ', array_map('hexdec', str_split(str_replace('#', '', $project->getColor()), 2)));
+
+        $project->setColor($color);
+
         return $this->render('default/project.html.twig', [
             'project'    => $project,
             'projects'   => $projects,

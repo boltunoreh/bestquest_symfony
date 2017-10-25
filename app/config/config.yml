@@ -203,3 +203,10 @@ knp_menu:
 accelerator_cache:
     host: '%host%'
     web_dir: '%web_dir%'
+
+# Assetic Configuration
+assetic:
+    debug:          '%kernel.debug%'
+    use_controller: '%kernel.debug%'
+    filters:
+        cssrewrite: ~
