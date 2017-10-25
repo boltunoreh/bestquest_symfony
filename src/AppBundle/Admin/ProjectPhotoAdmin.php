@@ -15,17 +15,17 @@ class ProjectPhotoAdmin extends AbstractAdmin
     {
         $listMapper
             ->addIdentifier('id')
-            ->add('project', null, array(
+            ->add('project', null, [
                 'label' => 'Квест',
-            ))
+            ])
             ->add('sortOrder')
-            ->add('_action', 'actions', array(
-                'actions' => array(
-                    'edit' => array(),
-                    'delete' => array(),
-                ),
+            ->add('_action', 'actions', [
+                'actions' => [
+                    'edit' => [],
+                    'delete' => [],
+                ],
                 'label'   => 'Действия',
-            ))
+            ])
         ;
     }
 
@@ -35,15 +35,15 @@ class ProjectPhotoAdmin extends AbstractAdmin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('image', 'sonata_media_type', array(
+            ->add('image', 'sonata_media_type', [
                     'label'    => 'Изображение',
                     'provider' => 'sonata.media.provider.image',
                     'context'  => 'project_photo_image',
                     'required' => false,
-                    'attr'     => array(
+                    'attr'     => [
                         'class' => 'admin-project-image',
-                    ),
-                )
+                    ],
+                ]
             )
             ->add('sortOrder')
         ;

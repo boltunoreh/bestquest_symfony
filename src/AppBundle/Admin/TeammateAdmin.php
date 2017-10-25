@@ -19,12 +19,12 @@ class TeammateAdmin extends AbstractAdmin
     {
         $datagridMapper
             ->add('id')
-            ->add('name', null, array(
+            ->add('name', null, [
                 'label' => 'Имя',
-            ))
-            ->add('position', null, array(
+            ])
+            ->add('position', null, [
                 'label' => 'Должность',
-            ))
+            ])
         ;
     }
 
@@ -34,25 +34,25 @@ class TeammateAdmin extends AbstractAdmin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->add('isActive', null, array(
+            ->add('isActive', null, [
                 'label' => 'Активен',
-            ))
+            ])
             ->addIdentifier('id')
-            ->addIdentifier('name', null, array(
+            ->addIdentifier('name', null, [
                 'label'        => 'Имя',
                 'header_style' => 'width: 35%',
-            ))
-            ->addIdentifier('position', null, array(
+            ])
+            ->addIdentifier('position', null, [
                 'label' => 'Должность',
-            ))
+            ])
             ->add('sortOrder')
-            ->add('_action', 'actions', array(
-                'actions' => array(
-                    'edit' => array(),
-                    'delete' => array(),
-                ),
+            ->add('_action', 'actions', [
+                'actions' => [
+                    'edit' => [],
+                    'delete' => [],
+                ],
                 'label'   => 'Действия',
-            ))
+            ])
         ;
     }
 
@@ -62,28 +62,28 @@ class TeammateAdmin extends AbstractAdmin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('name', TextType::class, array(
+            ->add('name', TextType::class, [
                 'label' => 'Имя',
-            ))
-            ->add('position', TextType::class, array(
+            ])
+            ->add('position', TextType::class, [
                 'label' => 'Должность',
-            ))
-            ->add('isActive', CheckboxType::class, array(
+            ])
+            ->add('isActive', CheckboxType::class, [
                 'label'    => 'Активен',
                 'required' => false,
-            ))
-            ->add('sign', TextareaType::class, array(
+            ])
+            ->add('sign', TextareaType::class, [
                 'label' => 'Подпись',
-            ))
-            ->add('photo', 'sonata_media_type', array(
+            ])
+            ->add('photo', 'sonata_media_type', [
                 'label'    => 'Фотография',
                 'provider' => 'sonata.media.provider.image',
                 'context'  => 'teammate',
                 'required' => false,
-                'attr'     => array(
+                'attr'     => [
                     'class' => 'admin-teammate-photo',
-                ),
-            ))
+                ],
+            ])
             ->add('sortOrder')
         ;
     }

@@ -18,12 +18,12 @@ class CategoryAdmin extends AbstractAdmin
     {
         $datagridMapper
             ->add('id')
-            ->add('title', null, array(
+            ->add('title', null, [
                 'label' => 'Название',
-            ))
-            ->add('slug', null, array(
+            ])
+            ->add('slug', null, [
                 'label' => 'Slug',
-            ))
+            ])
         ;
     }
 
@@ -38,21 +38,21 @@ class CategoryAdmin extends AbstractAdmin
 //            ))
             ->addIdentifier('isActive')
             ->addIdentifier('id')
-            ->addIdentifier('title', null, array(
+            ->addIdentifier('title', null, [
                 'label'        => 'Название',
                 'header_style' => 'width: 35%',
-            ))
-            ->add('slug', null, array(
+            ])
+            ->add('slug', null, [
                 'label' => 'Slug',
-            ))
+            ])
             ->add('sortOrder')
-            ->add('_action', 'actions', array(
-                'actions' => array(
-                    'edit' => array(),
-                    'delete' => array(),
-                ),
+            ->add('_action', 'actions', [
+                'actions' => [
+                    'edit' => [],
+                    'delete' => [],
+                ],
                 'label'   => 'Действия',
-            ))
+            ])
         ;
     }
 
@@ -62,23 +62,23 @@ class CategoryAdmin extends AbstractAdmin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('title', TextType::class, array(
+            ->add('title', TextType::class, [
                 'label' => 'Название',
-            ))
-            ->add('isActive', CheckboxType::class, array(
+            ])
+            ->add('isActive', CheckboxType::class, [
                 'label'    => 'Активна',
                 'required' => false,
-            ))
-            ->add('slug', TextType::class, array(
+            ])
+            ->add('slug', TextType::class, [
                 'label'    => 'Slug',
                 'required' => false,
-                'attr'     => array(
+                'attr'     => [
                     'placeholder' => 'генерируется автоматически',
-                ),
-            ))
-            ->add('icon', null, array(
+                ],
+            ])
+            ->add('icon', null, [
                 'label' => 'Иконка',
-            ))
+            ])
             ->add('sortOrder')
         ;
     }

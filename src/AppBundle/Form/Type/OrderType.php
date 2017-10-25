@@ -16,46 +16,46 @@ class OrderType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name', TextType::class, array(
+            ->add('name', TextType::class, [
                 'label' => false,
-            ))
-            ->add('email', EmailType::class, array(
+            ])
+            ->add('email', EmailType::class, [
                 'label' => false,
-            ))
-            ->add('phone', TextType::class, array(
+            ])
+            ->add('phone', TextType::class, [
                 'label' => false,
-            ))
-            ->add('members', IntegerType::class, array(
+            ])
+            ->add('members', IntegerType::class, [
                 'label' => false,
-            ))
-            ->add('date', TextType::class, array(
+            ])
+            ->add('date', TextType::class, [
                 'label' => false,
-            ))
-            ->add('description', TextareaType::class, array(
+            ])
+            ->add('description', TextareaType::class, [
                 'label' => false,
-            ))
-            ->add('goal', TextType::class, array(
+            ])
+            ->add('goal', TextType::class, [
                 'label' => false,
-            ))
-            ->add('fieldOfActivity', TextType::class, array(
+            ])
+            ->add('fieldOfActivity', TextType::class, [
                 'label' => false,
-            ))
-            ->add('averageAge', TextType::class, array(
+            ])
+            ->add('averageAge', TextType::class, [
                 'label' => false,
-            ))
-            ->add('likedProjects', TextareaType::class, array(
+            ])
+            ->add('likedProjects', TextareaType::class, [
                 'label' => false,
-            ))
-            ->add('dislikedProjects', TextareaType::class, array(
+            ])
+            ->add('dislikedProjects', TextareaType::class, [
                 'label' => false,
-            ))
-            ->add('ideas', TextareaType::class, array(
+            ])
+            ->add('ideas', TextareaType::class, [
                 'label' => false,
-            ))
-            ->add('copyMe', CheckboxType::class, array(
+            ])
+            ->add('copyMe', CheckboxType::class, [
                 'label' => false,
                 'required' => false,
-            ))
+            ])
         ;
 
     }

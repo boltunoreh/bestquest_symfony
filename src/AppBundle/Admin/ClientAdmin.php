@@ -28,9 +28,9 @@ class ClientAdmin extends AbstractAdmin
     {
         $datagridMapper
             ->add('id')
-            ->add('title', null, array(
+            ->add('title', null, [
                 'label' => 'Название',
-            ))
+            ])
         ;
     }
 
@@ -42,19 +42,19 @@ class ClientAdmin extends AbstractAdmin
         $listMapper
             ->add('isActive')
             ->addIdentifier('id')
-            ->addIdentifier('title', null, array(
+            ->addIdentifier('title', null, [
                 'header_style' => 'width: 35%',
-            ))
+            ])
             ->add('row')
-            ->add('sortOrder', null, array(
+            ->add('sortOrder', null, [
                 'label' => 'Порядок в ряду',
-            ))
-            ->add('_action', 'actions', array(
-                'actions' => array(
-                    'edit' => array(),
-                    'delete' => array(),
-                )
-            ))
+            ])
+            ->add('_action', 'actions', [
+                'actions' => [
+                    'edit' => [],
+                    'delete' => [],
+                ]
+            ])
         ;
     }
 
@@ -64,22 +64,22 @@ class ClientAdmin extends AbstractAdmin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('title', TextType::class, array(
+            ->add('title', TextType::class, [
                 'label' => 'Название',
-            ))
-            ->add('isActive', CheckboxType::class, array(
+            ])
+            ->add('isActive', CheckboxType::class, [
                 'label'    => 'Активен',
                 'required' => false,
-            ))
-            ->add('image', 'sonata_media_type', array(
+            ])
+            ->add('image', 'sonata_media_type', [
                 'label'    => 'Изображение клиента',
                 'provider' => 'sonata.media.provider.image',
                 'context'  => 'client',
                 'required' => false,
-                'attr'     => array(
+                'attr'     => [
                     'class' => 'admin-client-image',
-                ),
-            ))
+                ],
+            ])
             ->add('row')
             ->add('sortOrder')
         ;

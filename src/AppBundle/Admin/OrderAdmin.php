@@ -13,10 +13,10 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class OrderAdmin extends AbstractAdmin
 {
-    protected $datagridValues = array(
+    protected $datagridValues = [
         '_sort_order' => 'DESC',
         '_sort_by'    => 'id',
-    );
+    ];
 
     /**
      * @param DatagridMapper $datagridMapper
@@ -39,18 +39,18 @@ class OrderAdmin extends AbstractAdmin
     {
         $listMapper
             ->addIdentifier('id')
-            ->addIdentifier('name', null, array(
+            ->addIdentifier('name', null, [
                 'header_style' => 'width: 35%',
-            ))
+            ])
             ->addIdentifier('email')
             ->addIdentifier('phone')
             ->addIdentifier('members')
             ->addIdentifier('date')
-            ->add('_action', 'actions', array(
-                'actions' => array(
-                    'show' => array(),
-                )
-            ))
+            ->add('_action', 'actions', [
+                'actions' => [
+                    'show' => [],
+                ]
+            ])
         ;
     }
 

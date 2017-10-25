@@ -19,9 +19,9 @@ class ReviewAdmin extends AbstractAdmin
     {
         $datagridMapper
             ->add('id')
-            ->add('author', null, array(
+            ->add('author', null, [
                 'label' => 'Автор',
-            ))
+            ])
         ;
     }
 
@@ -31,26 +31,26 @@ class ReviewAdmin extends AbstractAdmin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->add('isActive', null, array(
+            ->add('isActive', null, [
                 'label' => 'Активен',
-            ))
+            ])
             ->addIdentifier('id')
-            ->addIdentifier('author', null, array(
+            ->addIdentifier('author', null, [
                 'label'        => 'Автор',
                 'header_style' => 'width: 35%',
-            ))
-            ->addIdentifier('company', null, array(
+            ])
+            ->addIdentifier('company', null, [
                 'label' => 'Компания',
-            ))
+            ])
             ->add('project')
             ->add('sortOrder')
-            ->add('_action', 'actions', array(
-                'actions' => array(
-                    'edit' => array(),
-                    'delete' => array(),
-                ),
+            ->add('_action', 'actions', [
+                'actions' => [
+                    'edit' => [],
+                    'delete' => [],
+                ],
                 'label'   => 'Действия',
-            ))
+            ])
         ;
     }
 
@@ -61,34 +61,34 @@ class ReviewAdmin extends AbstractAdmin
     {
         $formMapper
             ->add('project')
-            ->add('photo', 'sonata_media_type', array(
+            ->add('photo', 'sonata_media_type', [
                     'label'    => 'Фото',
                     'provider' => 'sonata.media.provider.image',
                     'context'  => 'project_review_photo',
                     'required' => false,
-                )
+                ]
             )
-            ->add('author', TextType::class, array(
+            ->add('author', TextType::class, [
                 'label' => 'Автор',
-            ))
-            ->add('company', TextType::class, array(
+            ])
+            ->add('company', TextType::class, [
                 'label'    => 'Компания',
                 'required' => false,
-            ))
-            ->add('positionIncompany', TextType::class, array(
+            ])
+            ->add('positionIncompany', TextType::class, [
                 'label'    => 'Должность',
                 'required' => false,
-            ))
-            ->add('content', TextareaType::class, array(
+            ])
+            ->add('content', TextareaType::class, [
                 'label' => 'Текст отзыва',
-                'attr'  => array(
+                'attr'  => [
                     'rows'  => 10,
-                ),
-            ))
-            ->add('isActive', CheckboxType::class, array(
+                ],
+            ])
+            ->add('isActive', CheckboxType::class, [
                 'label'    => 'Активен',
                 'required' => false,
-            ))
+            ])
             ->add('sortOrder')
         ;
     }

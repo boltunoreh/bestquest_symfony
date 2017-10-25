@@ -16,31 +16,31 @@ class DefaultController extends Controller
      */
     public function aboutAction()
     {
-        $about = $this->getDoctrine()->getRepository('AppBundle:About')->findOneBy(array());
+        $about = $this->getDoctrine()->getRepository('AppBundle:About')->findOneBy([]);
 
         $teammates = $this->getDoctrine()->getRepository('AppBundle:Teammate')->findBy(
-            array(
+            [
                 'isActive' => true,
-            ),
-            array(
+            ],
+            [
                 'sortOrder' => 'ASC',
-            )
+            ]
         );
         $clients = $this->getDoctrine()->getRepository('AppBundle:Client')->findBy(
-            array(
+            [
                 'isActive' => true,
-            ),
-            array(
+            ],
+            [
                 'row'       => 'ASC',
                 'sortOrder' => 'ASC',
-            )
+            ]
         );
 
-        return $this->render('default/about.html.twig', array(
+        return $this->render('default/about.html.twig', [
             'about'     => $about,
             'teammates' => $teammates,
             'clients'   => $clients,
-        ));
+        ]);
     }
 
     /**
@@ -48,19 +48,19 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
-        $projects = $this->getDoctrine()->getRepository('AppBundle:Project')->findBy(array(
+        $projects = $this->getDoctrine()->getRepository('AppBundle:Project')->findBy([
             'isActive'   => true,
             'isInSlider' => true,
-        ));
+        ]);
 
-        $categories = $this->getDoctrine()->getRepository('AppBundle:Category')->findBy(array(
+        $categories = $this->getDoctrine()->getRepository('AppBundle:Category')->findBy([
             'isActive' => true,
-        ));
+        ]);
 
-        return $this->render('default/index.html.twig', array(
+        return $this->render('default/index.html.twig', [
             'projects'   => $projects,
             'categories' => $categories,
-        ));
+        ]);
     }
 
     /**
@@ -68,13 +68,13 @@ class DefaultController extends Controller
      */
     public function exclusiveAction(Request $request)
     {
-        $projects = $this->getDoctrine()->getRepository('AppBundle:Project')->findBy(array(
+        $projects = $this->getDoctrine()->getRepository('AppBundle:Project')->findBy([
             'isActive'   => true,
-        ));
+        ]);
 
-        $categories = $this->getDoctrine()->getRepository('AppBundle:Category')->findBy(array(
+        $categories = $this->getDoctrine()->getRepository('AppBundle:Category')->findBy([
             'isActive' => true,
-        ));
+        ]);
 
         $form = $this->createForm(OrderType::class);
 
@@ -109,9 +109,9 @@ class DefaultController extends Controller
                 ->setBody(
                     $this->renderView(
                         'Emails/exclusive_order.html.twig',
-                        array(
+                        [
                             'order' => $order,
-                        )
+                        ]
                     ),
                     'text/html'
                 )
@@ -128,10 +128,10 @@ class DefaultController extends Controller
                     ->setBody(
                         $this->renderView(
                             'Emails/exclusive_order.html.twig',
-                            array(
+                            [
                                 'order' => $order,
                                 'copy'  => true,
-                            )
+                            ]
                         ),
                         'text/html'
                     )
@@ -143,11 +143,11 @@ class DefaultController extends Controller
             return $this->redirectToRoute('order_success');
         }
 
-        return $this->render('default/project_exclusive.html.twig', array(
+        return $this->render('default/project_exclusive.html.twig', [
             'projects'   => $projects,
             'categories' => $categories,
             'order_form' => $form->createView(),
-        ));
+        ]);
     }
 
     /**
@@ -155,13 +155,13 @@ class DefaultController extends Controller
      */
     public function projectAction(Request $request, Project $project)
     {
-        $projects = $this->getDoctrine()->getRepository('AppBundle:Project')->findBy(array(
+        $projects = $this->getDoctrine()->getRepository('AppBundle:Project')->findBy([
             'isActive' => true,
-        ));
+        ]);
 
-        $categories = $this->getDoctrine()->getRepository('AppBundle:Category')->findBy(array(
+        $categories = $this->getDoctrine()->getRepository('AppBundle:Category')->findBy([
             'isActive' => true,
-        ));
+        ]);
 
         $form = $this->createForm(OrderType::class);
 
@@ -191,9 +191,9 @@ class DefaultController extends Controller
                 ->setBody(
                     $this->renderView(
                         'Emails/order.html.twig',
-                        array(
+                        [
                             'order' => $order,
-                        )
+                        ]
                     ),
                     'text/html'
                 )
@@ -210,10 +210,10 @@ class DefaultController extends Controller
                     ->setBody(
                         $this->renderView(
                             'Emails/order.html.twig',
-                            array(
+                            [
                                 'order' => $order,
                                 'copy'  => true,
-                            )
+                            ]
                         ),
                         'text/html'
                     )
@@ -225,12 +225,12 @@ class DefaultController extends Controller
             return $this->redirectToRoute('order_success');
         }
 
-        return $this->render('default/project.html.twig', array(
+        return $this->render('default/project.html.twig', [
             'project'    => $project,
             'projects'   => $projects,
             'categories' => $categories,
             'order_form' => $form->createView(),
-        ));
+        ]);
     }
 
     /**
@@ -238,7 +238,7 @@ class DefaultController extends Controller
      */
     public function orderSuccessAction()
     {
-        return $this->render('default/order_success.html.twig', array(
-        ));
+        return $this->render('default/order_success.html.twig', [
+        ]);
     }
 }

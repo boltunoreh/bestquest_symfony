@@ -19,9 +19,9 @@ class StageAdmin extends AbstractAdmin
     {
         $datagridMapper
             ->add('id')
-            ->add('title', null, array(
+            ->add('title', null, [
                 'label' => 'Название',
-            ))
+            ])
         ;
     }
 
@@ -31,22 +31,22 @@ class StageAdmin extends AbstractAdmin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->add('isActive', null, array(
+            ->add('isActive', null, [
                 'label' => 'Активен',
-            ))
+            ])
             ->addIdentifier('id')
-            ->addIdentifier('title', null, array(
+            ->addIdentifier('title', null, [
                 'label'        => 'Название',
                 'header_style' => 'width: 35%',
-            ))
+            ])
             ->add('sortOrder')
-            ->add('_action', 'actions', array(
-                'actions' => array(
-                    'edit' => array(),
-                    'delete' => array(),
-                ),
+            ->add('_action', 'actions', [
+                'actions' => [
+                    'edit' => [],
+                    'delete' => [],
+                ],
                 'label'   => 'Действия',
-            ))
+            ])
         ;
     }
 
@@ -56,19 +56,19 @@ class StageAdmin extends AbstractAdmin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('title', TextType::class, array(
+            ->add('title', TextType::class, [
                 'label' => 'Название',
-            ))
-            ->add('description', TextareaType::class, array(
+            ])
+            ->add('description', TextareaType::class, [
                 'label' => 'Описание',
-                'attr'  => array(
+                'attr'  => [
                     'rows'  => 4,
-                ),
-            ))
-            ->add('isActive', CheckboxType::class, array(
+                ],
+            ])
+            ->add('isActive', CheckboxType::class, [
                 'label'    => 'Активен',
                 'required' => false,
-            ))
+            ])
             ->add('sortOrder')
         ;
     }
