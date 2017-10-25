@@ -23,12 +23,12 @@ class ProjectAdmin extends AbstractAdmin
     {
         $datagridMapper
             ->add('id')
-            ->add('title', null, array(
+            ->add('title', null, [
                 'label' => 'Название',
-            ))
-            ->add('categories', null, array(
+            ])
+            ->add('categories', null, [
                 'label' => 'Категории',
-            ))
+            ])
         ;
     }
 
@@ -38,28 +38,28 @@ class ProjectAdmin extends AbstractAdmin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->add('isActive', null, array(
+            ->add('isActive', null, [
                 'label' => 'Активен',
-            ))
+            ])
             ->addIdentifier('id')
-            ->addIdentifier('title', null, array(
+            ->addIdentifier('title', null, [
                 'label'        => 'Название',
                 'header_style' => 'width: 35%',
-            ))
-            ->add('slug', null, array(
+            ])
+            ->add('slug', null, [
                 'label' => 'Slug',
-            ))
-            ->add('categories', null, array(
+            ])
+            ->add('categories', null, [
                 'label' => 'Категории',
-            ))
+            ])
             ->add('sortOrder')
-            ->add('_action', 'actions', array(
-                'actions' => array(
-                    'edit' => array(),
-                    'delete' => array(),
-                ),
+            ->add('_action', 'actions', [
+                'actions' => [
+                    'edit' => [],
+                    'delete' => [],
+                ],
                 'label'   => 'Действия',
-            ))
+            ])
         ;
     }
 
@@ -69,56 +69,56 @@ class ProjectAdmin extends AbstractAdmin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('title', TextType::class, array(
+            ->add('title', TextType::class, [
                 'label' => 'Название',
-            ))
-            ->add('slug', TextType::class, array(
+            ])
+            ->add('slug', TextType::class, [
                 'label'    => 'Slug',
                 'required' => false,
-                'attr'     => array(
+                'attr'     => [
                     'placeholder' => 'генерируется автоматически',
-                ),
-            ))
-            ->add('isActive', CheckboxType::class, array(
+                ],
+            ])
+            ->add('isActive', CheckboxType::class, [
                 'label'    => 'Активен',
                 'required' => false,
-            ))
-            ->add('isInSlider', CheckboxType::class, array(
+            ])
+            ->add('isInSlider', CheckboxType::class, [
                 'label'    => 'В главном слайдере',
                 'required' => false,
-            ))
+            ])
             ->add('sortOrder')
-            ->add('categories', 'sonata_type_model', array(
+            ->add('categories', 'sonata_type_model', [
                 'label'    => 'Категории',
                 'class'    => Category::class,
                 'btn_add'  => false,
                 'multiple' => true,
-            ))
-            ->add('sliderAnnotation', TextareaType::class, array(
+            ])
+            ->add('sliderAnnotation', TextareaType::class, [
                 'label' => 'Аннотация для слайдера',
-            ))
-            ->add('sliderDescription', TextareaType::class, array(
+            ])
+            ->add('sliderDescription', TextareaType::class, [
                 'label' => 'Описание для слайдера',
-            ))
-            ->add('sliderSmallImage', 'sonata_media_type', array(
+            ])
+            ->add('sliderSmallImage', 'sonata_media_type', [
                     'label'    => 'Изображение слайдера (маленькое)',
                     'provider' => 'sonata.media.provider.image',
                     'context'  => 'project_slider_small_image',
                     'required' => false,
-                    'attr'     => array(
+                    'attr'     => [
                         'class' => 'admin-project-image',
-                    ),
-                )
+                    ],
+                ]
             )
-            ->add('sliderLargeImage', 'sonata_media_type', array(
+            ->add('sliderLargeImage', 'sonata_media_type', [
                     'label'    => 'Изображение слайдера (большое)',
                     'provider' => 'sonata.media.provider.image',
                     'context'  => 'project_slider_large_image',
                     'required' => false,
-                    'attr'     => array(
+                    'attr'     => [
                         'class' => 'admin-project-image',
-                    ),
-                )
+                    ],
+                ]
             )
             ->add('type')
             ->add('members')
@@ -127,91 +127,91 @@ class ProjectAdmin extends AbstractAdmin
             ->add('duration')
             ->add('gadget')
             ->add('age')
-            ->add('description', TextareaType::class, array(
+            ->add('description', TextareaType::class, [
                 'label' => 'Описание',
-                'attr'  => array(
+                'attr'  => [
                     'rows'  => 10,
-                ),
-            ))
+                ],
+            ])
             ->add('stages', 'sonata_type_collection',
-                array(
+                [
                     'label' => 'Регламент',
-                ),
-                array(
+                ],
+                [
                     'edit'     => 'inline',
                     'inline'   => 'table',
                     'sortable' => 'position',
-                )
+                ]
             )
             ->add('photos', 'sonata_type_collection',
-                array(
+                [
                     'label'        => 'Фото',
                     'required'     => false,
                     'by_reference' => false,
-                    'attr'         => array(
+                    'attr'         => [
                         'class' => 'admin-project-photos',
-                    ),
+                    ],
                     'btn_add'      => 'Добавить изображение',
-                ),
-                array(
+                ],
+                [
                     'edit'         => 'inline',
                     'inline'       => 'table',
                     'allow_delete' => true,
-                )
+                ]
             )
             //TODO color picker?
-            ->add('color', TextType::class, array(
+            ->add('color', TextType::class, [
                 'label' => 'Цвет',
-            ))
-            ->add('headerBackgroundImage', 'sonata_media_type', array(
+            ])
+            ->add('headerBackgroundImage', 'sonata_media_type', [
                     'label'    => 'Фон заголовка',
                     'provider' => 'sonata.media.provider.image',
                     'context'  => 'project_background_image',
                     'required' => false,
-                    'attr'     => array(
+                    'attr'     => [
                         'class' => 'admin-project-image',
-                    ),
-                )
+                    ],
+                ]
             )
-            ->add('descriptionBackgroundImage', 'sonata_media_type', array(
+            ->add('descriptionBackgroundImage', 'sonata_media_type', [
                     'label'    => 'Фон описания',
                     'provider' => 'sonata.media.provider.image',
                     'context'  => 'project_background_image',
                     'required' => false,
-                    'attr'     => array(
+                    'attr'     => [
                         'class' => 'admin-project-image',
-                    ),
-                )
+                    ],
+                ]
             )
-            ->add('stripeBackgroundImage', 'sonata_media_type', array(
+            ->add('stripeBackgroundImage', 'sonata_media_type', [
                     'label'    => 'Фон полоски',
                     'provider' => 'sonata.media.provider.image',
                     'context'  => 'project_background_image',
                     'required' => false,
-                    'attr'     => array(
+                    'attr'     => [
                         'class' => 'admin-project-image',
-                    ),
-                )
+                    ],
+                ]
             )
-            ->add('formBackgroundImage', 'sonata_media_type', array(
+            ->add('formBackgroundImage', 'sonata_media_type', [
                     'label'    => 'Фон формы',
                     'provider' => 'sonata.media.provider.image',
                     'context'  => 'project_background_image',
                     'required' => false,
-                    'attr'     => array(
+                    'attr'     => [
                         'class' => 'admin-project-image',
-                    ),
-                )
+                    ],
+                ]
             )
             ->add('reviews', 'sonata_type_collection',
-                array(
+                [
                     'label' => 'Отзывы',
                     'btn_add' => 'Добавить отзыв',
-                ),
-                array(
+                ],
+                [
                     'edit'     => 'inline',
                     'sortable' => 'position',
-                )
+                ]
             )
         ;
     }

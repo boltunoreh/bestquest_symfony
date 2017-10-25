@@ -18,12 +18,12 @@ class AboutAdmin extends AbstractAdmin
     {
         $listMapper
             ->add('title')
-            ->add('_action', 'actions', array(
-                'actions' => array(
-                    'edit' => array(),
-                ),
+            ->add('_action', 'actions', [
+                'actions' => [
+                    'edit' => [],
+                ],
                 'label'   => 'Действия',
-            ))
+            ])
         ;
     }
 
@@ -33,21 +33,21 @@ class AboutAdmin extends AbstractAdmin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('title', TextType::class, array(
+            ->add('title', TextType::class, [
                 'label' => 'Заголовок',
-            ))
-            ->add('leftColumn', TextareaType::class, array(
+            ])
+            ->add('leftColumn', TextareaType::class, [
                 'label' => 'Левая колонка',
-                'attr'  => array(
+                'attr'  => [
                     'rows'  => 10,
-                ),
-            ))
-            ->add('rightColumn', TextareaType::class, array(
+                ],
+            ])
+            ->add('rightColumn', TextareaType::class, [
                 'label' => 'Правая колонка',
-                'attr'  => array(
+                'attr'  => [
                     'rows'  => 10,
-                ),
-            ))
+                ],
+            ])
         ;
     }
 
