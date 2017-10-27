@@ -121,7 +121,7 @@
             <div class="b-carousel" id="photos" style="overflow: hidden;">
                 <ul class="list" style="transform: translateZ(0px) translateX(640px); width: 8746px;">
                     {% for photo in project.photos %}
-                        <li class="item active">
+                        <li class="item">
                             <img width="634" height="495" src="{% path photo.image, 'medium' %}">
                         </li>
                     {% endfor %}
