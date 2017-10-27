@@ -1933,6 +1933,8 @@ $(function(){
     $("[data-action='" + a[0] + "']").click();
   }
 
+  $(".current-category").click();
+
   // ��������� ��� ��������
   $( "[data-slider]" ).on("click", function(){
     $(".b-title-slide").fadeOut(200);
