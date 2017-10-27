@@ -1,10 +1,18 @@
 <ul class='b-slider__pages' id='pages'>
+    {% set item_class = null %}
     {% for category in categories %}
-        <li class='item' data-action="{{ category.slug }}">
+        {% if item_class is null and project is defined%}
+            {% if category in project.categories %}
+                {% set item_class = 'current-category' %}
+            {% endif %}
+        {% else %}
+            {% set item_class = '' %}
+        {% endif %}
+        <li class='item {{ item_class }}' data-action="{{ category.slug }}">
             {{ category.icon|raw }}
             <p class='icontext'>
                 {{ category.title }}
             </p>
         </li>
     {% endfor %}
-</ul>
+</ul>g
