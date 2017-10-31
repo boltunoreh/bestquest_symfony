@@ -4,8 +4,20 @@
             <li class='item b-project' data-type='{{ project.getDataType }}'
                 style="display: {{ project.isInSlider == 0 ? 'none' : 'block' }};">
                 <a href="{{ path('app__project', {'slug': project.slug}) }}">
-                    <div class='b-project__image'
-                         style='background-image: url({% path project.sliderLargeImage, 'medium' %})'></div>
+                    {% if project.videoEmbedUrl is defined
+                    and project.videoEmbedUrl is not null
+                    and project.videoEmbedUrl is not empty %}
+                        <div class='b-project__image'>
+                            <iframe width="720" height="360" frameBorder="0"
+                                    style="position: relative; top: -20%;"
+                                    src="{{ project.videoEmbedUrl }}?controls=0&autoplay=1&showinfo=0&disablekb=1&fs=0&loop=1&modestbranding=1&mute=1">
+                            </iframe>
+                        </div>
+                    {% else %}
+                        <div class='b-project__image'
+                             style='background-image: url({% path project.sliderLargeImage, 'medium' %})'>
+                        </div>
+                    {% endif %}
                     <div class='b-project__image--small'
                          style='background-image: url({% path project.sliderSmallImage, 'medium' %})'></div>
                     <div class='b-project__body'>
