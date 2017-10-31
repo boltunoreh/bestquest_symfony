@@ -2303,12 +2303,6 @@ textarea,
   border-top-color: #ffffff;
 }
 
-.b-skew-bottom:after {
-  bottom: -59px;
-  display: block;
-  border-top-width: 60px;
-}
-
 .b-slider {
   position: relative;
   overflow: hidden;
