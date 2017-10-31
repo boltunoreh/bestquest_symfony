@@ -103,6 +103,13 @@ class Project
     /**
      * @var string
      *
+     * @ORM\Column(name="video_embed_url", type="text", nullable=true)
+     */
+    private $videoEmbedUrl;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="type", type="string")
      */
     private $type;
@@ -642,6 +649,24 @@ class Project
     {
         $this->sliderLargeImage = $sliderLargeImage;
 
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getVideoEmbedUrl()
+    {
+        return $this->videoEmbedUrl;
+    }
+
+    /**
+     * @param string $videoEmbedUrl
+     * @return $this
+     */
+    public function setVideoEmbedUrl($videoEmbedUrl)
+    {
+        $this->videoEmbedUrl = $videoEmbedUrl;
         return $this;
     }
 
