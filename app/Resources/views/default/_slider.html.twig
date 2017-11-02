@@ -4,13 +4,13 @@
             <li class='item b-project' data-type='{{ project.getDataType }}'
                 style="display: {{ project.isInSlider == 0 ? 'none' : 'block' }};">
                 <a href="{{ path('app__project', {'slug': project.slug}) }}">
-                    {% if project.videoEmbedUrl is defined
-                    and project.videoEmbedUrl is not null
-                    and project.videoEmbedUrl is not empty %}
+                    {% if project.videoId is defined
+                    and project.videoId is not null
+                    and project.videoId is not empty %}
                         <div class='b-project__image'>
                             <iframe width="720" height="360" frameBorder="0"
-                                    style="position: relative; top: -20%;"
-                                    src="{{ project.videoEmbedUrl }}?controls=0&autoplay=1&showinfo=0&disablekb=1&fs=0&loop=1&modestbranding=1&mute=1">
+                                    style="position: relative; height: 100%;"
+                                    src="http://www.youtube.com/embed/{{ project.videoId }}?autoplay=1&showinfo=0&fs=0&listType=user_uploads&list={{ youtube_channel }}&loop=1&playlist={{ project.videoId }}&modestbranding=1&rel=0">
                             </iframe>
                         </div>
                     {% else %}
