@@ -120,6 +120,10 @@ class ProjectAdmin extends AbstractAdmin
                     ],
                 ]
             )
+            ->add('videoEmbedUrl', null, [
+                'help' => 'на youtube откройте нужное видео, нажмите Поделиться, затем Встроить и в полученном справа коде тега < iframe > скопируйте сссылку из аттрибута src="ссылка"',
+                'required' => false,
+            ])
             ->add('type')
             ->add('members')
             ->add('place')
