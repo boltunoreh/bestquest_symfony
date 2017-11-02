@@ -57,9 +57,12 @@ class DefaultController extends Controller
             'isActive' => true,
         ]);
 
+        $youtubeChannel = $this->getParameter('youtube_channel');
+
         return $this->render('default/index.html.twig', [
             'projects'   => $projects,
             'categories' => $categories,
+            'youtube_channel' => $youtubeChannel,
         ]);
     }
 
@@ -143,10 +146,13 @@ class DefaultController extends Controller
             return $this->redirectToRoute('order_success');
         }
 
+        $youtubeChannel = $this->getParameter('youtube_channel');
+
         return $this->render('default/project_exclusive.html.twig', [
             'projects'   => $projects,
             'categories' => $categories,
             'order_form' => $form->createView(),
+            'youtube_channel' => $youtubeChannel,
         ]);
     }
 
@@ -225,11 +231,14 @@ class DefaultController extends Controller
             return $this->redirectToRoute('order_success');
         }
 
+        $youtubeChannel = $this->getParameter('youtube_channel');
+
         return $this->render('default/project.html.twig', [
             'project'    => $project,
             'projects'   => $projects,
             'categories' => $categories,
             'order_form' => $form->createView(),
+            'youtube_channel' => $youtubeChannel,
         ]);
     }
 
