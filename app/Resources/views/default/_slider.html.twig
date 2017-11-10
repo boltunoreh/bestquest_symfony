@@ -3,21 +3,19 @@
         {% for project in projects %}
             <li class='item b-project' data-type='{{ project.getDataType }}'
                 style="display: {{ project.isInSlider == 0 ? 'none' : 'block' }};">
+                {% if project.videoId is defined
+                and project.videoId is not null
+                and project.videoId is not empty %}
+                    <div class='b-project__image'>
+                        <div id="{{ project.id }}" data-primary="{{ loop.index0 }}">
+                        </div>
+                    </div>
+                {% else %}
+                    <div class='b-project__image'
+                         style='background-image: url({% path project.sliderLargeImage, 'medium' %})'>
+                    </div>
+                {% endif %}
                 <a href="{{ path('app__project', {'slug': project.slug}) }}">
-                    {% if project.videoId is defined
-                    and project.videoId is not null
-                    and project.videoId is not empty %}
-                        <div class='b-project__image'>
-                            <iframe width="720" height="360" frameBorder="0"
-                                    style="position: relative; height: 100%;"
-                                    src="http://www.youtube.com/embed/{{ project.videoId }}?autoplay=0&showinfo=0&fs=0&listType=user_uploads&list={{ youtube_channel }}&loop=1&playlist={{ project.videoId }}&modestbranding=1&rel=0">
-                            </iframe>
-                        </div>
-                    {% else %}
-                        <div class='b-project__image'
-                             style='background-image: url({% path project.sliderLargeImage, 'medium' %})'>
-                        </div>
-                    {% endif %}
                     <div class='b-project__image--small'
                          style='background-image: url({% path project.sliderSmallImage, 'medium' %})'></div>
                     <div class='b-project__body'>
@@ -48,7 +46,7 @@
         </li>
     </ul>
     <div id='nothing-to-show' style='display: none; color: white'>Nothing to show</div>
-    <div class='b-slider__next'>
+    <div class='b-slider__next b-slider__switch'>
 
         <svg width="48px" height="48px" viewBox="0 0 48 48" version="1.1" xmlns="http://www.w3.org/2000/svg"
              xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -75,7 +73,7 @@
         </svg>
 
     </div>
-    <div class='b-slider__prev'>
+    <div class='b-slider__prev b-slider__switch'>
 
         <svg width="48px" height="48px" viewBox="0 0 48 48" version="1.1" xmlns="http://www.w3.org/2000/svg"
              xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -101,5 +99,46 @@
             </g>
         </svg>
     </div>
-
+    <script>
+        //Инициализировать обязательно в глобальной ф-ии jQuery
+        $(function()
+        {
+            //Инициализация параметров видео галлереи (это нужно)
+            var videoGallery = new window.videoGallery(
+                    {
+                        //Селектор Контейнера со слайдами ".list" (REQUIRED)
+                        $root: '.list',
+                        //Селектор Итема-Слайда '.item' (REQUIRED)
+                        $item: '.item.b-project',
+                        //Селектор стрелок, одинаковый для обоих стрелок (нужно добавить) (REQUIRED)
+                        $arrow: '.b-slider__switch',
+                        //Название класса активного слайда (REQUIRED)
+                        clsActiveItem: 'active',
+                        //Id видосов с Youtube (REQUIRED)
+                        videoId: [
+                            {% for project in projects %}
+                                {% if project.videoId is defined
+                                and project.videoId is not null
+                                and project.videoId is not empty %}
+                            '{{ project.videoId }}',
+                                {% endif %}
+                            {% endfor %}
+                        ],
+                        //Параметры проигрователя (не обязательный параметр)
+                        //Полный список https://developers.google.com/youtube/player_parameters?hl=ru
+                        //Демонстрация https://developers.google.com/youtube/youtube_player_demo?hl=ru
+                        ytAPIOptions:
+                        {
+                            autoplay: 1,
+                            showinfo: 0,
+                            fs: 0,
+                            modestbranding: 1,
+                            rel: 0,
+                            cc_load_policy: 0,
+                            iv_load_policy: 0,
+                        }
+                    }).init();
+            window.videoG = videoGallery
+        });
+    </script>
 </div>
