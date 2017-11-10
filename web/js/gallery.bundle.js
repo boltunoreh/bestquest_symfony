@@ -8881,7 +8881,7 @@ var VideoGallery = function () {
             });
             var primary = elem.data('primary') || elem.find('[data-primary]').data('primary');
             that.videoContainers.forEach(function (elem) {
-              elem.stopVideo();
+              elem.pauseVideo();
             });
             that.videoContainers[primary].playVideo();
           }, 400);
