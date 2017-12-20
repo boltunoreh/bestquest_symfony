@@ -1943,10 +1943,6 @@ $(function(){
     $("[data-action='" + type + "']").click();
   })
 
-  setTimeout(function() {
-    $(".unvisible").css("opacity", "1");
-  }, 5000);
-
   $(".b-slider__pages .item").on("click", function(){
     $(".b-title-slide").fadeOut(200);
     $(".unvisible").css("opacity", "1");
@@ -1957,4 +1953,7 @@ $(function(){
     $(".b-slider__pages .action").click();
   }
 
+  setTimeout(function() {
+    $(".unvisible").css("opacity", "1");
+  }, 5000);
 })

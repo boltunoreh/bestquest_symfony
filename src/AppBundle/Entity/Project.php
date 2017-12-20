@@ -103,9 +103,9 @@ class Project
     /**
      * @var string
      *
-     * @ORM\Column(name="video_embed_url", type="text", nullable=true)
+     * @ORM\Column(name="video_id", type="text", nullable=true)
      */
-    private $videoEmbedUrl;
+    private $videoId;
 
     /**
      * @var string
@@ -655,18 +655,18 @@ class Project
     /**
      * @return string
      */
-    public function getVideoEmbedUrl()
+    public function getVideoId()
     {
-        return $this->videoEmbedUrl;
+        return $this->videoId;
     }
 
     /**
-     * @param string $videoEmbedUrl
+     * @param string $videoId
      * @return $this
      */
-    public function setVideoEmbedUrl($videoEmbedUrl)
+    public function setVideoId($videoId)
     {
-        $this->videoEmbedUrl = $videoEmbedUrl;
+        $this->videoId = $videoId;
         return $this;
     }
 
