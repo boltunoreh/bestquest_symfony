@@ -354,3 +354,19 @@
 .about-title {
     margin-bottom: 52px;
 }
+
+.phone a {
+    padding: 0;
+}
+
+.slider-more {
+    background-color: red;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 600;
+    text-transform: uppercase;
+    position: absolute;
+    bottom: 24px;
+    right: 38px;
+}

@@ -22,6 +22,7 @@
                         <h3>{{ project.title|raw }}</h3>
                         <p class="main">{{ project.sliderDescription|raw }}</p>
                         <p class="preview">{{ project.sliderAnnotation|raw }}</p>
+                        <a class="slider-more" href="{{ path('app__project', {'slug': project.slug}) }}">Подробнее</a>
                     </div>
                 </a>
             </li>
