@@ -74,6 +74,7 @@ class TeammateAdmin extends AbstractAdmin
             ])
             ->add('sign', TextareaType::class, [
                 'label' => 'Подпись',
+                'required' => false,
             ])
             ->add('photo', 'sonata_media_type', [
                 'label'    => 'Фотография',

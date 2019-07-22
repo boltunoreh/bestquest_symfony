@@ -39,7 +39,7 @@ class Teammate
     /**
      * @var string
      *
-     * @ORM\Column(name="sign", type="text")
+     * @ORM\Column(name="sign", type="text", nullable=true)
      */
     private $sign;
 
