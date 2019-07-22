@@ -13,3 +13,4 @@
 /composer.phar
 /log/
 !/log/.gitkeep
+/.idea
