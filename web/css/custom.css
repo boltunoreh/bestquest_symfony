@@ -370,3 +370,7 @@
     bottom: 24px;
     right: 38px;
 }
+
+.b-slider__pages .item {
+    cursor: auto;
+}

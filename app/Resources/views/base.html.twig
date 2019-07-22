@@ -97,8 +97,8 @@
                         </dl>
                         <dl class="l-footer__menu">
                             <dt class="title">Проекты</dt>
-                            {% for category in categories%}
-                                <dd class="item"><a href="{{ path('app__homepage') }}?{{ category.slug }}">{{ category.title }}</a></dd>
+                            {% for project in projects %}
+                                <dd class="item"><a href="{{ path('app__project', {'slug': project.slug}) }}">{{ project.title }}</a></dd>
                             {% endfor %}
                         </dl>
                         <dl class="l-footer__menu" id="contacts">

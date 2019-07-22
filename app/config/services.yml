@@ -12,14 +12,6 @@ services:
               manager_type: orm
               group: "app.admin.group.projects"
               label: 'Квесты'
-    app.admin.category:
-        class: AppBundle\Admin\CategoryAdmin
-        arguments: [~, AppBundle\Entity\Category, ~]
-        tags:
-            - name: sonata.admin
-              manager_type: orm
-              group: "app.admin.group.projects"
-              label: 'Категории'
     app.admin.photo:
         class: AppBundle\Admin\ProjectPhotoAdmin
         arguments: [~, AppBundle\Entity\ProjectPhoto, ~]

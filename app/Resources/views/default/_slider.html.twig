@@ -1,7 +1,7 @@
 <div class='b-slider b-slider-main' id='slider'>
     <ul class='list'>
         {% for project in projects %}
-            <li class='item b-project' data-type='{{ project.getDataType }}'
+            <li class='item b-project' data-type='{{ project.slug }}'
                 style="display: {{ project.isInSlider == 0 ? 'none' : 'block' }};">
                 {% if project.videoId is defined
                 and project.videoId is not null

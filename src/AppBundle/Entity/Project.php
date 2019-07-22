@@ -57,20 +57,6 @@ class Project
     /**
      * @var string
      *
-     * @ORM\Column(name="category", type="string")
-     */
-    /**
-     * @ORM\ManyToMany(targetEntity="Category")
-     * @ORM\JoinTable(name="project_categories",
-     *      joinColumns={@ORM\JoinColumn(name="project_id", referencedColumnName="id")},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="category_id", referencedColumnName="id")}
-     *      )
-     */
-    private $categories;
-
-    /**
-     * @var string
-     *
      * @ORM\Column(name="slider_annotation", type="string")
      */
     private $sliderAnnotation;
@@ -235,12 +221,18 @@ class Project
     private $sortOrder;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="icon", type="text")
+     */
+    private $icon;
+
+    /**
      * Constructor
      */
     public function __construct()
     {
         $this->photos     = new ArrayCollection();
-        $this->categories = new ArrayCollection();
         $this->stages     = new ArrayCollection();
         $this->reviews    = new ArrayCollection();
     }
@@ -581,40 +573,6 @@ class Project
     }
 
     /**
-     * Add category
-     *
-     * @param Category $category
-     *
-     * @return $this
-     */
-    public function addCategory(Category $category)
-    {
-        $this->categories->add($category);
-
-        return $this;
-    }
-
-    /**
-     * Remove category
-     *
-     * @param Category $category
-     */
-    public function removeCategory(Category $category)
-    {
-        $this->categories->removeElement($category);
-    }
-
-    /**
-     * Get categories
-     *
-     * @return Collection
-     */
-    public function getCategories()
-    {
-        return $this->categories;
-    }
-
-    /**
      * Set sliderSmallImage
      *
      * @param Media $sliderSmallImage
@@ -935,24 +893,26 @@ class Project
     /**
      * @return string
      */
+    public function getIcon()
+    {
+        return $this->icon;
+    }
+
+    /**
+     * @param string $icon
+     * @return $this
+     */
+    public function setIcon($icon)
+    {
+        $this->icon = $icon;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
     public function __toString()
     {
         return (string) $this->title;
-    }
-
-    public function getDataType()
-    {
-        $dataType = null;
-
-        /** @var Category $category */
-        foreach ($this->categories as $category) {
-            if (null != $dataType) {
-                $dataType .= ', ';
-            }
-
-            $dataType .= $category->getSlug();
-        }
-
-        return $dataType;
     }
 }

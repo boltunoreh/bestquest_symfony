@@ -1,0 +1,18 @@
+<ul class='b-slider__pages' id='pages'>
+    {% set item_class = null %}
+    {% for project in projects %}
+        {% if item_class is null and current_project is defined %}
+            {% if current_project.slug == project.slug %}
+                {% set item_class = 'active' %}
+            {% endif %}
+        {% else %}
+            {% set item_class = '' %}
+        {% endif %}
+        <li class='item {{ item_class }}'>
+            {{ project.icon|raw }}
+            <p class='icontext'>
+                {{ project.title }}
+            </p>
+        </li>
+    {% endfor %}
+</ul>

@@ -2,7 +2,7 @@
 
 namespace AppBundle\Menu;
 
-use AppBundle\Entity\Category;
+use AppBundle\Entity\Project;
 use Knp\Menu\FactoryInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareTrait;
@@ -27,21 +27,26 @@ class Builder implements ContainerAwareInterface
 
         // Projects submenu
         $em = $this->container->get('doctrine')->getManager();
-        $categories = $em->getRepository('AppBundle:Category')->findBy([
+        $projects = $em->getRepository('AppBundle:Project')->findBy([
             'isActive' => true,
         ]);
 
-        /** @var Category $category */
-        foreach ($categories as $category) {
+        /** @var Project $project */
+        foreach ($projects as $project) {
             if (isset($options['index']) && true == $options['index']) {
-                $menu['projects']->addChild($category->getTitle(), [
+                $menu['projects']->addChild($project->getTitle(), [
                     'attributes' => [
-                        'data-slider' => $category->getSlug(),
+                        'data-slider' => $project->getSlug(),
                     ],
                 ]);
             } else {
-                $menu['projects']->addChild($category->getTitle(), [
-                    'uri' => $this->container->get('router')->generate('app__homepage') . '?' . $category->getSlug(),
+                $menu['projects']->addChild($project->getTitle(), [
+                    'uri' => $this->container->get('router')->generate(
+                        'app__project',
+                        [
+                            'slug' => $project->getSlug(),
+                        ]
+                    ),
                 ]);
             }
         }

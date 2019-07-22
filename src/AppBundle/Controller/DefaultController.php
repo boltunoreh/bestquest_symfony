@@ -53,15 +53,10 @@ class DefaultController extends Controller
             'isInSlider' => true,
         ]);
 
-        $categories = $this->getDoctrine()->getRepository('AppBundle:Category')->findBy([
-            'isActive' => true,
-        ]);
-
         $youtubeChannel = $this->getParameter('youtube_channel');
 
         return $this->render('default/index.html.twig', [
             'projects'   => $projects,
-            'categories' => $categories,
             'youtube_channel' => $youtubeChannel,
         ]);
     }
@@ -73,10 +68,6 @@ class DefaultController extends Controller
     {
         $projects = $this->getDoctrine()->getRepository('AppBundle:Project')->findBy([
             'isActive'   => true,
-        ]);
-
-        $categories = $this->getDoctrine()->getRepository('AppBundle:Category')->findBy([
-            'isActive' => true,
         ]);
 
         $form = $this->createForm(OrderType::class);
@@ -150,7 +141,6 @@ class DefaultController extends Controller
 
         return $this->render('default/project_exclusive.html.twig', [
             'projects'   => $projects,
-            'categories' => $categories,
             'order_form' => $form->createView(),
             'youtube_channel' => $youtubeChannel,
         ]);
@@ -162,10 +152,6 @@ class DefaultController extends Controller
     public function projectAction(Request $request, Project $project)
     {
         $projects = $this->getDoctrine()->getRepository('AppBundle:Project')->findBy([
-            'isActive' => true,
-        ]);
-
-        $categories = $this->getDoctrine()->getRepository('AppBundle:Category')->findBy([
             'isActive' => true,
         ]);
 
@@ -234,9 +220,8 @@ class DefaultController extends Controller
         $youtubeChannel = $this->getParameter('youtube_channel');
 
         return $this->render('default/project.html.twig', [
-            'project'    => $project,
-            'projects'   => $projects,
-            'categories' => $categories,
+            'current_project' => $project,
+            'projects' => $projects,
             'order_form' => $form->createView(),
             'youtube_channel' => $youtubeChannel,
         ]);

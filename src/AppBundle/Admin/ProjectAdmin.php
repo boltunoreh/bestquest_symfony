@@ -2,7 +2,6 @@
 
 namespace AppBundle\Admin;
 
-use AppBundle\Entity\Category;
 use AppBundle\Entity\Project;
 use AppBundle\Entity\ProjectPhoto;
 use AppBundle\Entity\Review;
@@ -26,9 +25,6 @@ class ProjectAdmin extends AbstractAdmin
             ->add('title', null, [
                 'label' => 'Название',
             ])
-            ->add('categories', null, [
-                'label' => 'Категории',
-            ])
         ;
     }
 
@@ -48,9 +44,6 @@ class ProjectAdmin extends AbstractAdmin
             ])
             ->add('slug', null, [
                 'label' => 'Slug',
-            ])
-            ->add('categories', null, [
-                'label' => 'Категории',
             ])
             ->add('sortOrder')
             ->add('_action', 'actions', [
@@ -88,12 +81,6 @@ class ProjectAdmin extends AbstractAdmin
                 'required' => false,
             ])
             ->add('sortOrder')
-            ->add('categories', 'sonata_type_model', [
-                'label'    => 'Категории',
-                'class'    => Category::class,
-                'btn_add'  => false,
-                'multiple' => true,
-            ])
             ->add('sliderAnnotation', TextareaType::class, [
                 'label' => 'Аннотация для слайдера',
             ])
@@ -216,6 +203,9 @@ class ProjectAdmin extends AbstractAdmin
                     'sortable' => 'position',
                 ]
             )
+            ->add('icon', null, [
+                'label' => 'Иконка',
+            ])
         ;
     }
 
