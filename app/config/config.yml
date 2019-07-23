@@ -100,6 +100,8 @@ sonata_admin:
             app.admin.group.about:
                 label: 'О нас'
                 label_catalogue: SonataAdminBundle
+    templates:
+        edit: Admin/edit.html.twig
 
 #Sonata Media Configuration
 sonata_media:
@@ -203,3 +205,10 @@ knp_menu:
 accelerator_cache:
     host: '%host%'
     web_dir: '%web_dir%'
+
+# Assetic Configuration
+assetic:
+    debug:          '%kernel.debug%'
+    use_controller: '%kernel.debug%'
+    filters:
+        cssrewrite: ~
