@@ -33,6 +33,11 @@ class DefaultController extends Controller
                 'isActive' => true,
                 'project' => $project,
             ]);
+
+        // convert HEX to rgb
+        $color = implode(', ', array_map('hexdec', str_split(str_replace('#', '', $project->getColor()), 2)));
+        $project->setColor($color);
+
         return $this->render('default/project.html.twig', [
             'current_project' => $project,
             'reviews' => $reviews,

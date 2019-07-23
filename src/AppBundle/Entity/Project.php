@@ -167,7 +167,7 @@ class Project
     /**
      * @var string
      *
-     * @ORM\Column(name="color", type="string")
+     * @ORM\Column(type="string", length=7, nullable=true)
      */
     private $color;
 

@@ -5,6 +5,7 @@ namespace AppBundle\Admin;
 use AppBundle\Entity\Project;
 use AppBundle\Entity\ProjectPhoto;
 use AppBundle\Entity\Review;
+use KunicMarko\ColorPickerBundle\Form\Type\ColorPickerType;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
@@ -149,8 +150,7 @@ class ProjectAdmin extends AbstractAdmin
                     'allow_delete' => true,
                 ]
             )
-            //TODO color picker?
-            ->add('color', TextType::class, [
+            ->add('color', ColorPickerType::class, [
                 'label' => 'Цвет',
             ])
             ->add('headerBackgroundImage', 'sonata_media_type', [

@@ -38,6 +38,9 @@ class AppKernel extends Kernel
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
 
             new SmartCore\Bundle\AcceleratorCacheBundle\AcceleratorCacheBundle(),
+
+            new Symfony\Bundle\AsseticBundle\AsseticBundle(),
+            new KunicMarko\ColorPickerBundle\ColorPickerBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'), true)) {
