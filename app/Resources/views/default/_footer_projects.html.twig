@@ -1,0 +1,3 @@
+{% for project in projects %}
+    <dd class="item"><a href="{{ path('app__project', {'slug': project.slug}) }}">{{ project.title }}</a></dd>
+{% endfor %}

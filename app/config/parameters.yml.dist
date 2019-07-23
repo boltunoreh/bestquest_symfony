@@ -21,7 +21,5 @@ parameters:
     no_reply_email: noreply@best-quest.ru
     admin_email: info@best-quest.ru
 
-    youtube_channel: UCXFxgPppcehs2LoiKhkakQg
-
     host: http://example.com
     web_dir: %kernel.root_dir%/../web

@@ -33,22 +33,14 @@ class Builder implements ContainerAwareInterface
 
         /** @var Project $project */
         foreach ($projects as $project) {
-            if (isset($options['index']) && true == $options['index']) {
-                $menu['projects']->addChild($project->getTitle(), [
-                    'attributes' => [
-                        'data-slider' => $project->getSlug(),
-                    ],
-                ]);
-            } else {
-                $menu['projects']->addChild($project->getTitle(), [
-                    'uri' => $this->container->get('router')->generate(
-                        'app__project',
-                        [
-                            'slug' => $project->getSlug(),
-                        ]
-                    ),
-                ]);
-            }
+            $menu['projects']->addChild($project->getTitle(), [
+                'uri' => $this->container->get('router')->generate(
+                    'app__project',
+                    [
+                        'slug' => $project->getSlug(),
+                    ]
+                ),
+            ]);
         }
 
         // About submenu

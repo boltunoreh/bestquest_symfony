@@ -1,0 +1,79 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    <link href="{{ asset('css/normalize.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ asset('css/application.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ asset('css/custom.css') }}" rel="stylesheet" type="text/css"/>
+{% endblock %}
+{% block custom_styles %}
+    <style>
+        .l-section-apply{
+            {% if current_project is defined %}
+                background-image:url({% path current_project.formBackgroundImage, 'medium' %});
+            {% endif %}
+            background-position:bottom left;
+        }
+        {% if current_project is defined %}
+            .order>a{
+                background: rgba({{ current_project.color }}, 1);
+            }
+            input[type="button"], input[type="reset"], input[type="submit"], button, .s-button{
+                background: rgba({{ current_project.color }}, 1);
+            }
+        {% else %}
+            .order>a{
+                background-color: #E20000;
+            }
+            input[type="button"], input[type="reset"], input[type="submit"], button, .s-button{
+                background: #E20000;
+            }
+        {% endif %}
+    </style>
+{% endblock %}
+
+{% block bodyclass %}sb_quest{% endblock %}
+
+{% block apply %}
+    <div class='order'>
+        <a href='#apply'>Заявка</a>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <main class="l-content">
+        <section class="l-section l-section-apply" id="apply">
+            <h2 class="s-title white">Заявка</h2>
+            {{ form_start(order_form, { 'attr': {'class': 's-form b-apply'}}) }}
+                <div class="s-form-group">
+                    <label for="name">Контактное лицо</label>
+                    {{ form_row(order_form.name, { 'attr': {'class': 's-control', 'size': 40, 'placeholder': 'Как к вам обращаться?'}}) }}
+                </div>
+                <div class="s-form-group">
+                    {{ form_row(order_form.email, { 'attr': {'class': 's-control', 'size': 20, 'placeholder': 'Ваш e-mail'}}) }}
+                </div>
+                <div class="s-form-group">
+                    {{ form_row(order_form.phone, { 'attr': {'class': 's-control', 'size': 20, 'placeholder': 'Ваш телефон'}}) }}
+                </div>
+                <div class="s-form-group">
+                    <div class="s-form-subgroup-left">
+                        <label class="inline" for="date">Когда</label>
+                        {{ form_row(order_form.date, { 'attr': {'class': 's-control date', 'size': 12}}) }}
+                    </div>
+                    <div class="s-form-subgroup-right">
+                        <label class="inline" for="qty">Человек</label>
+                        {{ form_row(order_form.members, { 'attr': {'value': 0, 'max': 1000, 'style': 'width: 60px'}}) }}
+                    </div>
+                </div>
+                <div class="s-form-group">
+                    {{ form_row(order_form.description, { 'attr': {'class': 's-control textarea', 'rows': 6, 'placeholder': 'Подробности'}}) }}
+                </div>
+                <div class="s-form-group">
+                    <label class="inline" for="copy_me">Отправить копию мне на email</label>
+                    {{ form_row(order_form.copyMe, { 'attr': {'class': 's-control'}}) }}
+                </div>
+                {{ form_row(order_form._token) }}
+                <button class="s-button block" type="submit">Отправить</button>
+            {{ form_end(order_form, {'render_rest': false}) }}
+        </section>
+    </main>
+{% endblock %}

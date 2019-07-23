@@ -32,6 +32,17 @@
         {% endblock %}
         {% block custom_styles %}
         {% endblock %}
+        <style>
+            {% if current_project is defined %}
+                .logo-wrapper{
+                    background-color: rgba({{ current_project.color }}, 1);
+                }
+            {% else %}
+                .logo-wrapper{
+                    background-color: #E20000;
+                }
+            {% endif %}
+        </style>
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
 
@@ -61,12 +72,17 @@
                         </a>
                     {% endblock %}
                     <nav class="l-header__nav">
-                        {% set menuItem = knp_menu_get('AppBundle:Builder:mainMenu') %}
-                        {{ knp_menu_render(menuItem) }}
+                        {% set mainMenu = knp_menu_get('AppBundle:Builder:mainMenu') %}
+                        {{ knp_menu_render(mainMenu) }}
                     </nav>
                     <div class="l-header__actions">
-                        {% block apply %}
-                        {% endblock %}
+                        <div class='order'>
+                            {% if current_project is defined %}
+                                <a href='{{ path('app__order', {'slug': current_project.slug }) }}'>Заявка</a>
+                            {% else %}
+                                <a href='{{ path('app__order') }}'>Заявка</a>
+                            {% endif %}
+                        </div>
                         <div class="phone"><a href="tel:+78125746512">+7 (812) 574 65 12</a></div>
                         <div class="phone"><a href="tel:+79219763876">+7 (921) 976 38 76</a></div>
                         <div class="l-header__email"><a href="mailto:info@best-quest.ru">info@best-quest.ru</a></div>
@@ -97,9 +113,7 @@
                         </dl>
                         <dl class="l-footer__menu">
                             <dt class="title">Проекты</dt>
-                            {% for project in projects %}
-                                <dd class="item"><a href="{{ path('app__project', {'slug': project.slug}) }}">{{ project.title }}</a></dd>
-                            {% endfor %}
+                            {{ render(controller('AppBundle:Default:footerProjects')) }}
                         </dl>
                         <dl class="l-footer__menu" id="contacts">
                             <dt class="title">Контакты</dt>

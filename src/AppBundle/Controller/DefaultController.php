@@ -6,11 +6,33 @@ use AppBundle\Form\Type\OrderType;
 use AppBundle\Entity\Order;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Entity\Project;
+use Symfony\Component\HttpFoundation\Response;
 
 class DefaultController extends Controller
 {
+    /**
+     * @Route("/", name="app__homepage")
+     */
+    public function indexAction()
+    {
+        return $this->render('default/index.html.twig');
+    }
+
+    /**
+     * @Route("/project/{slug}", name="app__project")
+     * @param Project $project
+     * @return Response
+     */
+    public function projectAction(Project $project)
+    {
+        return $this->render('default/project.html.twig', [
+            'current_project' => $project,
+        ]);
+    }
+
     /**
      * @Route("/about", name="app__about")
      */
@@ -44,32 +66,13 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/", name="app__homepage")
-     */
-    public function indexAction()
-    {
-        $projects = $this->getDoctrine()->getRepository('AppBundle:Project')->findBy([
-            'isActive'   => true,
-            'isInSlider' => true,
-        ]);
-
-        $youtubeChannel = $this->getParameter('youtube_channel');
-
-        return $this->render('default/index.html.twig', [
-            'projects'   => $projects,
-            'youtube_channel' => $youtubeChannel,
-        ]);
-    }
-
-    /**
      * @Route("/project/exclusive", name="app__exclusive")
+     * @param Request $request
+     * @return RedirectResponse|Response
+     * @throws \Exception
      */
     public function exclusiveAction(Request $request)
     {
-        $projects = $this->getDoctrine()->getRepository('AppBundle:Project')->findBy([
-            'isActive'   => true,
-        ]);
-
         $form = $this->createForm(OrderType::class);
 
         $form->handleRequest($request);
@@ -137,24 +140,20 @@ class DefaultController extends Controller
             return $this->redirectToRoute('order_success');
         }
 
-        $youtubeChannel = $this->getParameter('youtube_channel');
-
         return $this->render('default/project_exclusive.html.twig', [
-            'projects'   => $projects,
             'order_form' => $form->createView(),
-            'youtube_channel' => $youtubeChannel,
         ]);
     }
 
     /**
-     * @Route("/project/{slug}", name="app__project")
+     * @Route("/order/{slug}", name="app__order", defaults={"slug": null})
+     * @param Request $request
+     * @param Project $project
+     * @return Response
+     * @throws \Exception
      */
-    public function projectAction(Request $request, Project $project)
+    public function orderAction(Request $request, Project $project = null)
     {
-        $projects = $this->getDoctrine()->getRepository('AppBundle:Project')->findBy([
-            'isActive' => true,
-        ]);
-
         $form = $this->createForm(OrderType::class);
 
         $form->handleRequest($request);
@@ -214,25 +213,81 @@ class DefaultController extends Controller
                 $this->get('mailer')->send($messageCopy);
             }
 
-            return $this->redirectToRoute('order_success');
+            return $this->render('default/order_success.html.twig', [
+            ]);
         }
 
-        $youtubeChannel = $this->getParameter('youtube_channel');
-
-        return $this->render('default/project.html.twig', [
-            'current_project' => $project,
-            'projects' => $projects,
+        $renderOpts = [
             'order_form' => $form->createView(),
-            'youtube_channel' => $youtubeChannel,
-        ]);
+        ];
+        if (null !== $project) {
+            $renderOpts['current_project'] = $project;
+        }
+
+        return $this->render('default/order.html.twig', $renderOpts);
     }
 
     /**
-     * @Route("/order/success", name="order_success")
+     * @param string $route
+     * @param Project|null $project
+     * @return Response
      */
-    public function orderSuccessAction()
+    public function sliderAction($route, Project $project = null)
     {
-        return $this->render('default/order_success.html.twig', [
+        $condition = [
+            'isActive' => true,
+        ];
+        if ('app__homepage' === $route) {
+            $condition['isInSlider'] = true;
+        }
+        $projects = $this->getDoctrine()->getRepository('AppBundle:Project')->findBy($condition);
+
+        $renderOpts = [
+            'projects' => $projects,
+        ];
+        if (null !== $project) {
+            $renderOpts['current_project'] = $project;
+        }
+
+        return $this->render('default/_slider.html.twig', $renderOpts);
+    }
+
+    /**
+     * @param string $route
+     * @param Project|null $project
+     * @return Response
+     */
+    public function sliderIconsAction($route, Project $project = null)
+    {
+        $condition = [
+            'isActive' => true,
+        ];
+        if ('app__homepage' === $route) {
+            $condition['isInSlider'] = true;
+        }
+        $projects = $this->getDoctrine()->getRepository('AppBundle:Project')->findBy($condition);
+
+        $renderOpts = [
+            'projects' => $projects,
+        ];
+        if (null !== $project) {
+            $renderOpts['current_project'] = $project;
+        }
+
+        return $this->render('default/_slider_icons.html.twig', $renderOpts);
+    }
+
+    /**
+     * @return Response
+     */
+    public function footerProjectsAction()
+    {
+        $projects = $this->getDoctrine()->getRepository('AppBundle:Project')->findBy([
+            'isActive' => true,
+        ]);
+
+        return $this->render('default/_footer_projects.html.twig', [
+            'projects' => $projects,
         ]);
     }
 }
