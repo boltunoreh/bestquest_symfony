@@ -138,25 +138,27 @@
             </div>
         </section>
         <section class="l-section l-section-narrow"></section>
-        <section class="l-section l-section-reviews b-skew b-skew-bottom light">
-            <div class="bg-top"></div>
-            <div class="l-section__body b-skew b-skew-top light">
-                <h2 class="s-title">Отзывы</h2>
-                {% for review in current_project.reviews %}
-                    <div class="b-bordered-block b-review">
-                        <div class="b-review__top">
-                            <div class="avatar"><img width="128" height="128" src="{% path review.photo, 'medium' %}"></div>
-                            <div class="name">{{ review.author|raw }}</div>
-                            <div class="company">{{ review.company }}</div>
-                            <div class="position">{{ review.positionInCompany }}</div>
+        {% if reviews|length > 0 %}
+            <section class="l-section l-section-reviews b-skew b-skew-bottom light">
+                <div class="bg-top"></div>
+                <div class="l-section__body b-skew b-skew-top light">
+                    <h2 class="s-title">Отзывы</h2>
+                    {% for review in reviews %}
+                        <div class="b-bordered-block b-review">
+                            <div class="b-review__top">
+                                <div class="avatar"><img width="128" height="128" src="{% path review.photo, 'medium' %}"></div>
+                                <div class="name">{{ review.author|raw }}</div>
+                                <div class="company">{{ review.company }}</div>
+                                <div class="position">{{ review.positionInCompany }}</div>
+                            </div>
+                            <div class="b-review__bottom">
+                                <p>{{ review.content|raw }}</p>
+                            </div>
                         </div>
-                        <div class="b-review__bottom">
-                            <p>{{ review.content|raw }}</p>
-                        </div>
-                    </div>
-                {% endfor %}
-            </div>
-        </section>
+                    {% endfor %}
+                </div>
+            </section>
+        {% endif %}
 
         <section class="l-section l-section-projects b-skew b-skew-top dark">
             <h2 class="s-title main-color">Другие проекты</h2>

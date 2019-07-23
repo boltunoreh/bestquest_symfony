@@ -28,8 +28,14 @@ class DefaultController extends Controller
      */
     public function projectAction(Project $project)
     {
+        $reviews = $this->getDoctrine()->getRepository('AppBundle:Review')
+            ->findBy([
+                'isActive' => true,
+                'project' => $project,
+            ]);
         return $this->render('default/project.html.twig', [
             'current_project' => $project,
+            'reviews' => $reviews,
         ]);
     }
 
