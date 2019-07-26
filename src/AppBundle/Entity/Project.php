@@ -150,11 +150,8 @@ class Project
     private $description;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Stage", cascade={"persist"})
-     * @ORM\JoinTable(name="projects_stages",
-     *      joinColumns={@ORM\JoinColumn(name="project_id", referencedColumnName="id")},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="stage_id", referencedColumnName="id", unique=true)}
-     *      )
+     * @var Review
+     * @ORM\OneToMany(targetEntity="Stage", mappedBy="project", cascade={"persist"}, orphanRemoval=true)
      */
     private $stages;
 
@@ -200,7 +197,7 @@ class Project
 
     /**
      * @var Review
-     * @ORM\OneToMany(targetEntity="Review", mappedBy="project", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="Review", mappedBy="project", cascade={"persist"}, orphanRemoval=true)
      */
     private $reviews;
 

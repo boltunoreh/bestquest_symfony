@@ -51,6 +51,13 @@ class Stage
     private $sortOrder;
 
     /**
+     * @var Project
+     * @ORM\ManyToOne(targetEntity="Project", inversedBy="reviews")
+     * @ORM\JoinColumn(name="project_id", referencedColumnName="id")
+     */
+    private $project;
+
+    /**
      * Get id
      *
      * @return integer
@@ -147,6 +154,25 @@ class Stage
     public function setSortOrder($sortOrder)
     {
         $this->sortOrder = $sortOrder;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getProject()
+    {
+        return $this->project;
+    }
+
+    /**
+     * @param mixed $project
+     * @return $this
+     */
+    public function setProject($project)
+    {
+        $this->project = $project;
 
         return $this;
     }
