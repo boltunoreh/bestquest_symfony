@@ -2096,7 +2096,7 @@ textarea,
 
 .b-order > .item:nth-child(odd) .b-order-block:before {
   right: -14px;
-  border-left-color: #ededed;
+  /*border-left-color: #ededed;*/
 }
 
 .b-order > .item:nth-child(even) .b-order-block {
@@ -2105,7 +2105,7 @@ textarea,
 
 .b-order > .item:nth-child(even) .b-order-block:before {
   left: -14px;
-  border-right-color: #ededed;
+  /*border-right-color: #ededed;*/
 }
 
 .b-order > .item:last-child {
@@ -2137,7 +2137,7 @@ textarea,
           box-sizing: border-box;
   padding: 25px 30px;
   width: 330px;
-  background: #ededed;
+  /*background: #ededed;*/
   text-align: left;
   transform: translateY(-29%);
 }
