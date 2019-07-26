@@ -135,7 +135,7 @@ sonata_media:
             providers:
                 - sonata.media.provider.image
             formats:
-                medium: { width: 985 , quality: 100}
+                medium: { width: 1920 , quality: 100}
         project_photo_image:
             providers:
                 - sonata.media.provider.image
