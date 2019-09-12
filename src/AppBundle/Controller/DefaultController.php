@@ -22,61 +22,6 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/project/{slug}", name="app__project")
-     * @param Project $project
-     * @return Response
-     */
-    public function projectAction(Project $project)
-    {
-        $reviews = $this->getDoctrine()->getRepository('AppBundle:Review')
-            ->findBy([
-                'isActive' => true,
-                'project' => $project,
-            ]);
-
-        // convert HEX to rgb
-        $color = implode(', ', array_map('hexdec', str_split(str_replace('#', '', $project->getColor()), 2)));
-        $project->setColor($color);
-
-        return $this->render('default/project.html.twig', [
-            'current_project' => $project,
-            'reviews' => $reviews,
-        ]);
-    }
-
-    /**
-     * @Route("/about", name="app__about")
-     */
-    public function aboutAction()
-    {
-        $about = $this->getDoctrine()->getRepository('AppBundle:About')->findOneBy([]);
-
-        $teammates = $this->getDoctrine()->getRepository('AppBundle:Teammate')->findBy(
-            [
-                'isActive' => true,
-            ],
-            [
-                'sortOrder' => 'ASC',
-            ]
-        );
-        $clients = $this->getDoctrine()->getRepository('AppBundle:Client')->findBy(
-            [
-                'isActive' => true,
-            ],
-            [
-                'row'       => 'ASC',
-                'sortOrder' => 'ASC',
-            ]
-        );
-
-        return $this->render('default/about.html.twig', [
-            'about'     => $about,
-            'teammates' => $teammates,
-            'clients'   => $clients,
-        ]);
-    }
-
-    /**
      * @Route("/project/exclusive", name="app__exclusive")
      * @param Request $request
      * @return RedirectResponse|Response
@@ -153,6 +98,61 @@ class DefaultController extends Controller
 
         return $this->render('default/project_exclusive.html.twig', [
             'order_form' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/project/{slug}", name="app__project")
+     * @param Project $project
+     * @return Response
+     */
+    public function projectAction(Project $project)
+    {
+        $reviews = $this->getDoctrine()->getRepository('AppBundle:Review')
+            ->findBy([
+                'isActive' => true,
+                'project' => $project,
+            ]);
+
+        // convert HEX to rgb
+        $color = implode(', ', array_map('hexdec', str_split(str_replace('#', '', $project->getColor()), 2)));
+        $project->setColor($color);
+
+        return $this->render('default/project.html.twig', [
+            'current_project' => $project,
+            'reviews' => $reviews,
+        ]);
+    }
+
+    /**
+     * @Route("/about", name="app__about")
+     */
+    public function aboutAction()
+    {
+        $about = $this->getDoctrine()->getRepository('AppBundle:About')->findOneBy([]);
+
+        $teammates = $this->getDoctrine()->getRepository('AppBundle:Teammate')->findBy(
+            [
+                'isActive' => true,
+            ],
+            [
+                'sortOrder' => 'ASC',
+            ]
+        );
+        $clients = $this->getDoctrine()->getRepository('AppBundle:Client')->findBy(
+            [
+                'isActive' => true,
+            ],
+            [
+                'row'       => 'ASC',
+                'sortOrder' => 'ASC',
+            ]
+        );
+
+        return $this->render('default/about.html.twig', [
+            'about'     => $about,
+            'teammates' => $teammates,
+            'clients'   => $clients,
         ]);
     }
 
@@ -261,31 +261,6 @@ class DefaultController extends Controller
         }
 
         return $this->render('default/_slider.html.twig', $renderOpts);
-    }
-
-    /**
-     * @param string $route
-     * @param Project|null $project
-     * @return Response
-     */
-    public function sliderIconsAction($route, Project $project = null)
-    {
-        $condition = [
-            'isActive' => true,
-        ];
-        if ('app__homepage' === $route) {
-            $condition['isInSlider'] = true;
-        }
-        $projects = $this->getDoctrine()->getRepository('AppBundle:Project')->findBy($condition);
-
-        $renderOpts = [
-            'projects' => $projects,
-        ];
-        if (null !== $project) {
-            $renderOpts['current_project'] = $project;
-        }
-
-        return $this->render('default/_slider_icons.html.twig', $renderOpts);
     }
 
     /**

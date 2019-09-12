@@ -4,7 +4,6 @@ namespace AppBundle\Admin;
 
 use AppBundle\Entity\Project;
 use AppBundle\Entity\ProjectPhoto;
-use AppBundle\Entity\Review;
 use KunicMarko\ColorPickerBundle\Form\Type\ColorPickerType;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
@@ -163,26 +162,6 @@ class ProjectAdmin extends AbstractAdmin
                     ],
                 ]
             )
-            ->add('descriptionBackgroundImage', 'sonata_media_type', [
-                    'label'    => 'Фон описания',
-                    'provider' => 'sonata.media.provider.image',
-                    'context'  => 'project_background_image',
-                    'required' => false,
-                    'attr'     => [
-                        'class' => 'admin-project-image',
-                    ],
-                ]
-            )
-            ->add('stripeBackgroundImage', 'sonata_media_type', [
-                    'label'    => 'Фон полоски',
-                    'provider' => 'sonata.media.provider.image',
-                    'context'  => 'project_background_image',
-                    'required' => false,
-                    'attr'     => [
-                        'class' => 'admin-project-image',
-                    ],
-                ]
-            )
             ->add('formBackgroundImage', 'sonata_media_type', [
                     'label'    => 'Фон формы',
                     'provider' => 'sonata.media.provider.image',
@@ -191,16 +170,6 @@ class ProjectAdmin extends AbstractAdmin
                     'attr'     => [
                         'class' => 'admin-project-image',
                     ],
-                ]
-            )
-            ->add('reviews', 'sonata_type_collection',
-                [
-                    'label' => 'Отзывы',
-                    'btn_add' => 'Добавить отзыв',
-                ],
-                [
-                    'edit'     => 'inline',
-                    'sortable' => 'position',
                 ]
             )
             ->add('icon', null, [
@@ -218,10 +187,6 @@ class ProjectAdmin extends AbstractAdmin
             /* @var $photo ProjectPhoto */
             $photo->setProject($project);
         }
-        foreach ($project->getReviews() as $review) {
-            /* @var $review Review */
-            $review->setProject($project);
-        }
     }
 
     /**
@@ -233,11 +198,6 @@ class ProjectAdmin extends AbstractAdmin
             /* @var $photo ProjectPhoto */
             $photo->setProject($project);
         }
-        foreach ($project->getReviews() as $review) {
-            /* @var $review Review */
-            $review->setProject($project);
-        }
         $project->setPhotos($project->getPhotos());
-        $project->setReviews($project->getReviews());
     }
 }

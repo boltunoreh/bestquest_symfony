@@ -1,47 +1,70 @@
 <!DOCTYPE html>
-<html>
-
+<!--[if lt IE 7]>
+<html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>
+<html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>
+<html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]> ><! <![endif]-->
+<html class='no-js'>
+<!-- <![endif] -->
 <head>
     <meta charset='utf-8'>
     <meta content='IE=edge,chrome=1' http-equiv='X-UA-Compatible'>
-    <meta name="viewport" content="width=1280, maximum-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Use title if it's in the page YAML frontmatter -->
     <title>Best Quest</title>
     <meta content='' name='description'>
     <link rel="shortcut icon" href="{{ asset('img/favicon.ico') }}" type="image/x-icon">
     <link rel="icon" href="{{ asset('img/favicon.ico') }}" type="image/x-icon">
+    <link href="http://fonts.googleapis.com/css?family=PT+Sans+Caption:400,700&amp;subset=latin,cyrillic"
+          rel="stylesheet" type="text/css"/>
+    <link href="http://fonts.googleapis.com/css?family=PT+Sans:400,700&amp;subset=latin,cyrillic" rel="stylesheet"
+          type="text/css"/>
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800&amp;subset=latin,cyrillic"
+          rel="stylesheet" type="text/css"/>
     {% block stylesheets %}
-        <link
-                href="https://fonts.googleapis.com/css?family=Roboto:400,500,700%7CRubik:400,500,700&display=swap&subset=cyrillic"
-                rel="stylesheet">
-        <link rel="stylesheet" href="{{ asset('libs/swiper/swiper.min.css') }}">
-        <link rel="stylesheet" href="{{ asset('css/style-min.css') }}">
+        <link href="{{ asset('libs/old-styles/application.css') }}" rel="stylesheet" type="text/css"/>
+        <link href="{{ asset('libs/old-styles/styles.css') }}" rel="stylesheet" type="text/css"/>
     {% endblock %}
     {% block custom_styles %}
+        <style>
+            {% if current_project is defined %}
+            .logo-wrapper {
+                background-color: {{ current_project.color }};
+            }
+
+            {% else %}
+            .logo-wrapper {
+                background-color: #E20000;
+            }
+
+            {% endif %}
+        </style>
     {% endblock %}
-    <style>
-        {% if current_project is defined %}
-        .logo-wrapper {
-            background-color: {{ current_project.color }};
-        }
-
-        {% else %}
-        .logo-wrapper {
-            background-color: #E20000;
-        }
-
-        {% endif %}
-    </style>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
-</head>
 
+    <script src="{{ asset('libs/old-main.js') }}" type="text/javascript"></script>
+</head>
 <body class='{% block bodyclass %}index{% endblock %}'>
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser
+    today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to
+    better experience this site.</p>
+<![endif]-->
 {% block header %}
     <header class="l-header">
-        <div class="l-header__inner {% block header_div_additional_class %}{% endblock %}">
+        <div class="l-header__inner">
             {% block header_logo %}
-                <a class="logo-wrapper logo-wrapper--small unvisible" href="{{ path('app__homepage') }}" id="logotype" style="opacity: 1;">
-                    <img src="{{ asset('img/small-logo.svg') }}" alt="логотип" width="48" height="48">
+                <a class="logo-wrapper small" href="/" id="logotype">
+                    <h1 class="logotype">
+                                <span class="active"
+                                      style="display: inline-block; position: relative; opacity: 1; transform: translate(0px, 0px);">Best Quest</span>
+                        <span class=""
+                              style="position: relative; opacity: 1; display: none; transform: translate(0px, 0px);">Настоящие Игры</span>
+                    </h1>
                 </a>
             {% endblock %}
             <nav class="l-header__nav">
@@ -63,14 +86,10 @@
                     <a class="yt"
                        href="https://www.youtube.com/channel/UCFYNEDiE5zWuEaYBXI00_iA/videos?view_as=subscriber"
                        target="_blank">
-                        <svg width="40" height="40" viewBox="0 0 40 40">
-                            <use xlink:href="{{ asset('img/youtube.svg') }}#youtube"></use>
-                        </svg>
+                        <img src="{{ asset("img/youtube.png") }}" width="20">
                     </a>
                     <a class="instagram" href="https://www.instagram.com/bqspb.ru/" target="_blank">
-                        <svg width="40" height="40" viewBox="0 0 40 40">
-                            <use xlink:href="{{ asset('img/instagram.svg') }}#instagram"></use>
-                        </svg>
+                        <img src="{{ asset("img/instagram.png") }}" width="20">
                     </a>
                 </div>
             </div>
@@ -82,13 +101,38 @@
 {% endblock %}
 
 {% block footer %}
+    <footer class="l-footer b-skew b-skew-top dark">
+        <div class="l-footer__inner">
+            <nav class="l-footer__nav">
+                <dl class="l-footer__menu">
+                    <dt class="title">Best Quest</dt>
+                    <dd class="item"><a href="{{ path('app__about') }}#team">Команда</a></dd>
+                    <dd class="item"><a href="{{ path('app__about') }}#clients">Клиенты</a></dd>
+                </dl>
+                <dl class="l-footer__menu">
+                    <dt class="title">Проекты</dt>
+                    {{ render(controller('AppBundle:Default:footerProjects')) }}
+                </dl>
+                <dl class="l-footer__menu" id="contacts">
+                    <dt class="title">Контакты</dt>
+                    <dd class="item">
+                        <a href="tel:+78125746512">+7 (812) 574 65 12</a>
+                    </dd>
+                    <dd class="item">
+                        <a href="tel:+79219763876">+7 (921) 976 38 76</a>
+                    </dd>
+                    <dd class="item">
+                        <a href="mailto:info@best-quest.ru">info@best-quest.ru</a>
+                    </dd>
+                </dl>
+            </nav>
+            <div class="createdby">
+            </div>
+        </div>
+    </footer>
 {% endblock %}
 
 {% block footer_js %}
-    <div class="mobile-overlay">
-        <img src="{{ asset('img/bq-rotate.svg') }}" alt="заглушка">
-    </div>
-
     <!--— Yandex.Metrika counter —-->
     <script type="text/javascript">
         (function (d, w, c) {
@@ -119,11 +163,9 @@
                 f();
             }
         })(document, window, "yandex_metrika_callbacks");
-
     </script>
     <noscript>
-        &lt;div&gt;&lt;img src="//mc.yandex.ru/watch/30731098" style="position:absolute; left:-9999px;"
-        alt=""/&gt;&lt;/div&gt;
+        &lt;div&gt;&lt;img src="//mc.yandex.ru/watch/30731098" style="position:absolute; left:-9999px;" alt=""/&gt;&lt;/div&gt;
     </noscript>
     <!--— /Yandex.Metrika counter —-->
     <script>
@@ -141,11 +183,9 @@
 
         ga('create', 'UA-25272388-1', 'auto');
         ga('send', 'pageview');
-
     </script>
     <script src="{{ asset('libs/swiper/swiper.min.js') }}"></script>
     <script src="{{ asset('js/my-main.js') }}"></script>
 {% endblock %}
 </body>
-
 </html>

@@ -25,16 +25,6 @@ services:
         tags:
             - name: sonata.admin
               manager_type: orm
-#              group: "app.admin.group.projects"
-#              label: 'Этапы'
-    app.admin.review:
-        class: AppBundle\Admin\ReviewAdmin
-        arguments: [~, AppBundle\Entity\Review, ~]
-        tags:
-            - name: sonata.admin
-              manager_type: orm
-              group: "app.admin.group.projects"
-              label: 'Отзывы'
     app.admin.about:
         class: AppBundle\Admin\AboutAdmin
         arguments: [~, AppBundle\Entity\About, ~]

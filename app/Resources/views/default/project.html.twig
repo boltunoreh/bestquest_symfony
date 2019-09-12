@@ -1,181 +1,157 @@
 {% extends 'base.html.twig' %}
 
-{% block stylesheets %}
-    <link href="{{ asset('css/normalize.css') }}" rel="stylesheet" type="text/css"/>
-    <link href="{{ asset('css/application.css') }}" rel="stylesheet" type="text/css"/>
-    <link href="{{ asset('css/custom.css') }}" rel="stylesheet" type="text/css"/>
-{% endblock %}
-{% block custom_styles %}
-    <style>
-        .l-section-home{
-            background-image:-webkit-linear-gradient(transparent 0%, #232323 70%, #232323 100%),url({% path current_project.headerBackgroundImage, 'medium' %});
-            background-image:linear-gradient(transparent 0%, #232323 70%, #232323 100%),url({% path current_project.headerBackgroundImage, 'medium' %});
-        }
-        .l-section-descr{
-            background-image:url({% path current_project.descriptionBackgroundImage, 'medium' %});
-            background-position:center center;
-        }
-        .l-section-narrow{
-            background-image:url({% path current_project.stripeBackgroundImage, 'medium' %});
-            background-position:0 -200px;
-        }
-        .order>a{
-            background: rgba({{ current_project.color }}, 1);
-        }
-        .l-section-home .b-text-wrapper{
-            background: rgba({{ current_project.color }}, 0.8);
-        }
-        .l-section-home .b-text-wrapper.b-skew-top:before{
-            border-bottom-color: rgba({{ current_project.color }}, 0.8);
-        }
-        .l-section-home .b-text-wrapper.b-skew-bottom:after{
-            border-top-color: rgba({{ current_project.color }}, 0.8);
-        }
-        .b-order>.item:before{
-            background: rgba({{ current_project.color }}, 1);
-        }
-        .b-bordered-block{
-            border: 3px solid rgba({{ current_project.color }}, 1);
-        }
-        input[type="button"], input[type="reset"], input[type="submit"], button, .s-button{
-            background: rgba({{ current_project.color }}, 1);
-        }
-    </style>
-{% endblock %}
-
 {% block bodyclass %}sb_quest{% endblock %}
+{% block header_div_additional_class %}l-header__inner--small{% endblock %}
 
 {% block content %}
-    <main class="l-content">
-        <section class="l-section l-section-home b-skew b-skew-bottom dark">
-            <div class="b-text-wrapper b-skew b-skew-top b-skew-bottom">
-                <h1>{{ current_project.title }}</h1>
-            </div>
-            <div class="b-bottom-icons">
-                <div class="icon type">
-                    <img src="{{ asset("img/icons/type.png") }}">
-                    <p class="icontext">{{ current_project.type|raw }}</p>
-                </div>
-                <div class="icon people">
-                    <img src="{{ asset("img/icons/people.png") }}">
-                    <p class="icontext">{{ current_project.members|raw }}</p>
-                </div>
-                <div class="icon house">
-                    <img src="{{ asset("img/icons/location.png") }}">
-                    <p class="icontext">{{ current_project.place|raw }}</p>
-                </div>
-                <div class="icon car">
-                    <img src="{{ asset("img/icons/walk.png") }}">
-                    <p class="icontext">{{ current_project.movementType|raw }}</p>
-                </div>
-                <div class="icon clock">
-                    <img src="{{ asset("img/icons/clock.png") }}">
-                    <p class="icontext">{{ current_project.duration|raw }}</p>
-                </div>
-                <div class="icon phone">
-                    <img src="{{ asset("img/icons/phone.png") }}">
-                    <p class="icontext">{{ current_project.gadget|raw }}</p>
-                </div>
-                <div class="icon age">
-                    <img src="{{ asset("img/icons/age.png") }}">
-                    <p class="icontext">{{ current_project.age|raw }}</p>
-                </div>
-            </div>
-        </section>
-        <section class="l-section l-section-descr">
-            <div class="b-text-wrapper">
-                <article>
-                    <h2 class="s-title">Описание</h2>
-                    <p>{{ current_project.description|raw }}</p>
-                </article>
-            </div>
-        </section>
-        <section class="l-section l-section-order b-skew b-skew-top b-skew-bottom light">
-            <h2 class="s-title">Регламент</h2>
-            <ol class="b-order">
-                {% for stage in current_project.stages %}
-                    <li class="item">
-                        <div class="b-order-block">
-                            <h3>{{ stage.title }}</h3>
-                            <p>{{ stage.description|raw }}</p>
+    <main class="event">
+        <div class="intro block">
+            <div class="intro__wrapper block__wrapper" data-parallax="scroll" data-speed="1.2" data-bleed="10"
+                 data-image-src="{% path current_project.headerBackgroundImage, 'medium' %}">
+                <div class="intro__main">
+                    <div class="intro__main-wrap">
+                        <ul class="intro__list">
+                            <li class="intro__item intro__item--game">
+                                <span>{{ current_project.type|raw }}</span>
+                            </li>
+                            <li class="intro__item intro__item--smile">
+                                <span>{{ current_project.members|raw }}</span>
+                            </li>
+                            <li class="intro__item intro__item--pin">
+                                <span>{{ current_project.place|raw }}</span>
+                            </li>
+                            <li class="intro__item intro__item--run">
+                                <span>{{ current_project.movementType|raw }}</span>
+                            </li>
+                            <li class="intro__item intro__item--time">
+                                <span>{{ current_project.duration|raw }}</span>
+                            </li>
+                            <li class="intro__item intro__item--tel">
+                                <span>{{ current_project.gadget|raw }}</span>
+                            </li>
+                            <li class="intro__item intro__item--deer">
+                                <span>{{ current_project.age|raw }}</span>
+                            </li>
+                        </ul>
+                        <div class="intro__card">
+                            <h2>{{ current_project.title }}</h2>
+                            <p>{{ current_project.description|raw }}</p>
                         </div>
-                    </li>
-                {% endfor %}
-            </ol>
-        </section>
-        <section class="l-section l-section-photos b-skew b-skew-bottom dark">
-            <h2 class="s-title white">Фотографии</h2>
-            <div class="b-carousel" id="photos" style="overflow: hidden;">
-                <ul class="list" style="transform: translateZ(0px) translateX(640px); width: 8746px;">
-                    {% for photo in current_project.photos %}
-                        <li class="item">
-                            <img width="634" height="495" src="{% path photo.image, 'medium' %}">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <section class="regulations block">
+            <div class="regulations__wrapper block__wrapper">
+                <h2 class="regulations__title title">Регламент</h2>
+                <ul class="regulations__list">
+                    {% for stage in current_project.stages %}
+                        {% if loop.index % 2 > 0 %}
+                            {% set stage_class = 'stage--fs' %}
+                            {% set stage_i_class = '' %}
+                        {% else %}
+                            {% set stage_class = 'stage--fe' %}
+                            {% set stage_i_class = 'stage__side--left' %}
+                        {% endif %}
+                        <li class="regulations__item">
+                            <div class="stage {{ stage_class }}">
+                                <div class="stage__wrapper">
+                                    <div class="stage__main">
+                                        <h3>{{ stage.title }}</h3>
+                                        <p>{{ stage.description|raw }}</p>
+                                    </div>
+                                    <div class="stage__side {{ stage_i_class }}">{{ loop.index }}</div>
+                                </div>
+                            </div>
                         </li>
                     {% endfor %}
                 </ul>
-                <div class="b-carousel__next">
-                    <svg enable-background="new 0 0 45.8 45.8" height="45px" space="preserve" version="1.1" viewBox="0 0 45.8 45.8" width="45px" x="0px" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" y="0px">
-                        <g>
-                            <path d="M32.4,23.7H12.1c-0.4,0-0.6-0.4-0.6-0.9c0-0.5,0.3-0.9,0.6-0.9h20.3c0.4,0,0.6,0.4,0.6,0.9
-        C33.1,23.3,32.8,23.7,32.4,23.7z" fill="#FFFFFF"></path>
-                            <path d="M22.9,45.8C10.3,45.8,0,35.5,0,22.9S10.3,0,22.9,0s22.9,10.3,22.9,22.9S35.5,45.8,22.9,45.8z M22.9,1.7
-        c-11.7,0-21.1,9.5-21.1,21.1C1.7,34.5,11.2,44,22.9,44C34.5,44,44,34.5,44,22.9C44,11.2,34.5,1.7,22.9,1.7z" fill="#FFFFFF"></path>
-                            <polygon fill="#FFFFFF" points="29.9,16.3 36.5,22.9 29.9,29.4   "></polygon>
-                        </g>
-                    </svg>
-                </div>
-                <div class="b-carousel__prev disabled">
-                    <svg enable-background="new 0 0 45.8 45.8" height="45px" id="Layer_1" space="preserve" version="1.1" viewBox="0 0 45.8 45.8" width="45px" x="0px" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" y="0px">
-                        <g>
-                            <path d="M13.3,22.1h20.3c0.4,0,0.6,0.4,0.6,0.9c0,0.5-0.3,0.9-0.6,0.9H13.3c-0.4,0-0.6-0.4-0.6-0.9
-        C12.7,22.5,13,22.1,13.3,22.1z" fill="#FFFFFF"></path>
-                            <path d="M22.9,0c12.6,0,22.9,10.3,22.9,22.9S35.5,45.8,22.9,45.8C10.3,45.8,0,35.5,0,22.9S10.3,0,22.9,0z M22.9,44
-     C34.5,44,44,34.5,44,22.9c0-11.7-9.5-21.1-21.1-21.1c-11.7,0-21.1,9.5-21.1,21.1C1.7,34.5,11.2,44,22.9,44z" fill="#FFFFFF"></path>
-                            <polygon fill="#FFFFFF" points="15.8,29.5 9.2,22.9 15.8,16.3    "></polygon>
-                        </g>
-                    </svg>
+            </div>
+        </section>
+        <section class="gallery block">
+            <div class="gallery__wrapper block__wrapper">
+                <h2 class="gallery__title title">Фотографии</h2>
+                <div class="swiper-container gallery__container">
+                    <div class="swiper-wrapper">
+                        {% for photo in current_project.photos %}
+                        <div class="swiper-slide gallery__slide">
+                            <div class="gallery__photo">
+                                <img src="{% path photo.image, 'medium' %}" alt="">
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <!-- Add Arrows -->
+                    <div class="gallery__nav">
+                        <button class="gallery__arrow gallery__arrow--prev" type="button" aria-label="Предыдущее фото">
+                            <svg width="48" height="48" viewBox="0 0 48 48">
+                                <use xlink:href="{{ asset('img/sprite/sprite.svg') }}#arrow-left"></use>
+                            </svg>
+                        </button>
+                        <button class="gallery__arrow gallery__arrow--next" type="button" aria-label="Следующее фото">
+                            <svg width="48" height="48" viewBox="0 0 48 48">
+                                <use xlink:href="{{ asset('img/sprite/sprite.svg') }}#arrow-right"></use>
+                            </svg>
+                        </button>
+                    </div>
                 </div>
             </div>
         </section>
-        <section class="l-section l-section-narrow"></section>
-        {% if reviews|length > 0 %}
-            <section class="l-section l-section-reviews b-skew b-skew-bottom light">
-                <div class="bg-top"></div>
-                <div class="l-section__body b-skew b-skew-top light">
-                    <h2 class="s-title">Отзывы</h2>
-                    {% for review in reviews %}
-                        <div class="b-bordered-block b-review">
-                            <div class="b-review__top">
-                                <div class="avatar"><img width="128" height="128" src="{% path review.photo, 'medium' %}"></div>
-                                <div class="name">{{ review.author|raw }}</div>
-                                <div class="company">{{ review.company }}</div>
-                                <div class="position">{{ review.positionInCompany }}</div>
-                            </div>
-                            <div class="b-review__bottom">
-                                <p>{{ review.content|raw }}</p>
-                            </div>
-                        </div>
-                    {% endfor %}
-                </div>
-            </section>
-        {% endif %}
-
-        <section class="l-section l-section-projects b-skew b-skew-top dark">
-            <h2 class="s-title main-color">Другие проекты</h2>
-            {{ render(controller(
-                'AppBundle:Default:slider',
-                {
-                    'project': current_project,
-                    'route': app.request.attributes.get('_route')
-                }
-            )) }}
-            {{ render(controller(
-                'AppBundle:Default:sliderIcons',
-                {
-                    'project': current_project,
-                    'route': app.request.attributes.get('_route')
-                }
-            )) }}
-        </section>
+        <div class="projects block">
+            <div class="projects__wrapper block__wrapper">
+                <h2 class="projects__title title">Другие проекты</h2>
+                {{ render(controller('AppBundle:Default:slider', {'route': app.request.attributes.get('_route') })) }}
+            </div>
+        </div>
     </main>
+{% endblock %}
+
+{% block footer %}
+    <footer class="footer block">
+        <div class="footer__wrapper block__wrapper">
+            <div class="footer__col">
+                <h3>Best quest</h3>
+                <ul>
+                    <li>
+                        <a class="footer__link" href="{{ path('app__about') }}#team">Команда</a>
+                    </li>
+                    <li>
+                        <a class="footer__link" href="{{ path('app__about') }}#clients">Клиенты</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="footer__col">
+                <h3>Проекты</h3>
+                {{ render(controller('AppBundle:Default:footerProjects')) }}
+            </div>
+            <div class="footer__col footer__col--margin">
+                <h3>Контакты</h3>
+                <ul>
+                    <li>
+                        <a class="footer__link" href="tel:+78125746512">+7 (812) 574 65 12</a>
+                    </li>
+                    <li>
+                        <a class="footer__link" href="tel:+79219763876">+7 (921) 976 38 76</a>
+                    </li>
+                    <li>
+                        <a class="footer__link" href="mailto:info@best-quest.ru">info@best-quest.ru</a>
+                    </li>
+                    <li>
+                        {% if current_project is defined %}
+                            <a class="footer__link"  href='{{ path('app__order', {'slug': current_project.slug }) }}'>Заявка</a>
+                        {% else %}
+                            <a class="footer__link"  href='{{ path('app__order') }}'>Заявка</a>
+                        {% endif %}
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+{% endblock %}
+{% block footer_js %}
+    <script src="{{ asset('libs/svgxuse.min.js') }}" async defer></script>
+    <script src="{{ asset('libs/swiper/swiper.min.js') }}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="{{ asset('libs/parallax/parallax.min.js') }}"></script>
+    <script src="{{ asset('js/my-main.js') }}"></script>
 {% endblock %}

@@ -1,6 +1,10 @@
-{% extends 'base.html.twig' %}
+{% extends 'base_old.html.twig' %}
+
+{% block custom_styles %}
+{% endblock %}
 
 {% block bodyclass %}exclusive{% endblock %}
+
 {% block content %}
     <main class="l-content">
         <section class="l-section l-section-apply" id="apply">
@@ -48,16 +52,5 @@
                 <button class="s-button block" type="submit">Отправить</button>
             {{ form_end(order_form, {'render_rest': false}) }}
         </section>
-        <section class="l-section l-section-projects b-skew b-skew-top dark">
-            <h2 class="s-title main-color">Другие проекты</h2>
-            {{ render(controller('AppBundle:Default:slider', {'route': app.request.attributes.get('_route') })) }}
-            {{ render(controller('AppBundle:Default:sliderIcons', {'route': app.request.attributes.get('_route') })) }}
-        </section>
     </main>
-{% endblock %}
-
-{% block footer_js %}
-    {{ parent() }}
-
-    <script src="/js/form.js" type="text/javascript"></script>
 {% endblock %}
