@@ -53,9 +53,14 @@
                             {% set stage_class = 'stage--fe' %}
                             {% set stage_i_class = 'stage__side--left' %}
                         {% endif %}
+                        {% if loop.last %}
+                            {% set stage_wrapper_class = 'stage__wrapper--last' %}
+                        {% else %}
+                            {% set stage_wrapper_class = '' %}
+                        {% endif %}
                         <li class="regulations__item">
                             <div class="stage {{ stage_class }}">
-                                <div class="stage__wrapper">
+                                <div class="stage__wrapper {{ stage_wrapper_class }}">
                                     <div class="stage__main">
                                         <h3>{{ stage.title }}</h3>
                                         <p>{{ stage.description|raw }}</p>

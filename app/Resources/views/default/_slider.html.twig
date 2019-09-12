@@ -3,28 +3,29 @@
         <div class="slider">
             <ul class="swiper-wrapper slider__wrap">
                 {% for project in projects %}
-                <li class="swiper-slide slider__slide"
-                    style="display: {{ project.isInSlider == 0 ? 'none' : 'block' }};">
-                    <div class="slide">
-                        <div class="slide__top-wrap">
-                            <div class="slide__overlay">
-                                <img src="{% path project.sliderLargeImage, 'medium' %}" alt="">
+                    {% if project.isInSlider == 1 %}
+                        <li class="swiper-slide slider__slide">
+                            <div class="slide">
+                                <div class="slide__top-wrap">
+                                    <div class="slide__overlay">
+                                        <img src="{% path project.sliderLargeImage, 'medium' %}" alt="">
+                                    </div>
+                                    <div class="slide__iframe">
+                                        <iframe width="560" height="315"
+                                                src="https://www.youtube.com/embed/{{ project.videoId }}?enablejsapi=1"
+                                                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                                                allowfullscreen></iframe>
+                                        <img src="{% path project.sliderLargeImage, 'medium' %}" alt="">
+                                    </div>
+                                </div>
+                                <div class="slide__bottom-wrap">
+                                    <h2 class="slide__title">{{ project.title|raw }}</h2>
+                                    <p class="slide__text">{{ project.sliderDescription|raw }}</p>
+                                    <a class="slide__link" href="{{ path('app__project', {'slug': project.slug}) }}">подробнее</a>
+                                </div>
                             </div>
-                            <div class="slide__iframe">
-                                <iframe width="560" height="315"
-                                        src="https://www.youtube.com/embed/{{ project.videoId }}?enablejsapi=1"
-                                        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                                        allowfullscreen></iframe>
-                                <img src="{% path project.sliderLargeImage, 'medium' %}" alt="">
-                            </div>
-                        </div>
-                        <div class="slide__bottom-wrap">
-                            <h2 class="slide__title">{{ project.title|raw }}</h2>
-                            <p class="slide__text">{{ project.sliderDescription|raw }}</p>
-                            <a class="slide__link" href="{{ path('app__project', {'slug': project.slug}) }}">подробнее</a>
-                        </div>
-                    </div>
-                </li>
+                        </li>
+                    {% endif %}
                 {% endfor %}
             </ul>
             <!-- Add Arrows -->
