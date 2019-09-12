@@ -101,32 +101,43 @@
 {% endblock %}
 
 {% block footer %}
-    <footer class="l-footer b-skew b-skew-top dark">
-        <div class="l-footer__inner">
-            <nav class="l-footer__nav">
-                <dl class="l-footer__menu">
-                    <dt class="title">Best Quest</dt>
-                    <dd class="item"><a href="{{ path('app__about') }}#team">Команда</a></dd>
-                    <dd class="item"><a href="{{ path('app__about') }}#clients">Клиенты</a></dd>
-                </dl>
-                <dl class="l-footer__menu">
-                    <dt class="title">Проекты</dt>
-                    {{ render(controller('AppBundle:Default:footerProjects')) }}
-                </dl>
-                <dl class="l-footer__menu" id="contacts">
-                    <dt class="title">Контакты</dt>
-                    <dd class="item">
-                        <a href="tel:+78125746512">+7 (812) 574 65 12</a>
-                    </dd>
-                    <dd class="item">
-                        <a href="tel:+79219763876">+7 (921) 976 38 76</a>
-                    </dd>
-                    <dd class="item">
-                        <a href="mailto:info@best-quest.ru">info@best-quest.ru</a>
-                    </dd>
-                </dl>
-            </nav>
-            <div class="createdby">
+    <footer class="footer block">
+        <div class="footer__wrapper block__wrapper">
+            <div class="footer__col">
+                <h3>Best quest</h3>
+                <ul>
+                    <li>
+                        <a class="footer__link" href="{{ path('app__about') }}#team">Команда</a>
+                    </li>
+                    <li>
+                        <a class="footer__link" href="{{ path('app__about') }}#clients">Клиенты</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="footer__col">
+                <h3>Проекты</h3>
+                {{ render(controller('AppBundle:Default:footerProjects')) }}
+            </div>
+            <div class="footer__col footer__col--margin">
+                <h3>Контакты</h3>
+                <ul>
+                    <li>
+                        <a class="footer__link" href="tel:+78125746512">+7 (812) 574 65 12</a>
+                    </li>
+                    <li>
+                        <a class="footer__link" href="tel:+79219763876">+7 (921) 976 38 76</a>
+                    </li>
+                    <li>
+                        <a class="footer__link" href="mailto:info@best-quest.ru">info@best-quest.ru</a>
+                    </li>
+                    <li>
+                        {% if current_project is defined %}
+                            <a class="footer__link"  href='{{ path('app__order', {'slug': current_project.slug }) }}'>Заявка</a>
+                        {% else %}
+                            <a class="footer__link"  href='{{ path('app__order') }}'>Заявка</a>
+                        {% endif %}
+                    </li>
+                </ul>
             </div>
         </div>
     </footer>

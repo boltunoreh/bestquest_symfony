@@ -17,20 +17,20 @@
         <link rel="stylesheet" href="{{ asset('css/style-min.css') }}">
     {% endblock %}
     {% block custom_styles %}
+        <style>
+            {% if current_project is defined %}
+            .logo-wrapper {
+                background-color: {{ current_project.color }};
+            }
+
+            {% else %}
+            .logo-wrapper {
+                background-color: #E20000;
+            }
+
+            {% endif %}
+        </style>
     {% endblock %}
-    <style>
-        {% if current_project is defined %}
-        .logo-wrapper {
-            background-color: {{ current_project.color }};
-        }
-
-        {% else %}
-        .logo-wrapper {
-            background-color: #E20000;
-        }
-
-        {% endif %}
-    </style>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
 </head>
