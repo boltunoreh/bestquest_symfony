@@ -251,7 +251,7 @@ class DefaultController extends Controller
         if ('app__homepage' === $route) {
             $condition['isInSlider'] = true;
         }
-        $projects = $this->getDoctrine()->getRepository('AppBundle:Project')->findBy($condition);
+        $projects = $this->getDoctrine()->getRepository('AppBundle:Project')->findBy($condition, ['sortOrder' => 'ASC']);
 
         $renderOpts = [
             'projects' => $projects,
