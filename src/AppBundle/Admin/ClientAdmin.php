@@ -15,8 +15,8 @@ class ClientAdmin extends AbstractAdmin
     {
         $proxyQuery = parent::createQuery($context);
 
-        $proxyQuery->orderBy('o.row', 'ASC');
-        $proxyQuery->addOrderBy('o.sortOrder', 'ASC');
+//        $proxyQuery->orderBy('o.row', 'ASC');
+//        $proxyQuery->addOrderBy('o.sortOrder', 'ASC');
 
         return $proxyQuery;
     }

@@ -249,21 +249,8 @@ body {
     background-position: bottom;
 }
 
-/*EXCLUSIVE*/
-.exclusive .l-section-apply {
-    background: white;
-}
-
-.exclusive input[type="button"], .exclusive input[type="reset"], .exclusive input[type="submit"], .exclusive button, .exclusive .s-button {
-    background: #00e600
-}
-
 .logo-wrapper {
     background-color: #00e600;
-}
-
-.exclusive .s-title .main-color {
-    color: #00e600
 }
 
 /* OTHER */

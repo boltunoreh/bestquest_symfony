@@ -84,19 +84,6 @@ class ProjectAdmin extends AbstractAdmin
             ->add('sliderAnnotation', TextareaType::class, [
                 'label' => 'Аннотация для слайдера',
             ])
-            ->add('sliderDescription', TextareaType::class, [
-                'label' => 'Описание для слайдера',
-            ])
-            ->add('sliderSmallImage', 'sonata_media_type', [
-                    'label'    => 'Изображение слайдера (маленькое)',
-                    'provider' => 'sonata.media.provider.image',
-                    'context'  => 'project_slider_small_image',
-                    'required' => false,
-                    'attr'     => [
-                        'class' => 'admin-project-image',
-                    ],
-                ]
-            )
             ->add('sliderLargeImage', 'sonata_media_type', [
                     'label'    => 'Изображение слайдера (большое)',
                     'provider' => 'sonata.media.provider.image',
@@ -172,9 +159,6 @@ class ProjectAdmin extends AbstractAdmin
                     ],
                 ]
             )
-            ->add('icon', null, [
-                'label' => 'Иконка',
-            ])
         ;
     }
 

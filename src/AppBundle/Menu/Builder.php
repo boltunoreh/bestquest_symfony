@@ -27,9 +27,8 @@ class Builder implements ContainerAwareInterface
 
         // Projects submenu
         $em = $this->container->get('doctrine')->getManager();
-        $projects = $em->getRepository('AppBundle:Project')->findBy([
-            'isActive' => true,
-        ]);
+        $projects = $em->getRepository('AppBundle:Project')
+            ->findBy(['isActive' => true], ['sortOrder' => 'ASC']);
 
         /** @var Project $project */
         foreach ($projects as $project) {

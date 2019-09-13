@@ -150,7 +150,7 @@ class Project
     private $description;
 
     /**
-     * @var Review
+     * @var Stage
      * @ORM\OneToMany(targetEntity="Stage", mappedBy="project", cascade={"persist"}, orphanRemoval=true)
      */
     private $stages;
@@ -196,12 +196,6 @@ class Project
     private $stripeBackgroundImage;
 
     /**
-     * @var Review
-     * @ORM\OneToMany(targetEntity="Review", mappedBy="project", cascade={"persist"}, orphanRemoval=true)
-     */
-    private $reviews;
-
-    /**
      * @var Media
      * @ORM\ManyToOne(
      *  targetEntity="Application\Sonata\MediaBundle\Entity\Media",
@@ -231,7 +225,6 @@ class Project
     {
         $this->photos     = new ArrayCollection();
         $this->stages     = new ArrayCollection();
-        $this->reviews    = new ArrayCollection();
     }
 
     /**
@@ -756,49 +749,6 @@ class Project
     public function getStripeBackgroundImage()
     {
         return $this->stripeBackgroundImage;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getReviews()
-    {
-        return $this->reviews;
-    }
-
-    /**
-     * @param mixed $reviews
-     * @return $this
-     */
-    public function setReviews($reviews)
-    {
-        $this->reviews = $reviews;
-
-        return $this;
-    }
-
-    /**
-     * Add review
-     *
-     * @param Review $review
-     *
-     * @return $this
-     */
-    public function addReview(Review $review)
-    {
-        $this->reviews->add($review);
-
-        return $this;
-    }
-
-    /**
-     * Remove review
-     *
-     * @param Review $review
-     */
-    public function removeReview(Review $review)
-    {
-        $this->reviews->removeElement($review);
     }
 
     /**

@@ -52,7 +52,7 @@ class Stage
 
     /**
      * @var Project
-     * @ORM\ManyToOne(targetEntity="Project", inversedBy="reviews")
+     * @ORM\ManyToOne(targetEntity="Project", inversedBy="stages")
      * @ORM\JoinColumn(name="project_id", referencedColumnName="id")
      */
     private $project;

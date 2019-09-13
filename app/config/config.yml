@@ -141,11 +141,6 @@ sonata_media:
                 - sonata.media.provider.image
             formats:
                 medium: { height: 480 , width: 600 , quality: 100}
-        project_review_photo:
-            providers:
-                - sonata.media.provider.image
-            formats:
-                medium: { height: 128 , width: 128 , quality: 100}
         teammate:
             providers:
                 - sonata.media.provider.image
