@@ -4,12 +4,14 @@ namespace AppBundle\Entity;
 
 use Application\Sonata\MediaBundle\Entity\Media;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * ProjectPhoto
  *
  * @ORM\Table(name="project_photos")
  * @ORM\Entity()
+ * @Gedmo\SoftDeleteable(fieldName="deletedAt", timeAware=false)
  */
 class ProjectPhoto
 {
@@ -43,6 +45,29 @@ class ProjectPhoto
      * @ORM\Column(name="sort_order", type="integer", nullable=true)
      */
     private $sortOrder;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $deletedAt;
+
+    /**
+     * @return mixed
+     */
+    public function getDeletedAt()
+    {
+        return $this->deletedAt;
+    }
+
+    /**
+     * @param mixed $deletedAt
+     * @return self
+     */
+    public function setDeletedAt($deletedAt)
+    {
+        $this->deletedAt = $deletedAt;
+        return $this;
+    }
 
     /**
      * Get id
