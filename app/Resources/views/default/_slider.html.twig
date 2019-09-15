@@ -21,7 +21,10 @@
                                 <div class="slide__bottom-wrap">
                                     <h2 class="slide__title">{{ project.title|raw }}</h2>
                                     <p class="slide__text">{{ project.sliderAnnotation|raw }}</p>
-                                    <a class="slide__link" href="{{ path('app__project', {'slug': project.slug}) }}">подробнее</a>
+                                    {% if project.isActive %}
+                                        <a class="slide__link"
+                                           href="{{ path('app__project', {'slug': project.slug}) }}">подробнее</a>
+                                    {% endif %}
                                 </div>
                             </div>
                         </li>

@@ -148,11 +148,8 @@ class DefaultController extends Controller
     public function sliderAction($route, Project $project = null)
     {
         $condition = [
-            'isActive' => true,
+            'isInSlider' => true,
         ];
-        if ('app__homepage' === $route) {
-            $condition['isInSlider'] = true;
-        }
         $projects = $this->getDoctrine()
             ->getRepository('AppBundle:Project')
             ->findBy($condition, ['sortOrder' => 'ASC']);
