@@ -64,7 +64,7 @@ class Project
     /**
      * @var string
      *
-     * @ORM\Column(name="slider_description", type="text")
+     * @ORM\Column(name="slider_description", type="text", nullable=true)
      */
     private $sliderDescription;
 
@@ -214,7 +214,7 @@ class Project
     /**
      * @var string
      *
-     * @ORM\Column(name="icon", type="text")
+     * @ORM\Column(name="icon", type="text", nullable=true)
      */
     private $icon;
 
