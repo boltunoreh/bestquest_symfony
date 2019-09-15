@@ -4,6 +4,7 @@ namespace AppBundle\Admin;
 
 use AppBundle\Entity\Project;
 use AppBundle\Entity\ProjectPhoto;
+use AppBundle\Entity\Stage;
 use KunicMarko\ColorPickerBundle\Form\Type\ColorPickerType;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
@@ -171,6 +172,10 @@ class ProjectAdmin extends AbstractAdmin
             /* @var $photo ProjectPhoto */
             $photo->setProject($project);
         }
+        foreach ($project->getStages() as $stage) {
+            /* @var $stage Stage */
+            $stage->setProject($project);
+        }
     }
 
     /**
@@ -183,5 +188,10 @@ class ProjectAdmin extends AbstractAdmin
             $photo->setProject($project);
         }
         $project->setPhotos($project->getPhotos());
+        foreach ($project->getStages() as $stage) {
+            /* @var $stage Stage */
+            $stage->setProject($project);
+        }
+        $project->setStages($project->getStages());
     }
 }

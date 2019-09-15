@@ -152,7 +152,7 @@ class Project
 
     /**
      * @var Stage
-     * @ORM\OneToMany(targetEntity="Stage", mappedBy="project", cascade={"persist"}, orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="Stage", mappedBy="project", cascade={"persist", "remove"}, orphanRemoval=true)
      */
     private $stages;
 
@@ -832,7 +832,9 @@ class Project
      */
     public function setStages($stages)
     {
-        $this->stages = $stages;
+        foreach ($stages as $stage) {
+            $this->addStage($stage);
+        }
 
         return $this;
     }
@@ -846,6 +848,7 @@ class Project
      */
     public function addStage(Stage $stage)
     {
+        $stage->setProject($this);
         $this->stages->add($stage);
 
         return $this;
