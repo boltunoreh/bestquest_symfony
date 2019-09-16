@@ -123,7 +123,7 @@ class ProjectAdmin extends AbstractAdmin
             )
             ->add('photos', 'sonata_type_collection',
                 [
-                    'label'        => 'Фото',
+                    'label'        => 'Фото (600x400)',
                     'required'     => false,
                     'by_reference' => false,
                     'attr'         => [
@@ -141,7 +141,7 @@ class ProjectAdmin extends AbstractAdmin
                 'label' => 'Цвет',
             ])
             ->add('headerBackgroundImage', 'sonata_media_type', [
-                    'label'    => 'Фон заголовка',
+                    'label'    => 'Фон проекта (2560x1720)',
                     'provider' => 'sonata.media.provider.image',
                     'context'  => 'project_background_image',
                     'required' => false,
