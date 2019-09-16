@@ -396,7 +396,7 @@ input[type="radio"].visually-hidden {
   display: -ms-flexbox;
   display: flex;
   max-width: 100%;
-  min-height: 860px;
+  min-height: 930px;
   margin-bottom: 200px;
   background-size: cover; }
 

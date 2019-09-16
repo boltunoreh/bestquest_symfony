@@ -150,6 +150,7 @@ class DefaultController extends Controller
         $condition = [
             'isInSlider' => true,
         ];
+        /** @var Project $projects */
         $projects = $this->getDoctrine()
             ->getRepository('AppBundle:Project')
             ->findBy($condition, ['sortOrder' => 'ASC']);

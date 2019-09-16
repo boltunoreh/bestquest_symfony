@@ -44,7 +44,8 @@
         <div class="phone"><a href="tel:+79219763876">+7 (921) 976 38 76</a></div>
         <div class="l-header__email"><a href="mailto:info@best-quest.ru">info@best-quest.ru</a></div>
         <div class="social">
-          <a class="yt" href="https://www.youtube.com/channel/UCFYNEDiE5zWuEaYBXI00_iA/videos?view_as=subscriber" target="_blank">
+          <a class="yt" href="https://www.youtube.com/channel/UCFYNEDiE5zWuEaYBXI00_iA/videos?view_as=subscriber"
+            target="_blank">
             <svg width="40" height="40" viewBox="0 0 40 40">
               <use xlink:href="img/youtube.svg#youtube"></use>
             </svg>
@@ -92,7 +93,8 @@
               <p>Добро пожаловать в мир спецагентов, утонченных как искусство ограблений и впечатляющих своими
                 криминальными подвигами мошенников, мировая известность которых затмевает даже самых крутых звезд
                 музыкального олимпа.</p>
-              <p>Среди них, Команда Дэнни Оушена, и она снова в игре: в этот раз они решили совершить дерзкие ограбления в
+              <p>Среди них, Команда Дэнни Оушена, и она снова в игре: в этот раз они решили совершить дерзкие ограбления
+                в
                 России.</p>
               <p>У Денни есть 24 часа собрать новых друзей. А чтобы провернуть хитроумное и совершенно сумасбродное
                 ограбление, ему придется для отвода глаз созвать светский вечер, в рамках которого он сможет проверить
@@ -447,6 +449,127 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
   <script src="libs/parallax/parallax.min.js"></script>
   <script src="js/my-main.js"></script>
+  <script>
+    let isInProgress = false;
+    const SPEED = 600;
+    let activeIndex = 1;
+    const bulletsText = [
+      `Друзья Оушена`,
+      `Платформа Emotion`,
+      `Первооткрыватели`,
+      `Шерлок`,
+      `Игры Героев`,
+      `Время первых`,
+      `Спецпроект`,
+    ];
+    const slides = document.querySelectorAll(`.slide`);
+    const iframesArray = Array.from(document.querySelectorAll(`.slide`)).map((slide) => slide.querySelector(`iframe`))
+      .filter((item) => !!item);
+
+    const swiper = new Swiper(`.slider`, {
+      pagination: {
+        el: `.slider-pagination`,
+        clickable: true,
+        renderBullet: function (index, className) {
+          return `<button type="button" class="slider__bullet ${className}"> <span class="slider__bullet-name">${bulletsText[index]}</span> </button>`;
+        },
+      },
+      navigation: {
+        nextEl: `.slider__button--next`,
+        prevEl: `.slider__button--prev`
+      },
+      centeredSlides: true,
+      loop: true,
+      slidesPerView: `auto`,
+      speed: SPEED,
+      initialSlide: 1,
+    });
+
+    const setIframesPause = function () {
+      iframesArray.forEach((it) => {
+        it.contentWindow.postMessage(`{"event":"command","func":"pauseVideo","args":""}`, `*`);
+      });
+    };
+
+    const slideChangeTransitionStart = function () {
+      let direction;
+
+      if (activeIndex === slides.length - 1 && !this.realIndex) {
+        direction = `left`;
+      } else if (!activeIndex && this.realIndex === slides.length - 1) {
+        direction = `right`;
+      } else if (this.realIndex > activeIndex) {
+        direction = `left`;
+      } else {
+        direction = `right`;
+      }
+
+      activeIndex = this.realIndex;
+
+      if (direction === `left`) {
+        const fadeSlide = this.slides[this.previousIndex].previousElementSibling;
+
+        fadeSlide.style.transform = `translateX(130%) scaleX(0.6) scaleY(0.682)`;
+        fadeSlide.style.opacity = `0`;
+
+        setTimeout(() => {
+          fadeSlide.style.transition = ``;
+          fadeSlide.style.transform = ``;
+          fadeSlide.style.opacity = ``;
+        }, SPEED);
+      } else {
+        const fadeSlide = this.slides[this.previousIndex].nextElementSibling;
+
+        fadeSlide.style.zIndex = -1;
+        fadeSlide.style.transition = `none`;
+        fadeSlide.style.transform = `translateX(-346px)`;
+
+        setTimeout(() => {
+          fadeSlide.style.transition = ``;
+          fadeSlide.style.transition = `translateX ${SPEED / 1000}s ease, opacity ${SPEED / 1000}s easy`;
+          fadeSlide.style.transform = `translateX(-726px) scaleX(0.6) scaleY(0.682)`;
+          fadeSlide.style.opacity = `0`;
+        }, 0);
+
+        setTimeout(() => {
+          fadeSlide.style.transition = ``;
+          fadeSlide.style.transform = ``;
+          fadeSlide.style.opacity = ``;
+          fadeSlide.style.zIndex = ``;
+        }, SPEED);
+      }
+    };
+
+    const slideChangeTransitionEnd = function () {
+      setIframesPause();
+    };
+
+    const touchMove = function () {
+      if (!isInProgress) {
+        isInProgress = true;
+
+        Array.from(swiper.slides).forEach(function (it) {
+          it.style.transformOrigin = `50% 50%`;
+        });
+
+        swiper.on(`transitionEnd`, transitionEnd);
+      }
+    };
+
+    const transitionEnd = function () {
+      isInProgress = false;
+
+      Array.from(swiper.slides).forEach(function (it) {
+        it.style.transformOrigin = ``;
+      });
+
+      swiper.off(`transitionEnd`, transitionEnd);
+    };
+
+    swiper.on(`slideChangeTransitionStart`, slideChangeTransitionStart);
+    swiper.on(`slideChangeTransitionEnd`, slideChangeTransitionEnd);
+
+  </script>
 </body>
 
 </html>

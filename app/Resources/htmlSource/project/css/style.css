@@ -396,7 +396,7 @@ input[type="radio"].visually-hidden {
   display: -ms-flexbox;
   display: flex;
   max-width: 100%;
-  min-height: 860px;
+  min-height: 930px;
   margin-bottom: 200px;
   background-size: cover; }
 
@@ -650,6 +650,8 @@ input[type="radio"].visually-hidden {
       -webkit-box-pack: end;
           -ms-flex-pack: end;
               justify-content: flex-end; }
+    .stage--fe .stage__wrapper--last {
+      border: none; }
 
 .stage__wrapper {
   position: relative;
@@ -1083,6 +1085,7 @@ button.slider__bullet {
           box-shadow: 0 -2px 0 0 black; }
 
 .slide__title {
+  max-width: 251px;
   -ms-flex-negative: 0;
       flex-shrink: 0;
   margin: 0;
@@ -1091,6 +1094,7 @@ button.slider__bullet {
   font-size: 21px;
   line-height: 1.25;
   color: #ffffff;
+  text-align: center;
   text-transform: uppercase;
   font-style: normal;
   letter-spacing: 0.05em;
@@ -1130,7 +1134,7 @@ button.slider__bullet {
       -ms-flex-align: center;
           align-items: center;
   margin-top: 2px;
-  margin-left: 10px;
+  margin-left: auto;
   padding: 9px 13px;
   font-weight: bold;
   font-size: 12px;
