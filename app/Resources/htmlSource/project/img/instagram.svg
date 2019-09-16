@@ -1,0 +1,11 @@
+<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <symbol id="instagram" viewBox="0 0 40 40" fill="none">
+    <path fill-rule="evenodd" clip-rule="evenodd"
+      d="M27.9 13.5C27.9 14.2732 27.2732 14.9 26.5 14.9C25.7268 14.9 25.1 14.2732 25.1 13.5C25.1 12.7268 25.7268 12.1 26.5 12.1C27.2732 12.1 27.9 12.7268 27.9 13.5Z" fill="currentcolor"
+      />
+    <rect x="9" y="9" width="22" height="22" rx="6" stroke-width="2" stroke-linecap="round" />
+    <path fill-rule="evenodd" clip-rule="evenodd"
+      d="M20 25C22.7614 25 25 22.7614 25 20C25 17.2386 22.7614 15 20 15C17.2386 15 15 17.2386 15 20C15 22.7614 17.2386 25 20 25Z"
+      stroke-width="2" stroke-linecap="round" />
+  </symbol>
+</svg>
