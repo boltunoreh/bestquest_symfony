@@ -144,7 +144,7 @@ sonata_media:
       providers:
         - sonata.media.provider.image
       formats:
-        medium: { width: 600 , quality: 100}
+        medium: { width: 900 , quality: 100}
     teammate:
       providers:
         - sonata.media.provider.image
