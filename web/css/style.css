@@ -489,7 +489,7 @@ input[type="radio"].visually-hidden {
   position: relative;
   width: 60px;
   margin-right: 40px;
-  margin-bottom: 80px;
+  margin-bottom: 70px;
   padding-top: 62px;
   text-align: center; }
   .intro__item::before {
@@ -500,8 +500,11 @@ input[type="radio"].visually-hidden {
     -webkit-transform: translate(-50%);
             transform: translate(-50%);
     opacity: 0.5; }
-  .intro__item--game span {
-    margin-left: -5px; }
+  .intro__item--game {
+    width: 80px;
+    margin-right: 30px; }
+    .intro__item--game span {
+      margin-left: 2px; }
   .intro__item--smile {
     width: 81px; }
   .intro__item--pin span {
@@ -513,10 +516,9 @@ input[type="radio"].visually-hidden {
     margin-right: 17px;
     margin-left: -21px; }
     .intro__item--tel span {
-      margin-left: -9px; }
+      margin-left: -2px; }
   .intro__item--time {
-    width: 81px;
-    margin-left: -38px; }
+    width: 81px; }
     .intro__item--time span {
       margin-left: -4px; }
   .intro__item--deer span {
@@ -549,7 +551,7 @@ input[type="radio"].visually-hidden {
   background: url("../img/icons/icon-pin.svg") 50% 50% no-repeat; }
 
 .intro__item--run::before {
-  top: -2px;
+  top: 0;
   left: 53%;
   width: 54px;
   height: 52px;
