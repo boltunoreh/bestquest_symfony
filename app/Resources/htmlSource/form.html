@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link
+    href="https://fonts.googleapis.com/css?family=Roboto:400,500,700%7CRubik:400,500,700&display=swap&subset=cyrillic"
+    rel="stylesheet">
+  <link rel="stylesheet" href="css/style-min.css">
+
+  <link rel="stylesheet" href="libs/choices/choices.min.css">
+  <link rel="stylesheet" href="libs/flatpickr/flatpickr.min.css">
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+</head>
+
+<body class="black">
+  <header class="l-header">
+    <div class="l-header__inner l-header__inner--small">
+      <a class="logo-wrapper logo-wrapper--small unvisible" href="/" id="logotype" style="opacity: 1;">
+        <img src="img/small-logo.svg" alt="логотип" width="48" height="48">
+      </a>
+      <nav class="l-header__nav">
+        <ul class="l-header__menu">
+          <li class="current first"><a href="/">Проекты</a>
+            <ul class="l-header__submenu js-slider-control menu_level_1">
+              <li class="first"><a href="/project/druz-ia-oushiena">Друзья Оушена</a></li>
+              <li><a href="/project/ighrovaia-platforma-emotion">Игровая платформа «Emotion»</a></li>
+              <li><a href="/project/shierlok">Шерлок</a></li>
+              <li><a href="/project/ighry-gieroiev">Игры Героев</a></li>
+              <li class="last"><a href="/project/vriemia-piervykh">Время Первых</a></li>
+            </ul>
+          </li>
+          <li class="last"><a href="/about">О компании</a>
+            <ul class="l-header__submenu menu_level_1">
+              <li class="first"><a href="/about#team">Команда</a></li>
+              <li class="last"><a href="/about#clients">Клиенты</a></li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <div class="l-header__actions">
+        <div class="order"><a href="/order">Заявка</a></div>
+        <div class="phone"><a href="tel:+78125746512">+7 (812) 574 65 12</a></div>
+        <div class="phone"><a href="tel:+79219763876">+7 (921) 976 38 76</a></div>
+        <div class="l-header__email"><a href="mailto:info@best-quest.ru">info@best-quest.ru</a></div>
+        <div class="social">
+          <a class="yt" href="https://www.youtube.com/channel/UCFYNEDiE5zWuEaYBXI00_iA/videos?view_as=subscriber"
+            target="_blank" aria-label="youtube">
+            <svg width="40" height="40" viewBox="0 0 40 40">
+              <use xlink:href="img/youtube.svg#youtube"></use>
+            </svg>
+          </a>
+          <a class="instagram" href="https://www.instagram.com/bqspb.ru/" target="_blank" aria-label="instagram">
+            <svg width="40" height="40" viewBox="0 0 40 40">
+              <use xlink:href="img/instagram.svg#instagram"></use>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <h1 class="visually-hidden">best-quest</h1>
+    <section class="application-form">
+      <div class="application-form__wrapper">
+        <div class="application-form__left-group">
+          <h2 class="application-form__title">Заголовок</h2>
+          <p class="application-form__text">
+            Если вы хотите, чтобы мы создали эксклюзивный проект для вас, напишите нам, используя контактную форму или почту. Поделитесь всеми вашими пожеланиями, целью вашего мероприятия и концепцией. Мы постараемся ответить как можно скорее
+          </p>
+          <div class="application-form__contacts">
+            <div class="application-form__image-wrapper">
+              <img class="application-form__image" src="img/form-avatar.png" alt="">
+            </div>
+            <a class="application-form__link" href="mailto:info@best-quest.ru">info@best-quest.ru</a>
+          </div>
+        </div>
+        <div class="application-form__right-group">
+          <div class="application-form__validation-answer">
+            <div class="application-form__answer-icon-wrap">
+              <img class="application-form__answer-icon application-form__answer-icon--success" src="img/success-icon.svg" alt="" width="40" height="40">
+              <img class="application-form__answer-icon application-form__answer-icon--failing" src="img/failing-icon.svg" alt="" width="40" height="40">
+            </div>
+            <div class="application-form__answer__text">
+              <p>Ваша заявка отправлена, мы свяжемся с вами в ближайшее время</p>
+            </div>
+          </div>
+          <form class="application-form__form" action="#" method="POST">
+            <div class="application-form__form-item">
+              <input class="application-form__input" type="text" name="name" id="name" placeholder="Ваше имя" required>
+              <label class="visually-hidden" for="name">Ваше имя</label>
+            </div>
+            <div class="application-form__form-item">
+              <input class="application-form__input" type="email" name="email" id="email" placeholder="E-mail" required>
+              <label class="visually-hidden" for="email">Ваш email</label>
+            </div>
+            <div class="application-form__form-item">
+              <select name="project" id="project" required>
+                <option placeholder disabled selected value="0">Выбор проекта</option>
+                <option value="1">Друзья Оушена</option>
+                <option value="2">Игровая платформа «Emotion»</option>
+                <option value="3">Шерлок</option>
+                <option value="4">Игры Героев</option>
+                <option value="5">Время Первых</option>
+                <option value="6">Спецпроект</option>
+              </select>
+            </div>
+            <div class="application-form__form-item application-form__form-item--quantity" >
+              <input class="application-form__input application-form__input--date" type="text" name="date" id="date" onfocus="blur();" placeholder="Когда" required>
+              <label class="visually-hidden" for="date">Дата мероприятия</label>
+              <input class="application-form__input application-form__input--quantity" type="text" name="quantity" id="quantity" placeholder="Сколько человек" required>
+              <label class="visually-hidden" for="quantity">Количество участников</label>
+            </div>
+            <div class="application-form__form-item">
+              <textarea class="application-form__textarea" name="message" id="message" cols="30" rows="10" placeholder="Сообщение"></textarea>
+              <label class="visually-hidden" for="message">Ваше сообщение</label>
+            </div>
+            <div class="g-recaptcha" data-sitekey="6Lentr0UAAAAACuKNpQNeqaGN26kvsLxqWLKsRvn"></div>
+            <div class="application-form__form-item">
+              <button class="application-form__submit" type="submit">Отправить</button>
+              <input class="visually-hidden application-form__checkbox" type="checkbox" name="copy-agreement" id="copy-agreement">
+              <label class="application-form__label" for="copy-agreement">Отправить копию мне на email</label>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+    <section class="safari-dummy"></section>
+  </main>
+
+  <footer class="footer block">
+    <div class="footer__wrapper block__wrapper">
+      <div class="footer__col">
+        <h3>Best quest</h3>
+        <ul>
+          <li>
+            <a class="footer__link" href="#">Команда</a>
+          </li>
+          <li>
+            <a class="footer__link" href="#">Клиенты</a>
+          </li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h3>Проекты</h3>
+        <ul>
+          <li>
+            <a class="footer__link" href="#">Друзья Оушена</a>
+          </li>
+          <li>
+            <a class="footer__link" href="#">Игровая платформа «Emotion»</a>
+          </li>
+          <li>
+            <a class="footer__link" href="#">Шерлок</a>
+          </li>
+          <li>
+            <a class="footer__link" href="#">Игры Героев</a>
+          </li>
+          <li>
+            <a class="footer__link" href="#">Время Первых</a>
+          </li>
+          <li>
+            <a class="footer__link" href="#">Спецпроект</a>
+          </li>
+        </ul>
+      </div>
+      <div class="footer__col footer__col--margin">
+        <h3>Контакты</h3>
+        <ul>
+          <li>
+            <a class="footer__link" href="tel:+78125746512">+7 (812) 574 65 12</a>
+          </li>
+          <li>
+            <a class="footer__link" href="tel:+79219763876">+7 (921) 976 38 76</a>
+          </li>
+          <li>
+            <a class="footer__link" href="mailto:info@best-quest.ru">info@best-quest.ru</a>
+          </li>
+          <li>
+            <a class="footer__link" href="#">Заявка</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+  <script src="libs/svgxuse.min.js" async defer></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+  <script src="libs/parallax/parallax.min.js"></script>
+  <script src="js/my-main.js"></script>
+  <script src="libs/choices/choices.min.js"></script>
+  <script src="libs/flatpickr/flatpickr.min.js"></script>
+  <script src="libs/flatpickr/flatpickr-ru.js"></script>
+  <script src="libs/imask/imask.min.js"></script>
+  <script>
+    var is_safari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+    var dateInput = document.getElementById('date');
+    var choices = new Choices('#project', {
+      searchEnabled: false,
+      itemSelectText: '',
+      shouldSort: false
+    });
+
+    new flatpickr(dateInput, {dateFormat: "Y-m-d",  minDate: "today", "locale": "ru", "allowInput": true, "disableMobile": true});
+
+    var numberMask = IMask(
+      document.getElementById('quantity'),
+      {
+        mask: Number,
+        min: 1,
+        max: 9999,
+        thousandsSeparator: ''
+      }
+    );
+
+    if (!is_safari) {
+      document.body.style.minHeight = window.innerHeight + 'px';
+
+      window.addEventListener('resize', function () {
+        document.body.style.minHeight = window.innerHeight + 'px';
+      });
+    } else {
+      if (window.innerWidth < 1280) {
+        var coefficient = document.documentElement.clientHeight / document.documentElement.clientWidth;
+        var dummyHeight = (window.innerHeight * (coefficient - 0.3)) - window.innerHeight;
+
+        document.querySelector('.safari-dummy').style.display = 'block';
+        document.querySelector('.safari-dummy').style.height = dummyHeight + 'px';
+
+        window.addEventListener('orientationchange', function () {
+          var mql = window.matchMedia("(orientation: portrait)");
+          if(mql.matches) {
+            document.querySelector('.safari-dummy').style.display = 'block';
+            document.querySelector('.safari-dummy').style.height = dummyHeight + 'px';
+          }
+        });
+      }
+    }
+  </script>
+</body>
+
+</html>
