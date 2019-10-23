@@ -1,7 +1,6 @@
 {% extends 'base.html.twig' %}
 
 {% block bodyclass %}sb_quest{% endblock %}
-{% block header_div_additional_class %}l-header__inner--small{% endblock %}
 
 {% block content %}
     <main class="event">
@@ -109,53 +108,4 @@
             </div>
         </div>
     </main>
-{% endblock %}
-
-{% block footer %}
-    <footer class="footer block">
-        <div class="footer__wrapper block__wrapper">
-            <div class="footer__col">
-                <h3>Best quest</h3>
-                <ul>
-                    <li>
-                        <a class="footer__link" href="{{ path('app__about') }}#team">Команда</a>
-                    </li>
-                    <li>
-                        <a class="footer__link" href="{{ path('app__about') }}#clients">Клиенты</a>
-                    </li>
-                </ul>
-            </div>
-            <div class="footer__col">
-                <h3>Проекты</h3>
-                {{ render(controller('AppBundle:Default:footerProjects')) }}
-            </div>
-            <div class="footer__col footer__col--margin">
-                <h3>Контакты</h3>
-                <ul>
-                    <li>
-                        <a class="footer__link" href="tel:+78125746512">+7 (812) 574 65 12</a>
-                    </li>
-                    <li>
-                        <a class="footer__link" href="tel:+79219763876">+7 (921) 976 38 76</a>
-                    </li>
-                    <li>
-                        <a class="footer__link" href="mailto:info@best-quest.ru">info@best-quest.ru</a>
-                    </li>
-                    <li>
-                        {% if current_project is defined %}
-                            <a class="footer__link"  href='{{ path('app__order', {'slug': current_project.slug }) }}'>Заявка</a>
-                        {% else %}
-                            <a class="footer__link"  href='{{ path('app__order') }}'>Заявка</a>
-                        {% endif %}
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </footer>
-{% endblock %}
-{% block footer_js %}
-    <script src="{{ asset('libs/svgxuse.min.js') }}" async defer></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <script src="{{ asset('libs/parallax/parallax.min.js') }}"></script>
-    <script src="{{ asset('js/my-main.js') }}"></script>
 {% endblock %}

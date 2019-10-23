@@ -1446,8 +1446,8 @@ nav dd {
 }
 
 .l-section-photos {
-  background-image: -webkit-linear-gradient(transparent,  #232323), url("../../img/icons/noise-bg.jpg");
-  background-image:         linear-gradient(transparent,  #232323), url("../../img/icons/noise-bg.jpg");
+  background-image: -webkit-linear-gradient(transparent,  #232323), url("../img/icons/noise-bg.jpg");
+  background-image:         linear-gradient(transparent,  #232323), url("../img/icons/noise-bg.jpg");
   background-position: bottom left,  top left;
   background-size: 100% 50%,  auto;
   background-repeat: no-repeat,  repeat;
@@ -1455,8 +1455,8 @@ nav dd {
 
 .l-section-team {
   height: 1100px;
-  background-image: -webkit-linear-gradient(#232323,  transparent), url("../../img/icons/noise-bg.jpg");
-  background-image:         linear-gradient(#232323,  transparent), url("../../img/icons/noise-bg.jpg");
+  background-image: -webkit-linear-gradient(#232323,  transparent), url("../img/icons/noise-bg.jpg");
+  background-image:         linear-gradient(#232323,  transparent), url("../img/icons/noise-bg.jpg");
   background-position: top left,  top left;
   background-size: 100% 50%,  auto;
   background-repeat: no-repeat,  repeat;
@@ -1466,6 +1466,31 @@ nav dd {
   width: 100%;
   height: 227px;
   background-size: cover;
+}
+
+.l-section-reviews {
+  z-index: 2;
+  padding-bottom: 120px;
+  background-repeat: no-repeat;
+}
+
+.l-section-reviews .l-section__body {
+  z-index: 3;
+  padding-top: 100px;
+}
+
+.l-section-reviews .l-section__body .b-bordered-block {
+  /*height: 470px;*/
+}
+
+.l-section-reviews .l-section__body .b-bordered-block.full-width {
+  margin-bottom: 200px;
+  padding: 45px;
+  height: auto;
+  font-size: 37px;
+  font-size: 2.3125rem;
+  font-family: "PT Sans",  "Helvetica Neue",  Helvetica,  Arial,  sans-serif;
+  line-height: 1.56757;
 }
 
 .l-section-apply {
@@ -1485,8 +1510,8 @@ nav dd {
 .l-section-projects {
   z-index: 2;
   padding: 100px 0 140px;
-  background-image: -webkit-linear-gradient(#232323,  transparent), url("../../img/icons/noise-bg.jpg");
-  background-image:         linear-gradient(#232323,  transparent), url("../../img/icons/noise-bg.jpg");
+  background-image: -webkit-linear-gradient(#232323,  transparent), url("../img/icons/noise-bg.jpg");
+  background-image:         linear-gradient(#232323,  transparent), url("../img/icons/noise-bg.jpg");
   background-position: top left,  top left;
   background-size: 100% 50%,  auto;
   background-repeat: no-repeat,  repeat;
@@ -2278,12 +2303,6 @@ textarea,
   border-top-color: #ffffff;
 }
 
-.b-skew-bottom:after {
-    bottom: -59px;
-    display: block;
-    border-top-width: 60px;
-}
-
 .b-slider {
   position: relative;
   overflow: hidden;
@@ -2526,7 +2545,7 @@ textarea,
 }
 
 .index{
-  background-image: linear-gradient(transparent 0%, #232323 70%, #232323 100%),url("../../img/index/bgs/bg-top.jpg");
+  background-image: linear-gradient(transparent 0%, #232323 70%, #232323 100%),url("../img/index/bgs/bg-top.jpg");
   background: #232323;
   min-width: 1200px;
 }

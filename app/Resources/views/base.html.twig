@@ -55,12 +55,13 @@
     <!-- End Facebook Pixel Code -->
 </head>
 
-<body class='{% block bodyclass %}index{% endblock %}'>
+<body class='{% block bodyclass %}{% endblock %}'>
 {% block header %}
     <header class="l-header">
-        <div class="l-header__inner {% block header_div_additional_class %}{% endblock %}">
+        <div class="l-header__inner {% block header_div_additional_class %}l-header__inner--small{% endblock %}">
             {% block header_logo %}
-                <a class="logo-wrapper logo-wrapper--small unvisible" href="{{ path('app__homepage') }}" id="logotype" style="opacity: 1;">
+                <a class="logo-wrapper logo-wrapper--small unvisible" href="{{ path('app__homepage') }}" id="logotype"
+                   style="opacity: 1;">
                     <img src="{{ asset('img/small-logo.svg') }}" alt="логотип" width="48" height="48">
                 </a>
             {% endblock %}
@@ -82,12 +83,13 @@
                 <div class="social">
                     <a class="yt"
                        href="https://www.youtube.com/channel/UCFYNEDiE5zWuEaYBXI00_iA/videos?view_as=subscriber"
-                       target="_blank">
+                       target="_blank" aria-label="youtube">
                         <svg width="40" height="40" viewBox="0 0 40 40">
                             <use xlink:href="{{ asset('img/youtube.svg') }}#youtube"></use>
                         </svg>
                     </a>
-                    <a class="instagram" href="https://www.instagram.com/bqspb.ru/" target="_blank">
+                    <a class="instagram" href="https://www.instagram.com/bqspb.ru/" target="_blank"
+                       aria-label="instagram">
                         <svg width="40" height="40" viewBox="0 0 40 40">
                             <use xlink:href="{{ asset('img/instagram.svg') }}#instagram"></use>
                         </svg>
@@ -102,70 +104,106 @@
 {% endblock %}
 
 {% block footer %}
+    <footer class="footer block">
+        <div class="footer__wrapper block__wrapper">
+            <div class="footer__col">
+                <h3>Best quest</h3>
+                <ul>
+                    <li>
+                        <a class="footer__link" href="{{ path('app__about') }}#team">Команда</a>
+                    </li>
+                    <li>
+                        <a class="footer__link" href="{{ path('app__about') }}#clients">Клиенты</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="footer__col">
+                <h3>Проекты</h3>
+                {{ render(controller('AppBundle:Default:footerProjects')) }}
+            </div>
+            <div class="footer__col footer__col--margin">
+                <h3>Контакты</h3>
+                <ul>
+                    <li>
+                        <a class="footer__link" href="tel:+78125746512">+7 (812) 574 65 12</a>
+                    </li>
+                    <li>
+                        <a class="footer__link" href="tel:+79219763876">+7 (921) 976 38 76</a>
+                    </li>
+                    <li>
+                        <a class="footer__link" href="mailto:info@best-quest.ru">info@best-quest.ru</a>
+                    </li>
+                    <li>
+                        {% if current_project is defined %}
+                            <a class="footer__link" href='{{ path('app__order', {'slug': current_project.slug }) }}'>Заявка</a>
+                        {% else %}
+                            <a class="footer__link" href='{{ path('app__order') }}'>Заявка</a>
+                        {% endif %}
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </footer>
 {% endblock %}
 
-{% block footer_js %}
-    <div class="mobile-overlay">
-        <img src="{{ asset('img/bq-rotate.svg') }}" alt="заглушка">
-    </div>
-
-    <!--— Yandex.Metrika counter —-->
-    <script type="text/javascript">
-        (function (d, w, c) {
-            (w[c] = w[c] || []).push(function () {
-                try {
-                    w.yaCounter30731098 = new Ya.Metrika({
-                        id: 30731098,
-                        clickmap: true,
-                        trackLinks: true,
-                        accurateTrackBounce: true
-                    });
-                } catch (e) {
-                }
-            });
-
-            var n = d.getElementsByTagName("script")[0],
-                s = d.createElement("script"),
-                f = function () {
-                    n.parentNode.insertBefore(s, n);
-                };
-            s.type = "text/javascript";
-            s.async = true;
-            s.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js";
-
-            if (w.opera == "[object Opera]") {
-                d.addEventListener("DOMContentLoaded", f, false);
-            } else {
-                f();
+<!--— Yandex.Metrika counter —-->
+<script type="text/javascript">
+    (function (d, w, c) {
+        (w[c] = w[c] || []).push(function () {
+            try {
+                w.yaCounter30731098 = new Ya.Metrika({
+                    id: 30731098,
+                    clickmap: true,
+                    trackLinks: true,
+                    accurateTrackBounce: true
+                });
+            } catch (e) {
             }
-        })(document, window, "yandex_metrika_callbacks");
+        });
 
-    </script>
-    <noscript>
-        &lt;div&gt;&lt;img src="//mc.yandex.ru/watch/30731098" style="position:absolute; left:-9999px;"
-        alt=""/&gt;&lt;/div&gt;
-    </noscript>
-    <!--— /Yandex.Metrika counter —-->
-    <script>
-        (function (i, s, o, g, r, a, m) {
-            i['GoogleAnalyticsObject'] = r;
-            i[r] = i[r] || function () {
-                (i[r].q = i[r].q || []).push(arguments)
-            }, i[r].l = 1 * new Date();
-            a = s.createElement(o),
-                m = s.getElementsByTagName(o)[0];
-            a.async = 1;
-            a.src = g;
-            m.parentNode.insertBefore(a, m)
-        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+        var n = d.getElementsByTagName("script")[0],
+            s = d.createElement("script"),
+            f = function () {
+                n.parentNode.insertBefore(s, n);
+            };
+        s.type = "text/javascript";
+        s.async = true;
+        s.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js";
 
-        ga('create', 'UA-25272388-1', 'auto');
-        ga('send', 'pageview');
+        if (w.opera == "[object Opera]") {
+            d.addEventListener("DOMContentLoaded", f, false);
+        } else {
+            f();
+        }
+    })(document, window, "yandex_metrika_callbacks");
 
-    </script>
-    <script src="{{ asset('libs/swiper/swiper.min.js') }}"></script>
-    <script src="{{ asset('js/my-main.js') }}"></script>
+</script>
+<noscript>
+    &lt;div&gt;&lt;img src="//mc.yandex.ru/watch/30731098" style="position:absolute; left:-9999px;"
+    alt=""/&gt;&lt;/div&gt;
+</noscript>
+<!--— /Yandex.Metrika counter —-->
+<script>
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-25272388-1', 'auto');
+    ga('send', 'pageview');
+</script>
+{% block footer_js %}
+    <script src="{{ asset('libs/svgxuse.min.js') }}" async defer></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="{{ asset('libs/parallax/parallax.min.js') }}"></script>
 {% endblock %}
+<script src="{{ asset('js/my-main.js') }}"></script>
 </body>
-
 </html>

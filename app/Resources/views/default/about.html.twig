@@ -1,85 +1,59 @@
-{% extends 'base_old.html.twig' %}
-
-{% block bodyclass %}about{% endblock %}
+{% extends 'base.html.twig' %}
 
 {% block content %}
-    <main class="l-content">
-        <section class="l-section l-section-home">
-            <div class="b-text-wrapper b-skew b-skew-top b-skew-bottom">
-                <h1>Современные технологии событий</h1>
+    <main class="event">
+        <section class="accession">
+            <div class="accession__wrapper" data-parallax="scroll" data-speed="1.2" data-bleed="10"
+                 data-position="center top"
+                 data-image-src="img/backgroung-opacity.jpg">
+                <div class="accession__content">
+                    <img class="accession__logo" src="img/logo.svg" alt="логотип best-quest" width="145" height="145">
+                    <h1 class="accession__title">
+                        <span class="accession__title-big">BEST QUEST</span>
+                        <span class="accession__title-small">Игровые технологии <br> мероприятий</span>
+                    </h1>
+                </div>
             </div>
         </section>
-        <section class="l-section l-section-order b-skew b-skew-top light">
-            <div class="b-text-wrapper">
-                <article>
-                    <h2 class="s-title about-title">{{ about.title }}</h2>
-                    <div class="column">{{ about.leftColumn|raw }}</div>
-                    <div class="column">{{ about.rightColumn|raw }}</div>
-                </article>
+
+        <section class="about">
+            <div class="about__wrapper">
+                <h2 class="about__title">{{ about.title }}</h2>
+                <div class="about__content">{{ about.content|raw }}</div>
             </div>
         </section>
-        <section class="l-section l-section-team b-skew b-skew-top dark" id="team">
-            <a name="team"></a><h2 class="s-title white">Команда</h2>
-            <div class="b-slider b-slider-team" id="projects" style="overflow: hidden; width: 100%;">
-                <ul class="list" style="position: relative; width: 1918px; left: 0px; margin-left: -11px;">
+
+        <section class="team" id="team">
+            <div class="team__wrapper">
+                <h2 class="team__title">Команда</h2>
+                <ul class="team__list">
                     {% for teammate in teammates %}
-                        <li class="item b-project">
-                            <div class="b-project__image--small"
-                                 style="background-image: url({% path teammate.photo, 'medium' %})"></div>
-                            <div class="b-project__image"
-                                 style="background-image: url({% path teammate.photo, 'medium' %})"></div>
-                            <div class="b-project__body">
-                                <h3>{{ teammate.name }}</h3>
-                                <strong class="position">{{ teammate.position }}</strong>
-                                <p>{{ teammate.sign }}</p>
+                        <li class="team__item">
+                            <div class="team__card">
+                                <div class="team__logo">
+                                    <img src="{% path teammate.photo, 'medium' %}" alt="{{ teammate.name }}">
+                                </div>
+                                <p class="team__name">{{ teammate.name }}</p>
+                                <p class="team__position">{{ teammate.position }}</p>
                             </div>
                         </li>
                     {% endfor %}
                 </ul>
-                <div class="b-slider__next">
-                    <svg enable-background="new 0 0 45.8 45.8" height="45px" space="preserve" version="1.1" viewBox="0 0 45.8 45.8" width="45px" x="0px" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" y="0px">
-                        <g>
-                            <path d="M32.4,23.7H12.1c-0.4,0-0.6-0.4-0.6-0.9c0-0.5,0.3-0.9,0.6-0.9h20.3c0.4,0,0.6,0.4,0.6,0.9
-    C33.1,23.3,32.8,23.7,32.4,23.7z" fill="#FFFFFF"></path>
-                            <path d="M22.9,45.8C10.3,45.8,0,35.5,0,22.9S10.3,0,22.9,0s22.9,10.3,22.9,22.9S35.5,45.8,22.9,45.8z M22.9,1.7
-    c-11.7,0-21.1,9.5-21.1,21.1C1.7,34.5,11.2,44,22.9,44C34.5,44,44,34.5,44,22.9C44,11.2,34.5,1.7,22.9,1.7z" fill="#FFFFFF"></path>
-                            <polygon fill="#FFFFFF" points="29.9,16.3 36.5,22.9 29.9,29.4   "></polygon>
-                        </g>
-                    </svg>
-                </div>
-                <div class="b-slider__prev">
-                    <svg enable-background="new 0 0 45.8 45.8" height="45px" id="Layer_1" space="preserve" version="1.1" viewBox="0 0 45.8 45.8" width="45px" x="0px" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" y="0px">
-                        <g>
-                            <path d="M13.3,22.1h20.3c0.4,0,0.6,0.4,0.6,0.9c0,0.5-0.3,0.9-0.6,0.9H13.3c-0.4,0-0.6-0.4-0.6-0.9
-    C12.7,22.5,13,22.1,13.3,22.1z" fill="#FFFFFF"></path>
-                            <path d="M22.9,0c12.6,0,22.9,10.3,22.9,22.9S35.5,45.8,22.9,45.8C10.3,45.8,0,35.5,0,22.9S10.3,0,22.9,0z M22.9,44
-   C34.5,44,44,34.5,44,22.9c0-11.7-9.5-21.1-21.1-21.1c-11.7,0-21.1,9.5-21.1,21.1C1.7,34.5,11.2,44,22.9,44z" fill="#FFFFFF"></path>
-                            <polygon fill="#FFFFFF" points="15.8,29.5 9.2,22.9 15.8,16.3  "></polygon>
-                        </g>
-                    </svg>
-                </div>
             </div>
         </section>
-        <section class="l-section l-section-clients b-skew b-skew-top light" id="clients">
-            <a name="clients"></a><h2 class="s-title">Клиенты</h2>
-            <div class="b-clients">
-                {% set row = 1 %}
-                <ul class="b-clients__list">
+
+        <section class="customers" id="clients">
+            <div class="customers__wrapper">
+                <h2 class="customers__title">Клиенты</h2>
+                <ul class="customers__list">
                     {% for client in clients %}
-                        {% if client.row > row %}
-                            </ul>
-                            <ul class="b-clients__list">
-                            {% set row = client.row %}
-                        {% endif %}
-                            <li class="item">
-                                <a href="#">
-                                    <img src="{% path client.image, 'medium' %}">
-                                </a>
-                            </li>
+                        <li class="customers__item">
+                            <a class="customers__link" href="#">
+                                <img src="{% path client.image, 'medium' %}" alt="логотип партнера">
+                            </a>
+                        </li>
                     {% endfor %}
                 </ul>
-                <br><br>
-                <br><br>
             </div>
         </section>
     </main>

@@ -1,23 +1,38 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
+  <meta charset='utf-8'>
+  <meta content='IE=edge,chrome=1' http-equiv='X-UA-Compatible'>
+  <meta name="viewport" content="width=1280, maximum-scale=1.0">
+  <title>Best Quest</title>
+  <meta content='' name='description'>
+  <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/img/favicon.ico" type="image/x-icon">
   <link
     href="https://fonts.googleapis.com/css?family=Roboto:400,500,700%7CRubik:400,500,700&display=swap&subset=cyrillic"
     rel="stylesheet">
   <link rel="stylesheet" href="libs/swiper/swiper.min.css">
   <link rel="stylesheet" href="css/style-min.css">
+  <style>
+    .logo-wrapper {
+      background-color: #E20000;
+    }
+
+  </style>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
 </head>
 
-<body>
+<body class='index'>
   <header class="l-header">
-    <div class="l-header__inner l-header__inner--small">
-      <a class="logo-wrapper logo-wrapper--small unvisible" href="/" id="logotype" style="opacity: 1;">
-        <img src="img/small-logo.svg" alt="логотип" width="48" height="48">
+    <div class="l-header__inner">
+      <a class="logo-wrapper unvisible" href="/" id="logotype">
+        <h1 class="logotype">
+          <span class='active'>Best Quest</span>
+          <span>Игровые&nbsp;технологии мероприятий</span>
+          <span>Делаем настоящие&nbsp;игры</span>
+        </h1>
       </a>
       <nav class="l-header__nav">
         <ul class="l-header__menu">
@@ -32,8 +47,8 @@
           </li>
           <li class="last"><a href="/about">О компании</a>
             <ul class="l-header__submenu menu_level_1">
-              <li class="first"><a href="/about#team">Команда</a></li>
-              <li class="last"><a href="/about#clients">Клиенты</a></li>
+              <li class="first"><a href="about.html#team">Команда</a></li>
+              <li class="last"><a href="about.html#clients">Клиенты</a></li>
             </ul>
           </li>
         </ul>
@@ -44,13 +59,12 @@
         <div class="phone"><a href="tel:+79219763876">+7 (921) 976 38 76</a></div>
         <div class="l-header__email"><a href="mailto:info@best-quest.ru">info@best-quest.ru</a></div>
         <div class="social">
-          <a class="yt" href="https://www.youtube.com/channel/UCFYNEDiE5zWuEaYBXI00_iA/videos?view_as=subscriber"
-            target="_blank" aria-label="youtube">
+          <a class="yt" href="https://www.youtube.com/channel/UCFYNEDiE5zWuEaYBXI00_iA/videos?view_as=subscriber" target="_blank">
             <svg width="40" height="40" viewBox="0 0 40 40">
               <use xlink:href="img/youtube.svg#youtube"></use>
             </svg>
           </a>
-          <a class="instagram" href="https://www.instagram.com/bqspb.ru/" target="_blank" aria-label="instagram">
+          <a class="instagram" href="https://www.instagram.com/bqspb.ru/" target="_blank">
             <svg width="40" height="40" viewBox="0 0 40 40">
               <use xlink:href="img/instagram.svg#instagram"></use>
             </svg>
@@ -59,398 +73,269 @@
       </div>
     </div>
   </header>
-  <main class="event">
-    <div class="intro block">
-      <div class="intro__wrapper block__wrapper" data-parallax="scroll" data-speed="1.2" data-bleed="10"
-        data-image-src="img/background.jpg">
-        <div class="intro__main">
-          <div class="intro__main-wrap">
-            <ul class="intro__list">
-              <li class="intro__item intro__item--game">
-                <span>Банкетная шоу&nbsp;игра</span>
-              </li>
-              <li class="intro__item intro__item--smile">
-                <span>От 40 до 600 человек</span>
-              </li>
-              <li class="intro__item intro__item--pin">
-                <span>Банкетный зал</span>
-              </li>
-              <li class="intro__item intro__item--run">
-                <span>Пешком, за&nbsp;столом</span>
-              </li>
-              <li class="intro__item intro__item--time">
-                <span>2 - 2,5 часа</span>
-              </li>
-              <li class="intro__item intro__item--tel">
-                <span>Не обязательны</span>
-              </li>
-              <li class="intro__item intro__item--deer">
-                <span>18+</span>
-              </li>
-            </ul>
-            <div class="intro__card">
-              <h2>Друзья оушена</h2>
-              <p>Добро пожаловать в мир спецагентов, утонченных как искусство ограблений и впечатляющих своими
-                криминальными подвигами мошенников, мировая известность которых затмевает даже самых крутых звезд
-                музыкального олимпа.</p>
-              <p>Среди них, Команда Дэнни Оушена, и она снова в игре: в этот раз они решили совершить дерзкие ограбления
-                в
-                России.</p>
-              <p>У Денни есть 24 часа собрать новых друзей. А чтобы провернуть хитроумное и совершенно сумасбродное
-                ограбление, ему придется для отвода глаз созвать светский вечер, в рамках которого он сможет проверить
-                всех пришедших на смелость, дерзость и остроту ума. Станьте лучшими из лучших и получите место в команде
-                Оушена!</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <section class="regulations block">
-      <div class="regulations__wrapper block__wrapper">
-        <h2 class="regulations__title title">Регламент</h2>
-        <ul class="regulations__list">
-          <li class="regulations__item">
-            <div class="stage stage--fs">
-              <div class="stage__wrapper">
-                <div class="stage__main">
-                  <h3>Начало</h3>
-                  <p>После атмосферного шоу номера- пролога, ведущий рассказывает о замысле Денни Оушена и представляет
-                    «наставников» каждой команды.</p>
-                </div>
-                <div class="stage__side">1</div>
-              </div>
-            </div>
-          </li>
-          <li class="regulations__item">
-            <div class="stage stage--fe">
-              <div class="stage__wrapper">
-                <div class="stage__main">
-                  <h3>Завязка</h3>
-                  <p>Наставники знакомят участников команд с кейсом, специально подготовленным Оушеном, где находятся
-                    план
-                    ограбления и карточки с задачами для участников.</p>
-                </div>
-                <div class="stage__side stage__side--left">2</div>
-              </div>
-            </div>
-          </li>
-          <li class="regulations__item">
-            <div class="stage stage--fs">
-              <div class="stage__wrapper">
-                <div class="stage__main">
-                  <h3>1 этап - подготовка</h3>
-                  <p>Поиск и сбор инструментов и оборудования, вербовка полезных соучастников. Похищение можно совершить
-                    с
-                    одной из 4 сторон. Команда сама решает какую сторону ей выбрать, исходя из выполненных ею задач -
-                    найденной и изученной ими информации.</p>
-                </div>
-                <div class="stage__side">3</div>
-              </div>
-            </div>
-          </li>
-          <li class="regulations__item">
-            <div class="stage stage--fe stage--margin">
-              <div class="stage__wrapper">
-                <div class="stage__main">
-                  <h3>2 этап - проникновение</h3>
-                  <p>Игрокам предстоит преодолеть все 5 степеней защиты объекта и совершить «Похищение века». При
-                    срабатывании любой из защит звучит сигнализация и команда на 5 минут выбывает из игры.</p>
-                </div>
-                <div class="stage__side stage__side--left">4</div>
-              </div>
-            </div>
-          </li>
-          <li class="regulations__item">
-            <div class="stage stage--fs">
-              <div class="stage__wrapper stage__wrapper--last">
-                <div class="stage__main">
-                  <h3>Кульминация</h3>
-                  <p>Игра заканчивается, когда одной из команд удается взломать черный ящик.</p>
-                </div>
-                <div class="stage__side stage__side">5</div>
-              </div>
-            </div>
-          </li>
-        </ul>
-      </div>
-    </section>
-    <section class="gallery block">
-      <div class="gallery__wrapper block__wrapper">
-        <h2 class="gallery__title title">Фотографии</h2>
-        <div class="swiper-container gallery__container">
-          <div class="swiper-wrapper">
-            <div class="swiper-slide gallery__slide">
-              <div class="gallery__photo">
-                <img src="img/photo-1.jpg" alt="">
-              </div>
-            </div>
-            <div class="swiper-slide gallery__slide">
-              <div class="gallery__photo">
-                <img src="img/photo-2.jpg" alt="">
-              </div>
-            </div>
-            <div class="swiper-slide gallery__slide">
-              <div class="gallery__photo">
-                <img src="img/photo-3.jpg" alt="">
-              </div>
-            </div>
-          </div>
-          <!-- Add Arrows -->
-          <div class="gallery__nav">
-            <button class="gallery__arrow gallery__arrow--prev" type="button" aria-label="Предыдущее фото">
-              <svg width="48" height="48" viewBox="0 0 48 48">
-                <use xlink:href="img/sprite/sprite.svg#arrow-left"></use>
-              </svg>
-            </button>
-            <button class="gallery__arrow gallery__arrow--next" type="button" aria-label="Следующее фото">
-              <svg width="48" height="48" viewBox="0 0 48 48">
-                <use xlink:href="img/sprite/sprite.svg#arrow-right"></use>
-              </svg>
-            </button>
-          </div>
-        </div>
-      </div>
-    </section>
-    <section class="projects block">
-      <div class="projects__wrapper block__wrapper">
-        <h2 class="projects__title title">Другие проекты</h2>
-        <div class="container">
-          <div class="slider-container">
-            <div class="slider">
-              <ul class="swiper-wrapper slider__wrap">
-                <li class="swiper-slide slider__slide">
-                  <div class="slide">
-                    <div class="slide__top-wrap">
-                      <div class="slide__overlay">
-                        <img src="img/slide-1.jpg" alt="">
-                      </div>
-                      <div class="slide__iframe">
-                        <img src="img/slide-2.jpg" alt="">
-                      </div>
-                    </div>
-                    <div class="slide__bottom-wrap">
-                      <h2 class="slide__title">Друзья оушена</h2>
-                      <p class="slide__text">
-                        Cочетание IT-технологий и игровых локаций в реальном мире, позволяет создать игру&nbsp;...
-                      </p>
-                      <a class="slide__link" href="#">подробнее</a>
-                    </div>
-                  </div>
-                </li>
-                <li class="swiper-slide slider__slide">
-                  <div class="slide">
-                    <div class="slide__top-wrap">
-                      <div class="slide__overlay">
-                        <img src="img/slide-2.jpg" alt="">
-                      </div>
-                      <div class="slide__iframe">
-                        <iframe width="560" height="315" src="https://www.youtube.com/embed/p-GPIdZgiaU?enablejsapi=1"
-                          allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                          allowfullscreen></iframe>
-                        <img src="img/slide-2.jpg" alt="">
-                      </div>
-                    </div>
-                    <div class="slide__bottom-wrap">
-                      <h2 class="slide__title slide__title--column">
-                        <span class="slide__title-little">игровая платформа</span>
-                        emotion
-                      </h2>
-                      <p class="slide__text">
-                        Элегантное сочетание IT-технологий и игровых локаций в реальном мире, позволяет создать
-                        игру&nbsp;...
-                      </p>
-                      <a class="slide__link" href="#">подробнее</a>
-                    </div>
-                  </div>
-                </li>
 
-                <li class="swiper-slide slider__slide">
-                  <div class="slide">
-                    <div class="slide__top-wrap">
-                      <div class="slide__overlay">
-                        <img src="img/slide-3.jpg" alt="">
+  <main class='l-content l-main'>
+    <section class='l-section l-section-home b-skew b-skew-bottom dark'>
+      <div class='b-title-slide' id='title-slide'>
+        <div class='table-cell'>
+          <article>
+            <div class='logo-wrapper'></div>
+            <h1 class='s-title main-color'>Best Quest</h1>
+            <div class='b-title-slide__slogan'>Игровые&nbsp;технологии мероприятий</div>
+          </article>
+        </div>
+      </div>
+
+      <div class="projects block">
+        <div class="projects__wrapper block__wrapper">
+          <div class="container">
+            <div class="slider-container">
+              <div class="slider">
+                <ul class="swiper-wrapper slider__wrap">
+                  <li class="swiper-slide slider__slide">
+                    <div class="slide">
+                      <div class="slide__top-wrap">
+                        <div class="slide__overlay">
+                          <img src="img/slide-1.jpg" alt="">
+                        </div>
+                        <div class="slide__iframe">
+                          <iframe width="560" height="315" src="https://www.youtube.com/embed/tGfdrcSFK_k?enablejsapi=1"
+                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
+                          <img src="img/slide-1.jpg" alt="">
+                        </div>
                       </div>
-                      <div class="slide__iframe">
-                        <iframe width="560" height="315" src="https://www.youtube.com/embed/mRz0pwir450?enablejsapi=1"
-                          allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                          allowfullscreen></iframe>
-                        <img src="img/slide-2.jpg" alt="">
-                      </div>
-                    </div>
-                    <div class="slide__bottom-wrap">
-                      <h2 class="slide__title">Первооткрыватели</h2>
-                      <p class="slide__text">
-                        Элегантное сочетание IT-технологий и игровых локаций в реальном мире, позволяет создать
-                        игру&nbsp;...
-                      </p>
-                      <a class="slide__link" href="#">подробнее</a>
-                    </div>
-                  </div>
-                </li>
-                <li class="swiper-slide slider__slide">
-                  <div class="slide">
-                    <div class="slide__top-wrap">
-                      <div class="slide__overlay">
-                        <img src="img/slide-3.jpg" alt="">
-                      </div>
-                      <div class="slide__iframe">
-                        <img src="img/slide-2.jpg" alt="">
-                      </div>
-                    </div>
-                    <div class="slide__bottom-wrap">
-                      <h2 class="slide__title">Шерлок</h2>
-                      <p class="slide__text">
-                        Элегантное сочетание IT-технологий и игровых локаций в реальном мире, позволяет создать
-                        игру&nbsp;...
-                      </p>
-                      <a class="slide__link" href="#">подробнее</a>
-                    </div>
-                  </div>
-                </li>
-                <li class="swiper-slide slider__slide">
-                  <div class="slide">
-                    <div class="slide__top-wrap">
-                      <div class="slide__overlay">
-                        <img src="img/slide-1.jpg" alt="">
-                      </div>
-                      <div class="slide__iframe">
-                        <img src="img/slide-2.jpg" alt="">
+                      <div class="slide__bottom-wrap">
+                        <h2 class="slide__title">Друзья оушена</h2>
+                        <p class="slide__text">
+                          Cочетание IT-технологий и игровых локаций в реальном мире, позволяет создать игру&nbsp;...
+                        </p>
+                        <a class="slide__link" href="/project/druz-ia-oushiena">подробнее</a>
                       </div>
                     </div>
-                    <div class="slide__bottom-wrap">
-                      <h2 class="slide__title">Игры героев</h2>
-                      <p class="slide__text">
-                        Cочетание IT-технологий и игровых локаций в реальном мире, позволяет создать игру&nbsp;...
-                      </p>
-                      <a class="slide__link" href="#">подробнее</a>
-                    </div>
-                  </div>
-                </li>
-                <li class="swiper-slide slider__slide">
-                  <div class="slide">
-                    <div class="slide__top-wrap">
-                      <div class="slide__overlay">
-                        <img src="img/slide-3.jpg" alt="">
+                  </li>
+                  <li class="swiper-slide slider__slide">
+                    <div class="slide">
+                      <div class="slide__top-wrap">
+                        <div class="slide__overlay">
+                          <img src="img/slide-2.jpeg" alt="">
+                        </div>
+                        <div class="slide__iframe">
+                          <iframe width="560" height="315" src="https://www.youtube.com/embed/lNS8uDDjAyE?enablejsapi=1"
+                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
+                          <img src="img/slide-2.jpg" alt="">
+                        </div>
                       </div>
-                      <div class="slide__iframe">
-                        <img src="img/slide-2.jpg" alt="">
-                      </div>
-                    </div>
-                    <div class="slide__bottom-wrap">
-                      <h2 class="slide__title">Время первых</h2>
-                      <p class="slide__text">
-                        Элегантное сочетание IT-технологий и игровых локаций в реальном мире, позволяет создать
-                        игру&nbsp;...
-                      </p>
-                      <a class="slide__link" href="#">подробнее</a>
-                    </div>
-                  </div>
-                </li>
-                <li class="swiper-slide slider__slide">
-                  <div class="slide">
-                    <div class="slide__top-wrap">
-                      <div class="slide__overlay">
-                        <img src="img/slide-2.jpg" alt="">
-                      </div>
-                      <div class="slide__iframe">
-                        <iframe width="560" height="315" src="https://www.youtube.com/embed/p-GPIdZgiaU?enablejsapi=1"
-                          allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                          allowfullscreen></iframe>
-                        <img src="img/slide-2.jpg" alt="">
+                      <div class="slide__bottom-wrap">
+                        <h2 class="slide__title slide__title--column">
+                          <span class="slide__title-little">игровая платформа</span>
+                          emotion
+                        </h2>
+                        <p class="slide__text">
+                          Элегантное сочетание IT-технологий и игровых локаций в реальном мире, позволяет создать
+                          игру&nbsp;...
+                        </p>
+                        <a class="slide__link" href="/project/ighrovaia-platforma-emotion">подробнее</a>
                       </div>
                     </div>
-                    <div class="slide__bottom-wrap">
-                      <h2 class="slide__title slide__title--column">
-                        Спецпроект
-                      </h2>
-                      <p class="slide__text">
-                        Элегантное сочетание IT-технологий и игровых локаций в реальном мире, позволяет создать
-                        игру&nbsp;...
-                      </p>
-                      <a class="slide__link" href="#">подробнее</a>
+                  </li>
+                  <li class="swiper-slide slider__slide">
+                    <div class="slide">
+                      <div class="slide__top-wrap">
+                        <div class="slide__overlay">
+                          <img src="img/slide-3.jpg" alt="">
+                        </div>
+                        <div class="slide__iframe">
+                          <iframe width="560" height="315" src="https://www.youtube.com/embed/IG-BQE7Hotw?enablejsapi=1"
+                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
+                          <img src="img/slide-2.jpg" alt="">
+                        </div>
+                      </div>
+                      <div class="slide__bottom-wrap">
+                        <h2 class="slide__title">Первооткрыватели</h2>
+                        <p class="slide__text">
+                          Элегантное сочетание IT-технологий и игровых локаций в реальном мире, позволяет создать
+                          игру&nbsp;...
+                        </p>
+                        <a class="slide__link" href="#">подробнее</a>
+                      </div>
                     </div>
-                  </div>
-                </li>
-              </ul>
-              <!-- Add Arrows -->
-              <button class="swiper-button-next slider__button slider__button--next" type="button">
-                <svg width="48" height="48" viewBox="0 0 48 48">
-                  <use xlink:href="img/sprite/sprite.svg#arrow-right"></use>
-                </svg>
-                Следующий
-              </button>
-              <button class="swiper-button-prev slider__button slider__button--prev" type="button">
-                <svg width="48" height="48" viewBox="0 0 48 48">
-                  <use xlink:href="img/sprite/sprite.svg#arrow-left"></use>
-                </svg>
-                Предыдущий
-              </button>
+                  </li>
+                  <li class="swiper-slide slider__slide">
+                    <div class="slide">
+                      <div class="slide__top-wrap">
+                        <div class="slide__overlay">
+                          <img src="img/slide-4.jpeg" alt="">
+                        </div>
+                        <div class="slide__iframe">
+                          <iframe width="560" height="315" src="https://www.youtube.com/embed/4jBDnYE1WjI?enablejsapi=1"
+                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
+                          <img src="img/slide-4.jpeg" alt="">
+                        </div>
+                      </div>
+                      <div class="slide__bottom-wrap">
+                        <h2 class="slide__title">Шерлок</h2>
+                        <p class="slide__text">
+                          Элегантное сочетание IT-технологий и игровых локаций в реальном мире, позволяет создать
+                          игру&nbsp;...
+                        </p>
+                        <a class="slide__link" href="/project/shierlok">подробнее</a>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="swiper-slide slider__slide">
+                    <div class="slide">
+                      <div class="slide__top-wrap">
+                        <div class="slide__overlay">
+                          <img src="img/slide-5.jpeg" alt="">
+                        </div>
+                        <div class="slide__iframe">
+                          <iframe width="560" height="315" src="https://www.youtube.com/embed/qj5zT4t7S6c?enablejsapi=1"
+                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
+                          <img src="img/slide-5.jpeg" alt="">
+                        </div>
+                      </div>
+                      <div class="slide__bottom-wrap">
+                        <h2 class="slide__title">Игры героев</h2>
+                        <p class="slide__text">
+                          Cочетание IT-технологий и игровых локаций в реальном мире, позволяет создать игру&nbsp;...
+                        </p>
+                        <a class="slide__link" href="/project/ighry-gieroiev">подробнее</a>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="swiper-slide slider__slide">
+                    <div class="slide">
+                      <div class="slide__top-wrap">
+                        <div class="slide__overlay">
+                          <img src="img/slide-6.jpeg" alt="">
+                        </div>
+                        <div class="slide__iframe">
+                          <iframe width="560" height="315" src="https://www.youtube.com/embed/pb01okv4eM0?enablejsapi=1"
+                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
+                          <img src="img/slide-6.jpeg" alt="">
+                        </div>
+                      </div>
+                      <div class="slide__bottom-wrap">
+                        <h2 class="slide__title">Время первых</h2>
+                        <p class="slide__text">
+                          Элегантное сочетание IT-технологий и игровых локаций в реальном мире, позволяет создать
+                          игру&nbsp;...
+                        </p>
+                        <a class="slide__link" href="/project/vriemia-piervykh">подробнее</a>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="swiper-slide slider__slide">
+                    <div class="slide">
+                      <div class="slide__top-wrap">
+                        <div class="slide__overlay">
+                          <img src="img/slide-6.jpeg" alt="">
+                        </div>
+                        <div class="slide__iframe">
+                          <iframe width="560" height="315" src="https://www.youtube.com/embed/pb01okv4eM0?enablejsapi=1"
+                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
+                          <img src="img/slide-6.jpeg" alt="">
+                        </div>
+                      </div>
+                      <div class="slide__bottom-wrap">
+                        <h2 class="slide__title">Спецпроект</h2>
+                        <p class="slide__text">
+                          Элегантное сочетание IT-технологий и игровых локаций в реальном мире, позволяет создать
+                          игру&nbsp;...
+                        </p>
+                        <a class="slide__link" href="/project/vriemia-piervykh">подробнее</a>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+                <!-- Add Arrows -->
+                <button class="swiper-button-next slider__button slider__button--next" type="button">
+                  <svg width="48" height="48" viewBox="0 0 48 48">
+                    <use xlink:href="img/sprite/sprite.svg#arrow-right"></use>
+                  </svg>
+                  Следующий
+                </button>
+                <button class="swiper-button-prev slider__button slider__button--prev" type="button">
+                  <svg width="48" height="48" viewBox="0 0 48 48">
+                    <use xlink:href="img/sprite/sprite.svg#arrow-left"></use>
+                  </svg>
+                  Предыдущий
+                </button>
+              </div>
+              <div class="swiper-pagination slider-pagination"></div>
             </div>
-            <div class="swiper-pagination slider-pagination"></div>
           </div>
         </div>
       </div>
     </section>
   </main>
-  <footer class="footer block">
-    <div class="footer__wrapper block__wrapper">
-      <div class="footer__col">
-        <h3>Best quest</h3>
-        <ul>
-          <li>
-            <a class="footer__link" href="#">Команда</a>
-          </li>
-          <li>
-            <a class="footer__link" href="#">Клиенты</a>
-          </li>
-        </ul>
-      </div>
-      <div class="footer__col">
-        <h3>Проекты</h3>
-        <ul>
-          <li>
-            <a class="footer__link" href="#">Друзья Оушена</a>
-          </li>
-          <li>
-            <a class="footer__link" href="#">Игровая платформа «Emotion»</a>
-          </li>
-          <li>
-            <a class="footer__link" href="#">Шерлок</a>
-          </li>
-          <li>
-            <a class="footer__link" href="#">Игры Героев</a>
-          </li>
-          <li>
-            <a class="footer__link" href="#">Время Первых</a>
-          </li>
-          <li>
-            <a class="footer__link" href="#">Спецпроект</a>
-          </li>
-        </ul>
-      </div>
-      <div class="footer__col footer__col--margin">
-        <h3>Контакты</h3>
-        <ul>
-          <li>
-            <a class="footer__link" href="tel:+78125746512">+7 (812) 574 65 12</a>
-          </li>
-          <li>
-            <a class="footer__link" href="tel:+79219763876">+7 (921) 976 38 76</a>
-          </li>
-          <li>
-            <a class="footer__link" href="mailto:info@best-quest.ru">info@best-quest.ru</a>
-          </li>
-          <li>
-            <a class="footer__link" href="#">Заявка</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </footer>
-  <script src="libs/svgxuse.min.js" async defer></script>
+
+  <div class="mobile-overlay">
+    <img src="img/bq-rotate.svg" alt="заглушка">
+  </div>
+
+
+  <!--— Yandex.Metrika counter —-->
+  <script type="text/javascript">
+    (function (d, w, c) {
+      (w[c] = w[c] || []).push(function () {
+        try {
+          w.yaCounter30731098 = new Ya.Metrika({
+            id: 30731098,
+            clickmap: true,
+            trackLinks: true,
+            accurateTrackBounce: true
+          });
+        } catch (e) {}
+      });
+
+      var n = d.getElementsByTagName("script")[0],
+        s = d.createElement("script"),
+        f = function () {
+          n.parentNode.insertBefore(s, n);
+        };
+      s.type = "text/javascript";
+      s.async = true;
+      s.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js";
+
+      if (w.opera == "[object Opera]") {
+        d.addEventListener("DOMContentLoaded", f, false);
+      } else {
+        f();
+      }
+    })(document, window, "yandex_metrika_callbacks");
+
+  </script>
+  <noscript>
+    &lt;div&gt;&lt;img src="//mc.yandex.ru/watch/30731098" style="position:absolute; left:-9999px;"
+    alt=""/&gt;&lt;/div&gt;
+  </noscript>
+  <!--— /Yandex.Metrika counter —-->
+  <script>
+    (function (i, s, o, g, r, a, m) {
+      i['GoogleAnalyticsObject'] = r;
+      i[r] = i[r] || function () {
+        (i[r].q = i[r].q || []).push(arguments)
+      }, i[r].l = 1 * new Date();
+      a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0];
+      a.async = 1;
+      a.src = g;
+      m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-25272388-1', 'auto');
+    ga('send', 'pageview');
+
+  </script>
   <script src="libs/swiper/swiper.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-  <script src="libs/parallax/parallax.min.js"></script>
   <script src="js/my-main.js"></script>
   <script>
     let isInProgress = false;
@@ -466,8 +351,7 @@
       `Спецпроект`,
     ];
     const slides = document.querySelectorAll(`.slide`);
-    const iframesArray = Array.from(document.querySelectorAll(`.slide`)).map((slide) => slide.querySelector(`iframe`))
-      .filter((item) => !!item);
+    const iframesArray = Array.from(document.querySelectorAll(`.slide`)).map((slide) => slide.querySelector(`iframe`)).filter((item) => !!item);
 
     const swiper = new Swiper(`.slider`, {
       pagination: {
@@ -485,7 +369,7 @@
       loop: true,
       slidesPerView: `auto`,
       speed: SPEED,
-      initialSlide: 1,
+      initialSlide: 0,
     });
 
     const setIframesPause = function () {
@@ -571,7 +455,6 @@
 
     swiper.on(`slideChangeTransitionStart`, slideChangeTransitionStart);
     swiper.on(`slideChangeTransitionEnd`, slideChangeTransitionEnd);
-
   </script>
 </body>
 

@@ -32,16 +32,9 @@ class About
     /**
      * @var string
      *
-     * @ORM\Column(name="left_column", type="text")
+     * @ORM\Column(name="content", type="text")
      */
-    private $leftColumn;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="right_column", type="text")
-     */
-    private $rightColumn;
+    private $content;
 
     /**
      * @return int
@@ -82,36 +75,18 @@ class About
     /**
      * @return string
      */
-    public function getLeftColumn()
+    public function getContent()
     {
-        return $this->leftColumn;
+        return $this->content;
     }
 
     /**
-     * @param string $leftColumn
+     * @param string $content
      * @return $this
      */
-    public function setLeftColumn($leftColumn)
+    public function setContent($content)
     {
-        $this->leftColumn = $leftColumn;
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getRightColumn()
-    {
-        return $this->rightColumn;
-    }
-
-    /**
-     * @param string $rightColumn
-     * @return $this
-     */
-    public function setRightColumn($rightColumn)
-    {
-        $this->rightColumn = $rightColumn;
+        $this->content = $content;
         return $this;
     }
 

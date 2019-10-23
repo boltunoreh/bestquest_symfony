@@ -1,5 +1,9 @@
 {% extends 'base.html.twig' %}
 
+{% block bodyclass %}index{% endblock %}
+
+{% block header_div_additional_class %}{% endblock %}
+
 {% block header_logo %}
     <a class='logo-wrapper unvisible' href='{{ path('app__homepage') }}' id='logotype'>
         <h1 class='logotype'>
@@ -32,4 +36,11 @@
 {% endblock %}
 
 {% block footer %}
+    <div class="mobile-overlay">
+        <img src="{{ asset('img/bq-rotate.svg') }}" alt="заглушка">
+    </div>
+{% endblock %}
+
+{% block footer_js %}
+    <script src="{{ asset('libs/swiper/swiper.min.js') }}"></script>
 {% endblock %}

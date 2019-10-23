@@ -36,14 +36,8 @@ class AboutAdmin extends AbstractAdmin
             ->add('title', TextType::class, [
                 'label' => 'Заголовок',
             ])
-            ->add('leftColumn', TextareaType::class, [
-                'label' => 'Левая колонка',
-                'attr'  => [
-                    'rows'  => 10,
-                ],
-            ])
-            ->add('rightColumn', TextareaType::class, [
-                'label' => 'Правая колонка',
+            ->add('content', TextareaType::class, [
+                'label' => 'Текст',
                 'attr'  => [
                     'rows'  => 10,
                 ],
