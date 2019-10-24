@@ -8,11 +8,14 @@ use Gedmo\Mapping\Annotation as Gedmo;
 /**
  * About
  *
- * @ORM\Table(name="about")
+ * @ORM\Table(name="static_text")
  * @ORM\Entity()
  */
-class About
+class StaticText
 {
+    const TYPE_ABOUT = 'about';
+    const TYPE_ORDER_FORM = 'order_form';
+
     /**
      * @var int
      *
@@ -35,6 +38,13 @@ class About
      * @ORM\Column(name="content", type="text")
      */
     private $content;
+
+    /**
+     * @var string
+     * 
+     * @ORM\Column(name="type", type="text")
+     */
+    private $type;
 
     /**
      * @return int
@@ -87,6 +97,24 @@ class About
     public function setContent($content)
     {
         $this->content = $content;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * @param string $type
+     * @return $this
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
         return $this;
     }
 

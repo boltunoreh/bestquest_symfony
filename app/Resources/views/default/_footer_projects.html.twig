@@ -1,7 +1,7 @@
 <ul>
     {% for project in projects %}
         <li>
-            <a class="footer__link" href="{{ path('app__project', {'slug': project.slug}) }}">{{ project.title }}</a>
+            <a class="footer__link" href="{{ path('app__project__show', {'slug': project.slug}) }}">{{ project.title }}</a>
         </li>
     {% endfor %}
 </ul>

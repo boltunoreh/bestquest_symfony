@@ -17,11 +17,11 @@ class Builder implements ContainerAwareInterface
 
         // Menu
         $menu->addChild('projects', [
-            'route' => 'app__homepage',
+            'route' => 'app__main__index',
             'label' => 'Проекты',
         ]);
         $menu->addChild('about', [
-            'route' => 'app__about',
+            'route' => 'app__main__about',
             'label' => 'О компании',
         ]);
 
@@ -34,7 +34,7 @@ class Builder implements ContainerAwareInterface
         foreach ($projects as $project) {
             $menu['projects']->addChild($project->getTitle(), [
                 'uri' => $this->container->get('router')->generate(
-                    'app__project',
+                    'app__project__show',
                     [
                         'slug' => $project->getSlug(),
                     ]
@@ -44,11 +44,11 @@ class Builder implements ContainerAwareInterface
 
         // About submenu
         $menu['about']->addChild('team', [
-            'uri' => $this->container->get('router')->generate('app__about') . '#team',
+            'uri' => $this->container->get('router')->generate('app__main__about') . '#team',
             'label' => 'Команда',
         ]);
         $menu['about']->addChild('clients', [
-            'uri'   => $this->container->get('router')->generate('app__about') . '#clients',
+            'uri'   => $this->container->get('router')->generate('app__main__about') . '#clients',
             'label' => 'Клиенты',
         ]);
 

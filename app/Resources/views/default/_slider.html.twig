@@ -29,7 +29,7 @@
                                     <p class="slide__text">{{ project.sliderAnnotation|raw }}</p>
                                     {% if project.isActive %}
                                         <a class="slide__link"
-                                           href="{{ path('app__project', {'slug': project.slug}) }}">подробнее</a>
+                                           href="{{ path('app__project__show', {'slug': project.slug}) }}">подробнее</a>
                                     {% endif %}
                                 </div>
                             </div>

@@ -39,7 +39,7 @@ class Order
     /**
      * @var string
      *
-     * @ORM\Column(name="phone", type="string")
+     * @ORM\Column(name="phone", type="string", nullable=true)
      */
     private $phone;
 
@@ -53,16 +53,16 @@ class Order
     /**
      * @var int
      *
-     * @ORM\Column(name="members", type="integer")
+     * @ORM\Column(name="quantity", type="integer")
      */
-    private $members;
+    private $quantity;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="description", type="text", nullable=true)
+     * @ORM\Column(name="message", type="text", nullable=true)
      */
-    private $description;
+    private $message;
 
     /**
      * @var string
@@ -204,18 +204,18 @@ class Order
     /**
      * @return int
      */
-    public function getMembers()
+    public function getQuantity()
     {
-        return $this->members;
+        return $this->quantity;
     }
 
     /**
-     * @param int $members
+     * @param int $quantity
      * @return $this
      */
-    public function setMembers($members)
+    public function setQuantity($quantity)
     {
-        $this->members = $members;
+        $this->quantity = $quantity;
 
         return $this;
     }
@@ -223,18 +223,18 @@ class Order
     /**
      * @return string
      */
-    public function getDescription()
+    public function getMessage()
     {
-        return $this->description;
+        return $this->message;
     }
 
     /**
-     * @param string $description
+     * @param string $message
      * @return $this
      */
-    public function setDescription($description)
+    public function setMessage($message)
     {
-        $this->description = $description;
+        $this->message = $message;
 
         return $this;
     }

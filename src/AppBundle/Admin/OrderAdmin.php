@@ -28,7 +28,6 @@ class OrderAdmin extends AbstractAdmin
             ->add('date')
             ->add('name')
             ->add('email')
-            ->add('phone')
         ;
     }
 
@@ -43,8 +42,7 @@ class OrderAdmin extends AbstractAdmin
                 'header_style' => 'width: 35%',
             ])
             ->addIdentifier('email')
-            ->addIdentifier('phone')
-            ->addIdentifier('members')
+            ->addIdentifier('quantity')
             ->addIdentifier('date')
             ->add('_action', 'actions', [
                 'actions' => [
@@ -62,10 +60,9 @@ class OrderAdmin extends AbstractAdmin
         $showMapper
             ->add('name')
             ->add('email')
-            ->add('phone')
-            ->add('members')
+            ->add('quantity')
             ->add('date')
-            ->add('description')
+            ->add('message')
             ->add('goal')
             ->add('fieldOfActivity')
             ->add('averageAge')

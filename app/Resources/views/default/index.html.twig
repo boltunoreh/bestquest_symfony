@@ -5,7 +5,7 @@
 {% block header_div_additional_class %}{% endblock %}
 
 {% block header_logo %}
-    <a class='logo-wrapper unvisible' href='{{ path('app__homepage') }}' id='logotype'>
+    <a class='logo-wrapper unvisible' href='{{ path('app__main__index') }}' id='logotype'>
         <h1 class='logotype'>
             <span class='active'>Best Quest</span>
             <span>Игровые&nbsp;технологии мероприятий</span>
@@ -28,7 +28,7 @@
             </div>
             <div class="projects block">
                 <div class="projects__wrapper block__wrapper">
-                    {{ render(controller('AppBundle:Default:slider', {'route': app.request.attributes.get('_route') })) }}
+                    {{ render(controller('AppBundle:Main:slider')) }}
                 </div>
             </div>
         </section>

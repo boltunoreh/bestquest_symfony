@@ -22,16 +22,13 @@ class OrderType extends AbstractType
             ->add('email', EmailType::class, [
                 'label' => false,
             ])
-            ->add('phone', TextType::class, [
-                'label' => false,
-            ])
-            ->add('members', IntegerType::class, [
+            ->add('quantity', IntegerType::class, [
                 'label' => false,
             ])
             ->add('date', TextType::class, [
                 'label' => false,
             ])
-            ->add('description', TextareaType::class, [
+            ->add('message', TextareaType::class, [
                 'label' => false,
             ])
             ->add('goal', TextType::class, [

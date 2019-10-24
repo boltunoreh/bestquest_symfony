@@ -1,81 +1,166 @@
-{% extends 'base_old.html.twig' %}
+{% extends 'base.html.twig' %}
+{% form_theme order_form _self %}
+{% block form_row %}
+    {{ form_label(form) }}
+    {{ form_errors(form) }}
+    {{ form_widget(form) }}
+{% endblock form_row %}
 
 {% block stylesheets %}
-    <link href="{{ asset('libs/old-styles/application.css') }}" rel="stylesheet" type="text/css"/>
-    <link href="{{ asset('libs/old-styles/styles.css') }}" rel="stylesheet" type="text/css"/>
-{% endblock %}
-
-{% block custom_styles %}
     {{ parent() }}
-
-    <style>
-        .l-section-apply{
-            {% if current_project is defined %}
-                background-image:url({% path current_project.formBackgroundImage, 'medium' %});
-            {% endif %}
-            background-position:bottom left;
-        }
-        {% if current_project is defined %}
-            .order>a{
-                background: {{ current_project.color }};
-            }
-            input[type="button"], input[type="reset"], input[type="submit"], button, .s-button{
-                background: {{ current_project.color }};
-            }
-        {% else %}
-            .order>a{
-                background-color: #E20000;
-            }
-            input[type="button"], input[type="reset"], input[type="submit"], button, .s-button{
-                background: #E20000;
-            }
-        {% endif %}
-    </style>
+    <link rel="stylesheet" href="{{ asset('libs/choices/choices.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('libs/flatpickr/flatpickr.min.css') }}">
 {% endblock %}
 
-{% block bodyclass %}sb_quest{% endblock %}
-
-{% block apply %}
-    <div class='order'>
-        <a href='#apply'>Заявка</a>
-    </div>
+{% block head_js %}
+    {{ parent() }}
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 {% endblock %}
+
+
+{% block bodyclass %}black{% endblock %}
 
 {% block content %}
-    <main class="l-content">
-        <section class="l-section l-section-apply" id="apply">
-            <h2 class="s-title white">Заявка</h2>
-            {{ form_start(order_form, { 'attr': {'class': 's-form b-apply'}}) }}
-                <div class="s-form-group">
-                    <label for="name">Контактное лицо</label>
-                    {{ form_row(order_form.name, { 'attr': {'class': 's-control', 'size': 40, 'placeholder': 'Как к вам обращаться?'}}) }}
-                </div>
-                <div class="s-form-group">
-                    {{ form_row(order_form.email, { 'attr': {'class': 's-control', 'size': 20, 'placeholder': 'Ваш e-mail'}}) }}
-                </div>
-                <div class="s-form-group">
-                    {{ form_row(order_form.phone, { 'attr': {'class': 's-control', 'size': 20, 'placeholder': 'Ваш телефон'}}) }}
-                </div>
-                <div class="s-form-group">
-                    <div class="s-form-subgroup-left">
-                        <label class="inline" for="date">Когда</label>
-                        {{ form_row(order_form.date, { 'attr': {'class': 's-control date', 'size': 12}}) }}
+    <main>
+        <h1 class="visually-hidden">best-quest</h1>
+        <section class="application-form">
+            <div class="application-form__wrapper">
+                <div class="application-form__left-group">
+                    {% if static_text is not null %}
+                        <h2 class="application-form__title">{{ static_text.title }}</h2>
+                        <p class="application-form__text">
+                            {{ static_text.content }}
+                        </p>
+                    {% else %}
+                        <h2 class="application-form__title">Заявка</h2>
+                        <p class="application-form__text">
+                            Если вы хотите, чтобы мы создали эксклюзивный проект для вас, напишите нам, используя контактную форму или почту. Поделитесь всеми вашими пожеланиями, целью вашего мероприятия и концепцией. Мы постараемся ответить как можно скорее
+                        </p>
+                    {% endif %}
+                    <div class="application-form__contacts">
+                        <div class="application-form__image-wrapper">
+                            <img class="application-form__image" src="{{ asset('img/form-avatar.png') }}" alt="">
+                        </div>
+                        <a class="application-form__link" href="mailto:info@best-quest.ru">info@best-quest.ru</a>
                     </div>
-                    <div class="s-form-subgroup-right">
-                        <label class="inline" for="qty">Человек</label>
-                        {{ form_row(order_form.members, { 'attr': {'value': 0, 'max': 1000, 'style': 'width: 60px'}}) }}
+                </div>
+                <div class="application-form__right-group">
+                    {% set answer_class = '' %}
+                    {% if success is not null %}
+                        {% if success == true %}
+                            {% set answer_class = 'application-form__validation-answer--active application-form__validation-answer--success' %}
+                        {% else %}
+                            {% set answer_class = 'application-form__validation-answer--active application-form__validation-answer--failing' %}
+                        {%  endif %}
+                    {%  endif %}
+                    <div class="application-form__validation-answer {{ answer_class }}">
+                        <div class="application-form__answer-icon-wrap">
+                            <img class="application-form__answer-icon application-form__answer-icon--success" src="{{ asset('img/success-icon.svg') }}" alt="" width="40" height="40">
+                            <img class="application-form__answer-icon application-form__answer-icon--failing" src="{{ asset('img/failing-icon.svg') }}" alt="" width="40" height="40">
+                        </div>
+                        <div class="application-form__answer__text">
+                            {% if result_text is defined %}
+                                <p>{{ result_text }}</p>
+                            {% endif %}
+                        </div>
                     </div>
+                    {{ form_start(order_form, { 'attr': {'class': 'application-form__form' }}) }}
+                        <div class="application-form__form-item">
+                            {{ form_row(order_form.name, { 'id': 'name', 'attr': {'class': 'application-form__input', 'placeholder': 'Ваше имя', 'required': 'true' }}) }}
+                            <label class="visually-hidden" for="name">Ваше имя</label>
+                        </div>
+                        <div class="application-form__form-item">
+                            {{ form_row(order_form.email, { 'id': 'email', 'attr': {'class': 'application-form__input', 'placeholder': 'E-mail', 'required': 'true' }}) }}
+                            <label class="visually-hidden" for="email">Ваш email</label>
+                        </div>
+                        <div class="application-form__form-item">
+                            <select name="project" id="project" required>
+                                <option placeholder disabled selected value="0">Выбор проекта</option>
+                                {% for project in projects %}
+                                    <option value="{{ loop.index }}">{{ project.title }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="application-form__form-item application-form__form-item--quantity" >
+                            {{ form_row(order_form.date, { 'id': 'date', 'attr': {'class': 'application-form__input application-form__input--date', 'placeholder': 'Когда', 'onfocus': 'blur();', 'required': 'true' }}) }}
+                            <label class="visually-hidden" for="date">Дата мероприятия</label>
+                            {{ form_row(order_form.quantity, { 'id': 'quantity', 'attr': {'class': 'application-form__input application-form__input--quantity', 'placeholder': 'Сколько человек', 'required': 'true' }}) }}
+                            <label class="visually-hidden" for="quantity">Количество участников</label>
+                        </div>
+                        <div class="application-form__form-item">
+                            {{ form_row(order_form.message, { 'id': 'message', 'attr': {'class': 'application-form__textarea', 'placeholder': 'Сообщение' }}) }}
+                            <label class="visually-hidden" for="message">Ваше сообщение</label>
+                        </div>
+                        {{ form_row(order_form._token) }}
+                        <div class="g-recaptcha" data-sitekey="{{ recaptcha_key }}"></div>
+                        <div class="application-form__form-item">
+                            <button class="application-form__submit" type="submit">Отправить</button>
+                            {{ form_row(order_form.copyMe, { 'id': 'copy-agreement', 'attr': {'class': 'visually-hidden application-form__checkbox'}}) }}
+                            <label class="application-form__label" for="copy-agreement">Отправить копию мне на email</label>
+                        </div>
+                    {{ form_end(order_form, {'render_rest': false}) }}
                 </div>
-                <div class="s-form-group">
-                    {{ form_row(order_form.description, { 'attr': {'class': 's-control textarea', 'rows': 6, 'placeholder': 'Подробности'}}) }}
-                </div>
-                <div class="s-form-group">
-                    <label class="inline" for="copy_me">Отправить копию мне на email</label>
-                    {{ form_row(order_form.copyMe, { 'attr': {'class': 's-control'}}) }}
-                </div>
-                {{ form_row(order_form._token) }}
-                <button class="s-button block" type="submit">Отправить</button>
-            {{ form_end(order_form, {'render_rest': false}) }}
+            </div>
         </section>
+        <section class="safari-dummy"></section>
     </main>
+{% endblock %}
+
+{% block footer_js %}
+    {{ parent() }}
+    <script src="{{ asset('libs/choices/choices.min.js') }}"></script>
+    <script src="{{ asset('libs/flatpickr/flatpickr.min.js') }}"></script>
+    <script src="{{ asset('libs/flatpickr/flatpickr-ru.js') }}"></script>
+    <script src="{{ asset('libs/imask/imask.min.js') }}"></script>
+    <script>
+        var is_safari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+        var dateInput = document.getElementById('date');
+        var choices = new Choices('#project', {
+            searchEnabled: false,
+            itemSelectText: '',
+            shouldSort: false
+        });
+
+        new flatpickr(dateInput, {
+            dateFormat: "Y-m-d",
+            minDate: "today",
+            "locale": "ru",
+            "allowInput": true,
+            "disableMobile": true
+        });
+
+        var numberMask = IMask(
+            document.getElementById('quantity'),
+            {
+                mask: Number,
+                min: 1,
+                max: 9999,
+                thousandsSeparator: ''
+            }
+        );
+
+        if (!is_safari) {
+            document.body.style.minHeight = window.innerHeight + 'px';
+
+            window.addEventListener('resize', function () {
+                document.body.style.minHeight = window.innerHeight + 'px';
+            });
+        } else {
+            if (window.innerWidth < 1280) {
+                var coefficient = document.documentElement.clientHeight / document.documentElement.clientWidth;
+                var dummyHeight = (window.innerHeight * (coefficient - 0.3)) - window.innerHeight;
+
+                document.querySelector('.safari-dummy').style.display = 'block';
+                document.querySelector('.safari-dummy').style.height = dummyHeight + 'px';
+
+                window.addEventListener('orientationchange', function () {
+                    var mql = window.matchMedia("(orientation: portrait)");
+                    if (mql.matches) {
+                        document.querySelector('.safari-dummy').style.display = 'block';
+                        document.querySelector('.safari-dummy').style.height = dummyHeight + 'px';
+                    }
+                });
+            }
+        }
+    </script>
 {% endblock %}

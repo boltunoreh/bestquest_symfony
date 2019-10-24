@@ -25,9 +25,9 @@ services:
         tags:
             - name: sonata.admin
               manager_type: orm
-    app.admin.about:
-        class: AppBundle\Admin\AboutAdmin
-        arguments: [~, AppBundle\Entity\About, ~]
+    app.admin.static_text:
+        class: AppBundle\Admin\StaticTextAdmin
+        arguments: [~, AppBundle\Entity\StaticText, ~]
         tags:
             - name: sonata.admin
               manager_type: orm

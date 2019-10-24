@@ -9,7 +9,7 @@ use Sonata\AdminBundle\Route\RouteCollection;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 
-class AboutAdmin extends AbstractAdmin
+class StaticTextAdmin extends AbstractAdmin
 {
     /**
      * @param ListMapper $listMapper

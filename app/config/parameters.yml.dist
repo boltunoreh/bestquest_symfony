@@ -23,3 +23,5 @@ parameters:
 
     host: http://example.com
     web_dir: %kernel.root_dir%/../web
+
+    google_recaptcha_key: ''

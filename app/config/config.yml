@@ -39,6 +39,8 @@ twig:
       - 'SonataMediaBundle:Form:media_widgets.html.twig'
       - 'SonataCoreBundle:Form:datepicker.html.twig'
       - 'Admin/media_widgets.html.twig'
+  globals:
+    recaptcha_key: '%google_recaptcha_key%'
 
 # Doctrine Configuration
 doctrine:
