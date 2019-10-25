@@ -17,10 +17,12 @@
                                         <img src="{% path project.sliderLargeImage, 'medium' %}" alt="">
                                     </div>
                                     <div class="slide__iframe">
-                                        <iframe width="560" height="315"
-                                                src="https://www.youtube.com/embed/{{ project.videoId }}?enablejsapi=1"
-                                                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                                                allowfullscreen></iframe>
+                                        {% if project.videoId is not empty %}
+                                            <iframe width="560" height="315"
+                                                    src="https://www.youtube.com/embed/{{ project.videoId }}?enablejsapi=1"
+                                                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                                                    allowfullscreen></iframe>
+                                        {% endif %}
                                         <img src="{% path project.sliderLargeImage, 'medium' %}" alt="">
                                     </div>
                                 </div>

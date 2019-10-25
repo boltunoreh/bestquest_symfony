@@ -5,9 +5,9 @@
         <section class="accession">
             <div class="accession__wrapper" data-parallax="scroll" data-speed="1.2" data-bleed="10"
                  data-position="center top"
-                 data-image-src="img/backgroung-opacity.jpg">
+                 data-image-src="{{ asset('img/backgroung-opacity.jpg') }}">
                 <div class="accession__content">
-                    <img class="accession__logo" src="img/logo.svg" alt="логотип best-quest" width="145" height="145">
+                    <img class="accession__logo" src="{{ asset('img/logo.svg') }}" alt="логотип best-quest" width="145" height="145">
                     <h1 class="accession__title">
                         <span class="accession__title-big">BEST QUEST</span>
                         <span class="accession__title-small">Игровые технологии <br> мероприятий</span>
@@ -46,13 +46,186 @@
             <div class="customers__wrapper">
                 <h2 class="customers__title">Клиенты</h2>
                 <ul class="customers__list">
-                    {% for client in clients %}
-                        <li class="customers__item">
-                            <a class="customers__link" href="#">
-                                <img src="{% path client.image, 'medium' %}" alt="логотип партнера">
-                            </a>
-                        </li>
-                    {% endfor %}
+                    <li class="customers__item">
+                        <a class="customers__link" href="#">
+                            <img src="{{ asset('img/customers/Frame.png') }}" alt="логотип партнера">
+                        </a>
+                    </li>
+                    <li class="customers__item">
+                        <a class="customers__link" href="#">
+                            <img src="{{ asset('img/customers/image_15.png') }}" alt="логотип партнера">
+                        </a>
+                    </li>
+                    <li class="customers__item">
+                        <a class="customers__link" href="#">
+                            <img src="{{ asset('img/customers/image_34.png') }}" alt="логотип партнера">
+                        </a>
+                    </li>
+                    <li class="customers__item">
+                        <a class="customers__link" href="#">
+                            <img src="{{ asset('img/customers/image_20.png') }}" alt="логотип партнера">
+                        </a>
+                    </li>
+                    <li class="customers__item">
+                        <a class="customers__link" href="#">
+                            <img src="{{ asset('img/customers/image_4.png') }}" alt="логотип партнера">
+                        </a>
+                    </li>
+                    <li class="customers__item">
+                        <a class="customers__link" href="#">
+                            <img src="{{ asset('img/customers/image_10.png') }}" alt="логотип партнера">
+                        </a>
+                    </li>
+                    <li class="customers__item">
+                        <a class="customers__link" href="#">
+                            <img src="{{ asset('img/customers/image_21.png') }}" alt="логотип партнера">
+                        </a>
+                    </li>
+                    <li class="customers__item">
+                        <a class="customers__link" href="#">
+                            <img src="{{ asset('img/customers/image_16.png') }}" alt="логотип партнера">
+                        </a>
+                    </li>
+                    <li class="customers__item">
+                        <a class="customers__link" href="#">
+                            <img src="{{ asset('img/customers/image_35.png') }}" alt="логотип партнера">
+                        </a>
+                    </li>
+                    <li class="customers__item">
+                        <a class="customers__link" href="#">
+                            <img src="{{ asset('img/customers/image_33.png') }}" alt="логотип партнера">
+                        </a>
+                    </li>
+                    <li class="customers__item">
+                        <a class="customers__link" href="#">
+                            <img src="{{ asset('img/customers/image_5.png') }}" alt="логотип партнера">
+                        </a>
+                    </li>
+                    <li class="customers__item">
+                        <a class="customers__link" href="#">
+                            <img src="{{ asset('img/customers/image_22.png') }}" alt="логотип партнера">
+                        </a>
+                    </li>
+                    <li class="customers__item">
+                        <a class="customers__link" href="#">
+                            <img src="{{ asset('img/customers/image_7_1.png') }}" alt="логотип партнера">
+                        </a>
+                    </li>
+                    <li class="customers__item">
+                        <a class="customers__link" href="#">
+                            <img src="{{ asset('img/customers/image_26.png') }}" alt="логотип партнера">
+                        </a>
+                    </li>
+                    <li class="customers__item">
+                        <a class="customers__link" href="#">
+                            <img src="{{ asset('img/customers/image_6.png') }}" alt="логотип партнера">
+                        </a>
+                    </li>
+                    <li class="customers__item">
+                        <a class="customers__link" href="#">
+                            <img src="{{ asset('img/customers/image_11.png') }}" alt="логотип партнера">
+                        </a>
+                    </li>
+                    <li class="customers__item">
+                        <a class="customers__link" href="#">
+                            <img src="{{ asset('img/customers/image_30.png') }}" alt="логотип партнера">
+                        </a>
+                    </li>
+                    <li class="customers__item">
+                        <a class="customers__link" href="#">
+                            <img src="{{ asset('img/customers/image_27.png') }}" alt="логотип партнера">
+                        </a>
+                    </li>
+                    <li class="customers__item">
+                        <a class="customers__link" href="#">
+                            <img src="{{ asset('img/customers/image_28.png') }}" alt="логотип партнера">
+                        </a>
+                    </li>
+                    <li class="customers__item">
+                        <a class="customers__link" href="#">
+                            <img src="{{ asset('img/customers/image_32.png') }}" alt="логотип партнера">
+                        </a>
+                    </li>
+                    <li class="customers__item">
+                        <a class="customers__link" href="#">
+                            <img src="{{ asset('img/customers/image_23.png') }}" alt="логотип партнера">
+                        </a>
+                    </li>
+                    <li class="customers__item">
+                        <a class="customers__link" href="#">
+                            <img src="{{ asset('img/customers/image_19.png') }}" alt="логотип партнера">
+                        </a>
+                    </li>
+                    <li class="customers__item">
+                        <a class="customers__link" href="#">
+                            <img src="{{ asset('img/customers/image_31.png') }}" alt="логотип партнера">
+                        </a>
+                    </li>
+                    <li class="customers__item">
+                        <a class="customers__link" href="#">
+                            <img src="{{ asset('img/customers/image_29.png') }}" alt="логотип партнера">
+                        </a>
+                    </li>
+                    <li class="customers__item">
+                        <a class="customers__link" href="#">
+                            <img src="{{ asset('img/customers/image_37.png') }}" alt="логотип партнера">
+                        </a>
+                    </li>
+                    <li class="customers__item">
+                        <a class="customers__link" href="#">
+                            <img src="{{ asset('img/customers/image_38.png') }}" alt="логотип партнера">
+                        </a>
+                    </li>
+                    <li class="customers__item">
+                        <a class="customers__link" href="#">
+                            <img src="{{ asset('img/customers/image_8.png') }}" alt="логотип партнера">
+                        </a>
+                    </li>
+                    <li class="customers__item">
+                        <a class="customers__link" href="#">
+                            <img src="{{ asset('img/customers/image_9.png') }}" alt="логотип партнера">
+                        </a>
+                    </li>
+                    <li class="customers__item">
+                        <a class="customers__link" href="#">
+                            <img src="{{ asset('img/customers/image_36.png') }}" alt="логотип партнера">
+                        </a>
+                    </li>
+                    <li class="customers__item">
+                        <a class="customers__link" href="#">
+                            <img src="{{ asset('img/customers/image_39.png') }}" alt="логотип партнера">
+                        </a>
+                    </li>
+                    <li class="customers__item">
+                        <a class="customers__link" href="#">
+                            <img src="{{ asset('img/customers/image_34.png') }}" alt="логотип партнера">
+                        </a>
+                    </li>
+                    <li class="customers__item">
+                        <a class="customers__link" href="#">
+                            <img src="{{ asset('img/customers/image_7.png') }}" alt="логотип партнера">
+                        </a>
+                    </li>
+                    <li class="customers__item">
+                        <a class="customers__link" href="#">
+                            <img src="{{ asset('img/customers/image_40.png') }}" alt="логотип партнера">
+                        </a>
+                    </li>
+                    <li class="customers__item">
+                        <a class="customers__link" href="#">
+                            <img src="{{ asset('img/customers/image_42.png') }}" alt="логотип партнера">
+                        </a>
+                    </li>
+                    <li class="customers__item">
+                        <a class="customers__link" href="#">
+                            <img src="{{ asset('img/customers/image_41.png') }}" alt="логотип партнера">
+                        </a>
+                    </li>
+                    <li class="customers__item">
+                        <a class="customers__link" href="#">
+                            <img src="{{ asset('img/customers/image_43.png') }}" alt="логотип партнера">
+                        </a>
+                    </li>
                 </ul>
             </div>
         </section>
