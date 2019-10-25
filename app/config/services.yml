@@ -33,14 +33,6 @@ services:
               manager_type: orm
               group: "app.admin.group.about"
               label: 'О компании'
-    app.admin.client:
-        class: AppBundle\Admin\ClientAdmin
-        arguments: [~, AppBundle\Entity\Client, ~]
-        tags:
-            - name: sonata.admin
-              manager_type: orm
-              group: "app.admin.group.about"
-              label: 'Клиенты'
     app.admin.teammate:
         class: AppBundle\Admin\TeammateAdmin
         arguments: [~, AppBundle\Entity\Teammate, ~]
