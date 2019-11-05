@@ -99,6 +99,10 @@
               <label class="visually-hidden" for="email">Ваш email</label>
             </div>
             <div class="application-form__form-item">
+              <input class="application-form__input" type="text" name="tel" id="tel" placeholder="Телефон" required>
+              <label class="visually-hidden" for="tel">Ваш телефон</label>
+            </div>
+            <div class="application-form__form-item">
               <select name="project" id="project" required>
                 <option placeholder disabled selected value="0">Выбор проекта</option>
                 <option value="1">Друзья Оушена</option>
@@ -215,6 +219,11 @@
         thousandsSeparator: ''
       }
     );
+
+    var phoneMask = IMask(
+      document.getElementById('tel'), {
+        mask: '+{7}(000)000-00-00'
+      });
 
     if (!is_safari) {
       document.body.style.minHeight = window.innerHeight + 'px';

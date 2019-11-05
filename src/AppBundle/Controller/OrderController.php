@@ -35,6 +35,8 @@ class OrderController extends Controller
                 $order = new Order();
                 $order->setName($orderData['name']);
                 $order->setEmail($orderData['email']);
+                $order->setPhone($orderData['phone']);
+                $order->setProject($orderData['project']->getTitle());
                 $order->setQuantity($orderData['quantity']);
                 $order->setDate(new \DateTime($orderData['date']));
                 $order->setMessage($orderData['message']);

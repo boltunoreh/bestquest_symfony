@@ -2,6 +2,8 @@
 
 namespace AppBundle\Form\Type;
 
+use Doctrine\ORM\EntityRepository;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -22,6 +24,18 @@ class OrderType extends AbstractType
             ->add('email', EmailType::class, [
                 'label' => false,
             ])
+            ->add('phone', TextType::class, [
+                'label' => false,
+            ])
+            ->add('project', EntityType::class, [
+                'class' => 'AppBundle:Project',
+                'choice_label' => 'title',
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('p')
+                        ->where('p.isActive = true');
+                },
+                'label' => false,
+            ])
             ->add('quantity', IntegerType::class, [
                 'label' => false,
             ])
@@ -29,24 +43,6 @@ class OrderType extends AbstractType
                 'label' => false,
             ])
             ->add('message', TextareaType::class, [
-                'label' => false,
-            ])
-            ->add('goal', TextType::class, [
-                'label' => false,
-            ])
-            ->add('fieldOfActivity', TextType::class, [
-                'label' => false,
-            ])
-            ->add('averageAge', TextType::class, [
-                'label' => false,
-            ])
-            ->add('likedProjects', TextareaType::class, [
-                'label' => false,
-            ])
-            ->add('dislikedProjects', TextareaType::class, [
-                'label' => false,
-            ])
-            ->add('ideas', TextareaType::class, [
                 'label' => false,
             ])
             ->add('copyMe', CheckboxType::class, [

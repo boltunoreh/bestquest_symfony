@@ -5,6 +5,20 @@
     {{ form_errors(form) }}
     {{ form_widget(form) }}
 {% endblock form_row %}
+{% block _app_bundle_feedback_type_project_widget %}
+    <select {{ block('widget_attributes') }}{% if multiple %} multiple="multiple"{% endif %}>
+        <option placeholder disabled selected value="0">Выбор проекта</option>
+        {%- if preferred_choices|length > 0 -%}
+            {% set options = preferred_choices %}
+            {{- block('choice_widget_options') -}}
+            {%- if choices|length > 0 and separator is not none -%}
+                <option disabled="disabled">{{ separator }}</option>
+            {%- endif -%}
+        {%- endif -%}
+        {%- set options = choices -%}
+        {{- block('choice_widget_options') -}}
+    </select>
+{% endblock %}
 
 {% block stylesheets %}
     {{ parent() }}
@@ -74,12 +88,11 @@
                             <label class="visually-hidden" for="email">Ваш email</label>
                         </div>
                         <div class="application-form__form-item">
-                            <select name="project" id="project" required>
-                                <option placeholder disabled selected value="0">Выбор проекта</option>
-                                {% for project in projects %}
-                                    <option value="{{ loop.index }}">{{ project.title }}</option>
-                                {% endfor %}
-                            </select>
+                            {{ form_row(order_form.phone, { 'id': 'tel', 'attr': {'class': 'application-form__input', 'placeholder': 'Телефон', 'required': 'true' }}) }}
+                            <label class="visually-hidden" for="tel">Ваш телефон</label>
+                        </div>
+                        <div class="application-form__form-item">
+                            {{ form_row(order_form.project, { 'id': 'project', 'attr': {'required': 'true' }}) }}
                         </div>
                         <div class="application-form__form-item application-form__form-item--quantity" >
                             {{ form_row(order_form.date, { 'id': 'date', 'attr': {'class': 'application-form__input application-form__input--date', 'placeholder': 'Когда', 'onfocus': 'blur();', 'required': 'true' }}) }}
@@ -138,6 +151,11 @@
                 thousandsSeparator: ''
             }
         );
+
+        var phoneMask = IMask(
+            document.getElementById('tel'), {
+                mask: '+{7}(000)000-00-00'
+            });
 
         if (!is_safari) {
             document.body.style.minHeight = window.innerHeight + 'px';

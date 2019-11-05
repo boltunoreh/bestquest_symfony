@@ -54,13 +54,14 @@ class MainController extends Controller
      */
     public function sliderAction(Project $project = null)
     {
-        $condition = [
+        $conditions = [
             'isInSlider' => true,
+            'isActive' => true,
         ];
         /** @var Project $projects */
         $projects = $this->getDoctrine()
             ->getRepository('AppBundle:Project')
-            ->findBy($condition, ['sortOrder' => 'ASC']);
+            ->findBy($conditions, ['sortOrder' => 'ASC']);
 
         $renderOpts = [
             'projects' => $projects,

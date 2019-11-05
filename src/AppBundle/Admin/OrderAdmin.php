@@ -60,15 +60,11 @@ class OrderAdmin extends AbstractAdmin
         $showMapper
             ->add('name')
             ->add('email')
+            ->add('phone')
+            ->add('project')
             ->add('quantity')
             ->add('date')
             ->add('message')
-            ->add('goal')
-            ->add('fieldOfActivity')
-            ->add('averageAge')
-            ->add('likedProjects')
-            ->add('dislikedProjects')
-            ->add('ideas')
         ;
     }
 
