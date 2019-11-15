@@ -243,10 +243,7 @@
                       <div class="slide__overlay">
                         <img src="img/slide-2.jpg" alt="">
                       </div>
-                      <div class="slide__iframe">
-                        <iframe width="560" height="315" src="https://www.youtube.com/embed/p-GPIdZgiaU?enablejsapi=1"
-                          allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                          allowfullscreen></iframe>
+                      <div class="slide__iframe" data-video-id="p-GPIdZgiaU">
                         <img src="img/slide-2.jpg" alt="">
                       </div>
                     </div>
@@ -270,10 +267,7 @@
                       <div class="slide__overlay">
                         <img src="img/slide-3.jpg" alt="">
                       </div>
-                      <div class="slide__iframe">
-                        <iframe width="560" height="315" src="https://www.youtube.com/embed/mRz0pwir450?enablejsapi=1"
-                          allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                          allowfullscreen></iframe>
+                      <div class="slide__iframe" data-video-id="mRz0pwir450">
                         <img src="img/slide-2.jpg" alt="">
                       </div>
                     </div>
@@ -352,10 +346,7 @@
                       <div class="slide__overlay">
                         <img src="img/slide-2.jpg" alt="">
                       </div>
-                      <div class="slide__iframe">
-                        <iframe width="560" height="315" src="https://www.youtube.com/embed/p-GPIdZgiaU?enablejsapi=1"
-                          allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                          allowfullscreen></iframe>
+                      <div class="slide__iframe" data-video-id="p-GPIdZgiaU">
                         <img src="img/slide-2.jpg" alt="">
                       </div>
                     </div>
@@ -448,6 +439,7 @@
     </div>
   </footer>
   <script src="libs/svgxuse.min.js" async defer></script>
+  <script src="https://www.youtube.com/iframe_api"></script>
   <script src="libs/swiper/swiper.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
   <script src="libs/parallax/parallax.min.js"></script>
@@ -466,9 +458,9 @@
       `Спецпроект`,
     ];
     const slides = document.querySelectorAll(`.slide`);
-    const iframesArray = Array.from(document.querySelectorAll(`.slide`)).map((slide) => slide.querySelector(`iframe`))
-      .filter((item) => !!item);
+    const iframesArray = Array.from(document.querySelectorAll(`.slide`));
 
+    let isInitSwiper = false;
     const swiper = new Swiper(`.slider`, {
       pagination: {
         el: `.slider-pagination`,
@@ -486,17 +478,15 @@
       slidesPerView: `auto`,
       speed: SPEED,
       initialSlide: 1,
+      on: {
+        init: function () {
+          isInitSwiper = true;
+        },
+      },
     });
-
-    const setIframesPause = function () {
-      iframesArray.forEach((it) => {
-        it.contentWindow.postMessage(`{"event":"command","func":"pauseVideo","args":""}`, `*`);
-      });
-    };
 
     const slideChangeTransitionStart = function () {
       let direction;
-
       if (activeIndex === slides.length - 1 && !this.realIndex) {
         direction = `left`;
       } else if (!activeIndex && this.realIndex === slides.length - 1) {
@@ -506,15 +496,11 @@
       } else {
         direction = `right`;
       }
-
       activeIndex = this.realIndex;
-
       if (direction === `left`) {
         const fadeSlide = this.slides[this.previousIndex].previousElementSibling;
-
         fadeSlide.style.transform = `translateX(130%) scaleX(0.6) scaleY(0.682)`;
         fadeSlide.style.opacity = `0`;
-
         setTimeout(() => {
           fadeSlide.style.transition = ``;
           fadeSlide.style.transform = ``;
@@ -522,18 +508,15 @@
         }, SPEED);
       } else {
         const fadeSlide = this.slides[this.previousIndex].nextElementSibling;
-
         fadeSlide.style.zIndex = -1;
         fadeSlide.style.transition = `none`;
         fadeSlide.style.transform = `translateX(-346px)`;
-
         setTimeout(() => {
           fadeSlide.style.transition = ``;
           fadeSlide.style.transition = `translateX ${SPEED / 1000}s ease, opacity ${SPEED / 1000}s easy`;
           fadeSlide.style.transform = `translateX(-726px) scaleX(0.6) scaleY(0.682)`;
           fadeSlide.style.opacity = `0`;
         }, 0);
-
         setTimeout(() => {
           fadeSlide.style.transition = ``;
           fadeSlide.style.transform = ``;
@@ -543,35 +526,97 @@
       }
     };
 
-    const slideChangeTransitionEnd = function () {
-      setIframesPause();
-    };
-
     const touchMove = function () {
       if (!isInProgress) {
         isInProgress = true;
-
         Array.from(swiper.slides).forEach(function (it) {
           it.style.transformOrigin = `50% 50%`;
         });
-
         swiper.on(`transitionEnd`, transitionEnd);
       }
     };
-
     const transitionEnd = function () {
       isInProgress = false;
-
       Array.from(swiper.slides).forEach(function (it) {
         it.style.transformOrigin = ``;
       });
-
       swiper.off(`transitionEnd`, transitionEnd);
     };
-
     swiper.on(`slideChangeTransitionStart`, slideChangeTransitionStart);
-    swiper.on(`slideChangeTransitionEnd`, slideChangeTransitionEnd);
 
+    //Активация каждого видео при переключении
+    const slider = document.querySelector(`.slider-container`);
+
+    const players = [];
+    let activeVideoIndex = swiper.activeIndex;
+    let prevActiveVideoIndex = swiper.activeIndex;
+    let isPlayVideo = false;
+    let isReadyYouTubeIframeAPIReady = false;
+
+    swiper.on(`slideChangeTransitionEnd`, () => {
+      isPlayVideo = false;
+      window.activateVideo(swiper.activeIndex);
+      prevActiveVideoIndex = swiper.activeIndex;
+    });
+
+    window.activateVideo = (index) => {
+      const sliderTop = slider.getBoundingClientRect().top - slider.clientHeight;
+      const isVisible = sliderTop <= 0;
+      if (!isVisible || isPlayVideo || !isReadyYouTubeIframeAPIReady || !isInitSwiper) {
+        return;
+      }
+      setTimeout(() => {
+
+     if (players && players[index] && players[index].playVideo) {
+        players[index].playVideo();
+        isPlayVideo = true;
+      }
+
+      for (let i=0; i < players.length; i++) {
+        if (players.indexOf(players[i]) !== index && isPlayVideo) {
+          if (players && players[i] && players[i].pauseVideo) {
+            players[i].pauseVideo();
+          }
+        }
+      }
+      }, 3000);
+    };
+
+
+    window.onYouTubeIframeAPIReady = () => {
+      const iframesVideo = document.querySelectorAll(`.slide__iframe`);
+
+      const onPlayerReady = (event) => {
+        event.target.setVolume(0);
+        isReadyYouTubeIframeAPIReady = true;
+        window.activateVideo(swiper.activeIndex);
+      };
+      const onPlayerStateChange = (event) => {
+        if (event.data === 0) {
+          event.target.playVideo();
+        }
+      };
+
+      for (var i = 0; i < iframesVideo.length; i += 1) {
+        if (iframesVideo[i].hasAttribute(`data-video-id`)) {
+          iframesVideo[i].id = iframesVideo[i].getAttribute(`data-video-id`);
+          players[i] = new window.YT.Player(iframesVideo[i], {
+            videoId: iframesVideo[i].id,
+            host: 'https://www.youtube.com',
+            events: {
+              'onReady': onPlayerReady,
+              'onStateChange': onPlayerStateChange,
+            }
+          });
+        }
+      }
+    };
+
+    window.addEventListener(`scroll`, () => {
+      setTimeout(() => {
+        window.activateVideo(activeVideoIndex);
+      }, 4000);
+    });
   </script>
 </body>
 
