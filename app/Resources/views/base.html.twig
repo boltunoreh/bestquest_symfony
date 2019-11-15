@@ -11,7 +11,7 @@
     <link rel="icon" href="{{ asset('img/favicon.png') }}" type="image/x-icon">
     {% block stylesheets %}
         <link
-                href="https://fonts.googleapis.com/css?family=Roboto:400,500,700%7CRubik:400,500,700&display=swap&subset=cyrillic"
+                href="https://fonts.googleapis.com/css?family=Roboto:400,500,700%7CRubik:400,500,700&display=fallback&subset=cyrillic"
                 rel="stylesheet">
         <link rel="stylesheet" href="{{ asset('libs/swiper/swiper.min.css') }}">
         <link rel="stylesheet" href="{{ asset('css/style-min.css') }}">
@@ -25,7 +25,7 @@
 
             {% else %}
             .logo-wrapper {
-                background-color: #E20000;
+                background-color: #e20000;
             }
 
             {% endif %}

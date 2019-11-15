@@ -16,13 +16,11 @@
                                     <div class="slide__overlay">
                                         <img src="{% path project.sliderLargeImage, 'medium' %}" alt="">
                                     </div>
-                                    <div class="slide__iframe">
-                                        {% if project.videoId is not empty %}
-                                            <iframe width="560" height="315"
-                                                    src="https://www.youtube.com/embed/{{ project.videoId }}?enablejsapi=1"
-                                                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                                                    allowfullscreen></iframe>
-                                        {% endif %}
+                                    {% set data_video_id = '' %}
+                                    {% if project.videoId is not empty %}
+                                        {% set data_video_id = project.videoId %}
+                                    {% endif %}
+                                    <div class="slide__iframe" data-video-id="{{ data_video_id }}">
                                         <img src="{% path project.sliderLargeImage, 'medium' %}" alt="">
                                     </div>
                                 </div>
@@ -60,15 +58,15 @@
 <script>
     let isInProgress = false;
     const SPEED = 600;
-    let activeIndex = 1;
+    let activeIndex = 0;
     var bulletsText = new Array();
     {% for project in projects %}
     bulletsText.push('{{ project.title }}');
     {% endfor %}
     const slides = document.querySelectorAll(`.slide`);
-    const iframesArray = Array.from(document.querySelectorAll(`.slide`)).map((slide) => slide.querySelector(`iframe`))
-        .filter((item) => !!item);
+    const iframesArray = document.querySelectorAll(`.swiper-slide:not(.swiper-slide-dublicate)`);
 
+    let isInitSwiper = false;
     const swiper = new Swiper(`.slider`, {
         pagination: {
             el: `.slider-pagination`,
@@ -86,13 +84,12 @@
         slidesPerView: `auto`,
         speed: SPEED,
         initialSlide: {{ initialSlide }},
+        on: {
+            init: function () {
+                isInitSwiper = true;
+            },
+        },
     });
-
-    const setIframesPause = function () {
-        iframesArray.forEach((it) => {
-            it.contentWindow.postMessage(`{"event":"command","func":"pauseVideo","args":""}`, `*`);
-        });
-    };
 
     const slideChangeTransitionStart = function () {
         let direction;
@@ -143,10 +140,6 @@
         }
     };
 
-    const slideChangeTransitionEnd = function () {
-        setIframesPause();
-    };
-
     const touchMove = function () {
         if (!isInProgress) {
             isInProgress = true;
@@ -170,6 +163,75 @@
     };
 
     swiper.on(`slideChangeTransitionStart`, slideChangeTransitionStart);
-    swiper.on(`slideChangeTransitionEnd`, slideChangeTransitionEnd);
 
+    //Активация каждого видео при переключении
+    const slider = document.querySelector(`.slider-container`);
+
+    const players = [];
+    let activeVideoIndex = swiper.activeIndex;
+    let prevActiveVideoIndex = swiper.activeIndex;
+    let isPlayVideo = false;
+    let isReadyYouTubeIframeAPIReady = false;
+
+    swiper.on(`slideChangeTransitionEnd`, () => {
+        isPlayVideo = false;
+        window.activateVideo(swiper.activeIndex);
+        prevActiveVideoIndex = swiper.activeIndex;
+    });
+
+    window.activateVideo = (index) => {
+        const sliderTop = slider.getBoundingClientRect().top - slider.clientHeight;
+        const isVisible = sliderTop <= 0;
+        if (!isVisible || isPlayVideo || !isReadyYouTubeIframeAPIReady || !isInitSwiper) {
+            return;
+        }
+        setTimeout(() => {
+            if (players && players[index] && players[index].playVideo) {
+                players[index].playVideo();
+                isPlayVideo = true;
+            }
+
+            for (let i=0; i < players.length; i++) {
+                if (players.indexOf(players[i]) !== index && isPlayVideo) {
+                    if (players && players[i] && players[i].pauseVideo) {
+                        players[i].pauseVideo();
+                    }
+                }
+            }
+        }, 3000);
+    };
+
+
+    window.onYouTubeIframeAPIReady = () => {
+        const iframesVideo = document.querySelectorAll(`.slide__iframe`);
+
+        const onPlayerReady = (event) => {
+            event.target.setVolume(0);
+            isReadyYouTubeIframeAPIReady = true;
+            window.activateVideo(swiper.activeIndex);
+        };
+        const onPlayerStateChange = (event) => {
+            if (event.data === 0) {
+                event.target.playVideo();
+            }
+        };
+
+        for (var i = 0; i < iframesVideo.length; i += 1) {
+            iframesVideo[i].id = iframesVideo[i].getAttribute(`data-video-id`);
+            players[i] = new window.YT.Player(iframesVideo[i], {
+                videoId: iframesVideo[i].id,
+                host: 'https://www.youtube.com',
+                events: {
+                    'onReady': onPlayerReady,
+                    'onStateChange': onPlayerStateChange,
+                }
+            });
+        }
+    };
+
+    window.addEventListener(`scroll`, () => {
+        setTimeout(() => {
+            window.activateVideo(activeVideoIndex);
+        }, 4000);
+    });
 </script>
