@@ -80,11 +80,11 @@
                     </div>
                     {{ form_start(order_form, { 'attr': {'class': 'application-form__form' }}) }}
                         <div class="application-form__form-item">
-                            {{ form_row(order_form.name, { 'id': 'name', 'attr': {'class': 'application-form__input', 'placeholder': 'Ваше имя', 'required': 'false' }}) }}
+                            {{ form_row(order_form.name, { 'id': 'name', 'attr': {'class': 'application-form__input', 'placeholder': 'Ваше имя' }}) }}
                             <label class="visually-hidden" for="name">Ваше имя</label>
                         </div>
                         <div class="application-form__form-item">
-                            {{ form_row(order_form.email, { 'id': 'email', 'attr': {'class': 'application-form__input', 'placeholder': 'E-mail', 'required': 'false' }}) }}
+                            {{ form_row(order_form.email, { 'id': 'email', 'attr': {'class': 'application-form__input', 'placeholder': 'E-mail' }}) }}
                             <label class="visually-hidden" for="email">Ваш email</label>
                         </div>
                         <div class="application-form__form-item">
@@ -95,9 +95,9 @@
                             {{ form_row(order_form.project, { 'id': 'project', 'attr': {'required': 'false' }}) }}
                         </div>
                         <div class="application-form__form-item application-form__form-item--quantity" >
-                            {{ form_row(order_form.date, { 'id': 'date', 'attr': {'class': 'application-form__input application-form__input--date', 'placeholder': 'Когда', 'onfocus': 'blur();', 'required': 'false' }}) }}
+                            {{ form_row(order_form.date, { 'id': 'date', 'attr': {'class': 'application-form__input application-form__input--date', 'placeholder': 'Когда', 'onfocus': 'blur();' }}) }}
                             <label class="visually-hidden" for="date">Дата мероприятия</label>
-                            {{ form_row(order_form.quantity, { 'id': 'quantity', 'attr': {'class': 'application-form__input application-form__input--quantity', 'placeholder': 'Сколько человек', 'required': 'false' }}) }}
+                            {{ form_row(order_form.quantity, { 'id': 'quantity', 'attr': {'class': 'application-form__input application-form__input--quantity', 'placeholder': 'Сколько человек' }}) }}
                             <label class="visually-hidden" for="quantity">Количество участников</label>
                         </div>
                         <div class="application-form__form-item">

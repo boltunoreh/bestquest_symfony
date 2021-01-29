@@ -20,9 +20,11 @@ class OrderType extends AbstractType
         $builder
             ->add('name', TextType::class, [
                 'label' => false,
+                'required' => false,
             ])
             ->add('email', EmailType::class, [
                 'label' => false,
+                'required' => false,
             ])
             ->add('phone', TextType::class, [
                 'label' => false,
@@ -35,15 +37,19 @@ class OrderType extends AbstractType
                         ->where('p.isActive = true');
                 },
                 'label' => false,
+                'required' => false,
             ])
             ->add('quantity', IntegerType::class, [
                 'label' => false,
+                'required' => false,
             ])
             ->add('date', TextType::class, [
                 'label' => false,
+                'required' => false,
             ])
             ->add('message', TextareaType::class, [
                 'label' => false,
+                'required' => false,
             ])
             ->add('copyMe', CheckboxType::class, [
                 'label' => false,

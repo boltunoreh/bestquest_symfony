@@ -25,14 +25,14 @@ class Order
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string")
+     * @ORM\Column(name="name", type="string", nullable=true)
      */
     private $name;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="email", type="string")
+     * @ORM\Column(name="email", type="string", nullable=true)
      */
     private $email;
 
@@ -53,14 +53,14 @@ class Order
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="date", type="date")
+     * @ORM\Column(name="date", type="date", nullable=true)
      */
     private $date;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="quantity", type="integer")
+     * @ORM\Column(name="quantity", type="integer", nullable=true)
      */
     private $quantity;
 
