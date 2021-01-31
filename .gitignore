@@ -14,3 +14,7 @@
 /log/
 !/log/.gitkeep
 /.idea
+docker/.env
+docker/mysql/*
+access.log
+error.log

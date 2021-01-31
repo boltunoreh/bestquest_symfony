@@ -1,0 +1,63 @@
+version: "3.8"
+
+services:
+  apache:
+    image: httpd:2.4.46
+    volumes:
+      - ./../:/app:delegated
+      - ./httpd/httpd.conf:/usr/local/apache2/conf/httpd.conf
+    networks:
+      - best-quest-docker-network
+    depends_on:
+      - php
+
+  nginx:
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+      - "443:443"
+    expose:
+      - "80"
+      - "443"
+    networks:
+      - best-quest-docker-network
+    volumes:
+      - ./../:/app:delegated
+    depends_on:
+      - apache
+    env_file:
+      - .env
+
+  php:
+    build:
+      context: ./php
+      dockerfile: Dockerfile
+      args:
+        - X_DEBUG_REMOTE_HOST=${X_DEBUG_REMOTE_HOST}
+        - X_DEBUG_REMOTE_PORT=${X_DEBUG_REMOTE_PORT}
+        - X_DEBUG_REQUEST=${X_DEBUG_REQUEST}
+        - X_DEBUG_MODE=${X_DEBUG_MODE}
+        - X_DEBUG_PROFILER_ENABLE=${X_DEBUG_PROFILER_ENABLE}
+    networks:
+      - best-quest-docker-network
+    volumes:
+      - ./../:/app:delegated
+    env_file:
+      - .env
+
+  mariadb:
+    image: mariadb:10.3
+    ports:
+      - "3305:3306"
+    networks:
+      - best-quest-docker-network
+    volumes:
+      - ./mysql:/var/lib/mysql
+    env_file:
+      - .env
+
+networks:
+  best-quest-docker-network:
+    name: best-quest-network
