@@ -38,6 +38,7 @@ class OrderType extends AbstractType
                 },
                 'label' => false,
                 'required' => false,
+                'empty_data' => null,
             ])
             ->add('quantity', IntegerType::class, [
                 'label' => false,

@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=1280, maximum-scale=1.0">
     <title>Best Quest</title>
     <meta content='' name='description'>
-    <meta name="yandex-verification" content="59d79e57dce7579f" />
+    <meta name="yandex-verification" content="59d79e57dce7579f"/>
     <link rel="shortcut icon" href="{{ asset('img/favicon.png') }}" type="image/x-icon">
     <link rel="icon" href="{{ asset('img/favicon.png') }}" type="image/x-icon">
     {% block stylesheets %}
@@ -40,13 +40,23 @@
 
     <!-- Facebook Pixel Code -->
     <script>
-        !function(f,b,e,v,n,t,s)
-        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-            n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-            if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-            n.queue=[];t=b.createElement(e);t.async=!0;
-            t.src=v;s=b.getElementsByTagName(e)[0];
-            s.parentNode.insertBefore(t,s)}(window,document,'script',
+        !function (f, b, e, v, n, t, s) {
+            if (f.fbq) return;
+            n = f.fbq = function () {
+                n.callMethod ?
+                    n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+            };
+            if (!f._fbq) f._fbq = n;
+            n.push = n;
+            n.loaded = !0;
+            n.version = '2.0';
+            n.queue = [];
+            t = b.createElement(e);
+            t.async = !0;
+            t.src = v;
+            s = b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t, s)
+        }(window, document, 'script',
             'https://connect.facebook.net/en_US/fbevents.js');
         fbq('init', '268377387340285');
         fbq('track', 'PageView');
@@ -64,7 +74,8 @@
     <header class="l-header">
         <div class="l-header__inner {% block header_div_additional_class %}l-header__inner--small{% endblock %}">
             {% block header_logo %}
-                <a class="logo-wrapper logo-wrapper--small unvisible" href="{{ path('app__main__index') }}" id="logotype"
+                <a class="logo-wrapper logo-wrapper--small unvisible" href="{{ path('app__main__index') }}"
+                   id="logotype"
                    style="opacity: 1;">
                     <img src="{{ asset('img/small-logo.svg') }}" alt="логотип" width="48" height="48">
                 </a>
@@ -139,7 +150,8 @@
                     </li>
                     <li>
                         {% if current_project is defined %}
-                            <a class="footer__link" href='{{ path('app__order__handle', {'slug': current_project.slug }) }}'>Заявка</a>
+                            <a class="footer__link"
+                               href='{{ path('app__order__handle', {'slug': current_project.slug }) }}'>Заявка</a>
                         {% else %}
                             <a class="footer__link" href='{{ path('app__order__handle') }}'>Заявка</a>
                         {% endif %}
@@ -149,6 +161,15 @@
         </div>
     </footer>
 {% endblock %}
+
+<!-- Yandex.Metrika informer -->
+<a href="https://metrika.yandex.ru/stat/?id=30731098&amp;from=informer"
+   target="_blank" rel="nofollow"><img
+            src="https://informer.yandex.ru/informer/30731098/3_1_FFFFFFFF_EFEFEFFF_0_pageviews"
+            style="width:88px; height:31px; border:0;" alt="Яндекс.Метрика"
+            title="Яндекс.Метрика: данные за сегодня (просмотры, визиты и уникальные посетители)"
+            class="ym-advanced-informer" data-cid="30731098" data-lang="ru"/></a>
+<!-- /Yandex.Metrika informer -->
 
 <!-- Yandex.Metrika counter -->
 <script type="text/javascript">

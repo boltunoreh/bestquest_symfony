@@ -36,9 +36,9 @@ class OrderController extends Controller
                 $order->setName($orderData['name']);
                 $order->setEmail($orderData['email']);
                 $order->setPhone($orderData['phone']);
-                $order->setProject($orderData['project']->getTitle());
+                $order->setProject($orderData['project'] ? $orderData['project']->getTitle() : null);
                 $order->setQuantity($orderData['quantity']);
-                $order->setDate(new \DateTime($orderData['date']));
+                $order->setDate($orderData['date'] ? new \DateTime($orderData['date']) : null);
                 $order->setMessage($orderData['message']);
 
                 $em = $this->getDoctrine()->getManager();

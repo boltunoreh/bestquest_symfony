@@ -7,7 +7,7 @@
 {% endblock form_row %}
 {% block _app_bundle_feedback_type_project_widget %}
     <select {{ block('widget_attributes') }}{% if multiple %} multiple="multiple"{% endif %}>
-        <option placeholder disabled selected value="0">Выбор проекта</option>
+        <option placeholder disabled selected value="">Выбор проекта</option>
         {%- if preferred_choices|length > 0 -%}
             {% set options = preferred_choices %}
             {{- block('choice_widget_options') -}}
@@ -92,7 +92,7 @@
                             <label class="visually-hidden" for="tel">Ваш телефон</label>
                         </div>
                         <div class="application-form__form-item">
-                            {{ form_row(order_form.project, { 'id': 'project', 'attr': {'required': 'false' }}) }}
+                            {{ form_row(order_form.project, { 'id': 'project'}) }}
                         </div>
                         <div class="application-form__form-item application-form__form-item--quantity" >
                             {{ form_row(order_form.date, { 'id': 'date', 'attr': {'class': 'application-form__input application-form__input--date', 'placeholder': 'Когда', 'onfocus': 'blur();' }}) }}

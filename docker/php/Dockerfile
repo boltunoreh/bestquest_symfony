@@ -4,7 +4,7 @@ ENV DEBIAN_FRONTEND noninteractive
 
 ARG X_DEBUG_REMOTE_HOST
 ARG X_DEBUG_REMOTE_PORT
-ARG X_DEBUG_REQUEST
+ARG X_PROFILER_ENABLE_TRIGGER
 ARG X_DEBUG_MODE
 ARG X_DEBUG_PROFILER_ENABLE
 ARG USE_BLACKFIRE
@@ -29,9 +29,9 @@ COPY ./conf/php-fpm.conf /etc/php/5.6/fpm/php-fpm.conf
 COPY ./conf/best-quest-fpm.conf /etc/php/5.6/fpm/pool.d/best-quest.conf
 COPY ./ini/xdebug.ini /etc/php/5.6/mods-available/xdebug.ini
 
-RUN echo "xdebug.client_host = ${X_DEBUG_REMOTE_HOST};" >> /etc/php/5.6/mods-available/xdebug.ini \
-    && echo "xdebug.client_port = ${X_DEBUG_REMOTE_PORT};" >> /etc/php/5.6/mods-available/xdebug.ini \
-    && echo "xdebug.start_with_request = ${X_DEBUG_REQUEST};" >> /etc/php/5.6/mods-available/xdebug.ini \
+RUN echo "xdebug.remote_host = ${X_DEBUG_REMOTE_HOST};" >> /etc/php/5.6/mods-available/xdebug.ini \
+    && echo "xdebug.remote_port = ${X_DEBUG_REMOTE_PORT};" >> /etc/php/5.6/mods-available/xdebug.ini \
+    && echo "xdebug.profiler_enable_trigger = ${X_PROFILER_ENABLE_TRIGGER};" >> /etc/php/5.6/mods-available/xdebug.ini \
     && echo "xdebug.mode = ${X_DEBUG_MODE};" >> /etc/php/5.6/mods-available/xdebug.ini
 
 RUN rm -f /etc/php/5.6/fpm/pool.d/www.conf

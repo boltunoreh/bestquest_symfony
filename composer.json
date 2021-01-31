@@ -37,7 +37,8 @@
     "kunicmarko/color-picker-bundle": "^1.0",
     "ext-xml": "*",
     "ext-mysql": "*",
-    "ext-gd": "*"
+    "ext-gd": "*",
+    "ext-xdebug": "*"
   },
   "require-dev": {
     "sensio/generator-bundle": "~3.0",
