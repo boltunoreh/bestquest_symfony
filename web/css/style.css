@@ -2174,3 +2174,14 @@ button.slider__bullet {
 
 .flatpickr-calendar::after {
   content: none !important; }
+
+.yandex-metrika-informer {
+    position: relative;
+    bottom: 50px;
+    z-index: 3;
+}
+
+.yandex-metrika-informer img {
+    position: relative;
+    z-index: 3;
+}
