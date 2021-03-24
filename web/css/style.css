@@ -1258,7 +1258,7 @@ button.slider__bullet {
 
 .table-cell {
   position: absolute;
-  top: 50%;
+  top: 45%;
   right: 0;
   bottom: auto;
   left: 0;
@@ -1278,7 +1278,6 @@ button.slider__bullet {
 
 .b-title-slide .logo-wrapper {
   position: absolute;
-  top: 8px;
   left: -178px;
   background-color: #e20000;
   width: 145px;
@@ -1305,9 +1304,8 @@ button.slider__bullet {
   margin-top: -10px; }
 
 .b-title-slide .s-title {
-  margin-bottom: 17px;
+  margin-bottom: 26px;
   line-height: 0.8;
-  padding-top: 8px;
   margin-top: 0; }
 
 .index .s-title.main-color {
@@ -1320,7 +1318,22 @@ button.slider__bullet {
   max-width: 500px;
   line-height: 110%;
   letter-spacing: 0.03em;
-  text-transform: none; }
+  text-transform: none;
+}
+
+.b-title-slide__slogan__add {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 27px;
+    max-width: 650px;
+    line-height: 110%;
+    letter-spacing: 0.039em;
+    text-transform: uppercase;
+    position: absolute;
+    top: 175px;
+    left: -178px;
+}
+
 
 .b-title-slide .sub-slogan {
   font-weight: 300;
@@ -1617,7 +1630,7 @@ button.slider__bullet {
   margin: 0; }
 
 .accession__title-big {
-  margin-bottom: 6px;
+  margin-bottom: 12px;
   font-weight: bold;
   font-size: 72px;
   line-height: 84px;
@@ -1630,7 +1643,21 @@ button.slider__bullet {
   line-height: 1.1;
   color: #ffffff;
   letter-spacing: 0.03em;
-  margin-left: 4px; }
+  margin-left: 4px;
+}
+
+.accession__title-small__add {
+    font-weight: normal;
+    font-size: 27px;
+    line-height: 1.1;
+    color: #ffffff;
+    letter-spacing: 0.045em;
+    margin-left: 4px;
+    text-transform: uppercase;
+    position: relative;
+    top: 52px;
+    left: -180px;
+}
 
 .about {
   position: relative;
@@ -2184,4 +2211,15 @@ button.slider__bullet {
 .yandex-metrika-informer img {
     position: relative;
     z-index: 3;
+}
+
+.yt {
+    background-color: red;
+    width: 48px;
+    padding-right: 0 !important;
+    margin-right: 9px;
+}
+
+.yt svg {
+    margin: auto;
 }
