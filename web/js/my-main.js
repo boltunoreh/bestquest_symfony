@@ -14,11 +14,11 @@
         setTimeout(function () {
             $(".unvisible").css("opacity", "1"), document.querySelector(".logotype .active") && setInterval(function () {
                 document.querySelector(".logotype .active").classList.remove("active"), t % 2 ? e[0].classList.add("active") : t / 2 % 2 ? e[1].classList.add("active") : e[2].classList.add("active"), t++
-            }, 5e3)
-        }, 5e3);
+            }, 3500)
+        }, 3500);
         return $("<style type='text/css' id='dynamic' />").appendTo("head"), $("#dynamic").text(980 < $(window).width() ? ".b-skew-top:before{border-left-width: " + $(window).width() + "px;} .b-skew-bottom:after{border-right-width: " + $(window).width() + "px;}" : ".b-skew-top:before{border-left-width: 980px;} .b-skew-bottom:after{border-right-width: 980px;}"), $("#title-slide") && setTimeout(function () {
             return $("#title-slide").fadeOut()
-        }, 5e3), $("img.svg").each(function () {
+        }, 3500), $("img.svg").each(function () {
             var a, r, i, e;
             a = $(this), i = a.attr("id"), r = a.attr("class"), e = a.attr("src"), $.get(e, function (e) {
                 var t;
