@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width">
+  <meta name="viewport" content="width=device-width, maximum-scale=1">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
   <link
@@ -23,7 +23,7 @@
           <li class="current first"><a href="/">Проекты</a>
             <ul class="l-header__submenu js-slider-control menu_level_1">
               <li class="first"><a href="/project/druz-ia-oushiena">Друзья Оушена</a></li>
-              <li><a href="/project/ighrovaia-platforma-emotion">Игровая платформа «Emotion»</a></li>
+              <li><a href="/project/ighrovaia-platforma-emotion">Игровая платформа Emotion</a></li>
               <li><a href="/project/shierlok">Шерлок</a></li>
               <li><a href="/project/ighry-gieroiev">Игры Героев</a></li>
               <li class="last"><a href="/project/vriemia-piervykh">Время Первых</a></li>
@@ -31,17 +31,22 @@
           </li>
           <li class="last"><a href="/about">О компании</a>
             <ul class="l-header__submenu menu_level_1">
-              <li class="first"><a href="#team">Команда</a></li>
-              <li class="last"><a href="#clients">Клиенты</a></li>
+              <li class="first"><a href="/about#team">Команда</a></li>
+              <li class="last"><a href="/about#clients">Клиенты</a></li>
             </ul>
           </li>
         </ul>
       </nav>
       <div class="l-header__actions">
         <div class="order"><a href="/order">Заявка</a></div>
-        <div class="phone"><a href="tel:+78125746512">+7 (812) 574 65 12</a></div>
-        <div class="phone"><a href="tel:+79219763876">+7 (921) 976 38 76</a></div>
-        <div class="l-header__email"><a href="mailto:info@best-quest.ru">info@best-quest.ru</a></div>
+        <ul class="l-header__menu">
+          <li class="first"><a href="/">Контакты</a>
+            <ul class="l-header__submenu menu_level_1">
+              <li class="first"><a href="tel:+78125746512">+7 (812) 574 65 12</a></li>
+              <li class="last"><a href="mailto:info@best-quest.ru">info@best-quest.ru</a></li>
+            </ul>
+          </li>
+        </ul>
         <div class="social">
           <a class="yt" aria-label="youtube" href="https://www.youtube.com/channel/UCFYNEDiE5zWuEaYBXI00_iA/videos?view_as=subscriber"
             target="_blank"  aria-label="youtube">
@@ -77,13 +82,18 @@
       <div class="about__wrapper">
         <h2 class="about__title">О компании</h2>
         <div class="about__content">
-          <p>Мы знаем толк в приключениях, мы ценим вкус испытаний, разбивающих туманное зеркало будней. Мы верим в необходимость личных подвигов, опыта преодоления своих ограничений, которые выстраиваем сами. Мы разрушаем стереотипы проведения выходных и корпоративных выездов «на природу с шашлыками». Мы не боимся нестандартных решений. Мы знаем секреты побед - командных и личных. Те, кто хоть раз погрузился в историю, которую мы создаем, потом возвращаются снова и снова – одни, с детьми и со своей командой. Каждый участник проекта открывает что-то новое в себе и других и меняет свою жизнь на основе этих открытий.</p>
-          <p>Мы предлагаем проекты для каждого – если вы хотите провести свой день рожденья или другой праздник на природе, совершая открытия и погружаясь в атмосферу приключений, мы ждем вас!</p>
+          <p>Мы продаем не игры, а возможности, которые они дают. А это, важно отметить, бесценные возможности.</p>
+          <p>Игра - это не только развлечение, прежде всего, изящный инструмент личностного роста.</p>
+          <p>Ведь человек всегда будет верить, что он может получить от жизни больше, расти и развиваться, покорять новые горизонты.</p>
+          <p>Именно эту возможность дают нам игры - веру в безграничное, веру в невозможное. И о чем бы вы не мечтали, вы этого добьетесь, игры помогут вам в этом.</p>
+          <p>Игра - это система мгновенной обратной связи. В игре, как в зеркале, отражается весь накопленный жизненный опыт: то, что человек знает и умеет, равно как и то, чему ещё предстоит научиться.</p>
+          <p>Здесь проявляются волевые, личностные, деловые, коммуникативные особенности человека. Поставив игровую цель, и шаг за шагом приближаясь к ней, вы испытываете не только море положительных эмоций, но и получаете индивидуальный урок, отвечающий вашим конкретным потребностям.</p>
+          <p>Испытайте нереальные эмоции и получите новые возможности вместе с Best Quest.</p>
         </div>
       </div>
     </section>
 
-    <section class="team" id="team">
+    <section class="team">
       <div class="team__wrapper">
         <h2 class="team__title">Команда</h2>
         <ul class="team__list">
@@ -154,7 +164,7 @@
       </div>
     </section>
 
-    <section class="customers" id="clients">
+    <section class="customers">
       <div class="customers__wrapper">
         <h2 class="customers__title">Клиенты</h2>
         <ul class="customers__list">
@@ -346,60 +356,72 @@
   <footer class="footer block">
     <div class="footer__wrapper block__wrapper">
       <div class="footer__col">
-        <h3>Best quest</h3>
-        <ul>
-          <li>
-            <a class="footer__link" href="#">Команда</a>
+        <a class="footer__logo" href="/" id="footer-logotype" aria-label="На главную">Best quest</a>
+      </div>
+      <div class="footer__col">
+        <h3 class="footer__title">Проекты</h3>
+        <ul class="footer__list">
+          <li class="footer__item">
+            <a class="footer__link" href="#">Друзья Оушена</a>
           </li>
-          <li>
-            <a class="footer__link" href="#">Клиенты</a>
+          <li class="footer__item">
+            <a class="footer__link" href="#">Игровая платформа Emotion</a>
+          </li>
+          <li class="footer__item">
+            <a class="footer__link" href="#">Шерлок</a>
+          </li>
+          <li class="footer__item">
+            <a class="footer__link" href="#">Игры Героев</a>
+          </li>
+          <li class="footer__item">
+            <a class="footer__link" href="#">Время Первых</a>
           </li>
         </ul>
       </div>
       <div class="footer__col">
-        <h3>Проекты</h3>
-        <ul>
-          <li>
-            <a class="footer__link" href="#">Друзья Оушена</a>
+        <h3 class="footer__title">О компании</h3>
+        <ul class="footer__list">
+          <li class="footer__item">
+            <a class="footer__link" href="#">Команда</a>
           </li>
-          <li>
-            <a class="footer__link" href="#">Игровая платформа «Emotion»</a>
-          </li>
-          <li>
-            <a class="footer__link" href="#">Шерлок</a>
-          </li>
-          <li>
-            <a class="footer__link" href="#">Игры Героев</a>
-          </li>
-          <li>
-            <a class="footer__link" href="#">Время Первых</a>
-          </li>
-          <li>
-            <a class="footer__link" href="#">Спецпроект</a>
+          <li class="footer__item">
+            <a class="footer__link" href="#">Клиенты</a>
           </li>
         </ul>
       </div>
-      <div class="footer__col footer__col--margin">
-        <h3>Контакты</h3>
-        <ul>
-          <li>
+      <div class="footer__col footer__col--no-margin-right">
+        <h3 class="footer__title">Контакты</h3>
+        <ul class="footer__list">
+          <li class="footer__item">
             <a class="footer__link" href="tel:+78125746512">+7 (812) 574 65 12</a>
           </li>
-          <li>
-            <a class="footer__link" href="tel:+79219763876">+7 (921) 976 38 76</a>
-          </li>
-          <li>
+          <li class="footer__item">
             <a class="footer__link" href="mailto:info@best-quest.ru">info@best-quest.ru</a>
           </li>
-          <li>
+          <li class="footer__item">
             <a class="footer__link" href="#">Заявка</a>
           </li>
         </ul>
       </div>
+      <div class="footer__col footer__col--no-margin-right footer__col--margin-left-auto">
+        <div class="social">
+          <a class="yt" href="https://www.youtube.com/channel/UCFYNEDiE5zWuEaYBXI00_iA/videos?view_as=subscriber"
+             target="_blank" aria-label="youtube">
+            <svg width="40" height="40" viewBox="0 0 40 40">
+              <use xlink:href="img/youtube.svg#youtube"></use>
+            </svg>
+          </a>
+          <a class="instagram" href="https://www.instagram.com/bqspb.ru/" target="_blank" aria-label="instagram">
+            <svg width="40" height="40" viewBox="0 0 40 40">
+              <use xlink:href="img/instagram.svg#instagram"></use>
+            </svg>
+          </a>
+        </div>
+      </div>
     </div>
   </footer>
   <script src="libs/svgxuse.min.js" async defer></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+  <script src="libs/jquery/jquery-2.0.0.min.js"></script>
   <script src="libs/parallax/parallax.min.js"></script>
   <script src="js/my-main.js"></script>
 </body>

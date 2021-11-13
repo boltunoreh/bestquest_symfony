@@ -32,8 +32,6 @@
 {% endblock %}
 
 
-{% block bodyclass %}black{% endblock %}
-
 {% block content %}
     <main>
         <h1 class="visually-hidden">best-quest</h1>
@@ -48,12 +46,12 @@
                     {% else %}
                         <h2 class="application-form__title">Заявка</h2>
                         <p class="application-form__text">
-                            Если вы хотите, чтобы мы создали эксклюзивный проект для вас, напишите нам, используя контактную форму или почту. Поделитесь всеми вашими пожеланиями, целью вашего мероприятия и концепцией. Мы постараемся ответить как можно скорее
+                            Если вы хотите, чтобы мы создали эксклюзивный проект для вас, напишите нам, используя контактную форму или почту. Поделитесь всеми вашими пожеланиями, целью вашего мероприятия и концепцией. Мы постараемся ответить как можно скорее.
                         </p>
                     {% endif %}
                     <div class="application-form__contacts">
                         <div class="application-form__image-wrapper">
-                            <img class="application-form__image" src="{{ asset('img/form-avatar.png') }}" alt="">
+                            <img class="application-form__image" width="64" height="64" src="{{ asset('img/form-avatar.png') }}" alt="">
                         </div>
                         <a class="application-form__link" href="mailto:info@best-quest.ru">info@best-quest.ru</a>
                     </div>
@@ -69,8 +67,8 @@
                     {%  endif %}
                     <div class="application-form__validation-answer {{ answer_class }}">
                         <div class="application-form__answer-icon-wrap">
-                            <img class="application-form__answer-icon application-form__answer-icon--success" src="{{ asset('img/success-icon.svg') }}" alt="" width="40" height="40">
-                            <img class="application-form__answer-icon application-form__answer-icon--failing" src="{{ asset('img/failing-icon.svg') }}" alt="" width="40" height="40">
+                            <img class="application-form__answer-icon application-form__answer-icon--success" src="{{ asset('img/success-icon.svg') }}" alt="" width="34" height="34">
+                            <img class="application-form__answer-icon application-form__answer-icon--failing" src="{{ asset('img/failing-icon.svg') }}" alt="" width="34" height="34">
                         </div>
                         <div class="application-form__answer__text">
                             {% if result_text is defined %}
@@ -120,7 +118,10 @@
 {% endblock %}
 
 {% block footer_js %}
-    {{ parent() }}
+    <script src="{{ asset('libs/svgxuse.min.js') }}" async defer></script>
+    <script src="{{ asset('libs/jquery/jquery-2.0.0.min.js') }}"></script>
+    <script src="{{ asset('libs/parallax/parallax.min.js') }}"></script>
+    <script src="{{ asset('js/my-main.js') }}"></script>
     <script src="{{ asset('libs/choices/choices.min.js') }}"></script>
     <script src="{{ asset('libs/flatpickr/flatpickr.min.js') }}"></script>
     <script src="{{ asset('libs/flatpickr/flatpickr-ru.js') }}"></script>
@@ -134,13 +135,21 @@
             shouldSort: false
         });
 
-        new flatpickr(dateInput, {
-            dateFormat: "Y-m-d",
-            minDate: "today",
-            "locale": "ru",
-            "allowInput": true,
-            "disableMobile": true
-        });
+        const fp = new flatpickr(dateInput, {dateFormat: "d.m.Y",  minDate: "today", "locale": "ru", "allowInput": true, "disableMobile": true});
+
+        const onChangeFp = () => {
+            const days = document.querySelectorAll(`.flatpickr-day.nextMonthDay`);
+
+            if (days) {
+                for (let day of days) {
+                    day.remove();
+                }
+            }
+        };
+
+        fp.config.onOpen.push(onChangeFp);
+        fp.config.onMonthChange.push(onChangeFp);
+        fp.config.onYearChange.push(onChangeFp);
 
         var numberMask = IMask(
             document.getElementById('quantity'),
@@ -151,11 +160,6 @@
                 thousandsSeparator: ''
             }
         );
-
-        var phoneMask = IMask(
-            document.getElementById('tel'), {
-                mask: '+{7}(000)000-00-00'
-            });
 
         if (!is_safari) {
             document.body.style.minHeight = window.innerHeight + 'px';
@@ -173,7 +177,7 @@
 
                 window.addEventListener('orientationchange', function () {
                     var mql = window.matchMedia("(orientation: portrait)");
-                    if (mql.matches) {
+                    if(mql.matches) {
                         document.querySelector('.safari-dummy').style.display = 'block';
                         document.querySelector('.safari-dummy').style.height = dummyHeight + 'px';
                     }

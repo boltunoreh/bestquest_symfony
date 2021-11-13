@@ -1,34 +1,82 @@
 {% extends 'base.html.twig' %}
 
+{% block head_js %}
+    <script src="{{ asset('libs/jquery/jquery-2.0.0.min.js') }}"></script>
+{% endblock %}
+
 {% block bodyclass %}index{% endblock %}
 
-{% block header_div_additional_class %}{% endblock %}
-
 {% block header_logo %}
-    <a class='logo-wrapper unvisible' href='{{ path('app__main__index') }}' id='logotype'>
-        <h1 class='logotype'>
-            <span class='active'>Best Quest</span>
-            <span>Современные технологии тимбилдинга</span>
-            <span>Делаем настоящие&nbsp;игры</span>
-        </h1>
+    <a class="logo-wrapper logo-wrapper--small unvisible" href="{{ path('app__main__index') }}"
+       id="logotype"
+       style="opacity: 0;">
+        <img src="{{ asset('img/small-logo.svg') }}" alt="логотип" width="48" height="48">
     </a>
 {% endblock %}
 
 {% block content %}
     <main class='l-content l-main'>
         <section class='l-section l-section-home b-skew b-skew-bottom dark'>
-            <div class='b-title-slide' id='title-slide'>
-                <div class='table-cell'>
-                    <article>
-                        <div class='logo-wrapper'></div>
-                        <h1 class='s-title main-color'>Best Quest</h1>
-                        <div class='b-title-slide__slogan'>ДЕЛАЕМ НАСТОЯЩИЕ ИГРЫ</div>
-                        <div class='b-title-slide__slogan__add'>Современные технологии тимбилдинга</div>
-                    </article>
+            <div class="intro block">
+                <div class="intro__wrapper block__wrapper">
+                    <div class="intro__main">
+                        <img class="intro__background" width="2560" height="1440" src="{{ asset('img/main-background-big.jpg') }}" alt="Планета на фоне гор">
+                        <div class="intro__main-wrap">
+                            <div class="b-title-slide b-title-slide--small">
+                                <div class="table-cell" data-name="big-logo">
+                                    <article>
+                                        <div class="logo-wrapper"></div>
+                                        <h1 class="s-title main-color">Best Quest</h1>
+                                        <div class="b-title-slide__slogan">Современные технологии тимбилдинга</div>
+                                    </article>
+                                </div>
+                            </div>
+
+                            <div class="marquee" data-marquee>
+                                <div class="marquee__wrapper">
+                                    <p>Наши игры &ndash; мощный инструмент!</p>
+                                    <img class="" src="{{ asset('img/stamp-red.png') }}" width="344" height="172" alt="">
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="projects block">
+
+            <div class="advantage block">
+                <ul class="advantage__list" data-name="advantage-list">
+                    <li class="advantage__item advantage__item--active" data-name="advantage-item">
+                        <span class="advantage__text">
+                          <span>Индивидуально моделируем каждую игру</span>
+                        </span>
+                    </li>
+                    <li class="advantage__item" data-name="advantage-item">
+                        <span class="advantage__text">
+                          <span>От 10 до 2000 участников</span>
+                        </span>
+                    </li>
+                    <li class="advantage__item" data-name="advantage-item">
+                        <span class="advantage__text">
+                          <span>Высококлассные механики</span>
+                        </span>
+                    </li>
+                    <li class="advantage__item" data-name="advantage-item">
+                        <span class="advantage__text">
+                          <span>Технологичный реквизит</span>
+                        </span>
+                    </li>
+                    <li class="advantage__item" data-name="advantage-item">
+                        <span class="advantage__text">
+                          <span>Активность участников более 90%</span>
+                        </span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="projects block" data-projects>
                 <div class="projects__wrapper block__wrapper">
+                    <h2 class="projects__title title">Проекты</h2>
                     {{ render(controller('AppBundle:Main:slider')) }}
                 </div>
             </div>
@@ -36,12 +84,126 @@
     </main>
 {% endblock %}
 
-{% block footer %}
-    <div class="mobile-overlay">
-        <img src="{{ asset('img/bq-rotate.svg') }}" alt="заглушка">
-    </div>
-{% endblock %}
-
 {% block footer_js %}
     <script src="{{ asset('libs/swiper/swiper.min.js') }}"></script>
+    <script src="{{ asset('libs/parallax/parallax.min.js') }}"></script>
+    <script src="{{ asset('js/my-main.js') }}"></script>
+    <script>
+        let isInProgress = false;
+        const SPEED = 600;
+        let activeIndex = 1;
+        const bulletsText = [
+            `Друзья Оушена`,
+            `Платформа Emotion`,
+            `Первооткрыватели`,
+            `Шерлок`,
+            `Игры Героев`,
+            `Время первых`,
+        ];
+        const slides = document.querySelectorAll(`.slide`);
+        const iframesArray = Array.from(document.querySelectorAll(`.slide`)).map((slide) => slide.querySelector(`iframe`)).filter((item) => !!item);
+
+        const swiper = new Swiper(`.slider`, {
+            pagination: {
+                el: `.slider-pagination`,
+                clickable: true,
+                renderBullet: function (index, className) {
+                    return `<button type="button" class="slider__bullet ${className}"> <span class="slider__bullet-name">${bulletsText[index]}</span> </button>`;
+                },
+            },
+            navigation: {
+                nextEl: `.slider__button--next`,
+                prevEl: `.slider__button--prev`
+            },
+            centeredSlides: true,
+            loop: true,
+            slidesPerView: `auto`,
+            speed: SPEED,
+            initialSlide: 0,
+        });
+
+        const setIframesPause = function () {
+            iframesArray.forEach((it) => {
+                it.contentWindow.postMessage(`{"event":"command","func":"pauseVideo","args":""}`, `*`);
+            });
+        };
+
+        const slideChangeTransitionStart = function () {
+            let direction;
+
+            if (activeIndex === slides.length - 1 && !this.realIndex) {
+                direction = `left`;
+            } else if (!activeIndex && this.realIndex === slides.length - 1) {
+                direction = `right`;
+            } else if (this.realIndex > activeIndex) {
+                direction = `left`;
+            } else {
+                direction = `right`;
+            }
+
+            activeIndex = this.realIndex;
+
+            if (direction === `left`) {
+                const fadeSlide = this.slides[this.previousIndex].previousElementSibling;
+
+                fadeSlide.style.transform = `translateX(130%) scaleX(0.6) scaleY(0.682)`;
+                fadeSlide.style.opacity = `0`;
+
+                setTimeout(() => {
+                    fadeSlide.style.transition = ``;
+                    fadeSlide.style.transform = ``;
+                    fadeSlide.style.opacity = ``;
+                }, SPEED);
+            } else {
+                const fadeSlide = this.slides[this.previousIndex].nextElementSibling;
+
+                fadeSlide.style.zIndex = -1;
+                fadeSlide.style.transition = `none`;
+                fadeSlide.style.transform = `translateX(-346px)`;
+
+                setTimeout(() => {
+                    fadeSlide.style.transition = ``;
+                    fadeSlide.style.transition = `translateX ${SPEED / 1000}s ease, opacity ${SPEED / 1000}s easy`;
+                    fadeSlide.style.transform = `translateX(-726px) scaleX(0.6) scaleY(0.682)`;
+                    fadeSlide.style.opacity = `0`;
+                }, 0);
+
+                setTimeout(() => {
+                    fadeSlide.style.transition = ``;
+                    fadeSlide.style.transform = ``;
+                    fadeSlide.style.opacity = ``;
+                    fadeSlide.style.zIndex = ``;
+                }, SPEED);
+            }
+        };
+
+        const slideChangeTransitionEnd = function () {
+            setIframesPause();
+        };
+
+        const touchMove = function () {
+            if (!isInProgress) {
+                isInProgress = true;
+
+                Array.from(swiper.slides).forEach(function (it) {
+                    it.style.transformOrigin = `50% 50%`;
+                });
+
+                swiper.on(`transitionEnd`, transitionEnd);
+            }
+        };
+
+        const transitionEnd = function () {
+            isInProgress = false;
+
+            Array.from(swiper.slides).forEach(function (it) {
+                it.style.transformOrigin = ``;
+            });
+
+            swiper.off(`transitionEnd`, transitionEnd);
+        };
+
+        swiper.on(`slideChangeTransitionStart`, slideChangeTransitionStart);
+        swiper.on(`slideChangeTransitionEnd`, slideChangeTransitionEnd);
+    </script>
 {% endblock %}

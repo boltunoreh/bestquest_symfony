@@ -16,11 +16,10 @@
                                     <div class="slide__overlay">
                                         <img src="{% path project.sliderLargeImage, 'medium' %}" alt="">
                                     </div>
-                                    {% set data_video_id = '' %}
-                                    {% if project.videoId is not empty %}
-                                        {% set data_video_id = 'data-video-id="' ~ project.videoId ~ '"' %}
-                                    {% endif %}
-                                    <div class="slide__iframe" {{ data_video_id|raw }}>
+                                    <div class="slide__iframe">
+                                        <iframe width="731" height="409" src="https://www.youtube.com/embed/{{ project.videoId }}?enablejsapi=1"
+                                                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                                                allowfullscreen></iframe>
                                         <img src="{% path project.sliderLargeImage, 'medium' %}" alt="">
                                     </div>
                                 </div>
@@ -29,7 +28,7 @@
                                     <p class="slide__text">{{ project.sliderAnnotation|raw }}</p>
                                     {% if project.isActive %}
                                         <a class="slide__link"
-                                           href="{{ path('app__project__show', {'slug': project.slug}) }}">подробнее</a>
+                                           href="{{ path('app__project__show', {'slug': project.slug}) }}">Подробнее</a>
                                     {% endif %}
                                 </div>
                             </div>
@@ -37,7 +36,7 @@
                     {% endif %}
                 {% endfor %}
             </ul>
-            <!-- Add Arrows -->
+
             <button class="swiper-button-next slider__button slider__button--next" type="button">
                 <svg width="48" height="48" viewBox="0 0 48 48">
                     <use xlink:href="{{ asset('img/sprite/sprite.svg') }}#arrow-right"></use>
@@ -54,173 +53,3 @@
         <div class="swiper-pagination slider-pagination"></div>
     </div>
 </div>
-<script src="{{ asset('libs/swiper/swiper.min.js') }}"></script>
-<script>
-    let isInProgress = false;
-    const SPEED = 600;
-    let activeIndex = 0;
-    var bulletsText = new Array();
-    {% for project in projects %}
-    bulletsText.push('{{ project.title }}');
-    {% endfor %}
-    const slides = document.querySelectorAll(`.slide`);
-    const iframesArray = Array.from(document.querySelectorAll(`.slide`));
-
-    let isInitSwiper = false;
-    const swiper = new Swiper(`.slider`, {
-        pagination: {
-            el: `.slider-pagination`,
-            clickable: true,
-            renderBullet: function (index, className) {
-                return `<button type="button" class="slider__bullet ${className}"> <span class="slider__bullet-name">${bulletsText[index]}</span> </button>`;
-            },
-        },
-        navigation: {
-            nextEl: `.slider__button--next`,
-            prevEl: `.slider__button--prev`
-        },
-        centeredSlides: true,
-        loop: true,
-        slidesPerView: `auto`,
-        speed: SPEED,
-        initialSlide: {{ initialSlide }},
-        on: {
-            init: function () {
-                isInitSwiper = true;
-            },
-        },
-    });
-
-    const slideChangeTransitionStart = function () {
-        let direction;
-        if (activeIndex === slides.length - 1 && !this.realIndex) {
-            direction = `left`;
-        } else if (!activeIndex && this.realIndex === slides.length - 1) {
-            direction = `right`;
-        } else if (this.realIndex > activeIndex) {
-            direction = `left`;
-        } else {
-            direction = `right`;
-        }
-        activeIndex = this.realIndex;
-        if (direction === `left`) {
-            const fadeSlide = this.slides[this.previousIndex].previousElementSibling;
-            fadeSlide.style.transform = `translateX(130%) scaleX(0.6) scaleY(0.682)`;
-            fadeSlide.style.opacity = `0`;
-            setTimeout(() => {
-                fadeSlide.style.transition = ``;
-                fadeSlide.style.transform = ``;
-                fadeSlide.style.opacity = ``;
-            }, SPEED);
-        } else {
-            const fadeSlide = this.slides[this.previousIndex].nextElementSibling;
-            fadeSlide.style.zIndex = -1;
-            fadeSlide.style.transition = `none`;
-            fadeSlide.style.transform = `translateX(-346px)`;
-            setTimeout(() => {
-                fadeSlide.style.transition = ``;
-                fadeSlide.style.transition = `translateX ${SPEED / 1000}s ease, opacity ${SPEED / 1000}s easy`;
-                fadeSlide.style.transform = `translateX(-726px) scaleX(0.6) scaleY(0.682)`;
-                fadeSlide.style.opacity = `0`;
-            }, 0);
-            setTimeout(() => {
-                fadeSlide.style.transition = ``;
-                fadeSlide.style.transform = ``;
-                fadeSlide.style.opacity = ``;
-                fadeSlide.style.zIndex = ``;
-            }, SPEED);
-        }
-    };
-
-    const touchMove = function () {
-        if (!isInProgress) {
-            isInProgress = true;
-            Array.from(swiper.slides).forEach(function (it) {
-                it.style.transformOrigin = `50% 50%`;
-            });
-            swiper.on(`transitionEnd`, transitionEnd);
-        }
-    };
-    const transitionEnd = function () {
-        isInProgress = false;
-        Array.from(swiper.slides).forEach(function (it) {
-            it.style.transformOrigin = ``;
-        });
-        swiper.off(`transitionEnd`, transitionEnd);
-    };
-    swiper.on(`slideChangeTransitionStart`, slideChangeTransitionStart);
-
-    //Активация каждого видео при переключении
-    const slider = document.querySelector(`.slider-container`);
-
-    const players = [];
-    let activeVideoIndex = swiper.activeIndex;
-    let prevActiveVideoIndex = swiper.activeIndex;
-    let isPlayVideo = false;
-    let isReadyYouTubeIframeAPIReady = false;
-
-    swiper.on(`slideChangeTransitionEnd`, () => {
-        isPlayVideo = false;
-        window.activateVideo(swiper.activeIndex);
-        prevActiveVideoIndex = swiper.activeIndex;
-    });
-
-    window.activateVideo = (index) => {
-        const sliderTop = slider.getBoundingClientRect().top - slider.clientHeight;
-        const isVisible = sliderTop <= 0;
-        if (!isVisible || isPlayVideo || !isReadyYouTubeIframeAPIReady || !isInitSwiper) {
-            return;
-        }
-        setTimeout(() => {
-
-            if (players && players[index] && players[index].playVideo) {
-                players[index].playVideo();
-                isPlayVideo = true;
-            }
-
-            for (let i=0; i < players.length; i++) {
-                if (players.indexOf(players[i]) !== index && isPlayVideo) {
-                    if (players && players[i] && players[i].pauseVideo) {
-                        players[i].pauseVideo();
-                    }
-                }
-            }
-        }, 3000);
-    };
-
-
-    window.onYouTubeIframeAPIReady = () => {
-        const iframesVideo = document.querySelectorAll(`.slide__iframe`);
-
-        const onPlayerReady = (event) => {
-            event.target.setVolume(0);
-            isReadyYouTubeIframeAPIReady = true;
-            window.activateVideo(swiper.activeIndex);
-        };
-        const onPlayerStateChange = (event) => {
-            if (event.data === 0) {
-                event.target.playVideo();
-            }
-        };
-
-        for (var i = 0; i < iframesVideo.length; i += 1) {
-            if (iframesVideo[i].hasAttribute(`data-video-id`)) {
-                iframesVideo[i].id = iframesVideo[i].getAttribute(`data-video-id`);
-                players[i] = new window.YT.Player(iframesVideo[i], {
-                    videoId: iframesVideo[i].id,
-                    host: 'https://www.youtube.com',
-                    events: {
-                        'onReady': onPlayerReady,
-                        'onStateChange': onPlayerStateChange,
-                    }
-                });
-            }
-        }
-    };
-
-    window.addEventListener(`scroll`, () => {
-        setTimeout(() => {
-            window.activateVideo(activeVideoIndex);
-        }, 4000);
-    });
-</script>

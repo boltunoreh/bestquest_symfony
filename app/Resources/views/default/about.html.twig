@@ -10,8 +10,7 @@
                     <img class="accession__logo" src="{{ asset('img/logo.svg') }}" alt="логотип best-quest" width="145" height="145">
                     <h1 class="accession__title">
                         <span class="accession__title-big">BEST QUEST</span>
-                        <div class='accession__title-small'>ДЕЛАЕМ НАСТОЯЩИЕ ИГРЫ</div>
-                        <div class='accession__title-small__add'>Современные технологии тимбилдинга</div>
+                        <span class="accession__title-small">Игровые технологии <br> мероприятий</span>
                     </h1>
                 </div>
             </div>
@@ -231,4 +230,10 @@
             </div>
         </section>
     </main>
+{% endblock %}
+{% block footer_js %}
+    <script src="{{ asset('libs/svgxuse.min.js') }}" async defer></script>
+    <script src="{{ asset('libs/jquery/jquery-2.0.0.min.js') }}"></script>
+    <script src="{{ asset('libs/parallax/parallax.min.js') }}"></script>
+    <script src="{{ asset('js/my-main.js') }}"></script>
 {% endblock %}
