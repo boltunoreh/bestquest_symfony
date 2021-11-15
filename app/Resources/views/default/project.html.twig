@@ -74,7 +74,7 @@
         </section>
         <section class="gallery block">
             <div class="gallery__wrapper block__wrapper">
-                <h2 class="gallery__title title">Фотографии</h2>
+                <h2 class="gallery__title title">Галерея</h2>
                 <div class="swiper-container gallery__container">
                     <div class="swiper-wrapper">
                         {% for photo in current_project.photos %}
@@ -111,129 +111,7 @@
 {% endblock %}
 {% block footer_js %}
     <script src="{{ asset('libs/svgxuse.min.js') }}" async defer></script>
-    <script src="{{ asset('libs/swiper/swiper.min.js') }}"></script>
     <script src="{{ asset('libs/jquery/jquery-2.0.0.min.js') }}"></script>
     <script src="{{ asset('libs/parallax/parallax.min.js') }}"></script>
     <script src="{{ asset('js/my-main.js') }}?v=1636822055"></script>
-    <script>
-        let isInProgress = false;
-        const SPEED = 600;
-        let activeIndex = 1;
-        const bulletsText = [
-            `Друзья Оушена`,
-            `Платформа Emotion`,
-            `Первооткрыватели`,
-            `Шерлок`,
-            `Игры Героев`,
-            `Время первых`,
-            `Спецпроект`,
-        ];
-        const slides = document.querySelectorAll(`.slide`);
-        const iframesArray = Array.from(document.querySelectorAll(`.slide`)).map((slide) => slide.querySelector(`iframe`))
-            .filter((item) => !!item);
-
-        const swiper = new Swiper(`.slider`, {
-            pagination: {
-                el: `.slider-pagination`,
-                clickable: true,
-                renderBullet: function (index, className) {
-                    return `<button type="button" class="slider__bullet ${className}"> <span class="slider__bullet-name">${bulletsText[index]}</span> </button>`;
-                },
-            },
-            navigation: {
-                nextEl: `.slider__button--next`,
-                prevEl: `.slider__button--prev`
-            },
-            centeredSlides: true,
-            loop: true,
-            slidesPerView: `auto`,
-            speed: SPEED,
-            initialSlide: 1,
-        });
-
-        const setIframesPause = function () {
-            iframesArray.forEach((it) => {
-                it.contentWindow.postMessage(`{"event":"command","func":"pauseVideo","args":""}`, `*`);
-            });
-        };
-
-        const slideChangeTransitionStart = function () {
-            let direction;
-
-            if (activeIndex === slides.length - 1 && !this.realIndex) {
-                direction = `left`;
-            } else if (!activeIndex && this.realIndex === slides.length - 1) {
-                direction = `right`;
-            } else if (this.realIndex > activeIndex) {
-                direction = `left`;
-            } else {
-                direction = `right`;
-            }
-
-            activeIndex = this.realIndex;
-
-            if (direction === `left`) {
-                const fadeSlide = this.slides[this.previousIndex].previousElementSibling;
-
-                fadeSlide.style.transform = `translateX(130%) scaleX(0.6) scaleY(0.682)`;
-                fadeSlide.style.opacity = `0`;
-
-                setTimeout(() => {
-                    fadeSlide.style.transition = ``;
-                    fadeSlide.style.transform = ``;
-                    fadeSlide.style.opacity = ``;
-                }, SPEED);
-            } else {
-                const fadeSlide = this.slides[this.previousIndex].nextElementSibling;
-
-                fadeSlide.style.zIndex = -1;
-                fadeSlide.style.transition = `none`;
-                fadeSlide.style.transform = `translateX(-346px)`;
-
-                setTimeout(() => {
-                    fadeSlide.style.transition = ``;
-                    fadeSlide.style.transition = `translateX ${SPEED / 1000}s ease, opacity ${SPEED / 1000}s easy`;
-                    fadeSlide.style.transform = `translateX(-726px) scaleX(0.6) scaleY(0.682)`;
-                    fadeSlide.style.opacity = `0`;
-                }, 0);
-
-                setTimeout(() => {
-                    fadeSlide.style.transition = ``;
-                    fadeSlide.style.transform = ``;
-                    fadeSlide.style.opacity = ``;
-                    fadeSlide.style.zIndex = ``;
-                }, SPEED);
-            }
-        };
-
-        const slideChangeTransitionEnd = function () {
-            setIframesPause();
-        };
-
-        const touchMove = function () {
-            if (!isInProgress) {
-                isInProgress = true;
-
-                Array.from(swiper.slides).forEach(function (it) {
-                    it.style.transformOrigin = `50% 50%`;
-                });
-
-                swiper.on(`transitionEnd`, transitionEnd);
-            }
-        };
-
-        const transitionEnd = function () {
-            isInProgress = false;
-
-            Array.from(swiper.slides).forEach(function (it) {
-                it.style.transformOrigin = ``;
-            });
-
-            swiper.off(`transitionEnd`, transitionEnd);
-        };
-
-        swiper.on(`slideChangeTransitionStart`, slideChangeTransitionStart);
-        swiper.on(`slideChangeTransitionEnd`, slideChangeTransitionEnd);
-
-    </script>
 {% endblock %}
