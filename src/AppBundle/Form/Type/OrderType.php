@@ -24,10 +24,10 @@ class OrderType extends AbstractType
             ])
             ->add('email', EmailType::class, [
                 'label' => false,
-                'required' => false,
             ])
             ->add('phone', TextType::class, [
                 'label' => false,
+                'required' => false,
             ])
             ->add('project', EntityType::class, [
                 'class' => 'AppBundle:Project',
